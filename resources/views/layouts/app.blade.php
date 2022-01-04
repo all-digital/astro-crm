@@ -13,8 +13,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
-    <title>Serviços - Astro Sistemas Integrados</title>
+    <title>{{ config('app.name','Astro Sistemas Integrados') }}</title>
+    {{-- <title>Serviços - Astro Sistemas Integrados</title> --}}
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}} 
@@ -48,7 +48,7 @@
 
 </head>
 <body data-layout="detached" data-topbar="colored">
-    <div id="app">
+    {{-- <div id="app"> --}}
 
         <div class="container-fluid">
 
@@ -466,7 +466,7 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-2.jpg"
                                         alt="Header Avatar">
-                                    <span class="d-none d-xl-inline-block ms-1" style="color: #000;">João</span>
+                                    <span class="d-none d-xl-inline-block ms-1" style="color: #000;">{{ Auth::user()->name ?? ''}}</span>
                                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block" style="color: #000;"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -514,7 +514,7 @@
                         <!-- end page title -->                                              
                         
 
-                        <main class="py-4" >
+                        <main >
                             @yield('content')
                         </main>
 
@@ -596,7 +596,7 @@
             <div class="rightbar-overlay"></div>
                     
        {{-- end div #app --}}
-   </div>
+   {{-- </div> --}}
 
    
    <!-- App js build aplication-->
