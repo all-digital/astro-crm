@@ -15,8 +15,8 @@
                         <p class="text-muted font-weight-medium mt-1 mb-2" x-text="teste"></p>                        
                         {{-- <h4 x-on:click="console.log(nome)">255</h4>  --}}
                         <h4 x-ref="darcio" x-on:click="show = !show" >255</h4> 
-                        <h4 x-init="graphic" x-show="show" x-on:click="myfunction(name)" >dd</h4>  
-                        {{-- <h4 x-show="show" x-on:click="ref()" >dd</h4>                      --}}
+                        {{-- <h4 x-show="show" x-on:click="myfunction(name)" >dd</h4>   --}}
+                        <h4 x-show="show" x-on:click="ref()" >dd</h4>                     
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                 teste:'Vendas do Mês',
                 ref(){
                     //posso facilmente add uma class ou algo em alguma tag para sumir ou algo do tipo.....
-                    console.log(this.$refs.darcio.innerHTML)
+                    console.log(this.$refs.darcio)
                 }              
             }
         }
@@ -56,44 +56,6 @@
             
             return a
             
-        }
-
-
-        function graphic()
-        {
-            var options = {
-                    series: [20],
-                    chart: {
-                        height: 120,
-                        type: "radialBar"
-                    },
-                    plotOptions: {
-                        radialBar: {
-                            offsetY: -12,
-                            hollow: {
-                                margin: 5,
-                                size: "60%",
-                                background: "rgba(253, 189, 24, .25)"
-                            },
-                            dataLabels: {
-                                name: {
-                                    show: !1
-                                },
-                                value: {
-                                    show: !0,
-                                    fontSize: "15px",
-                                    offsetY: 5
-                                },
-                                style: {
-                                    colors: ["#fdbd18"]
-                                }
-                            }
-                        }
-                    },
-                    colors: ["#fdbd18"]
-                },
-                chart = new ApexCharts(document.querySelector("#radial-chart-1"), options);
-                chart.render();
         }
 
         

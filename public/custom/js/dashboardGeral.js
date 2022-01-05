@@ -1,39 +1,39 @@
 
 // VENDAS DO MÊS
 
-var options = {
-    series: [70],
-    chart: {
-        height: 120,
-        type: "radialBar"
-    },
-    plotOptions: {
-        radialBar: {
-            offsetY: -12,
-            hollow: {
-                margin: 5,
-                size: "60%",
-                background: "rgba(253, 189, 24, .25)"
-            },
-            dataLabels: {
-                name: {
-                    show: !1
-                },
-                value: {
-                    show: !0,
-                    fontSize: "15px",
-                    offsetY: 5
-                },
-                style: {
-                    colors: ["#fdbd18"]
-                }
-            }
-        }
-    },
-    colors: ["#fdbd18"]
-},
-chart = new ApexCharts(document.querySelector("#radial-chart-1"), options);
-chart.render();
+// var options = {
+//     series: [70],
+//     chart: {
+//         height: 120,
+//         type: "radialBar"
+//     },
+//     plotOptions: {
+//         radialBar: {
+//             offsetY: -12,
+//             hollow: {
+//                 margin: 5,
+//                 size: "60%",
+//                 background: "rgba(253, 189, 24, .25)"
+//             },
+//             dataLabels: {
+//                 name: {
+//                     show: !1
+//                 },
+//                 value: {
+//                     show: !0,
+//                     fontSize: "15px",
+//                     offsetY: 5
+//                 },
+//                 style: {
+//                     colors: ["#fdbd18"]
+//                 }
+//             }
+//         }
+//     },
+//     colors: ["#fdbd18"]
+// },
+// chart = new ApexCharts(document.querySelector("#radial-chart-1"), options);
+// chart.render();
 
 
 

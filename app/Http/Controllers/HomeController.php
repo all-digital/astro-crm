@@ -28,7 +28,21 @@ class HomeController extends Controller
 
     public function index1()
     {
-        return view('home1');
+        $name = "darcio soares";
+        $array = ['nome'=>'darcio','sobrenome'=>'soares'];
+        //$array = json_encode($array);
+        // dd($name);
+
+        $array = collect($array);
+        
+        $array = $array->toJson();
+
+       // $array = (object) $array;
+       //pego o valor como objeto no blade
+
+        //dd($ob);
+
+        return view('home1',['name'=>$name,'array'=>$array]);
     }
 
     public function finance()

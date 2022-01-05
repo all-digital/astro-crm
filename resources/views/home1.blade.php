@@ -33,9 +33,9 @@
             <div class="row">
 
                 {{-- graphic sales of month --}}
-                @livewire('dashbord.graphics.sales-of-month')
+                {{-- @livewire('dashbord.graphics.sales-of-month') --}}
                 
-                {{-- @include('dashboard\graphics\sales-of-month') --}}
+                @include('dashboard\graphics\sales-of-month')
 
                  {{-- graphic additional revenue --}}
                  @livewire('dashbord.graphics.additional-revenue')
