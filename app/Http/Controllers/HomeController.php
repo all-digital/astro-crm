@@ -28,7 +28,7 @@ class HomeController extends Controller
 
     public function index1()
     {
-        $name = "darcio soares";
+        // $name = "darcio soares";
         $array = ['nome'=>'darcio','sobrenome'=>'soares'];
         //$array = json_encode($array);
         // dd($name);
@@ -42,7 +42,7 @@ class HomeController extends Controller
 
         //dd($ob);
 
-        return view('home1',['name'=>$name,'array'=>$array]);
+        return view('home1',['array'=>$array]);
     }
 
     public function finance()

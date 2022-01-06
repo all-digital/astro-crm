@@ -13,10 +13,10 @@ class SalesOfMonth extends Component
     //     dd("para");
     // }
 
-    public function mudar($name)
-    {
-        dd("parou mano $name");
-    }
+    // public function mudar($name)
+    // {
+    //     dd("parou mano $name");
+    // }
 
     public function render()
     {

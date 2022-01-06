@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('nav-page-title')
+@section('nav-header')
 
  <!-- start page title -->
         <div class="row">

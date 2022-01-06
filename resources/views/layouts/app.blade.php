@@ -509,7 +509,7 @@
     
                         <!-- start page title -->
 
-                        @yield('nav-page-title')
+                        @yield('nav-header')                        
 
                         <!-- end page title -->                                              
                         
