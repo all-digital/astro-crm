@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/teste', function(){
+
+    //dd(' teste api ');
+    sleep(5);
+
+    
+    return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
+    
+
+});
