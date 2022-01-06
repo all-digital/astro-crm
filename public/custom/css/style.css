@@ -42,6 +42,9 @@
     border-radius: 10px;
 }
 
+.colorpick-eyedropper-input-trigger {
+    display: none;
+}
 
 
 @media only screen and (min-width:1920px) {
