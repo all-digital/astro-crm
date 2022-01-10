@@ -1,7 +1,7 @@
 <div class="col-md-6">
     <div class="card"     
-     x-data="app()"
-     x-init="api()"                       
+     x-data="appSalesOfMonth()"
+     x-init="apiSalesOfMonth()"                       
     >
     {{-- end div x-data --}}
 
@@ -27,7 +27,7 @@
 
     <script>
 
-        function app(){
+        function appSalesOfMonth(){
             return {
                 show:false,
                 value:"",
@@ -41,30 +41,22 @@
                 }              
             }
         }   
-          
-        // document.addEventListener('alpine:initialized', () => {
-        
-        //     console.log("alpine:initialized")
-        //     //graphic()
-        //     api()            
-        // })
-
-                
-       function api(){
+         
+                       
+       function apiSalesOfMonth(){
 
         fetch('api/teste',{ 
-            method:'post',        
+            method:'POST',        
             body: JSON.stringify(),
             headers:{"Content-type":"application/json"}
             })            
-            .then(res=> res.json())
+            .then(res => res.json())
             .then(res => { 
 
-                console.log(res)
-                graphic(res.series)
+                console.log(res," sales")
+                graphicSales(res.series)
                 document.querySelector('#d-value').innerText  = res.value
-                
-                
+                                
             })
             .catch((e)=> console.log("erro api => ", e))
 
@@ -74,7 +66,7 @@
            console.log(this.$refs.darcio)
        }
 
-       function graphic(series)
+       function graphicSales(series)
         {
             var options = {
                     series: [series],
@@ -111,7 +103,6 @@
                 chart.render();
                                
         }
-
     
     </script>
 </div>

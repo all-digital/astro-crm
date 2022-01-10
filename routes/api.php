@@ -19,9 +19,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/teste', function(){
+    
+    sleep(3);
+
+    return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toArray();
+    
+    //return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
+    
+
+});
+
+Route::get('/teste', function(){
 
     //dd(' teste api ');
-    sleep(5);
+    //sleep(5);
 
     
     return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
