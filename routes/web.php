@@ -25,10 +25,37 @@ Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index1'])->na
 
 Route::get('/finance', [App\Http\Controllers\HomeController::class, 'finance'])->name('finance');
 
+Route::get('/edit/companies', [App\Http\Controllers\HomeController::class, 'companies']);
+
+Route::get('/add/companies', [App\Http\Controllers\HomeController::class, 'addCompanies']);
+
+Route::get('/teste', function () {
+    return view('teste');
+});
+
+Route::get('/empresas', function () {
+    return view('edit-companies');
+});
+
+
+Route::get('/empresas-add', function () {
+    return view('add-companies');
+});
+
+
+Route::get('/empresas-edit', function () {
+    return view('edit-companies');
+});
+
+
+Route::get('/empresas/testando', function () {
+    return view('companies');
+});
 
 
 
-//////routes teste
+
+                                          ////////////routes teste
 Route::get('redirect', function(){
 
     return redirect()->route('finance-gateway-pay');
@@ -37,7 +64,7 @@ Route::get('redirect', function(){
 
 Route::prefix('dashboards')->group(function () {
     Route::get('/principal', function () {
-        dd("principal");
+        dd("principal"); 
     })->name('dashboards-main');
 
     Route::get('/financeiro', function () {

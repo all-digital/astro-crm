@@ -22,8 +22,7 @@ Route::post('/teste', function(){
     
     sleep(3);
 
-    return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toArray();
-    
+    return collect(['nome'=>'darcio','value'=>255,'series'=>45,"ajax"=>request()->ajax()])->toArray();    
     //return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
     
 
@@ -34,6 +33,10 @@ Route::get('/teste', function(){
     //dd(' teste api ');
     //sleep(5);
 
+    //dd(collect(['nome'=>'darcio','value'=>255,'series'=>45])->toArray());
+
+    //dd(request()->is('api/teste'));
+    //request()->segments()[0];
     
     return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
     

@@ -51,5 +51,16 @@ class HomeController extends Controller
     }
 
 
+    public function companies()
+    {
+        return view('empresas');
+    }
+
+    public function addCompanies()
+    {
+        return view('addCompanies');
+    }
+
+
 
 }//end class
