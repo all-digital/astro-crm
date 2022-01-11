@@ -20,7 +20,7 @@
 
     {{-- @livewire('table-services') --}}
     {{-- <livewire:table-services></livewire:table-services> --}}
-    @include('components.table-services')
+    {{-- @include('components.table-services') --}}
 
 @endsection
 
