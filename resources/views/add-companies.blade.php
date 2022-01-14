@@ -6,9 +6,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="page-title mb-0 font-size-18" id="empr">EMPRESAS</h4>
-                            <input type="text" placeholder="empresa"  id="in">
-
+                            <h4 class="page-title mb-0 font-size-18">EMPRESAS</h4>                           
                         </div>
                     </div>
                 </div>
@@ -238,6 +236,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtFirstNameBilling" readonly name="cnpjConfirmation"
                                                 type="text" class="form-control">
+                                                <span id="cnpjConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
 
                                     </div>
@@ -249,6 +248,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtLastNameBilling" readonly name="socialReasonConfirmation"
                                                 type="text" class="form-control">
+                                                <span id="socialReasonConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -261,6 +261,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtCompanyBilling2" readonly name="fantasyNameConfirmation"
                                                 type="text" class="form-control">
+                                                <span id="fantasyNameConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -271,6 +272,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtEmailAddressBilling" readonly name="statusConfirmation"
                                                 type="text" readonly value="Ativo" class="form-control">
+                                                <span id="statusConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -283,6 +285,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtEmailAddressBilling" readonly name="responsibleConfirmation"
                                                 type="text" class="form-control">
+                                                <span id="responsibleConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -293,6 +296,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtEmailAddressBilling" readonly name="emailConfirmation"
                                             type="text" class="form-control">
+                                            <span id="emailConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -306,6 +310,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtFirstNameShipping" readonly name="mainColorConfirmation"
                                                 type="color" class="form-control" style="padding: 15px;">
+                                                <span id="mainColorConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -317,6 +322,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtLastNameShipping" readonly name="logoConfirmation"
                                                 type="file" class="form-control">
+                                                <span id="logoConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -351,6 +357,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtNameCard" readonly name="monthPaymentConfirmation" type="text"
                                                 class="form-control">
+                                                <span id="monthPaymentConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -361,6 +368,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtCreditCardNumber" readonly name="activationConfirmation"
                                             type="text" class="form-control">
+                                            <span id="activationConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -373,6 +381,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtCreditCardNumber" readonly name="pricePerPlateConfirmation"
                                                 type="text" class="form-control">
+                                                <span id="pricePerPlateConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -384,6 +393,7 @@
                                             <input id="txtCardVerificationNumber"
                                                 name="userLimitConfirmation" readonly type="number" value="5"
                                                 class="form-control">
+                                                <span id="userLimitConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -392,10 +402,11 @@
                                 <div class="col-md-6">
                                     <div class="mb-3 row">
                                         <label for="pricePerExtraUserConfirmation"
-                                            id="preço" class="col-lg-3 col-form-label">Preço por usuário extra</label>
+                                            class="col-lg-3 col-form-label">Preço por usuário extra</label>
                                         <div class="col-lg-9">
                                             <input id="txtExpirationDate" readonly name="pricePerExtraUserConfirmation"
                                                 type="text" class="form-control">
+                                                <span id="pricePerExtraUserConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
                                 </div>
@@ -974,179 +985,136 @@
                         if((!form.cnpj.value.trim())){
                             
                             form.cnpj.setAttribute("style","background-color: #ffdddd;")
-                            validCnpj.removeAttribute('class')      
+                            validCnpj.removeAttribute('class')     
+                        }
 
-                        }else if((!form.socialReason.value.trim())){           
+                        if((!form.socialReason.value.trim())){           
                         
                             form.socialReason.setAttribute("style","background-color: #ffdddd;")
-                            validSocialReason.removeAttribute('class')
-                        
-                        }else if((!form.fantasyName.value.trim())){
+                            validSocialReason.removeAttribute('class')                        
+                        }
+
+                        if((!form.fantasyName.value.trim())){
 
                             form.fantasyName.setAttribute("style","background-color: #ffdddd;")
                             validFantasyName.removeAttribute('class')
+                        }
 
-                        }else if((!form.status.value.trim())){
+                        if((!form.status.value.trim())){
 
                             form.status.setAttribute("style","background-color: #ffdddd;")
                             validStatus.removeAttribute('class') 
+                        }
 
-                        }else if((!form.responsible.value.trim())){
+                        if((!form.responsible.value.trim())){
 
                             form.responsible.setAttribute("style","background-color: #ffdddd;")
                             validResponsible.removeAttribute('class')
+                        }
 
-                        }else if((!form.email.value.trim() )){
+                        if((!form.email.value.trim() )){
 
                             form.email.setAttribute("style","background-color: #ffdddd;")
-                            validEmail.removeAttribute('class') 
-
-                        }else if((!form.monthPayment.value.trim())){
+                            validEmail.removeAttribute('class')
+                        }
+                        
+                        if((!form.monthPayment.value.trim())){
                             form.monthPayment.setAttribute("style","background-color: #ffdddd;")
                             validMonthPayment.removeAttribute('class')
+                        }
 
-                        }else if ((!form.activation.value.trim())){
+                        if ((!form.activation.value.trim())){
                             form.activation.setAttribute("style","background-color: #ffdddd;")
-                            validActivation.removeAttribute('class') 
-
-                        }else if((!form.pricePerPlate.value.trim())){
+                            validActivation.removeAttribute('class')
+                        }
+                        
+                        if((!form.pricePerPlate.value.trim())){
                             form.pricePerPlate.setAttribute("style","background-color: #ffdddd;")
                             validPricePerPlate.removeAttribute('class')
-
-                        }else if ((!form.userLimit.value.trim())){
-                            form.userLimit.setAttribute("style","background-color: #ffdddd;")
-                            validUserLimit.removeAttribute('class')                            
+                        }
                         
-                        }else if((!form.pricePerExtraUser.value.trim())){
+                        if ((!form.userLimit.value.trim())){
+                            form.userLimit.setAttribute("style","background-color: #ffdddd;")
+                            validUserLimit.removeAttribute('class')                           
+                        }
+
+                        if((!form.pricePerExtraUser.value.trim())){
                             form.pricePerExtraUser.setAttribute("style","background-color: #ffdddd;")
                             validPricePerExtraUser.removeAttribute('class')
                         }//end valitation 
 
-                        
-                        console.log(
-                            form.monthPayment.value,
-                            form.activation.value,
-                            form.pricePerPlate.value,
-                            form.userLimit.value,
-                            form.pricePerExtraUser.value
-                        )
+                                           
                     
                         //validating filling in the fields
+
 
                         //Informações da Empresa
                         if(form.cnpj.value.length >= 14){
                             form.cnpj.removeAttribute("style")
-                            validCnpj.setAttribute('class',"d-none")              
-                        }
-
+                            validCnpj.setAttribute('class',"d-none")   
+                        }                            
+                             
                         if(form.socialReason.value.length >= 1){
                             form.socialReason.removeAttribute("style")
-                            validSocialReason.setAttribute('class',"d-none")                    
+                            validSocialReason.setAttribute('class',"d-none")    
                         }
+                                                         
 
                         if(form.fantasyName.value.length > 1 ){
                             form.fantasyName.removeAttribute("style")
-                            validFantasyName.setAttribute('class',"d-none")                    
+                            validFantasyName.setAttribute('class',"d-none")   
                         }
+                                                        
 
                         if(form.status.value.length > 1){
                             form.status.removeAttribute("style")
-                            validStatus.setAttribute('class',"d-none")                            
-                        }
+                            validStatus.setAttribute('class',"d-none")   
+                        }                                                         
                         
                         if(form.responsible.value.length > 1){
                             form.responsible.removeAttribute("style")
-                            validResponsible.setAttribute('class',"d-none")                            
-                        }
-                        
+                            validResponsible.setAttribute('class',"d-none") 
+                        }                          
+                                                     
                         if(form.email.value.length > 1){
                             form.email.removeAttribute("style")
-                            validEmail.setAttribute('class',"d-none")                            
-                        }                       
+                            validEmail.setAttribute('class',"d-none") 
+                        } 
+                                              
 
                         //Informações de Pagamento
                         if(form.monthPayment.value.length > 1){
                             form.monthPayment.removeAttribute("style")
-                            validMonthPayment.setAttribute('class',"d-none")                            
+                            validMonthPayment.setAttribute('class',"d-none")
                         }
 
                         if(form.activation.value.length > 1){
                             form.activation.removeAttribute("style")
-                            validActivation.setAttribute('class',"d-none") 
+                            validActivation.setAttribute('class',"d-none")                              
                         }
 
                         if(form.pricePerPlate.value.length > 1){
                             form.pricePerPlate.removeAttribute("style")
-                            validPricePerPlate.setAttribute('class',"d-none")
+                            validPricePerPlate.setAttribute('class',"d-none")                              
                         }
 
                         if(form.userLimit.value.length > 1){
                             form.userLimit.removeAttribute("style")
-                            validUserLimit.setAttribute('class',"d-none")
+                            validUserLimit.setAttribute('class',"d-none")                              
                         }
 
                         if(form.pricePerExtraUser.value.length > 1){
                             form.pricePerExtraUser.removeAttribute("style")
-                            validPricePerExtraUser.setAttribute('class',"d-none")
+                            validPricePerExtraUser.setAttribute('class',"d-none")                              
                         }
 
+
+
+                        return !0                          
                         
 
-                        
-                        //class d-none    => message of error
-                        //hasAttribute("class") if it is true and why is it displaying none
-                        // if it is not a class and why there is an error
-
-
-                        //var of validation
-                        let companyInformation = false                        
-                        if(
-                            validCnpj.hasAttribute("class") &&
-                            validSocialReason.hasAttribute("class") && 
-                            validFantasyName.hasAttribute("class") && 
-                            validStatus.hasAttribute("class") && 
-                            validResponsible.hasAttribute("class") && 
-                            validEmail.hasAttribute("class")
-                        ){ companyInformation = true }
-                        
-                        console.log("campany => ",
-                            validCnpj.hasAttribute("class") ,
-                            validSocialReason.hasAttribute("class") , 
-                            validFantasyName.hasAttribute("class") , 
-                            validStatus.hasAttribute("class") , 
-                            validResponsible.hasAttribute("class") , 
-                            validEmail.hasAttribute("class")
-                        
-                        )
-
-                        console.log("payInformation => ",
-                            validMonthPayment.hasAttribute("class") ,
-                            validActivation.hasAttribute("class") ,
-                            validPricePerPlate.hasAttribute("class") ,
-                            validUserLimit.hasAttribute("class") ,
-                            validPricePerExtraUser.hasAttribute("class")
-                        
-                        )
-                       
-                        // var of validation 
-                        let payInformation = false
-                        if(
-                            validMonthPayment.hasAttribute("class") &&
-                            validActivation.hasAttribute("class") &&
-                            validPricePerPlate.hasAttribute("class") &&
-                            validUserLimit.hasAttribute("class") &&
-                            validPricePerExtraUser.hasAttribute("class")
-                        ){ payInformation = true }
-
-                        console.log(`companyInformation => ${companyInformation}`, `payInformation => ${payInformation}`)
-
-                        if(companyInformation || payInformation){                           
-                            return !0  
-                        }
-                                                          
                     },
                     onStepChanged: function() {
-
                         
                         let form = document.querySelector('#form-horizontal')
 
@@ -1170,98 +1138,169 @@
                     onCanceled: function() {},
                     onFinishing: function() {
 
-                        console.log("onFinishing")
 
-                        // let fantasy = document.querySelector('#txtCompanyBilling').value
-
-                        // document.querySelector('#txtCompanyBilling2').value  = fantasy 
-
-                    //    form = document.querySelector('#form-horizontal')
-
-                    //    let cnpj = form.cnpj.value
-                    //    let razao = form.razao.value
-
-                    //    form.cnpj.value						
-                    //    form.socialReason.value
-                    //    form.fantasyName.value
-                    //    form.status.value
-                    //    form.responsible.value
-                    //    form.email.value
-
-                    //    form.mainColor.value
-                    //    form.logo.value
+                    let form = document.querySelector('#form-horizontal')    
                     
-                    //    form.monthPayment.value
-                    //    form.activation.value
-                    //    form.pricePerPlate.value
-                    //    form.userLimit.value
-                    //    form.pricePerExtraUser.value
+                    
+                    let validCnpjConfirmation = document.querySelector('#cnpjConfirmation-valid')
+                    let validSocialReasonConfirmation = document.querySelector('#socialReasonConfirmation-valid')
+                    let validFantasyNameConfirmation = document.querySelector('#fantasyNameConfirmation-valid')
+                    let validStatusConfirmation = document.querySelector('#statusConfirmation-valid')
+                    let validResponsibleConfirmation = document.querySelector('#responsibleConfirmation-valid')
+                    let validEmailConfirmation = document.querySelector('#emailConfirmation-valid')
+                    let validMainColorConfirmation = document.querySelector('#mainColorConfirmation-valid')
+                    let validLogoConfirmation = document.querySelector('#logoConfirmation-valid')
+                    let validMonthPaymentConfirmation = document.querySelector('#monthPaymentConfirmation-valid')
+                    let validActivationConfirmation = document.querySelector('#activationConfirmation-valid')
+                    let validPricePerPlateConfirmation = document.querySelector('#pricePerPlateConfirmation-valid')
+                    let validUserLimitConfirmation = document.querySelector('#userLimitConfirmation-valid')
+                    let validPricePerExtraUserConfirmation = document.querySelector('#pricePerExtraUserConfirmation-valid')
+                   
 
-                    //    console.log('nome do input para teste => ', cnpj, razao )
 
-                    //     console.log('onFinishing  -->>>>>>>>> ')
+                
+                    if(form.cnpjConfirmation.value == "")
+                    {
+                        form.cnpjConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validCnpjConfirmation.removeAttribute('class')  
+                    }else{
+                        form.cnpjConfirmation.removeAttribute("style")
+                        validCnpjConfirmation.setAttribute("class","d-none")
+                    }
+                    
 
-                    //     alert('testando')
+                    if(form.socialReasonConfirmation.value == "")
+                    {
+                        form.socialReasonConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validSocialReasonConfirmation.removeAttribute('class') 
+                    }else{
+                        form.socialReasonConfirmation.removeAttribute("style")
+                        validSocialReasonConfirmation.setAttribute("class","d-none")
+                    }
+                    
 
+                    if(form.fantasyNameConfirmation.value == "")
+                    {
+                        form.fantasyNameConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validFantasyNameConfirmation.removeAttribute('class') 
+                    }else{
+                        form.fantasyNameConfirmation.removeAttribute("style")
+                        validFantasyNameConfirmation.setAttribute("class","d-none")
+                    }
+                    
+                    if(form.statusConfirmation.value == "")
+                    {
+                        form.statusConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validStatusConfirmation.removeAttribute('class') 
+                    }else{
+                        form.statusConfirmation.removeAttribute("style")
+                        validStatusConfirmation.setAttribute("class","d-none")
+                    }
+
+                    if(form.responsibleConfirmation.value == "")
+                    {
+                        form.responsibleConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validResponsibleConfirmation.removeAttribute('class') 
+                    }else{
+                        form.responsibleConfirmation.removeAttribute("style")
+                        validResponsibleConfirmation.setAttribute("class","d-none")
+                    }
+
+                    if(form.emailConfirmation.value == "")
+                    {
+                        form.emailConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validEmailConfirmation.removeAttribute('class') 
+                    }else{
+                        form.emailConfirmation.removeAttribute("style")
+                        validEmailConfirmation.setAttribute("class","d-none")
+                    }
+
+
+                    // if(form.mainColorConfirmation.value == "")
+                    // {
+                    //     form.mainColorConfirmation.setAttribute("style","background-color: #ffdddd;")
+                    //     validMainColorConfirmation.removeAttribute('class') 
+                    // }
+                    // if(form.logoConfirmation.value == "")
+                    // {
+                    //     form.logoConfirmation.setAttribute("style","background-color: #ffdddd;")
+                    //     validLogoConfirmation.removeAttribute('class') 
+                    // }
+
+                    if(form.monthPaymentConfirmation.value == "")
+                    {
+                        form.monthPaymentConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validMonthPaymentConfirmation.removeAttribute('class') 
+                    }else{
+                        form.monthPaymentConfirmation.removeAttribute("style")
+                        validMonthPaymentConfirmation.setAttribute("class","d-none")
+                    }
+
+
+                    if(form.activationConfirmation.value == "")
+                    {
+                        form.activationConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validActivationConfirmation.removeAttribute('class') 
+                    }else{
+                        form.activationConfirmation.removeAttribute("style")
+                        validActivationConfirmation.setAttribute("class","d-none")
+                    }
+
+
+                    if(form.pricePerPlateConfirmation.value == "")
+                    {
+                        form.pricePerPlateConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validPricePerPlateConfirmation.removeAttribute('class') 
+                    }else{
+                        form.pricePerPlateConfirmation.removeAttribute("style")
+                        validPricePerPlateConfirmation.setAttribute("class","d-none")
+                    }
+
+                    if(form.userLimitConfirmation.value < 6)
+                    {
+                        form.userLimitConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validUserLimitConfirmation.removeAttribute('class') 
+                    }else{
+                        form.userLimitConfirmation.removeAttribute("style")
+                        validUserLimitConfirmation.setAttribute("class","d-none")
+                    }
+
+                    if(form.pricePerExtraUserConfirmation.value == "")
+                    {
+                        form.pricePerExtraUserConfirmation.setAttribute("style","background-color: #ffdddd;")
+                        validPricePerExtraUserConfirmation.removeAttribute('class') 
+                    }else{
+                        form.pricePerExtraUserConfirmation.removeAttribute("style")
+                        validPricePerExtraUserConfirmation.setAttribute("class","d-none")
+                    }
+
+                    
+
+                        console.log("onFinishing")                
+                        
                         return !0
                     },
                     onFinished: function(event) {
 
-
+                        alert("campos com erros")
                         console.log('onFinished => ')
-
-                    
-
-                        // let fantasy = document.querySelector('#txtCompanyBilling').value
-                        // console.log(fantasy)
-                        // document.querySelector('#txtCompanyBilling2').value  = fantasy 
-                        
-
-                        // console.log(logo.value)
-
-                        // fetch('api/teste',{ 
-                        //     method:'post',        
-                        
-                        //     headers:{"Content-type":"application/json"}
-                        //     })            
-                        //     .then(res=> res.json())
-                        //     .then(res =>{ 
-                                
-                        //         console.log(res)
-
-                        //          let pre = document.querySelector('#preço').innerText
-                        //         //pre = "darcio"
-
-                        //         alert(`adastro efetuado com sucesso =>  ${pre}`)
-                            
-                        //     })
-                        //     .catch(()=>console.log(" erro ajax ")) 
-
-
+                   
                     },
                     onContentLoaded: function() {},          
                     onInit: function() {
-                        
-                        console.log('init :):):):)')
-                        /////////////////////////
 
-                        let empr = document.getElementById('empr')
-                        let input = document.getElementById('in')
-                    
-                        empr.onmouseover = function(e){
-                            e.preventDefault()     
-            
-                            input.setAttribute("style","background-color: #ffdddd;")
-                            
-                        };
-            
-                        input.onmouseover = function(e){
-                            e.preventDefault()
-            
-            
-                            input.removeAttribute("style");
-                        }
+                        // let form = document.querySelector('#form-horizontal')  
+
+                        // let empr = document.querySelector('#empr')  
                         
+
+                        // form.cnpj.onmouseover = function(e){
+                        //     e.preventDefault()     
+            
+                        //     empr.setAttribute("style","background-color: #ffdddd;")
+                            
+                        // };           
+                                                
                         //////////////////////////////////////////
                         
                         
