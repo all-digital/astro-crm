@@ -969,7 +969,6 @@
                         let validPricePerExtraUser = document.querySelector('#pricePerExtraUser-valid')
 
 
-
                     //validating if the input is empty
 
                         if((!form.cnpj.value.trim())){
@@ -1002,23 +1001,23 @@
                             form.email.setAttribute("style","background-color: #ffdddd;")
                             validEmail.removeAttribute('class') 
 
-                        }else if(form.monthPayment.value){
+                        }else if((!form.monthPayment.value.trim())){
                             form.monthPayment.setAttribute("style","background-color: #ffdddd;")
                             validMonthPayment.removeAttribute('class')
 
-                        }else if (form.activation.value){
+                        }else if ((!form.activation.value.trim())){
                             form.activation.setAttribute("style","background-color: #ffdddd;")
                             validActivation.removeAttribute('class') 
 
-                        }else if(form.pricePerPlate.value){
+                        }else if((!form.pricePerPlate.value.trim())){
                             form.pricePerPlate.setAttribute("style","background-color: #ffdddd;")
                             validPricePerPlate.removeAttribute('class')
 
-                        }else if (form.userLimit.value){
+                        }else if ((!form.userLimit.value.trim())){
                             form.userLimit.setAttribute("style","background-color: #ffdddd;")
                             validUserLimit.removeAttribute('class')                            
                         
-                        }else if(form.pricePerExtraUser.value){
+                        }else if((!form.pricePerExtraUser.value.trim())){
                             form.pricePerExtraUser.setAttribute("style","background-color: #ffdddd;")
                             validPricePerExtraUser.removeAttribute('class')
                         }//end valitation 
