@@ -1,986 +1,244 @@
-<!doctype html>
-<html lang="en">
-
-    {{-- <head>
-        <meta charset="utf-8" />
-        <title>Nova Empresa - Astro Sistemas Integrados</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="" name="description" />
-        <meta content="Alldigital" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
-    
-        <link rel="shortcut icon" href="assets/images/icon.png">
-    
-        <!-- Styles template -->
-        <!-- Bootstrap Css -->
-         <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />     
-         <!-- Icons Css -->
-         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-         <!-- App Css-->
-         
-     
-         <link href="{{asset('assets/css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" /> 
-    
-         <link rel="stylesheet" href="{{asset('custom/css/style.css')}}">
-        
-        
-    
-    </head> --}}
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Styles template -->
-        <meta content="" name="description" />
-        <meta content="Alldigital" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/icon.png">
-
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name','Astro Sistemas Integrados') }}</title>
-        
-        <script src="{{asset('libs/alpinejs_3.7.1.min.js')}}" defer></script>
-
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-
-    <!-- Styles template -->
-    <!-- Bootstrap Css -->
-    
-        <!-- Bootstrap Css -->
-        {{-- <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" /> --}}
-        <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    
-         <!-- Icons Css -->
-         {{-- <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" /> --}}
-         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-         <!-- App Css-->
-
-         {{-- <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-         <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" /> --}}
-
-         {{-- <link href="{{asset('assets/css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" /> --}}
-
-         {{-- <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" /> --}}
-         <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-
-         {{-- <link href="{{asset('assets/css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" /> --}}
-    
-         {{-- <link rel="stylesheet" href="custom/css/style.css"> --}}
-         <link rel="stylesheet" href="{{asset('custom/css/style.css')}}">
-
-
-         
-         {{-- /////////////////////////
-             <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />     
-         <!-- Icons Css -->
-         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-         <!-- App Css-->
-         <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-     
-         <link href="{{asset('assets/css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" /> 
-    
-         <link rel="stylesheet" href="{{asset('custom/css/style.css')}}"> --}}
-    
-    
-    </head>
-<body data-layout="detached" data-topbar="colored">
-
-
-
-    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
-
-<div class="container-fluid">
-    <!-- Begin page -->
-    <div id="layout-wrapper">
-
-        <header id="page-topbar" class="header-responsive" style="background-color: #fff;">
-            <div class="navbar-header">
-                <div class="d-flex">
-                    <!-- LOGO -->
-                    <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="assets/images/logo-astro.png" alt="" height="20">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="assets/images/logo-astro.png" alt="" height="18">
-                            </span>
-                        </a>
-
-                        <a href="index.html" class="logo logo-light">
-                            <span class="logo-sm">
-                                <img src="assets/images/logo-sm-dark.png" alt="" height="20">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="assets/images/logo-astro.png" alt="" height="70">
-                            </span>
-                        </a>
-                    </div>
-
-                    <button type="button"
-                        class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
-                        data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-
-                    <div class="topnav central-nav">
-                        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
-
-                            <div class="collapse navbar-collapse" id="topnav-menu-content">
-                                <ul class="navbar-nav">
-
-                                    <li class="nav-item dropdown">
-
-                                        <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
-                                            id="topnav-dashboard" role="button">
-                                            Dashboards <div class="arrow-down"></div>
-                                        </a>
-
-                                        <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                            <a href="dashboard-geral.html"
-                                                class="dropdown-item menu-item">Principal</a>
-                                            <a href="#" class="dropdown-item menu-item">Financeiro</a>
-                                            <a href="#" class="dropdown-item menu-item">Vendas</a>
-                                            <a href="#" class="dropdown-item menu-item">Leads</a>
-                                            <a href="#" class="dropdown-item menu-item">Estoque</a>
-                                        </div>
-
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-
-                                        <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
-                                            id="topnav-dashboard" role="button">
-                                            CRM <div class="arrow-down"></div>
-                                        </a>
-
-                                        <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none menu-item"
-                                                    href="#" id="topnav-email" role="button"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Leads
-                                                </a>
-                                                <div class="dropdown-menu menu-item" aria-labelledby="topnav-email">
-                                                    <a href="#" class="dropdown-item">Cadastrar</a>
-                                                    <a href="#" class="dropdown-item">Consultar</a>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none menu-item"
-                                                    href="#" id="topnav-email" role="button"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Clientes
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                    <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                    <a href="#" class="dropdown-item menu-item">Consultar</a>
-                                                </div>
-                                            </div>
-
-                                            <a href="index-2.html" class="dropdown-item menu-item">Pipeline de
-                                                Vendas</a>
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none menu-item"
-                                                    href="#" id="topnav-email" role="button"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Pedidos
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                    <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                    <a href="#" class="dropdown-item menu-item">Consultar</a>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none menu-item"
-                                                    href="#" id="topnav-email" role="button"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Veículos
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                    <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                    <a href="#" class="dropdown-item menu-item">Consultar</a>
-                                                </div>
-                                            </div>
-
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none menu-item"
-                                                    href="#" id="topnav-email" role="button"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Propostas
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                    <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                    <a href="#" class="dropdown-item menu-item">Consultar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-
-                                        <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
-                                            id="topnav-app-pages" role="button">
-                                            Financeiro <div class="arrow-down"></div>
-                                        </a>
-
-                                        <div class="dropdown-menu" aria-labelledby="topnav-app-pages">
-
-                                            <a href="#" class="dropdown-item menu-item">Visão Geral</a>
-
-
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle arrow-none menu" href="#"
-                                                    id="topnav-email" role="button" data-bs-toggle="dropdown"
-                                                    aria-haspopup="false" aria-expanded="false">
-                                                    Gateway de Pagamento
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                    <a href="#" class="dropdown-item menu-item">Notas Fiscais</a>
-                                                    <a href="#" class="dropdown-item menu-item">Cobrança</a>
-                                                    <a href="#" class="dropdown-item menu-item">Régua de
-                                                        Cobrança</a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-
-                                        <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
-                                            id="topnav-app-pages" role="button">
-                                            Contábil <div class="arrow-down"></div>
-                                        </a>
-
-                                        <div class="dropdown-menu" aria-labelledby="topnav-app-pages">
-
-                                            <a href="#" class="dropdown-item menu-item">Fluxo de Caixa</a>
-
-                                            <a href="#" class="dropdown-item menu-item">Contas a Pagar</a>
-
-                                            <a href="#" class="dropdown-item menu-item">Contas a Receber</a>
-
-                                            <a href="#" class="dropdown-item menu-item">DRE</a>
-
-                                            <a href="#" class="dropdown-item menu-item">Estoque</a>
-
-                                            <a href="#" class="dropdown-item menu-item">Conciliação Bancária</a>
-
-                                            <a href="#" class="dropdown-item menu-item">Movimentação</a>
-
-                                            <a href="#" class="dropdown-item menu-item">Contas</a>
-
-                                        </div>
-
-                                    </li>
-
-                                    <!--  DROPDOWN 2 COLUMNS
-
-                                  <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button"
-                                       >
-                                        Marketplace  <div class="arrow-down"></div>
-                                    </a>
-
-                                    <div class="dropdown-menu mega-dropdown-menu px-2 dropdown-mega-menu-lg dropdown-menu-right"
-                                        aria-labelledby="topnav-pages">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div>
-
-                                                    <a href="pages-login.html" class="dropdown-item">Login</a>
-                                                    <a href="pages-register.html" class="dropdown-item">Register</a>
-                                                    <a href="pages-recoverpw.html" class="dropdown-item">Recover
-                                                        Password</a>
-                                                    <a href="pages-lock-screen.html" class="dropdown-item">Lock Screen</a>
-                                                    <a href="pages-starter.html" class="dropdown-item">Starter Page</a>
-                                                    <a href="pages-invoice.html" class="dropdown-item">Invoice</a>
-                                                    <a href="pages-profile.html" class="dropdown-item">Profile</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div>
-
-                                                    <a href="pages-maintenance.html" class="dropdown-item">Maintenance</a>
-                                                    <a href="pages-comingsoon.html" class="dropdown-item">Coming Soon</a>
-                                                    <a href="pages-timeline.html" class="dropdown-item">Timeline</a>
-                                                    <a href="pages-faqs.html" class="dropdown-item">FAQs</a>
-                                                    <a href="pages-pricing.html" class="dropdown-item">Pricing</a>
-                                                    <a href="pages-404.html" class="dropdown-item">Error 404</a>
-                                                    <a href="pages-500.html" class="dropdown-item">Error 500</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </li>
-                            -->
-
-                                    <li class="nav-item dropdown">
-
-                                        <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
-                                            id="topnav-dashboard" role="button">
-                                            Administrativo <div class="arrow-down"></div>
-                                        </a>
-
-                                        <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                            <a href="#" class="dropdown-item menu-item">Categorias</a>
-                                            <a href="#" class="dropdown-item menu-item">Serviços</a>
-                                            <a href="#" class="dropdown-item menu-item">Metas</a>
-                                            <a href="#" class="dropdown-item menu-item">Fornecedores</a>
-                                            <a href="#" class="dropdown-item menu-item">Plataformas</a>
-                                            <a href="#" class="dropdown-item menu-item">Regras de Aprovação</a>
-                                            <a href="#" class="dropdown-item menu-item">Certificado Digital</a>
-                                        </div>
-
-                                    </li>
-
-                                    <li class="nav-item dropdown">
-
-                                        <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
-                                            id="topnav-dashboard" role="button">
-                                            Relatórios <div class="arrow-down"></div>
-                                        </a>
-
-                                        <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                            <a href="#" class="dropdown-item menu-item">Vendas</a>
-                                            <a href="#" class="dropdown-item menu-item">Estoque</a>
-                                            <a href="#" class="dropdown-item menu-item">Clientes</a>
-                                            <a href="#" class="dropdown-item menu-item">Veículos</a>
-                                            <a href="#" class="dropdown-item menu-item">Serviços</a>
-                                        </div>
-
-                                    </li>
-
-
-
-
-
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-
-                <div class="d-flex">
-
-                    <div class="dropdown d-inline-block ms-2">
-                        <button type="button" class="btn header-item noti-icon waves-effect"
-                            id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="mdi mdi-magnify" style="color: #000;"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                            aria-labelledby="page-header-search-dropdown">
-
-                            <form class="p-3">
-                                <div class="m-0">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar..."
-                                            aria-label="Recipient's username">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit"><i
-                                                    class="mdi mdi-magnify"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item noti-icon waves-effect"
-                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="mdi mdi-bell-outline" style="color: #000;"></i>
-                            <span class="badge bg-danger rounded-pill">13</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                            aria-labelledby="page-header-notifications-dropdown">
-                            <div class="p-3">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <h6 class="m-0"> Notificações </h6>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#!" class="small"> Ver Todos</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-simplebar style="max-height: 230px;">
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex align-items-start">
-                                        <div class="avatar-xs me-3">
-                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                                <i class="bx bx-cart"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Venda concluída</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">Sua venda de 1 Simcard Vivo foi concluída</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min atrás
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex align-items-start">
-                                        <img src="assets/images/users/avatar-3.jpg"
-                                            class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Gilberto Vicente</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">Novo vendedor adicionado no quadro</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hora atrás
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex align-items-start">
-                                        <div class="avatar-xs me-3">
-                                            <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                <i class="bx bx-badge-check"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Produto enviado</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">Produto "Suntech" foi enviado para o cliente</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min atrás
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex align-items-start">
-                                        <img src="assets/images/users/avatar-4.jpg"
-                                            class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Bianca Rodrigues</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">Nova vendedora adicionada ao quadro</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hora atrás
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="p-2 border-top d-grid">
-                                <a class="btn btn-sm btn-link font-size-14 btn-block text-center"
-                                    href="javascript:void(0)">
-                                    <i class="mdi mdi-arrow-right-circle me-1"></i> Ver Mais
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <!-- USER -->
-
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-2.jpg"
-                                alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1" style="color: #000;">João</span>
-                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block" style="color: #000;"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a class="dropdown-item" href="#"><i
-                                    class="bx bx-user font-size-16 align-middle me-1"></i>
-                                Perfil</a>
-                            <a class="dropdown-item" href="#"><i
-                                    class="bx bx-wallet font-size-16 align-middle me-1"></i> Meu
-                                Dinheiro</a>
-                            <a class="dropdown-item d-block" href="#"><span
-                                    class="badge bg-success float-end"></span><i
-                                    class="bx bx-wrench font-size-16 align-middle me-1"></i> Configurações</a>
-                            <a class="dropdown-item" href="#"><i
-                                    class="bx bx-pencil font-size-16 align-middle me-1"></i>
-                                Layout</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="#"><i
-                                    class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Sair</a>
-                        </div>
-                    </div>
-
-                    <!--
-                <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                        <i class="mdi mdi-settings-outline"></i>
-                    </button>
-                </div>
-                -->
-                </div>
-            </div>
-        </header>
-<!-- Left Sidebar End -->
-
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div class="main-content">
-
-            <div class="page-content">
-
-                <!-- start page title -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="page-title mb-0 font-size-18">EMPRESAS</h4>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- end page title -->
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Adicionar Empresa</h4>
-
-                                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
-                                    <h3>Informações da Empresa</h3>
-                                    <fieldset>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-
-                                                    <label for="txtFirstNameBilling"
-                                                        class="col-lg-3 col-form-label">CNPJ
-                                                    </label>
-
-                                                    <div class="col-lg-9">
-                                                        <input id="txtFirstNameBilling" name="txtFirstNameBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtLastNameBilling"
-                                                        class="col-lg-3 col-form-label">Razão Social</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtLastNameBilling" name="txtLastNameBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtCompanyBilling"
-                                                        class="col-lg-3 col-form-label">Nome Fantasia</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCompanyBilling" name="txtCompanyBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtEmailAddressBilling"
-                                                        class="col-lg-3 col-form-label">Status</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtEmailAddressBilling" name="txtEmailAddressBilling"
-                                                            type="text" readonly value="Ativo" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtAddress1Billing"
-                                                        class="col-lg-3 col-form-label">Responsável</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtEmailAddressBilling" name="txtEmailAddressBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtAddress2Billing"
-                                                        class="col-lg-3 col-form-label">E-mail</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtEmailAddressBilling" name="txtEmailAddressBilling"
-                                                        type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </fieldset>
-
-
-                                    <h3>Informações de Layout</h3>
-                                    <fieldset>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtFirstNameShipping"
-                                                        class="col-lg-3 col-form-label">Cor Principal</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtFirstNameShipping" name="txtFirstNameShipping"
-                                                            type="color" class="form-control" style="padding: 15px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtLastNameShipping"
-                                                        class="col-lg-3 col-form-label">Logo</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtLastNameShipping" name="txtLastNameShipping"
-                                                            type="file" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCityShipping" name="txtCityShipping" type="hidden"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <div class="col-lg-9">
-                                                        <input id="txtStateProvinceShipping"
-                                                            name="txtStateProvinceShipping" type="hidden"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </fieldset>
-
-
-                                    <h3>Informações de Pagamento</h3>
-                                    <fieldset>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtNameCard" class="col-lg-3 col-form-label">Mensalidade</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtNameCard" name="txtNameCard" type="text"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="ddlCreditCardType"
-                                                        class="col-lg-3 col-form-label">Ativação</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCreditCardNumber" name="txtCreditCardNumber"
-                                                        type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtCreditCardNumber"
-                                                        class="col-lg-3 col-form-label">Preço por Placa</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCreditCardNumber" name="txtCreditCardNumber"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtCardVerificationNumber"
-                                                        class="col-lg-3 col-form-label">Limite de Usuários</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCardVerificationNumber"
-                                                            name="txtCardVerificationNumber" type="number" value="5"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtExpirationDate"
-                                                        class="col-lg-3 col-form-label">Preço por usuário extra</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtExpirationDate" name="txtExpirationDate"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <h3>Confirmação</h3>
-                                    <fieldset>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-
-                                                    <label for="txtFirstNameBilling"
-                                                        class="col-lg-3 col-form-label">CNPJ
-                                                    </label>
-
-                                                    <div class="col-lg-9">
-                                                        <input id="txtFirstNameBilling" readonly name="txtFirstNameBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtLastNameBilling"
-                                                        class="col-lg-3 col-form-label">Razão Social</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtLastNameBilling" readonly name="txtLastNameBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtCompanyBilling"
-                                                        class="col-lg-3 col-form-label">Nome Fantasia</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCompanyBilling" readonly name="txtCompanyBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtEmailAddressBilling"
-                                                        class="col-lg-3 col-form-label">Status</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtEmailAddressBilling" readonly name="txtEmailAddressBilling"
-                                                            type="text" readonly value="Ativo" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtAddress1Billing"
-                                                        class="col-lg-3 col-form-label">Responsável</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtEmailAddressBilling" readonly name="txtEmailAddressBilling"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtAddress2Billing"
-                                                        class="col-lg-3 col-form-label">E-mail</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtEmailAddressBilling" readonly name="txtEmailAddressBilling"
-                                                        type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtFirstNameShipping"
-                                                        class="col-lg-3 col-form-label">Cor Principal</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtFirstNameShipping" readonly name="txtFirstNameShipping"
-                                                            type="color" class="form-control" style="padding: 15px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtLastNameShipping"
-                                                        class="col-lg-3 col-form-label">Logo</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtLastNameShipping" readonly name="txtLastNameShipping"
-                                                            type="file" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCityShipping" readonly name="txtCityShipping" type="hidden"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <div class="col-lg-9">
-                                                        <input id="txtStateProvinceShipping"
-                                                            name="txtStateProvinceShipping" readonly type="hidden"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtNameCard" class="col-lg-3 col-form-label">Mensalidade</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtNameCard" readonly name="txtNameCard" type="text"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="ddlCreditCardType"
-                                                        class="col-lg-3 col-form-label">Ativação</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCreditCardNumber" readonly name="txtCreditCardNumber"
-                                                        type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtCreditCardNumber"
-                                                        class="col-lg-3 col-form-label">Preço por Placa</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCreditCardNumber" readonly name="txtCreditCardNumber"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtCardVerificationNumber"
-                                                        class="col-lg-3 col-form-label">Limite de Usuários</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtCardVerificationNumber"
-                                                            name="txtCardVerificationNumber" readonly type="number" value="5"
-                                                            class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3 row">
-                                                    <label for="txtExpirationDate"
-                                                        class="col-lg-3 col-form-label">Preço por usuário extra</label>
-                                                    <div class="col-lg-9">
-                                                        <input id="txtExpirationDate" readonly name="txtExpirationDate"
-                                                            type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </fieldset>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
+@extends('layouts.app2')
+
+@section('nav-header')
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+                <h4 class="page-title mb-0 font-size-18">TESTE</h4>
 
             </div>
-            <!-- End Page-content -->
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12" style="text-align: center;">
-                            <script>document.write(new Date().getFullYear())</script> © ASTRO - SISTEMAS INTEGRADOS
-                            | POWERED BY<a href="https://agenciaalldigital.com"> ALLDIGITAL
-                        </div>
-
-                    </div>
-                </div>
-            </footer>
         </div>
-        <!-- end main content-->
-
     </div>
-    <!-- END layout-wrapper -->
+    <!-- end page title -->
 
-</div>
-<!-- end container-fluid -->
+@endsection
 
-<!-- Right bar overlay-->
-<div class="rightbar-overlay"></div>
 
-<!-- JAVASCRIPT -->
-<!-- JAVASCRIPT -->
-<script src="assets/libs/jquery/jquery.min.js"></script>
-<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/libs/metismenu/metisMenu.min.js"></script>
-<script src="assets/libs/simplebar/simplebar.min.js"></script>
-<script src="assets/libs/node-waves/waves.min.js"></script>
-<script src="assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
-<!-- form wizard -->
-<script src="assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
+@section('content')
 
-<!-- form wizard init -->
-<script src="assets/js/pages/form-wizard.init.js"></script>
+            <style>
 
-<!-- App js -->
-<script src="assets/js/app.js"></script>
+                    /* Style the form */
+                        #regForm {
+                        background-color: #ffffff;
+                        margin: 100px auto;
+                        padding: 40px;
+                        width: 70%;
+                        min-width: 300px;
+                        }
 
-</body>
+                        /* Style the input fields */
+                        input {
+                        padding: 10px;
+                        width: 100%;
+                        font-size: 17px;
+                        font-family: Raleway;
+                        border: 1px solid #aaaaaa;
+                        }
 
-</html>
+                        /* Mark input boxes that gets an error on validation: */
+                        input.invalid {
+                        background-color: #ffdddd;
+                        }
+
+                        /* Hide all steps by default: */
+                        .tab {
+                        display: none;
+                        }
+
+                        /* Make circles that indicate the steps of the form: */
+                        .step {
+                        height: 15px;
+                        width: 15px;
+                        margin: 0 2px;
+                        background-color: #bbbbbb;
+                        border: none;
+                        border-radius: 50%;
+                        display: inline-block;
+                        opacity: 0.5;
+                        }
+
+                        /* Mark the active step: */
+                        .step.active {
+                        opacity: 1;
+                        }
+
+                        /* Mark the steps that are finished and valid: */
+                        .step.finish {
+                        background-color: #04AA6D;
+                        }                
+            </style>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+
+                        <form id="regForm" action="" style="margin-top:0;">
+    
+                            <h1>Adicionar Empresa: <span id="valor"></span></h1> 
+                            
+                            <!-- One "tab" for each step in the form: -->
+                            <div class="tab row">
+                                <h1 id="valor2">Infomaçoes da Empresa</h1>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="mb-3 row">
+                                                <label for=" "
+                                                class="col-lg-3 col-form-label">Razão Social</label>
+
+                                                <div class="col-lg-9">
+                                                <input placeholder="First name..." oninput="this.className = ''" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                            <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+                                            <p><input placeholder="Last darcio master..." oninput="this.className = ''"></p>
+                                            <p><input placeholder="First name..." oninput="this.className = ''"></p>
+                                        
+                                        
+                                        <div class="col-md-6">
+                                            <p><input placeholder="First name..." oninput="this.className = ''"></p>
+                                            <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+                                            <p><input placeholder="Last darcio master..." oninput="this.className = ''"></p>
+                                            <p><input placeholder="First name..." oninput="this.className = ''"></p>
+                                        </div>
+                                
+                                    </div>
+                                </div>
+                            <fieldset>
+                            <div class="tab">
+                                <h1>Infomaçoes de Layout</h1>
+                            <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
+                            <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+                            </div>
+                            
+                            <div class="tab">
+                                <h1>Infomaçoes de Pagamento</h1>
+                            <p><input placeholder="dd" oninput="this.className = ''"></p>
+                            <p><input placeholder="mm" oninput="this.className = ''"></p>
+                            <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+                            </div>
+                            
+                            <div class="tab">
+                                <h1>Confirmação</h1>
+                            <p><input placeholder="Username..." oninput="this.className = ''"></p>
+                            <p><input placeholder="Password..." oninput="this.className = ''"></p>
+                            </div>
+                            
+                            <div style="overflow:auto;">
+                            <div style="float:right;">
+                                <button type="button" class="btn btn-info" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                            </div>
+                            </div>
+                            
+                            <!-- Circles which indicates the steps of the form: -->
+                            <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            </div>
+                            
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+          
+
+@endsection
+
+
+@push('script-js')
+
+  <script>
+                    var currentTab = 0; // Current tab is set to be the first tab (0)
+                    showTab(currentTab); // Display the current tab
+
+                    function showTab(n) {
+                    // This function will display the specified tab of the form ...
+                    var x = document.getElementsByClassName("tab");
+                    x[n].style.display = "block";
+                    // ... and fix the Previous/Next buttons:
+                    if (n == 0) {
+                        document.getElementById("prevBtn").style.display = "none";
+                    } else {
+                        document.getElementById("prevBtn").style.display = "inline";
+                    }
+                    if (n == (x.length - 1)) {
+                        document.getElementById("nextBtn").innerHTML = "Enviar";
+                    } else {
+
+                        document.getElementById("valor").innerHTML = document.getElementById("valor2").innerHTML
+
+                        document.getElementById("nextBtn").innerHTML = "Next";
+                    }
+                    // ... and run a function that displays the correct step indicator:
+                    fixStepIndicator(n)
+                    }
+
+                    function nextPrev(n) {
+                    // This function will figure out which tab to display
+                    var x = document.getElementsByClassName("tab");
+                    // Exit the function if any field in the current tab is invalid:
+                    // if (n == 1 && !validateForm()) return false;
+                    // Hide the current tab:
+                    x[currentTab].style.display = "none";
+                    // Increase or decrease the current tab by 1:
+                    currentTab = currentTab + n;
+                    // if you have reached the end of the form... :
+                    if (currentTab >= x.length) {
+                        //...the form gets submitted:
+
+                        // alert('enviou o form')
+                        
+
+                        document.getElementById("regForm").submit();
+                        return false;
+                    }
+                    // Otherwise, display the correct tab:
+                    showTab(currentTab);
+                    }
+
+                    function validateForm() {
+                    // This function deals with validation of the form fields
+                    var x, y, i, valid = true;
+                    x = document.getElementsByClassName("tab");
+                    y = x[currentTab].getElementsByTagName("input");
+                    // A loop that checks every input field in the current tab:
+                    for (i = 0; i < y.length; i++) {
+                        // If a field is empty...
+                        if (y[i].value == "") {
+                        // add an "invalid" class to the field:
+                        y[i].className += " invalid";
+                        // and set the current valid status to false:
+                        valid = false;
+                        }
+                    }
+                    // If the valid status is true, mark the step as finished and valid:
+                    if (valid) {
+                        document.getElementsByClassName("step")[currentTab].className += " finish";
+                    }
+                    return valid; // return the valid status
+                    }
+
+                    function fixStepIndicator(n) {
+                    // This function removes the "active" class of all steps...
+                    var i, x = document.getElementsByClassName("step");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].className = x[i].className.replace(" active", "");
+                    }
+                    //... and adds the "active" class to the current step:
+                    x[n].className += " active";
+                    }
+  </script>
+   
+       
+@endpush
