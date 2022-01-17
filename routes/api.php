@@ -40,5 +40,7 @@ Route::get('/teste', function(){
     
     return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
     
-
 });
+
+Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);
+
