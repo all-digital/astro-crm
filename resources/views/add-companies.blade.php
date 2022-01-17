@@ -1124,20 +1124,20 @@
                             validEmail.removeAttribute('class')
                         }
                         
-                        if((!form.monthPayment.value.trim())){
-                            form.monthPayment.setAttribute("style","background-color: #ffdddd;")
-                            validMonthPayment.removeAttribute('class')
-                        }
+                        // if((!form.monthPayment.value.trim())){
+                        //     form.monthPayment.setAttribute("style","background-color: #ffdddd;")
+                        //     validMonthPayment.removeAttribute('class')
+                        // }
 
-                        if ((!form.activation.value.trim())){
-                            form.activation.setAttribute("style","background-color: #ffdddd;")
-                            validActivation.removeAttribute('class')
-                        }
+                        // if ((!form.activation.value.trim())){
+                        //     form.activation.setAttribute("style","background-color: #ffdddd;")
+                        //     validActivation.removeAttribute('class')
+                        // }
                         
-                        if((!form.pricePerPlate.value.trim())){
-                            form.pricePerPlate.setAttribute("style","background-color: #ffdddd;")
-                            validPricePerPlate.removeAttribute('class')
-                        }
+                        // if((!form.pricePerPlate.value.trim())){
+                        //     form.pricePerPlate.setAttribute("style","background-color: #ffdddd;")
+                        //     validPricePerPlate.removeAttribute('class')
+                        // }
                         
                         if ((!form.userLimit.value.trim())){
                             form.userLimit.setAttribute("style","background-color: #ffdddd;")
