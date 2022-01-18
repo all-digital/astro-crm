@@ -36,8 +36,10 @@
      <!-- App Css-->
      <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />     
 
-     <link rel="stylesheet" href="{{asset('custom/css/style.css')}}">       
-
+     <link  href="{{asset('custom/css/style.css')}}" rel="stylesheet">
+     
+     <link  href="{{asset('custom/css/animation.css')}}" rel="stylesheet">     
+            
      @livewireStyles
 
 </head>
