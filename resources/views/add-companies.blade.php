@@ -520,6 +520,10 @@
                         </fieldset>
                     </form>
 
+                    <div class="modal-container-loading to-hide">
+                        <div class="c-loading"> </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -541,6 +545,9 @@
     <script src="{{asset('assets/js/app.js')}}"></script>   
 
     <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>
+    {{-- <script src="{{'assets\libs\sweetalert2\sweetalert2.min.js'}}"></script>        --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 @endpush
 
 @push('customized-js')
@@ -1144,10 +1151,12 @@
                             validUserLimit.removeAttribute('class')                           
                         }
 
-                        if((!form.pricePerExtraUser.value.trim())){
-                            form.pricePerExtraUser.setAttribute("style","background-color: #ffdddd;")
-                            validPricePerExtraUser.removeAttribute('class')
-                        }//end valitation 
+                        // if((!form.pricePerExtraUser.value.trim())){
+                        //     form.pricePerExtraUser.setAttribute("style","background-color: #ffdddd;")
+                        //     validPricePerExtraUser.removeAttribute('class')
+                        // }
+                        
+                        //end valitation 
 
                                            
                     
@@ -1220,6 +1229,8 @@
                         
 
                     },
+                    //// end method onStepChanging
+
                     onStepChanged: function() {
                         
                         let form = document.querySelector('#form-horizontal')
@@ -1247,9 +1258,13 @@
 
                         
                     },
-                    onCanceled: function() {},
-                    onFinishing: function() {
 
+                    //// end method onStepChanged
+
+                    onCanceled: function() {},
+                    //// end method onCanceled
+
+                    onFinishing: function() {
 
                     let form = document.querySelector('#form-horizontal')    
                     
@@ -1339,36 +1354,36 @@
                     //     validLogoConfirmation.removeAttribute('class') 
                     // }
 
-                    if(form.monthPaymentConfirmation.value == "")
-                    {
-                        form.monthPaymentConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validMonthPaymentConfirmation.removeAttribute('class') 
-                    }else{
-                        form.monthPaymentConfirmation.removeAttribute("style")
-                        validMonthPaymentConfirmation.setAttribute("class","d-none")
-                    }
+                    // if(form.monthPaymentConfirmation.value == "")
+                    // {
+                    //     form.monthPaymentConfirmation.setAttribute("style","background-color: #ffdddd;")
+                    //     validMonthPaymentConfirmation.removeAttribute('class') 
+                    // }else{
+                    //     form.monthPaymentConfirmation.removeAttribute("style")
+                    //     validMonthPaymentConfirmation.setAttribute("class","d-none")
+                    // }
 
 
-                    if(form.activationConfirmation.value == "")
-                    {
-                        form.activationConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validActivationConfirmation.removeAttribute('class') 
-                    }else{
-                        form.activationConfirmation.removeAttribute("style")
-                        validActivationConfirmation.setAttribute("class","d-none")
-                    }
+                    // if(form.activationConfirmation.value == "")
+                    // {
+                    //     form.activationConfirmation.setAttribute("style","background-color: #ffdddd;")
+                    //     validActivationConfirmation.removeAttribute('class') 
+                    // }else{
+                    //     form.activationConfirmation.removeAttribute("style")
+                    //     validActivationConfirmation.setAttribute("class","d-none")
+                    // }
 
 
-                    if(form.pricePerPlateConfirmation.value == "")
-                    {
-                        form.pricePerPlateConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validPricePerPlateConfirmation.removeAttribute('class') 
-                    }else{
-                        form.pricePerPlateConfirmation.removeAttribute("style")
-                        validPricePerPlateConfirmation.setAttribute("class","d-none")
-                    }
+                    // if(form.pricePerPlateConfirmation.value == "")
+                    // {
+                    //     form.pricePerPlateConfirmation.setAttribute("style","background-color: #ffdddd;")
+                    //     validPricePerPlateConfirmation.removeAttribute('class') 
+                    // }else{
+                    //     form.pricePerPlateConfirmation.removeAttribute("style")
+                    //     validPricePerPlateConfirmation.setAttribute("class","d-none")
+                    // }
 
-                    if(form.userLimitConfirmation.value < 6)
+                    if(form.userLimitConfirmation.value <= 1)
                     {
                         form.userLimitConfirmation.setAttribute("style","background-color: #ffdddd;")
                         validUserLimitConfirmation.removeAttribute('class') 
@@ -1377,79 +1392,167 @@
                         validUserLimitConfirmation.setAttribute("class","d-none")
                     }
 
-                    if(form.pricePerExtraUserConfirmation.value == "")
-                    {
-                        form.pricePerExtraUserConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validPricePerExtraUserConfirmation.removeAttribute('class') 
-                    }else{
-                        form.pricePerExtraUserConfirmation.removeAttribute("style")
-                        validPricePerExtraUserConfirmation.setAttribute("class","d-none")
-                    }
+                    // if(form.pricePerExtraUserConfirmation.value == "")
+                    // {
+                    //     form.pricePerExtraUserConfirmation.setAttribute("style","background-color: #ffdddd;")
+                    //     validPricePerExtraUserConfirmation.removeAttribute('class') 
+                    // }else{
+                    //     form.pricePerExtraUserConfirmation.removeAttribute("style")
+                    //     validPricePerExtraUserConfirmation.setAttribute("class","d-none")
+                    // }
 
-                                        
+                        console.log("onFinishing") 
 
-                        console.log("onFinishing")                
+                        let validation = true
+
+                        if(form.cnpjConfirmation.hasAttribute("style")) validation = false
+                        if(form.socialReasonConfirmation.hasAttribute("style")) validation = false
+                        if(form.statusConfirmation.hasAttribute("style")) validation = false
+                        if(form.responsibleConfirmation.hasAttribute("style")) validation = false
+                        if(form.emailConfirmation.hasAttribute("style")) validation = false
                         
-                        return !0
+
+                        if(validation === false)
+                        {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Campos Obrigatorios',
+                                // footer: 'top..',
+                                showConfirmButton: false,
+                                timer: 3000
+                            })                           
+
+                        }else{
+                            return !0                            
+                        }
+
+
+
                     },
+
+                    //// end method onFinishing
+
                     onFinished: function(event) {
 
-                        alert("campos com erros")
+
+                        let form = document.querySelector('#form-horizontal')
+                        
+                        let monthPayment     = form.monthPayment.value.replace("R$","")
+                        let activation       = form.activation.value.replace("R$","")
+                        let pricePerPlate    = form.pricePerPlate.value.replace("R$","")                           
+                        let pricePerExtraUser = form.pricePerExtraUser.value.replace("R$","")
+
+                        // console.log("valores =>>>>>>",
+                        //     monthPayment,
+                        //     activation,
+                        //     pricePerPlate,
+                        //     pricePerExtraUser
+                        // );
+
+                        // console.log(
+                        //     form.cnpj.value,
+                        //     form.socialReason.value,
+                        //     form.fantasyName.value,
+                        //     form.status.value,
+                        //     form.responsible.value,
+                        //     form.email.value,
+                        //     // form.mainColor.value,
+                        //     // form.logo.value,
+                        //     form.monthPayment.value,
+                        //     form.activation.value,
+                        //     form.pricePerPlate.value,
+                        //     form.userLimit.value,
+                        //     form.pricePerExtraUser.value
+                        // )
+
+                        let result = {
+                           "cnpj" :             form.cnpj.value,
+                           "socialReason":      form.socialReason.value,
+                           "fantasyName":       form.fantasyName.value,
+                           "status":            form.status.value,
+                           "responsible":       form.responsible.value,
+                           "email":             form.email.value,                            
+                           "monthPayment":      monthPayment,
+                           "activation":        activation,
+                           "pricePerPlate":     pricePerPlate,
+                           "userLimit":         form.userLimit.value,
+                           "pricePerExtraUser": pricePerExtraUser
+                        }
+
+                        console.log("result => ", result)
+                      
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Oops...',
+                            text: 'Cadastro ok',
+                            footer: 'top..',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        
                         console.log('onFinished => ')
+
+
                    
                     },
-                    onContentLoaded: function() {},
 
-                    onInit: function() {                        
+                    //// end method onFinished
+
+                    onContentLoaded: function() {}, 
+                    //// end method onContentLoaded
+                    
+                    onInit: function() {   
+
                         let form = document.querySelector('#form-horizontal') 
                         
                         let im_cnpj = new Inputmask('99.999.999/9999-99')                        
                         im_cnpj.mask(form.cnpj)
 
-                        let im_monthPayment = new Inputmask( 'currency',{"autoUnmask": true,
+                        let im_monthPayment = new Inputmask( 'currency',{"autoUnmask": false,
                                 radixPoint:",",
                                 groupSeparator: ".",
                                 allowMinus: false,
-                                prefix: 'R$',            
+                                prefix: ' R$ ',            
                                 digits: 2,
                                 digitsOptional: false,
-                                rightAlign: true,
+                                rightAlign: false,
                                 unmaskAsNumber: false
                                 
                         });
 
 
                         ////////////////////////////////////////////
-                        let im_activation = new Inputmask( 'currency',{"autoUnmask": true,
+                        let im_activation = new Inputmask( 'currency',{"autoUnmask": false,
                                 radixPoint:",",
                                 groupSeparator: ".",
                                 allowMinus: false,
-                                prefix: 'R$',            
+                                prefix: ' R$ ',            
                                 digits: 2,
                                 digitsOptional: false,
-                                rightAlign: true,
+                                rightAlign: false,
                                 unmaskAsNumber: false
                         });
 
-                        let im_pricePerPlate = new Inputmask( 'currency',{"autoUnmask": true,
+                        let im_pricePerPlate = new Inputmask( 'currency',{"autoUnmask": false,
                                 radixPoint:",",
                                 groupSeparator: ".",
                                 allowMinus: false,
-                                prefix: 'R$',            
+                                prefix: ' R$ ',            
                                 digits: 2,
                                 digitsOptional: false,
-                                rightAlign: true,
+                                rightAlign: false,
                                 unmaskAsNumber: false
                         });
 
-                        let im_pricePerExtraUser = new Inputmask( 'currency',{"autoUnmask": true,
+                        let im_pricePerExtraUser = new Inputmask( 'currency',{"autoUnmask": false,
                                 radixPoint:",",
                                 groupSeparator: ".",
                                 allowMinus: false,
-                                prefix: 'R$',            
+                                prefix: ' R$ ',            
                                 digits: 2,
                                 digitsOptional: false,
-                                rightAlign: true,
+                                rightAlign: false,
                                 unmaskAsNumber: false
                         });
 
@@ -1457,23 +1560,7 @@
                         im_activation.mask(form.activation)
                         im_pricePerPlate.mask(form.pricePerPlate)
                         im_pricePerExtraUser.mask(form.pricePerExtraUser)
-
-                        // let im_monthPayment = new Inputmask('999.999,99')                        
-                        // // im_monthPayment.mask(form.monthPayment)
-                        
-                        // im_monthPayment.
-                        // form.cnpj.addEventListener('blur',function(e){
-                        //     e.preventDefault()   
-
-                            
-                        //     cnpj = form.cnpj.value.replace(".", "");
-                        //     cnpj = cnpj.replace(".", "");
-                        //     cnpj = cnpj.replace("-", "");
-                        //     cnpj = cnpj.replace("/", "");
-
-                        //     console.log(cnpj)
-                        //  })
-                         
+                                                
                         form.cnpj.addEventListener('blur',function(e){                            
                             e.preventDefault()
 
@@ -1491,23 +1578,38 @@
                             .then(res => {
                                 console.log(res)
 
-                                form.socialReason.value = res.nome
-                                form.fantasyName.value = res.fantasia
-                                form.status.value = res.status                                
-                                form.email.value = res.email
+                                if(res.status == "ERROR")
+                                {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: '<h1>Oops...</h1>',
+                                        text: 'CNPJ inválido',
+                                        footer: 'tente novamente..',
+                                        showConfirmButton: false,
+                                        // color: '#fff',
+                                        background:"#c3cef8",
+                                        timer: 3500
+                                    })
+
+                                }else{
+
+                                    form.socialReason.value = res.nome
+                                    form.fantasyName.value = res.fantasia
+                                    form.status.value = res.status                                
+                                    form.email.value = res.email
+
+                                }
+
 
                             })
                             .catch((error)=> console.log("erro api cnpj => ",error))
                         })
 
+                       
+                    },
+                            ////////////////////////////////////////////////////////////////////////////////////
+                        //// end methods onInit
 
-
-
-                        
-
-                        ////////////////////////////////////////////////////////////////////////////////////
-                        
-                        },
                     labels: {
                         cancel: "Cancelar",
                         current: "current step:",
