@@ -14,6 +14,10 @@
 
 @endsection
 
+@php
+    $user = ["cnpj"=>40987131000129, "socialReason"=>"darcio S.A","fantasyName" =>"Grandes empresa e grandes negocios",
+    "monthPayment"=>"2523,21","activation"=>"23,23","pricePerPlate"=>"235.001,03","pricePerExtraUser"=>"2.523,21"]
+@endphp
 
 @section('content')
    
@@ -36,7 +40,7 @@
 
                                         <div class="col-lg-9">
                                             <input id="txtFirstNameBilling" name="cnpj" readonly
-                                                type="text" class="form-control" >
+                                                type="text" class="form-control" value="{{ $user['cnpj']}}" >
                                             <span id="cnpj-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
 
@@ -48,7 +52,7 @@
                                             class="col-lg-3 col-form-label">Razão Social</label>
                                         <div class="col-lg-9">
                                             <input id="txtLastNameBilling" name="socialReason"
-                                                type="text" readonly class="form-control">
+                                                type="text" readonly class="form-control" value="{{$user['socialReason']}}">
                                             <span id="socialReason-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
@@ -61,7 +65,7 @@
                                             class="col-lg-3 col-form-label">Nome Fantasia</label>
                                         <div class="col-lg-9">
                                             <input id="txtCompanyBilling" name="fantasyName"
-                                            type="text" class="form-control" readonly>
+                                            type="text" class="form-control" readonly value="{{$user['fantasyName']}}">
                                             <span id="fantasyName-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
@@ -188,7 +192,7 @@
                                         <label for="txtNameCard" class="col-lg-3 col-form-label">Mensalidade</label>
                                         <div class="col-lg-9">
                                             <input id="txtNameCard" name="monthPayment" type="text"
-                                            class="form-control">
+                                            class="form-control" value="{{$user['monthPayment']}}">
                                             <span id="monthPayment-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
@@ -199,7 +203,7 @@
                                             class="col-lg-3 col-form-label">Ativação</label>
                                         <div class="col-lg-9">
                                             <input id="txtCreditCardNumber" name="activation"
-                                            type="text" class="form-control">
+                                            type="text" class="form-control" value="{{$user['activation']}}">
                                             <span id="activation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
@@ -212,7 +216,7 @@
                                             class="col-lg-3 col-form-label">Preço por Placa</label>
                                         <div class="col-lg-9">
                                             <input id="txtCreditCardNumber" name="pricePerPlate"
-                                            type="text" class="form-control">
+                                            type="text" class="form-control" value="{{$user['pricePerPlate']}}">
                                             <span id="pricePerPlate-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
@@ -336,7 +340,7 @@
                                             class="col-lg-3 col-form-label">Preço por usuário extra</label>
                                         <div class="col-lg-9">
                                             <input id="txtExpirationDate" name="pricePerExtraUser"
-                                            type="text" class="form-control">
+                                            type="text" class="form-control" value="{{$user['pricePerExtraUser']}}">
                                             <span id="pricePerExtraUser-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>
@@ -903,7 +907,29 @@
 
                         let form = document.querySelector('#form-horizontal')
 
-                        
+                        let validResponsible = document.querySelector('#responsible-valid')
+                        let validEmail = document.querySelector('#email-valid')
+
+
+                        if((!form.responsible.value.trim()))
+                        {
+                            form.responsible.setAttribute("style","background-color: #ffdddd;")
+                            validResponsible.removeAttribute('class')
+                        }else{
+                            form.responsible.removeAttribute("style")
+                            validResponsible.setAttribute("class","d-none")
+                        }
+
+                        if((!form.email.value.trim() ))
+                        {
+                            form.email.setAttribute("style","background-color: #ffdddd;")
+                            validEmail.removeAttribute('class')
+                        }else{
+                            form.email.removeAttribute("style")
+                            validEmail.setAttribute("class","d-none")
+                        }
+
+
 
                           console.log(
                             form.cnpj.value,
@@ -921,15 +947,42 @@
                             form.pricePerExtraUser.value
                         )
 
-                        alert("concluir onFinishing")
-                        return !0
+                        
+
+                        let validation = true
+                        if(form.responsible.hasAttribute("style")) validation = false
+                        if(form.email.hasAttribute("style")) validation = false
+
+                        if(validation)
+                        {
+                            return !0
+
+                        }else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Campos Obrigatorios',
+                                // footer: 'top..',
+                                showConfirmButton: false,
+                                timer: 3000
+                            })  
+                        }
+
+
                     },
                     //// end method onFinishing
 
                     onFinished: function() {
                         
-                        alert("concluir onFinished")
-                    
+                        
+                        Swal.fire({
+                                icon: 'success',
+                                title: 'SUccess',
+                                text: 'passou',
+                                // footer: 'top..',
+                                showConfirmButton: true,
+                                // timer: 3000
+                            })  
                     
                     },
                     //// end method onFinished
@@ -937,7 +990,11 @@
 
                     onContentLoaded: function() {},
                     onInit: function() {
-
+                        
+                        let ul_button = document.querySelector("[role=menu]")
+                        // sentando display none na li(button previous). pois ele veio padrão no layout e não estava saindo 
+                        ul_button.children[0].setAttribute("class","d-none")
+                        
                         console.log("onInit")
 
                         let form = document.querySelector('#form-horizontal') 
