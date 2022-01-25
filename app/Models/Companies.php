@@ -35,7 +35,7 @@ class Companies extends Model
 
     public function equipment()
     {
-        return $this->hasMany(Equipaments::class);
+        return $this->hasMany(Equipments::class);
     }
 
 }//end class 
