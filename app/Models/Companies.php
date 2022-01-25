@@ -30,12 +30,12 @@ class Companies extends Model
 
     public function service()
     {
-        return $this->hasOne(Services::class);
+        return $this->hasMany(Services::class);
     }
 
     public function equipment()
     {
-        return $this->hasOne(Equipaments::class);
+        return $this->hasMany(Equipaments::class);
     }
 
 }//end class 
