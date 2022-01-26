@@ -18,6 +18,49 @@
                     </div>
                 </div>
 
+                @php
+                    $servivos = [ 
+                        [
+                            "id"=> '1',
+                        "Empresa"=> 'empresa S.A 1111',
+                        "Status" => 'status ok',
+                        "Usuário de Inserção" => "darcio",
+                        "Data de Inserção" => "01/01/2022",
+                        "Categoria"=> "catgoria top",
+                        "Título do Serviço" => "serviço de chip",
+                        "Preço" => "200,30",
+                        "Data da Última Alteração"=> "03/02/2022",
+                        "Usuário da Última Alteração" => "02/03/0333"
+                         ],
+
+                         [
+                            "id"=> '2',
+                        "Empresa"=> 'empresa S.A 22222',
+                        "Status" => 'status ok',
+                        "Usuário de Inserção" => "clessio",
+                        "Data de Inserção" => "01/01/2022",
+                        "Categoria"=> "catgoria top",
+                        "Título do Serviço" => "serviço de chip",
+                        "Preço" => "200,30",
+                        "Data da Última Alteração"=> "03/02/2022",
+                        "Usuário da Última Alteração" => "02/03/0333"
+                        ],
+
+                        [
+                            "id"=> '3',
+                        "Empresa"=> 'empresa S.A 33333',
+                        "Status" => 'status ok',
+                        "Usuário de Inserção" => "ana",
+                        "Data de Inserção" => "01/01/2022",
+                        "Categoria"=> "catgoria top",
+                        "Título do Serviço" => "serviço de chip",
+                        "Preço" => "200,30",
+                        "Data da Última Alteração"=> "03/02/2022",
+                        "Usuário da Última Alteração" => "02/03/0333"
+                        ]
+                    ]
+                @endphp
+
 
                 <div class="table-responsive">
                     <table class="table table-editable table-nowrap align-middle table-edits">
@@ -36,32 +79,46 @@
                             </tr>
                         </thead>
                        
-                        <tbody x-data>
-                            <tr data-id="1" x-data>
+                        <tbody>
+                            {{-- {{dd($servivos)}} --}}
 
-                                <td style="width: 100px">
-                                    <center>
-                                        <a class="btn btn-outline-secondary btn-sm edit"
-                                            title="Editar" x-on:click="teste" >
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                    </center>
-                                </td>
-                                <td style="text-align: center;" data-employer data-field="employer" x-on:dblclick="teste1">empresa
-                                </td>
-                                <td style="text-align: center;" data-field="status" x-on:dblclick="teste1">ativo</td>
-                                <td style="text-align: center;" data-field="user" x-on:dblclick="teste1">E-mail</td>
-                                <td style="text-align: center;" data-field="date" x-on:dblclick="teste1">Data</td>
-                                <td style="text-align: center;" data-field="category" x-on:dblclick="teste1">Categoria</td>
-                                <td style="text-align: center;" data-field="title" x-on:dblclick="teste1">Título</td>
-                                <td style="text-align: center;" data-field="price" x-on:dblclick="teste1">Preço</td>
-                                <td style="text-align: center;" data-field="date-lastchange" x-on:dblclick="teste1">Data
-                                </td>
-                                <td style="text-align: center;" data-field="user-lastchange" x-on:dblclick="teste1">Usuário
-                                </td>
+                            @foreach ($servivos as $service)
+                                <tr data-id="1">
+                                    
+                                    <td style="width: 100px">
+                                        <center>
+                                            <a class="btn btn-outline-secondary btn-sm edit"
+                                                title="Editar"  onclick="edit({{$service['id']}})" >
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                        </center>
+                                    </td>
+                                    
+                                        <td style="text-align: center;" id="employer{{$service['id']}}" data-employer data-field="employer{{$service['id']}}" ondblclick="editInput()" >{{$service['Empresa']}}
+                                        </td>
 
-                            </tr>
+                                        <td style="text-align: center;" id="status{{$service['id']}}" data-field="status{{$service['id']}}" ondblclick="editInput()" >{{$service['Status']}}</td>
 
+                                        <td style="text-align: center;" id="user{{$service['id']}}" data-field="user{{$service['id']}}" ondblclick="editInput()" >{{$service['Usuário de Inserção']}}</td>
+
+                                        <td style="text-align: center;" id="date{{$service['id']}}" data-field="date{{$service['id']}}" ondblclick="editInput()" >{{$service['Data de Inserção']}}</td>
+
+                                        <td style="text-align: center;" id="category{{$service['id']}}" data-field="category{{$service['id']}}" ondblclick="editInput()" >{{$service['Categoria']}}</td>
+
+                                        <td style="text-align: center;" id="title{{$service['id']}}" data-field="title{{$service['id']}}" ondblclick="editInput()" >{{$service['Título do Serviço']}}</td>
+
+                                        <td style="text-align: center;" id="price{{$service['id']}}" data-field="price{{$service['id']}}" ondblclick="editInput()" >{{$service['Preço']}}</td>
+
+                                        <td style="text-align: center;" id="date-lastchange{{$service['id']}}" data-field="date-lastchange{{$service['id']}}" ondblclick="editInput()" >{{$service['Data da Última Alteração']}}
+                                        </td>
+
+                                        <td style="text-align: center;" id="user-lastchange{{$service['id']}}" data-field="user-lastchange{{$service['id']}}" ondblclick="editInput()" >{{$service['Usuário da Última Alteração']}}
+                                        </td>
+                                   
+
+                                </tr>
+                            
+                            @endforeach
 
 
                         </tbody>
@@ -212,36 +269,46 @@
     
 
     let inputOpen = false
+    
+    function edit(id){
 
-    console.log("testando =>   teste ", inputOpen)
-
-    function teste(){
-
-        if(inputOpen == true){
+        if(inputOpen == true)
+        {
 
             console.log("enviar informaçoes")
             console.log(inputOpen)
+            
 
-            field = document.querySelectorAll('[data-field]')
+            //empresa = document.querySelectorAll(`[data-field=employer${id}]`)
 
-            // field = Array.from(fields)
-            // console.log(field)
-            // console.log(field[0].innerHTML.value)
-            // console.log(field[0].innerHTML.value)
-            // console.log(field[0].textContent)
+            empresa = document.getElementById(`employer${id}`)
+            status = document.getElementById(`status${id}`)
+            userInsert = document.getElementById(`user${id}`)
+            dateinsert = document.getElementById(`date${id}`)
+            category = document.getElementById(`category${id}`)
+            titleServices = document.getElementById(`title${id}`)
+            price = document.getElementById(`price${id}`)
+            dateAlter = document.getElementById(`date-lastchange${id}`)
+            userAlter = document.getElementById(`user-lastchange${id}`)
 
+            
+           
+           console.log( empresa.children[0].value )
+        //    console.log( status.children[0].value )
+           console.log( userInsert.children[0].value )
+           console.log( dateinsert.children[0].value )
+           console.log( category.children[0].value )
+           console.log( titleServices.children[0].value )
+           console.log( price.children[0].value )
+           console.log( dateAlter.children[0].value )
+           console.log( userAlter.children[0].value )
 
-            console.log(field[0].dataset.field)
-            console.log(field[1].dataset.field)
-            console.log(field[1].innerText)
-            console.log(field[3].innerText)
-            console.log(field)
-            console.log(field[0].firstChild)
+            
+          console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
 
-            console.log(field[0].dataset.employer)
-            console.log(field[0].dataset.field.innerText)
-
+            
             inputOpen = false
+            console.log("saindo do edit ", inputOpen)
         }else{
             console.log("abrir para alterar")
             inputOpen = true
@@ -253,11 +320,10 @@
     }
 
 
-    function teste1(){
-        console.log("testando segundo click")
-
-        inputOpen = true
-        console.log(inputOpen)
+    function editInput()
+    {        
+        inputOpen = true   
+        console.log("estou aqui editInput ", inputOpen)     
     }
 
 
