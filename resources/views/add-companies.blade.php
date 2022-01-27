@@ -1484,15 +1484,34 @@
                       
                         Swal.fire({
                             icon: 'success',
-                            title: 'Oops...',
-                            text: 'Cadastro ok',
-                            footer: 'top..',
+                            title: 'Sucesso',
+                            text: 'Cadastro efetuado com sucesso',
+                            // footer: 'top..',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 3500
                         })
                         
                         console.log('onFinished => ')
 
+                        fetch('/cadastrar',{ 
+                            method:'post',        
+                            body: JSON.stringify(result),
+                            headers:{
+                                "Content-type":"application/json",
+                                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            }
+                            
+                            })            
+                            .then(res=> res.json())
+                            .then(res => { 
+                                
+                                console.log(res)
+                                location.reload()
+                            
+                            })
+                            .catch((e)=> {console.log("erro => ", e)} )
+
+                       
 
                    
                     },

@@ -46,6 +46,7 @@
 <body data-layout="detached" data-topbar="colored">
     {{-- <div id="app"> --}}
 
+    @auth
         <div class="container-fluid">
 
             <div id="layout-wrapper">
@@ -495,7 +496,7 @@
                         </div>
                     </div>
                 </header>
-    
+    @endauth
                 <!-- ============================================================== -->
                 <!-- Start right Content here -->
                 <!-- ============================================================== -->
@@ -619,5 +620,6 @@
    
 
     @livewireScripts
+    
 </body>
 </html>

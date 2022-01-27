@@ -36,4 +36,6 @@
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>
 
+    <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>
+
 @endpush

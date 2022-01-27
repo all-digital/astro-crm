@@ -18,18 +18,19 @@
                     </div>
                 </div>
 
-                @php
-                    $servivos = [ 
+                {{-- @php
+                    $services = [ 
                         [
-                            "id"=> '1',
-                        "Empresa"=> 'empresa S.A 1111',
-                        "Status" => 'status ok',
-                        "Usuário de Inserção" => "darcio",
-                        "Data de Inserção" => "01/01/2022",
-                        "Categoria"=> "catgoria top",
-                        "Título do Serviço" => "serviço de chip",
-                        "Preço" => "200,30",
-                        "Data da Última Alteração"=> "03/02/2022",
+                            "id" => 1
+                        "company" => "Bailey, Hills and Littel"
+                        "status" => "status"
+                        "category" => "Kunde"
+                        "name" => "Michel Dickens Jr."
+                        "price" => "120,00"
+                        "responsible_for_insert" => "Marcia Bernier"
+                        "company_id" => 1
+
+                        "updated_at" => "2022-01-25T16:39:30.000000Z"
                         "Usuário da Última Alteração" => "02/03/0333"
                          ],
 
@@ -59,7 +60,7 @@
                         "Usuário da Última Alteração" => "02/03/0333"
                         ]
                     ]
-                @endphp
+                @endphp --}}
 
 
                 <div class="table-responsive">
@@ -82,7 +83,7 @@
                         <tbody>
                             {{-- {{dd($servivos)}} --}}
 
-                            @foreach ($servivos as $service)
+                            @foreach ($services as $service)
                                 <tr data-id="1">
                                     
                                     <td style="width: 100px">
@@ -94,26 +95,23 @@
                                         </center>
                                     </td>
                                     
-                                        <td style="text-align: center;" id="employer{{$service['id']}}" data-employer data-field="employer{{$service['id']}}" ondblclick="editInput()" >{{$service['Empresa']}}
-                                        </td>
+                                        <td style="text-align: center;" id="employer{{$service['id']}}" data-employer data-field="employer{{$service['id']}}" ondblclick="editInput()" >{{$service['company']}}</td>
 
-                                        <td style="text-align: center;" id="status{{$service['id']}}" data-field="status{{$service['id']}}" ondblclick="editInput()" >{{$service['Status']}}</td>
+                                        <td style="text-align: center;" id="status{{$service['id']}}" data-field="status{{$service['id']}}" ondblclick="editInput()" >{{$service['status']}}</td>
 
-                                        <td style="text-align: center;" id="user{{$service['id']}}" data-field="user{{$service['id']}}" ondblclick="editInput()" >{{$service['Usuário de Inserção']}}</td>
+                                        <td style="text-align: center;" id="user{{$service['id']}}" data-field="user{{$service['id']}}" ondblclick="editInput()" >{{$service['responsible_for_insert']}}</td>
 
-                                        <td style="text-align: center;" id="date{{$service['id']}}" data-field="date{{$service['id']}}" ondblclick="editInput()" >{{$service['Data de Inserção']}}</td>
+                                        <td style="text-align: center;" id="date{{$service['id']}}" data-field="date{{$service['id']}}" ondblclick="editInput()" >{{$service['updated_at']}}</td>
 
-                                        <td style="text-align: center;" id="category{{$service['id']}}" data-field="category{{$service['id']}}" ondblclick="editInput()" >{{$service['Categoria']}}</td>
+                                        <td style="text-align: center;" id="category{{$service['id']}}" data-field="category{{$service['id']}}" ondblclick="editInput()" >{{$service['category']}}</td>
 
-                                        <td style="text-align: center;" id="title{{$service['id']}}" data-field="title{{$service['id']}}" ondblclick="editInput()" >{{$service['Título do Serviço']}}</td>
+                                        <td style="text-align: center;" id="title{{$service['id']}}" data-field="title{{$service['id']}}" ondblclick="editInput()" >{{$service['name']}}</td>
 
-                                        <td style="text-align: center;" id="price{{$service['id']}}" data-field="price{{$service['id']}}" ondblclick="editInput()" >{{$service['Preço']}}</td>
+                                        <td style="text-align: center;" id="price{{$service['id']}}" price data-field="price{{$service['id']}}" ondblclick="editInput()" >{{$service['price']}}</td>
 
-                                        <td style="text-align: center;" id="date-lastchange{{$service['id']}}" data-field="date-lastchange{{$service['id']}}" ondblclick="editInput()" >{{$service['Data da Última Alteração']}}
-                                        </td>
+                                        <td style="text-align: center;" id="date-lastchange{{$service['id']}}" data-field="date-lastchange{{$service['id']}}" ondblclick="editInput()" >{{$service['updated_at']}}</td>
 
-                                        <td style="text-align: center;" id="user-lastchange{{$service['id']}}" data-field="user-lastchange{{$service['id']}}" ondblclick="editInput()" >{{$service['Usuário da Última Alteração']}}
-                                        </td>
+                                        <td style="text-align: center;" id="user-lastchange{{$service['id']}}" data-field="user-lastchange{{$service['id']}}" ondblclick="editInput()" >{{Auth::user()->name}}</td>
                                    
 
                                 </tr>
@@ -126,15 +124,25 @@
                     </table>
 
                     <div class="mt-3">
-                        <ul class="pagination pagination-rounded justify-content-center mb-0">
-                            <li class="page-item">
+                        {{-- {{ $services->count() }} --}}
+                        <ul class="pagination justify-content-center mb-0">
+                            {{-- <li class="page-item">
                                 <a class="page-link" href="#">Anterior</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+                            </li> --}}
+                            {{-- <li class="page-item"><a class="page-link">{{ $services->currentPage()}}</a></li>
+                            <li class="page-item active"><a class="page-link" >{{ $services->nextPageUrl()}}</a></li> --}}
+                            {{-- <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Próximo</a></li> --}}
+                            
+                            <li class="m-3"><a> {{ $services->links() }} </a> </li> 
+                            {{-- <li class="m-3"> Total {{ $services->perPage()}} </li>  --}}                            
+                            {{-- <span class="m-3">total {{ $services->total() }} </span> --}}
                         </ul>
+                        <style>
+                            /* .w-5{
+                                display: none;
+                            } */
+                        </style>
                     </div>
                 </div>
 
@@ -162,7 +170,7 @@
                                 <label for="example-text-input"
                                     class="col-md-3 col-form-label">Empresa</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" value="Empresa"
+                                    <input class="form-control" type="text" value="{{Auth::user()->companie}}"
                                         id="example-text-input" readonly>
                                 </div>
                             </div>
@@ -172,7 +180,7 @@
                                     class="col-md-3 col-form-label">Status</label>
                                 <div class="col-md-7">
                                     <input class="form-control" type="search" value="Ativo"
-                                        id="example-search-input" readonly>
+                                        id="add-status" readonly>
                                 </div>
                             </div>
 
@@ -181,7 +189,7 @@
                                 <label for="example-email-input"
                                     class="col-md-3 col-form-label">Usuário</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" value="João"
+                                    <input class="form-control" type="text" value={{Auth::user()->name}}
                                         id="example-email-input" required readonly>
                                 </div>
 
@@ -192,8 +200,8 @@
                                 <label for="example-url-input" class="col-md-3 col-form-label">Data
                                     de Inserção</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="url" value="17/12/2021"
-                                        id="example-url-input" readonly>
+                                    <input class="form-control" type="url" value={{date("d/m/Y")}}
+                                        id="add-date-created" readonly>
                                 </div>
 
                             </div>
@@ -203,7 +211,7 @@
                                 <label for="example-email-input"
                                     class="col-md-3 col-form-label">Categoria</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="example-email-input"
+                                    <input class="form-control" type="text" id="add-category"
                                         required>
                                 </div>
 
@@ -215,7 +223,7 @@
                                 <label for="example-url-input"
                                     class="col-md-3 col-form-label">Título do Serviço</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="example-url-input"
+                                    <input class="form-control" type="text" id="add-name-service"
                                         required>
                                 </div>
 
@@ -227,7 +235,7 @@
                                 <label for="example-email-input"
                                     class="col-md-3 col-form-label">Frequência</label>
                                 <div class="col-md-7">
-                                    <select class="form-control select2" type="text" id="campoPreco"
+                                    <select class="form-control select2" type="text" id="add-frequencia"
                                         required>
                                     <option value="Selecionar">Selecionar</option>
                                     <option value="Avulso">Avulso</option>
@@ -242,7 +250,7 @@
                                 <label for="example-email-input"
                                     class="col-md-3 col-form-label">Preço</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="campoPreco"
+                                    <input class="form-control" type="text" id="add-price"
                                         required>
                                 </div>
 
@@ -256,7 +264,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger waves-effect waves-light"
                     data-bs-dismiss="modal">CANCELAR</button>
-                <button type="button" class="btn btn-success waves-effect waves-light">CADASTRAR</button>
+                <button type="button" id="btn-cadastrar" class="btn btn-success waves-effect waves-light">CADASTRAR</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -265,24 +273,106 @@
 </div>
 <!-- /.modal -->
 </div>
+{{-- <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script> --}}
 <script>
+
+    window.onload = function() {
+        let inputPrice = document.querySelectorAll('[price]') 
+
+        inputPrice = Array.from(inputPrice)
+        // console.log(inputPrice[0].innerText)                        
+
+        let im_price = new Inputmask( 'currency',{"autoUnmask": false,
+               radixPoint:",",
+                groupSeparator: ".",
+                allowMinus: false,
+                prefix: ' R$ ',            
+                digits: 2,
+                digitsOptional: false,
+                rightAlign: false,
+                unmaskAsNumber: false
+                                
+        });
+
+        inputPrice.forEach((input, i )=> {
+
+            console.log(input.innerText)
+            im_price.mask(input)
+        });
+
+
+        let addMaskPrice = document.getElementById('add-price')
+        console.log(addMaskPrice)
+        let im_addPrice = new Inputmask( 'currency',{"autoUnmask": false,
+               radixPoint:",",
+                groupSeparator: ".",
+                allowMinus: false,
+                prefix: ' R$ ',            
+                digits: 2,
+                digitsOptional: false,
+                rightAlign: false,
+                unmaskAsNumber: false                                
+            });
+            im_addPrice.mask(addMaskPrice)
+
+
+    }//end function window.onload
+
     
 
-    let inputOpen = false
+
+    btn = document.getElementById('btn-cadastrar')
+
+    btn.addEventListener("click", function(e){
+        e.preventDefault()
+
+        let addStatus = document.getElementById('add-status').value
+        let addCcategory = document.getElementById('add-category').value
+        let addService = document.getElementById('add-name-service').value
+        let addPrice = document.getElementById('add-price').value
+
+        let add = {
+            "addStatus" : addStatus,
+            "addCcategory" : addCcategory,
+            "addService" : addService,
+            "addPrice" : addPrice
+        }
+
+
+        fetch('api/tabela-add',{ 
+            method:'post',        
+            body: JSON.stringify(add),
+            headers:{"Content-type":"application/json"}
+            })            
+            .then(res=> res.json())
+            .then(res => { 
+                
+                console.log(res)
+                location.reload()
+            
+             })
+            .catch((e)=> {console.log("erro => ", e)} )
+
+
+        console.log(add)
+        // location.reload()
+
+    })
     
+    
+
+    let inputOpen = false    
     function edit(id){
 
         if(inputOpen == true)
         {
-
+            //entra aqui na hora de salvar
             console.log("enviar informaçoes")
             console.log(inputOpen)
             
-
-            //empresa = document.querySelectorAll(`[data-field=employer${id}]`)
-
+            
             empresa = document.getElementById(`employer${id}`)
-            status = document.getElementById(`status${id}`)
+            statusServices = document.getElementById(`status${id}`)            
             userInsert = document.getElementById(`user${id}`)
             dateinsert = document.getElementById(`date${id}`)
             category = document.getElementById(`category${id}`)
@@ -291,17 +381,65 @@
             dateAlter = document.getElementById(`date-lastchange${id}`)
             userAlter = document.getElementById(`user-lastchange${id}`)
 
+
+            ///////////////////////////
+            let im_priceInput = new Inputmask( 'currency',{"autoUnmask": false,
+               radixPoint:",",
+                groupSeparator: ".",
+                allowMinus: false,
+                prefix: ' R$ ',            
+                digits: 2,
+                digitsOptional: false,
+                rightAlign: false,
+                unmaskAsNumber: false                                
+            });
+            im_priceInput.mask(price.children[0])
+
+            // dateAlter.setAttribute("readonly", false) 
+            // empresa.children[0].readOnly = true;
+            empresa.children[0].readOnly = true;
+            console.log("readOnly => ",empresa.children[0])
             
+
+                    
+        //    console.log( empresa.children[0].value )
+        //    console.log(statusServices.children[0].value)
+        //    console.log( userInsert.children[0].value )
+        //    console.log( dateinsert.children[0].value )
+        //    console.log( category.children[0].value )
+        //    console.log( titleServices.children[0].value )
+        //    console.log( price.children[0].value  )
+        //    console.log( dateAlter.children[0].value )
+        //    console.log( userAlter.children[0].value )
+
+
+           let sendData =  {
+            "id":               id,
+            "empresa" :         empresa.children[0].value.trim(),
+           "statusServices":    statusServices.children[0].value.trim(),
+           "userInsert":        userInsert.children[0].value.trim(),
+            "dateinsert":       dateinsert.children[0].value.trim(),
+           "category":          category.children[0].value.trim(),
+           "titleServices":     titleServices.children[0].value.trim(),
+           "price":             price.children[0].value.trim(),
+           "dateAlter":         dateAlter.children[0].value.trim(),
+           "userAlter":         userAlter.children[0].value.trim()
+
+           }
+
+           console.log(sendData)
+
+
            
-           console.log( empresa.children[0].value )
-        //    console.log( status.children[0].value )
-           console.log( userInsert.children[0].value )
-           console.log( dateinsert.children[0].value )
-           console.log( category.children[0].value )
-           console.log( titleServices.children[0].value )
-           console.log( price.children[0].value )
-           console.log( dateAlter.children[0].value )
-           console.log( userAlter.children[0].value )
+            fetch('api/tabela',{ 
+            method:'post',        
+            body: JSON.stringify(sendData),
+            headers:{"Content-type":"application/json"}
+            })            
+            .then(res=> res.json())
+            .then(res => console.log(res))
+            .catch((e)=> {console.log("erro => ", e)} )
+
 
             
           console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
@@ -312,8 +450,13 @@
         }else{
             console.log("abrir para alterar")
             inputOpen = true
-
             console.log(inputOpen)
+
+
+            empresa = document.getElementById(`employer${id}`)
+            // empresa.children[0].readOnly = true;
+            console.log("readOnly else else === => ",empresa.innerHTML)
+            console.log("readOnly else else === => ",empresa)
         }
 
         

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Services;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,9 +40,82 @@ Route::get('/teste', function(){
     //dd(request()->is('api/teste'));
     //request()->segments()[0];
     
-    return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
-    
+    // return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
+        
 });
 
 Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Route::get('/tabela-servicos', function(){
+
+
+    $servicos = Services::where('company_id',1)->get()->toArray();
+
+    dd($servicos);
+
+    
+});
+
+Route::post('/tabela', function(Request $request){
+
+
+    // debug($request->all());
+    // debug($request->input('id'));
+
+    $id = $request->input('id');
+    
+
+    // $service = new Services();
+
+    // $service = $service->find($id);
+
+    // $service->update($request->all());
+
+
+    // $service->save();
+
+    $service = Services::find($id);
+
+    $service->company = $request->input('empresa');
+    $service->status  = $request->input('statusServices');
+    $service->category = $request->input('category');
+    $service->name = $request->input('titleServices');
+    $service->price = $request->input('price');
+    $service->responsible_for_insert = $request->input('userInsert');
+    
+
+    $result = $service->save();
+
+    // debug($result);
+
+
+    return  collect(['status'=>'sucess'])->toArray();
+
+    
+});
+
+Route::post('/tabela-add', function(Request $request){
+
+
+    $service = Services::create([
+        'company' => "Alldigital",
+        'status' => $request->input('addStatus'),
+        'category' => $request->input('addCcategory'),
+        'name' => $request->input('addService'),
+        'price' => $request->input('addPrice'),
+        'responsible_for_insert' => "Admin",
+        "company_id" => 1
+    ]);
+
+    $service->save();
+
+    return  collect(['status'=>'sucess'])->toArray();
+});

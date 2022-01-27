@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Http\Request;
+use App\Models\Companies;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::redirect('/', '/login');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['register' => false, 'login'=>false]);
 
-Route::get('/home1', [App\Http\Controllers\HomeController::class, 'index1'])->name('home1');
+
+
+Route::get('/services', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index1'])->name('home1');
 
 Route::get('/finance', [App\Http\Controllers\HomeController::class, 'finance'])->name('finance');
 
@@ -29,9 +39,9 @@ Route::get('/edit/companies', [App\Http\Controllers\HomeController::class, 'comp
 
 Route::get('/add/companies', [App\Http\Controllers\HomeController::class, 'addCompanies']);
 
-Route::get('/teste', function () {
-    return view('teste');
-});
+// Route::get('/teste', function () {
+//     return view('teste');
+// });
 
 Route::get('/empresas', function () {
     return view('edit-companies');
@@ -156,4 +166,60 @@ Route::prefix('financeiro')->group(function () {
     
 
       
+});
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/teste', function(){
+
+    //dd(' teste api ');
+    //sleep(5);
+
+    //dd(collect(['nome'=>'darcio','value'=>255,'series'=>45])->toArray());
+
+    //dd(request()->is('api/teste'));
+    //request()->segments()[0];
+    
+    // return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
+    dd(auth()->user()->id);
+    
+});
+
+Route::post('/cadastrar', function(Request $request){
+
+
+    
+
+    $companies = Companies::create([       
+                
+        "cnpj"  =>             $request->input('cnpj'),
+        "social_Reason" =>      $request->input('socialReason'),
+        "fantasy_name" =>       $request->input('fantasyName'),
+        "status" =>            $request->input('status'),
+        "name_responsible"      =>  auth()->user()->name,
+        "last_name_responsible" =>       $request->input('responsible'),
+        "email_responsible" =>             $request->input('email'),       
+        "color"  =>                                  "azul",
+        "logo"  =>                                  "logo",                       
+        "monthly_payment" =>      $request->input('monthPayment'),
+        "activation" =>        $request->input('activation'),
+        "price_per_plate" =>     $request->input('pricePerPlate'),
+        "user_limit" =>         $request->input('userLimit'),
+        "price_per_extra_user" => $request->input('pricePerExtraUser'),
+        "user_id" => auth()->user()->id
+    ]);
+
+    $companies->save();
+
+    return ["status"=>"sucesso"];
+             
 });

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use App\Models\Services;
+
 class HomeController extends Controller
 {
     /**
@@ -23,24 +26,36 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+
+        $services1 = Services::where('company_id',1);
+        $services = $services1->simplePaginate(6);
+        
+        // $services1->count();
+
+        // dd($services1->count());
+
+        return view('home',["services"=>$services]);
     }
+
+
+
 
     public function index1()
     {
-        // $name = "darcio soares";
+        $name = "darcio soares";
         $array = ['nome'=>'darcio','sobrenome'=>'soares'];
         //$array = json_encode($array);
         // dd($name);
 
-        $array = collect($array);
+    //     $array = collect($array);
         
-        $array = $array->toJson();
+    //     $array = $array->toJson();
 
-       // $array = (object) $array;
-       //pego o valor como objeto no blade
+    //    // $array = (object) $array;
+    //    //pego o valor como objeto no blade
 
-        //dd($ob);
+    //     //dd($ob);
 
         return view('home1',['array'=>$array]);
     }
