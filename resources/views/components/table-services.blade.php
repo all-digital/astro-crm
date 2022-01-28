@@ -89,7 +89,7 @@
                                     <td style="width: 100px">
                                         <center>
                                             <a class="btn btn-outline-secondary btn-sm edit"
-                                                title="Editar"  onclick="edit({{$service['id']}})" >
+                                                title="Editar" id="{{$service['id']}}" onclick="edit({{$service['id'] }}, this)" >
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </center>
@@ -274,7 +274,11 @@
 <!-- /.modal -->
 </div>
 {{-- <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script> --}}
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+<script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
+
 <script>
+          
 
     window.onload = function() {
         let inputPrice = document.querySelectorAll('[price]') 
@@ -362,7 +366,18 @@
     
 
     let inputOpen = false    
-    function edit(id){
+    function edit(id, btn){
+
+        // console.log("btn ",btn.parentNode.parentNode.parentNode.children)
+
+        btn2 = Array.from(btn.parentNode.parentNode.parentNode.children)
+        // console.log(btn2)
+
+        for( let item of btn2)
+        {
+            console.log(item.innerHTML  )
+            item 
+        }
 
         if(inputOpen == true)
         {
@@ -397,10 +412,11 @@
 
             // dateAlter.setAttribute("readonly", false) 
             // empresa.children[0].readOnly = true;
-            empresa.children[0].readOnly = true;
-            console.log("readOnly => ",empresa.children[0])
             
+            empresa.children[0].readOnly = true;
+            console.log("salvando ===============> ",empresa.children[0])
 
+                       
                     
         //    console.log( empresa.children[0].value )
         //    console.log(statusServices.children[0].value)
@@ -451,18 +467,47 @@
             console.log("abrir para alterar")
             inputOpen = true
             console.log(inputOpen)
-
-
-            empresa = document.getElementById(`employer${id}`)
-            // empresa.children[0].readOnly = true;
-            console.log("readOnly else else === => ",empresa.innerHTML)
-            console.log("readOnly else else === => ",empresa)
+            
         }
 
         
     }
 
+//**********************************
 
+$(document).on('click','.edit',function(){
+    let elementTd = $(this).closest('tr').find('td')
+
+    let btnId = $(this).attr("id")
+
+        let date = 'date'+btnId
+        let userLastchange = 'user-lastchange'+btnId
+        let price = "price"+btnId
+
+
+    $.each(elementTd,function(){
+
+        let inputId = $(this).attr('id')
+        // console.log(inputId, "=>", date , inputId, "=>", userLastchange , inputId, "=>", price )
+
+        if(inputId == date || inputId == userLastchange  )
+        {
+            input = $(this).find('input')
+            $(input).attr('readonly',true)
+            $(input).css('background','#dddddd87')
+            
+        }
+
+        // console.log("coluna ",$(this).attr('id')+btnId)
+
+    })
+});
+
+
+$(document).on('keyup','input',function(){
+    let el = $(this).closest('tr').find('td')
+    console.log($(el).attr('td'))
+})
     function editInput()
     {        
         inputOpen = true   
