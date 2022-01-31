@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-
 use App\Models\Services;
+
+
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ServicesExport;
 
 class HomeController extends Controller
 {
@@ -74,6 +76,12 @@ class HomeController extends Controller
     public function addCompanies()
     {
         return view('addCompanies');
+    }
+
+
+    public function exportServices() 
+    {
+        return Excel::download(new ServicesExport, 'services.xlsx');
     }
 
 

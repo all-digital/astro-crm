@@ -7,7 +7,7 @@
                         style="margin-top: 10px; font-size: 16px; font-weight: bold;">SERVIÇOS</h4>
                     <div class="new-service-div">
 
-                        <a href="" class="btn btn-outline-success waves-effect waves-light">
+                        <a href="{{ url('export-services') }}" class="btn btn-outline-success waves-effect waves-light">
                             <i class="mdi mdi-google-spreadsheet"></i>
                         </a>
 
@@ -67,6 +67,7 @@
                     <table class="table table-editable table-nowrap align-middle table-edits">
                         <thead>
                             <tr>
+                                {{-- <th style="text-align: center;">Excluir</th> --}}
                                 <th style="text-align: center;">Editar</th>
                                 <th style="text-align: center;">Empresa</th>
                                 <th style="text-align: center;">Status</th>
@@ -94,6 +95,15 @@
                                             </a>
                                         </center>
                                     </td>
+
+                                    {{-- <td style="width: 100px">
+                                        <center>
+                                            <a class="btn btn-outline-secondary btn-sm edit"
+                                                title="Editar" id="{{$service['id']}}" onclick="edit({{$service['id'] }}, this)" >
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                        </center>
+                                    </td> --}}
                                     
                                         <td style="text-align: center;" id="employer{{$service['id']}}" data-employer data-field="employer{{$service['id']}}" ondblclick="editInput()" >{{$service['company']}}</td>
 
@@ -212,7 +222,7 @@
                                     class="col-md-3 col-form-label">Categoria</label>
                                 <div class="col-md-7">
                                     <input class="form-control" type="text" id="add-category"
-                                        required>
+                                        required >
                                 </div>
 
                             </div>
@@ -271,6 +281,11 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+    <div id="modal-loading" class="modal-container-loading to-hide">
+        <div class="c-loading"> </div>
+    </div>
+
 <!-- /.modal -->
 </div>
 {{-- <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script> --}}
@@ -330,38 +345,63 @@
     btn.addEventListener("click", function(e){
         e.preventDefault()
 
-        let addStatus = document.getElementById('add-status').value
-        let addCcategory = document.getElementById('add-category').value
-        let addService = document.getElementById('add-name-service').value
-        let addPrice = document.getElementById('add-price').value
+        let addStatus = document.getElementById('add-status')
+        let addCategory = document.getElementById('add-category')
+        let addService = document.getElementById('add-name-service')
+        let addPrice = document.getElementById('add-price')
 
         let add = {
-            "addStatus" : addStatus,
-            "addCcategory" : addCcategory,
-            "addService" : addService,
-            "addPrice" : addPrice
+            "addStatus" : addStatus.value,
+            "addCategory" : addCategory.value,
+            "addService" : addService.value,
+            "addPrice" : addPrice.value
+        }
+
+        // validando campos
+        // !!add.exemplo => se estiver vazio false
+
+        if(! (!!add.addCategory.trim() )){            
+            addCategory.setAttribute("style","background-color: #ffdddd;")
+        }else{
+            addCategory.removeAttribute("style")
+        }
+
+        if(! (!!add.addService.trim() )){            
+            addService.setAttribute("style","background-color: #ffdddd;")
+        }else{
+            addService.removeAttribute("style")
+        }
+
+        if(! (!!add.addPrice.trim() )){            
+            addPrice.setAttribute("style","background-color: #ffdddd;")
+        }else{
+            addPrice.removeAttribute("style")
+        }
+
+        if(! (addCategory.hasAttribute("style") || addService.hasAttribute("style") || addPrice.hasAttribute("style")) )
+        {
+            let loading = document.getElementById("modal-loading")
+            loading.classList.remove('to-hide')
+
+            fetch('api/tabela-add',{ 
+                method:'post',        
+                body: JSON.stringify(add),
+                headers:{"Content-type":"application/json"}
+                })            
+                .then(res=> res.json())
+                .then(res => { 
+                    
+                    console.log(res)
+                    location.reload()
+                
+                })
+                .catch((e)=> {console.log("erro => ", e)} )
+
         }
 
 
-        fetch('api/tabela-add',{ 
-            method:'post',        
-            body: JSON.stringify(add),
-            headers:{"Content-type":"application/json"}
-            })            
-            .then(res=> res.json())
-            .then(res => { 
-                
-                console.log(res)
-                location.reload()
-            
-             })
-            .catch((e)=> {console.log("erro => ", e)} )
 
-
-        console.log(add)
-        // location.reload()
-
-    })
+    })//end function
     
     
 
@@ -484,13 +524,15 @@ $(document).on('click','.edit',function(){
         let userLastchange = 'user-lastchange'+btnId
         let price = "price"+btnId
 
+        let user = "user"+btnId
+        
 
     $.each(elementTd,function(){
 
         let inputId = $(this).attr('id')
         // console.log(inputId, "=>", date , inputId, "=>", userLastchange , inputId, "=>", price )
 
-        if(inputId == date || inputId == userLastchange  )
+        if(inputId == date || inputId == userLastchange || user == inputId )
         {
             input = $(this).find('input')
             $(input).attr('readonly',true)
@@ -504,10 +546,10 @@ $(document).on('click','.edit',function(){
 });
 
 
-$(document).on('keyup','input',function(){
-    let el = $(this).closest('tr').find('td')
-    console.log($(el).attr('td'))
-})
+// $(document).on('keyup','input',function(){
+//     let el = $(this).closest('tr').find('td')
+//     console.log($(el).attr('td'))
+// })
     function editInput()
     {        
         inputOpen = true   

@@ -223,3 +223,6 @@ Route::post('/cadastrar', function(Request $request){
     return ["status"=>"sucesso"];
              
 });
+
+
+Route::get('/export-services', [App\Http\Controllers\HomeController::class, 'exportServices']);
