@@ -194,6 +194,8 @@ Route::get('/teste', function(){
     
 });
 
+
+
 Route::post('/cadastrar', function(Request $request){
 
 
@@ -226,3 +228,7 @@ Route::post('/cadastrar', function(Request $request){
 
 
 Route::get('/export-services', [App\Http\Controllers\HomeController::class, 'exportServices']);
+
+Route::get('/companies-list', function () {
+    return view('list-companies');
+});

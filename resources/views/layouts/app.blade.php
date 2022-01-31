@@ -38,7 +38,9 @@
       
      <link href="{{asset('assets/css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" />          
      
-     <link rel="stylesheet" href="{{asset('custom/css/style.css')}}">       
+     <link rel="stylesheet" href="{{asset('custom/css/style.css')}}">  
+     
+     <link  href="{{asset('custom/css/animation.css')}}" rel="stylesheet">
 
      @livewireStyles
 

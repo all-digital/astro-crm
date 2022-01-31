@@ -108,7 +108,7 @@ Route::post('/tabela-add', function(Request $request){
     $service = Services::create([
         'company' => "Alldigital",
         'status' => $request->input('addStatus'),
-        'category' => $request->input('addCcategory'),
+        'category' => $request->input('addCategory'),
         'name' => $request->input('addService'),
         'price' => $request->input('addPrice'),
         'responsible_for_insert' => "Admin",

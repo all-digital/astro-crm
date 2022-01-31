@@ -39,6 +39,8 @@
      <link  href="{{asset('custom/css/style.css')}}" rel="stylesheet">
      
      <link  href="{{asset('custom/css/animation.css')}}" rel="stylesheet">     
+
+     <link  href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet"/>
             
      @livewireStyles
 
@@ -610,8 +612,10 @@
     <script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
     <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
     <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
-   
 
+
+   
+    {{-- <script src="cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>  --}}
     {{-- <script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script> --}}
     
    
