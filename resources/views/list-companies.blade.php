@@ -26,15 +26,20 @@
         <table id="table_id" class="table table-hover" >
             <thead>
                 <tr style="background-color: #283D92; color:white;">
-                    <th>Edit</th>
-                    <th>Nome</th>
-                    <th>sobrenome</th>
-                    <th>idade</th>
-                    <th>Edit</th>
-                    <th>Nome</th>
-                    <th>sobrenome</th>
-                    <th>idade</th>
-                </tr>
+                
+                    <th>cnpj</th>
+                    <th>Razão Social</th>
+                    <th>Nome Fantasia</th>
+                    <th>Status</th>
+                    <th>Nome do Responsavel</th>
+                    <th>Email do responsavel</th>
+                    <th>Mes de pagamento</th>
+                    <th>Ativaçao</th>
+                    <th>Preço por plano</th>
+                    <th>Limite de usuario</th>
+                    <th>preco usuario extra</th>
+                </tr>  
+                
             </thead>
             <tbody>
                 {{-- datatable --}}
@@ -88,6 +93,13 @@
                 {"edit": `<button type="button" ${name} class="btn btn-info ">edit</button>`,"nome":"darcio","sobrenome":"soares","idade":"29","edit": `<button type="button" ${name} class="btn btn-info ">edit</button>`,"nome":"darcio","sobrenome":"soares","idade":"29"},
             ]
 
+                  
+
+            let companie = @json($companie)  
+
+            console.log(companie)
+            console.log(dataSet)
+
                 $('#table_id').DataTable({
                         // "scrollX": true,                                
                         // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 80]],
@@ -105,16 +117,17 @@
 
                         data: dataSet,
                         columns: [
-                            {data: 'edit' }, 
-                            {data: 'nome' }, 
-                            {data: 'sobrenome'},
-                            {data: 'idade'},
-                            {data: 'edit' }, 
-                            {data: 'nome' }, 
-                            {data: 'sobrenome'},
-                            {data: 'idade'}                      
-                        //     { data: 'callerid' },
-                        //     { data: 'iccid' },
+                            {data: 'cnpj'}, 
+                            {data: 'social_Reason'}, 
+                            {data: 'fantasy_name'},
+                            {data: 'status'},
+                            {data: 'name_responsible'},
+                            {data: 'email_responsible'}, 
+                            {data: 'monthly_payment'}, 
+                            {data: 'activation'},
+                            {data: 'price_per_plate'},                      
+                            {data: 'user_limit'},
+                            {data: 'price_per_extra_user'}
                         //     { data: 'status' },
                         //     { data: 'activated_at' },
                         //     { data: 'connected_at' },

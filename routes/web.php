@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Http\Request;
 use App\Models\Companies;
-
+use App\Models\Services;
 
 /*
 |--------------------------------------------------------------------------
@@ -229,6 +229,21 @@ Route::post('/cadastrar', function(Request $request){
 
 Route::get('/export-services', [App\Http\Controllers\HomeController::class, 'exportServices']);
 
-Route::get('/companies-list', function () {
-    return view('list-companies');
+
+
+Route::get('/empresas-list', function () {
+
+    // $service = Companies::where('user_id', ">" ,1)->get()->toArray();
+    // dd($service);
+
+    $companie = DB::table('companies')                        
+    ->select('cnpj','social_Reason','fantasy_name','status','name_responsible','email_responsible','monthly_payment','activation','price_per_plate','monthly_payment','user_limit','price_per_extra_user');
+    // ->where('login', '=' ,$login)
+    // ->where('carrier', '=' ,$request->operadora)
+    // ->where('status', '=' , '0')->get(); 
+
+    // $com = $companie->values();
+    // dd($com);
+
+    return view('list-companies', ["companie" => $companie]);
 });
