@@ -18,56 +18,12 @@
                     </div>
                 </div>
 
-                {{-- @php
-                    $services = [ 
-                        [
-                            "id" => 1
-                        "company" => "Bailey, Hills and Littel"
-                        "status" => "status"
-                        "category" => "Kunde"
-                        "name" => "Michel Dickens Jr."
-                        "price" => "120,00"
-                        "responsible_for_insert" => "Marcia Bernier"
-                        "company_id" => 1
-
-                        "updated_at" => "2022-01-25T16:39:30.000000Z"
-                        "Usuário da Última Alteração" => "02/03/0333"
-                         ],
-
-                         [
-                            "id"=> '2',
-                        "Empresa"=> 'empresa S.A 22222',
-                        "Status" => 'status ok',
-                        "Usuário de Inserção" => "clessio",
-                        "Data de Inserção" => "01/01/2022",
-                        "Categoria"=> "catgoria top",
-                        "Título do Serviço" => "serviço de chip",
-                        "Preço" => "200,30",
-                        "Data da Última Alteração"=> "03/02/2022",
-                        "Usuário da Última Alteração" => "02/03/0333"
-                        ],
-
-                        [
-                            "id"=> '3',
-                        "Empresa"=> 'empresa S.A 33333',
-                        "Status" => 'status ok',
-                        "Usuário de Inserção" => "ana",
-                        "Data de Inserção" => "01/01/2022",
-                        "Categoria"=> "catgoria top",
-                        "Título do Serviço" => "serviço de chip",
-                        "Preço" => "200,30",
-                        "Data da Última Alteração"=> "03/02/2022",
-                        "Usuário da Última Alteração" => "02/03/0333"
-                        ]
-                    ]
-                @endphp --}}
-
 
                 <div class="table-responsive">
                     <table class="table table-editable table-nowrap align-middle table-edits">
                         <thead>
-                            <tr>
-                                {{-- <th style="text-align: center;">Excluir</th> --}}
+                            <tr>                                
+                                <th style="text-align: center;">Deletar</th>
                                 <th style="text-align: center;">Editar</th>
                                 <th style="text-align: center;">Empresa</th>
                                 <th style="text-align: center;">Status</th>
@@ -82,48 +38,49 @@
                         </thead>
                        
                         <tbody>
-                            {{-- {{dd($servivos)}} --}}
+                            
 
                             @foreach ($services as $service)
-                                <tr data-id="1">
+                                <tr data-id={{$service['id']}} >
+
+                                    <td style="width: 100px">
+                                        <center>
+                                            <a class="btn btn-outline-secondary btn-sm delete"
+                                                title="delete" id="trash{{$service['id']}}"
+                                                
+                                                onclick="trash({{$service['id']}},`{{$service['name'] }}` )"> 
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </center>
+                                    </td>
                                     
                                     <td style="width: 100px">
                                         <center>
                                             <a class="btn btn-outline-secondary btn-sm edit"
-                                                title="Editar" id="{{$service['id']}}" onclick="edit({{$service['id'] }}, this)" >
+                                                title="Editar" id="{{$service['id']}}">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </center>
                                     </td>
+                                                                          
 
-                                    {{-- <td style="width: 100px">
-                                        <center>
-                                            <a class="btn btn-outline-secondary btn-sm edit"
-                                                title="Editar" id="{{$service['id']}}" onclick="edit({{$service['id'] }}, this)" >
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                        </center>
-                                    </td> --}}
-                                    
-                                        <td style="text-align: center;" id="employer{{$service['id']}}" data-employer data-field="employer{{$service['id']}}" ondblclick="editInput()" >{{$service['company']}}</td>
+                                        <td style="text-align: center;" id="employer{{$service['id']}}" data-employer data-field="employer"  >{{$service['company']}}</td>
 
-                                        <td style="text-align: center;" id="status{{$service['id']}}" data-field="status{{$service['id']}}" ondblclick="editInput()" >{{$service['status']}}</td>
+                                        <td style="text-align: center;" id="status{{$service['id']}}" data-status data-field="status"  >{{$service['status']}}</td>
 
-                                        <td style="text-align: center;" id="user{{$service['id']}}" data-field="user{{$service['id']}}" ondblclick="editInput()" >{{$service['responsible_for_insert']}}</td>
+                                        <td style="text-align: center;" id="user{{$service['id']}}" data-user  data-field="user"  >{{$service['responsible_for_insert']}}</td>
 
-                                        <td style="text-align: center;" id="date{{$service['id']}}" data-field="date{{$service['id']}}" ondblclick="editInput()" >{{$service['updated_at']}}</td>
+                                        <td style="text-align: center;" id="date{{$service['id']}}" data-date data-field="date"  >{{$service['updated_at']}}</td>
 
-                                        <td style="text-align: center;" id="category{{$service['id']}}" data-field="category{{$service['id']}}" ondblclick="editInput()" >{{$service['category']}}</td>
+                                        <td style="text-align: center;" id="category{{$service['id']}}" data-category  data-field="category"  >{{$service['category']}}</td>
 
-                                        <td style="text-align: center;" id="title{{$service['id']}}" data-field="title{{$service['id']}}" ondblclick="editInput()" >{{$service['name']}}</td>
+                                        <td style="text-align: center;" id="title{{$service['id']}}" data-title   data-field="title"  >{{$service['name']}}</td>
 
-                                        <td style="text-align: center;" id="price{{$service['id']}}" price data-field="price{{$service['id']}}" ondblclick="editInput()" >{{$service['price']}}</td>
+                                        <td style="text-align: center;" id="price{{$service['id']}}" data-price price data-field="price"  >{{$service['price']}}</td>
 
-                                        <td style="text-align: center;" id="date-lastchange{{$service['id']}}" data-field="date-lastchange{{$service['id']}}" ondblclick="editInput()" >{{$service['updated_at']}}</td>
+                                        <td style="text-align: center;" id="date-lastchange{{$service['id']}}" data-date-lastchange data-field="date-lastchange"> {{$service['updated_at']}}</td>
 
-                                        <td style="text-align: center;" id="user-lastchange{{$service['id']}}" data-field="user-lastchange{{$service['id']}}" ondblclick="editInput()" >{{Auth::user()->name}}</td>
-                                   
-
+                                        <td style="text-align: center;" id="user-lastchange{{$service['id']}}" data-user-lastchange data-field="user-lastchange">{{Auth::user()->name}}</td>                                   
                                 </tr>
                             
                             @endforeach
@@ -229,7 +186,6 @@
 
                             <div class="mb-3 row" style="justify-content: center;">
 
-
                                 <label for="example-url-input"
                                     class="col-md-3 col-form-label">Título do Serviço</label>
                                 <div class="col-md-7">
@@ -274,7 +230,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger waves-effect waves-light"
                     data-bs-dismiss="modal">CANCELAR</button>
-                <button type="button" id="btn-cadastrar" class="btn btn-success waves-effect waves-light">CADASTRAR</button>
+                <button type="button" id="btn-register" class="btn btn-success waves-effect waves-light">CADASTRAR</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -291,270 +247,220 @@
 {{-- <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script> --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-          
 
-    window.onload = function() {
-        let inputPrice = document.querySelectorAll('[price]') 
+    
+        window.onload = function() {
 
-        inputPrice = Array.from(inputPrice)
-        // console.log(inputPrice[0].innerText)                        
+            //// ref a parte de registro de serviço
+            let addMaskPrice = document.getElementById('add-price')
 
-        let im_price = new Inputmask( 'currency',{"autoUnmask": false,
-               radixPoint:",",
-                groupSeparator: ".",
-                allowMinus: false,
-                prefix: ' R$ ',            
-                digits: 2,
-                digitsOptional: false,
-                rightAlign: false,
-                unmaskAsNumber: false
-                                
-        });
-
-        inputPrice.forEach((input, i )=> {
-
-            console.log(input.innerText)
-            im_price.mask(input)
-        });
-
-
-        let addMaskPrice = document.getElementById('add-price')
-        console.log(addMaskPrice)
-        let im_addPrice = new Inputmask( 'currency',{"autoUnmask": false,
-               radixPoint:",",
-                groupSeparator: ".",
-                allowMinus: false,
-                prefix: ' R$ ',            
-                digits: 2,
-                digitsOptional: false,
-                rightAlign: false,
-                unmaskAsNumber: false                                
+            console.log(addMaskPrice)
+            let im_addPrice = new Inputmask( 'currency',{"autoUnmask": false,
+                radixPoint:",",
+                    groupSeparator: ".",
+                    allowMinus: false,
+                    prefix: ' R$ ',            
+                    digits: 2,
+                    digitsOptional: false,
+                    rightAlign: false,
+                    unmaskAsNumber: false                                
             });
             im_addPrice.mask(addMaskPrice)
 
+            
+        }//end function window.onload
 
-    }//end function window.onload
+        
 
-    
-
-
-    btn = document.getElementById('btn-cadastrar')
-
-    btn.addEventListener("click", function(e){
-        e.preventDefault()
-
-        let addStatus = document.getElementById('add-status')
-        let addCategory = document.getElementById('add-category')
-        let addService = document.getElementById('add-name-service')
-        let addPrice = document.getElementById('add-price')
-
-        let add = {
-            "addStatus" : addStatus.value,
-            "addCategory" : addCategory.value,
-            "addService" : addService.value,
-            "addPrice" : addPrice.value
-        }
-
-        // validando campos
-        // !!add.exemplo => se estiver vazio false
-
-        if(! (!!add.addCategory.trim() )){            
-            addCategory.setAttribute("style","background-color: #ffdddd;")
-        }else{
-            addCategory.removeAttribute("style")
-        }
-
-        if(! (!!add.addService.trim() )){            
-            addService.setAttribute("style","background-color: #ffdddd;")
-        }else{
-            addService.removeAttribute("style")
-        }
-
-        if(! (!!add.addPrice.trim() )){            
-            addPrice.setAttribute("style","background-color: #ffdddd;")
-        }else{
-            addPrice.removeAttribute("style")
-        }
-
-        if(! (addCategory.hasAttribute("style") || addService.hasAttribute("style") || addPrice.hasAttribute("style")) )
-        {
-            let loading = document.getElementById("modal-loading")
-            loading.classList.remove('to-hide')
-
-            fetch('api/tabela-add',{ 
-                method:'post',        
-                body: JSON.stringify(add),
-                headers:{"Content-type":"application/json"}
-                })            
-                .then(res=> res.json())
-                .then(res => { 
-                    
-                    console.log(res)
-                    location.reload()
+        //// ref table-edits
+        $(function(){
+            var e={};
+            $(".table-edits tr").editable({
                 
-                })
-                .catch((e)=> {console.log("erro => ", e)} )
-
-        }
-
-
-
-    })//end function
-    
-    
-
-    let inputOpen = false    
-    function edit(id, btn){
-
-        // console.log("btn ",btn.parentNode.parentNode.parentNode.children)
-
-        btn2 = Array.from(btn.parentNode.parentNode.parentNode.children)
-        // console.log(btn2)
-
-        for( let item of btn2)
-        {
-            console.log(item.innerHTML  )
-            item 
-        }
-
-        if(inputOpen == true)
-        {
-            //entra aqui na hora de salvar
-            console.log("enviar informaçoes")
-            console.log(inputOpen)
-            
-            
-            empresa = document.getElementById(`employer${id}`)
-            statusServices = document.getElementById(`status${id}`)            
-            userInsert = document.getElementById(`user${id}`)
-            dateinsert = document.getElementById(`date${id}`)
-            category = document.getElementById(`category${id}`)
-            titleServices = document.getElementById(`title${id}`)
-            price = document.getElementById(`price${id}`)
-            dateAlter = document.getElementById(`date-lastchange${id}`)
-            userAlter = document.getElementById(`user-lastchange${id}`)
+                    dropdowns:{
+                        status:["Ativo","Inativo"]                    
+                    },
+                
+                    edit:function(values){
+                        $(".edit i",this)
+                            .removeClass("fa-pencil-alt")
+                            .addClass("fa-save")
+                            .attr("title","Save")
+        
 
 
-            ///////////////////////////
-            let im_priceInput = new Inputmask( 'currency',{"autoUnmask": false,
-               radixPoint:",",
-                groupSeparator: ".",
-                allowMinus: false,
-                prefix: ' R$ ',            
-                digits: 2,
-                digitsOptional: false,
-                rightAlign: false,
-                unmaskAsNumber: false                                
-            });
-            im_priceInput.mask(price.children[0])
+                        let employer = document.querySelector('[data-employer ] > input')
+                        employer.setAttribute("style","background-color: #ffdddd;")
+                        employer.readOnly = true;
 
-            // dateAlter.setAttribute("readonly", false) 
-            // empresa.children[0].readOnly = true;
-            
-            empresa.children[0].readOnly = true;
-            console.log("salvando ===============> ",empresa.children[0])
+                        let price = document.querySelector('[data-price ] > input')
+                        // price.setAttribute("style","background-color: #ffdddd;")
+                        // price.readOnly = true;
 
-                       
+                        let userLastchange = document.querySelector('[data-user-lastchange ] > input')
+                        userLastchange.setAttribute("style","background-color: #ffdddd;")
+                        userLastchange.readOnly = true;
+
+                        let user = document.querySelector('[data-user] > input')
+                        user.setAttribute("style","background-color: #ffdddd;")
+                        user.readOnly = true;
+
+                        let  date = document.querySelector('[data-date] > input')
+                        date.setAttribute("style","background-color: #ffdddd;")
+                        date.readOnly = true;
+
+                        let  dateLastchange = document.querySelector('[data-date-lastchange] > input')
+                        dateLastchange.setAttribute("style","background-color: #ffdddd;")
+                        dateLastchange.readOnly = true;
+
+                        
+
+                                               
+                        let im_addPrice = new Inputmask( 'currency',{"autoUnmask": false,
+                            radixPoint:",",
+                                groupSeparator: ".",
+                                allowMinus: false,
+                                prefix: ' R$ ',            
+                                digits: 2,
+                                digitsOptional: false,
+                                rightAlign: false,
+                                unmaskAsNumber: false                                
+                            });
+                        im_addPrice.mask(price)
+
+                          
+                        
+                    },//end edit
                     
-        //    console.log( empresa.children[0].value )
-        //    console.log(statusServices.children[0].value)
-        //    console.log( userInsert.children[0].value )
-        //    console.log( dateinsert.children[0].value )
-        //    console.log( category.children[0].value )
-        //    console.log( titleServices.children[0].value )
-        //    console.log( price.children[0].value  )
-        //    console.log( dateAlter.children[0].value )
-        //    console.log( userAlter.children[0].value )
+                    save:function(values){
+                        $(".edit i",this)
+                        .removeClass("fa-save")
+                        .addClass("fa-pencil-alt")
+                        .attr("title","Edit"),
+                        this in e&&(e[this].destroy(),delete e[this])
 
 
-           let sendData =  {
-            "id":               id,
-            "empresa" :         empresa.children[0].value.trim(),
-           "statusServices":    statusServices.children[0].value.trim(),
-           "userInsert":        userInsert.children[0].value.trim(),
-            "dateinsert":       dateinsert.children[0].value.trim(),
-           "category":          category.children[0].value.trim(),
-           "titleServices":     titleServices.children[0].value.trim(),
-           "price":             price.children[0].value.trim(),
-           "dateAlter":         dateAlter.children[0].value.trim(),
-           "userAlter":         userAlter.children[0].value.trim()
 
-           }
-
-           console.log(sendData)
+                        console.log(values)
+                     
+                        
+                    
+                    },//end save
+                                              
+                   
+            })//end  table-edits 
 
 
-           
-            fetch('api/tabela',{ 
-            method:'post',        
-            body: JSON.stringify(sendData),
-            headers:{"Content-type":"application/json"}
-            })            
-            .then(res=> res.json())
-            .then(res => console.log(res))
-            .catch((e)=> {console.log("erro => ", e)} )
+        })//end 
 
 
-            
-          console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-
-            
-            inputOpen = false
-            console.log("saindo do edit ", inputOpen)
-        }else{
-            console.log("abrir para alterar")
-            inputOpen = true
-            console.log(inputOpen)
-            
-        }
-
-        
-    }
-
-//**********************************
-
-$(document).on('click','.edit',function(){
-    let elementTd = $(this).closest('tr').find('td')
-
-    let btnId = $(this).attr("id")
-
-        let date = 'date'+btnId
-        let userLastchange = 'user-lastchange'+btnId
-        let price = "price"+btnId
-
-        let user = "user"+btnId
-        
-
-    $.each(elementTd,function(){
-
-        let inputId = $(this).attr('id')
-        // console.log(inputId, "=>", date , inputId, "=>", userLastchange , inputId, "=>", price )
-
-        if(inputId == date || inputId == userLastchange || user == inputId )
+        //// table-edits => bnt de excluir
+        function trash(id, titleService)
         {
-            input = $(this).find('input')
-            $(input).attr('readonly',true)
-            $(input).css('background','#dddddd87')
-            
-        }
+            Swal.fire({
+                title: `Serviço ${titleService}` ,
+                text: "Tem certeza que deseja excluir esse serviço ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+                }).then((result) => {
 
-        // console.log("coluna ",$(this).attr('id')+btnId)
-
-    })
-});
 
 
-// $(document).on('keyup','input',function(){
-//     let el = $(this).closest('tr').find('td')
-//     console.log($(el).attr('td'))
-// })
-    function editInput()
-    {        
-        inputOpen = true   
-        console.log("estou aqui editInput ", inputOpen)     
-    }
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                        'Concluido!',
+                        'Deletado com succeso!',
+                        'success'
+                        )
 
+                        location.reload()
+
+                    }
+
+            })            
+
+        }//end function
+
+      
+
+
+
+        //// ref a parte de novo serviço
+
+        register = document.getElementById('btn-register')
+
+        register.addEventListener("click", function(e){
+            e.preventDefault()
+
+
+
+
+
+            ///////////////////////////////////
+
+            let addStatus = document.getElementById('add-status')
+            let addCategory = document.getElementById('add-category')
+            let addService = document.getElementById('add-name-service')
+            let addPrice = document.getElementById('add-price')
+
+            let add = {
+                "addStatus" : addStatus.value,
+                "addCategory" : addCategory.value,
+                "addService" : addService.value,
+                "addPrice" : addPrice.value
+            }
+
+            // validando campos
+            // !!add.exemplo => se estiver vazio false
+
+            if(! (!!add.addCategory.trim() )){            
+                addCategory.setAttribute("style","background-color: #ffdddd;")
+            }else{
+                addCategory.removeAttribute("style")
+            }
+
+            if(! (!!add.addService.trim() )){            
+                addService.setAttribute("style","background-color: #ffdddd;")
+            }else{
+                addService.removeAttribute("style")
+            }
+
+            if(! (!!add.addPrice.trim() )){            
+                addPrice.setAttribute("style","background-color: #ffdddd;")
+            }else{
+                addPrice.removeAttribute("style")
+            }
+
+            if(! (addCategory.hasAttribute("style") || addService.hasAttribute("style") || addPrice.hasAttribute("style")) )
+            {
+                let loading = document.getElementById("modal-loading")
+                loading.classList.remove('to-hide')
+
+                fetch('api/tabela-add',{ 
+                    method:'post',        
+                    body: JSON.stringify(add),
+                    headers:{"Content-type":"application/json"}
+                    })            
+                    .then(res=> res.json())
+                    .then(res => { 
+                        
+                        console.log(res)
+                        location.reload()
+                    
+                    })
+                    .catch((e)=> {console.log("erro => ", e)} )
+
+            }
+
+
+
+})//end function
+       
 
 </script>    
