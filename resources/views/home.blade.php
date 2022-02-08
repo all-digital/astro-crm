@@ -15,8 +15,7 @@
 @endsection
 
 @section('content')
-
-       
+      
 
     {{-- @livewire('table-services') --}}
     {{-- <livewire:table-services></livewire:table-services> --}}
@@ -31,7 +30,7 @@
     <!-- Table Editable plugin -->
     <script src="{{asset('assets/libs/table-edits/build/table-edits.min.js')}}"></script>
 
-    <script src="{{asset('assets/js/pages/table-editable.int.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/pages/table-editable.int.js')}}"></script> --}}
 
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>
