@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         // dd($services1->count());
 
-        return view('home',["services"=>$services]);
+        return view('services-table',["services"=>$services]);
     }
 
 
@@ -59,7 +59,7 @@ class HomeController extends Controller
 
     //     //dd($ob);
 
-        return view('home1',['array'=>$array]);
+        return view('dashboard.dashboard',['array'=>$array]);
     }
 
     public function finance()
