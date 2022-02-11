@@ -15,10 +15,7 @@
 
     <title>{{ config('app.name','Astro Sistemas Integrados') }}</title>
     {{-- <title>Serviços - Astro Sistemas Integrados</title> --}}
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}} 
-
+    
     <script src="{{asset('libs/alpinejs_3.7.1.min.js')}}" defer></script>
 
     <!-- Fonts -->
@@ -29,6 +26,17 @@
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     <!-- Styles template -->
+
+
+      <!-- DataTables -->
+        <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+        <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+
+
     <!-- Bootstrap Css -->
      <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />     
      <!-- Icons Css -->
@@ -40,7 +48,9 @@
      
      <link  href="{{asset('custom/css/animation.css')}}" rel="stylesheet">     
 
-     <link  href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet"/>
+     {{-- <link  href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet"/>
+
+     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"> --}}
             
      @livewireStyles
 
@@ -615,8 +625,7 @@
 
 
    
-    {{-- <script src="cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>  --}}
-    {{-- <script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script> --}}
+    
     
    
    @stack('script-js')
