@@ -12,17 +12,27 @@ class CompanyController extends Controller
 
     public function index()
     {
+
+        $companies = Companies::All();
+
+        // dd($companies->toArray());
+        
         return view('companies.index');
+
     }//end method
+
+
 
     public function addCompany()
     {
-        return view('companies.add_companies');        
+        return view('companies.add_companies');   
+
     }//end method
 
     public function editCompany()
     {
         return view('companies.edit_companies');
+
     }//method
     
 
