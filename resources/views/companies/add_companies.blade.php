@@ -1019,34 +1019,27 @@
                         console.log('onFinished => ')
 
                         fetch('/cadastrar',{ 
-                            method:'post',        
-                            body: JSON.stringify(result),
-                            headers:{
-                                "Content-type":"application/json",
-                                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                            }
-                            
-                            })            
-                            .then(res=> res.json())
-                            .then(res => { 
+                                method:'post',        
+                                body: JSON.stringify(result),
+                                headers:{
+                                    "Content-type":"application/json",
+                                    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                }                            
+                        })            
+                        .then(res=> res.json())
+                        .then(res => { 
                                 
-                                console.log(res)
-                                location.reload()
-                            
-                            })
-                            .catch((e)=> {console.log("erro => ", e)} )
-
-
-
-
-                    },
-
-                        //// end method onFinished
+                            console.log(res)
+                            location.reload()                            
+                        })
+                        .catch((e)=> {console.log("erro => ", e)} )
+                        
+                    }, //// end method onFinished
 
                     onContentLoaded: function() {}, 
                         //// end method onContentLoaded
 
-                        onInit: function() {   
+                    onInit: function() {   
 
                         let form = document.querySelector('#form-horizontal') 
 
