@@ -189,9 +189,27 @@ Route::get('/user-edit', function(){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/teste/teste', function(){
+// Route::get('/teste', function(){
 
-    return view('teste');
+//     return view('teste');
+// });
+
+// Route::get('teste2/teste2', function(){
+
+//     return view('teste2');
+// });
+
+Route::prefix('teste')->group(function () {
+    
+    Route::get('/teste', function(){
+
+        return view('teste');
+    });
+    //
+    Route::get('/teste2', function () {
+        // Matches The "/admin/users" URL
+        return view('teste2');
+    });
 });
 
 // Route::get('/teste', function(){
