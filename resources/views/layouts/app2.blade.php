@@ -67,21 +67,21 @@
                         <div class="d-flex">
                             <!-- LOGO -->
                             <div class="navbar-brand-box">
-                                <a href="index.html" class="logo logo-dark">
+                                <a href="{{route('dashboard')}}" class="logo logo-dark">
                                     <span class="logo-sm">
-                                        <img src="{{asset('assets/images/logo-astro.png')}}" alt="" height="20">
+                                        <img src="{{asset('assets/images/logo-astro.png')}}" alt="Astro" height="20">
                                     </span>
                                     <span class="logo-lg">
-                                        <img src="{{asset('assets/images/logo-astro.png')}}" alt="" height="18">
+                                        <img src="{{asset('assets/images/logo-astro.png')}}" alt="Astro" height="18">
                                     </span>
                                 </a>
     
-                                <a href="index.html" class="logo logo-light">
+                                <a href="{{route('dashboard')}}" class="logo logo-light">
                                     <span class="logo-sm">
-                                        <img src="{{asset('assets/images/logo-sm-dark.png')}}" alt="" height="20">
+                                        <img src="{{asset('assets/images/logo-sm-dark.png')}}" alt="Astro" height="20">
                                     </span>
                                     <span class="logo-lg">
-                                        <img src="{{asset('assets/images/logo-astro.png')}}" alt="" height="70">
+                                        <img src="{{asset('assets/images/logo-astro.png')}}" alt="Astro" height="70">
                                     </span>
                                 </a>
                             </div>
@@ -492,9 +492,19 @@
                                     <a class="dropdown-item" href="#"><i
                                             class="bx bx-pencil font-size-16 align-middle me-1"></i>
                                         Layout</a>
+
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#"><i
-                                            class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Sair</a>
+
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
+                                            class="bx bx-power-off font-size-16 align-middle me-1 text-danger" class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">
+                                             {{ __('Logout') }}
+                                         </i> 
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
     
