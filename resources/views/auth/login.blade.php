@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="account-pages my-5 pt-sm-5">
-        <div class="container" style="margin-top:-145px;">
+        <div class="container" style="margin-top:-150px;">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <div class="card overflow-hidden">
@@ -14,7 +14,8 @@
                                 <h5 class="text-white font-size-20">Seja bem vindo ao Astro!</h5>
                                 <p class="text-white-50 mb-0">Sistema de rastreamento.</p>
                                 <a href="index.html" class="logo logo-admin mt-4">
-                                    <img src="assets/images/logo-sm-dark.png" alt="" height="30">
+                                    {{-- <img src="assets/images/logo-sm-dark.png" alt="" height="55"> --}}
+                                    <img src="{{asset('assets/images/logo-sm-dark.png')}}" alt="" height="55">
                                 </a>
                             </div>
                         </div>
