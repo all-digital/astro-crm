@@ -26,7 +26,7 @@ Auth::routes(['register' => false, 'login'=>false]);
 
 
 
-Route::prefix('dashboards')->group(base_path('routes/dashboards.php'));
+Route::prefix('dashboard')->group(base_path('routes/dashboards.php'));
 Route::prefix('crm')->group(base_path('routes/crm.php'));
 Route::prefix('finance')->group(base_path('routes/finance.php'));
 Route::prefix('accounting')->group(base_path('routes/accounting.php'));
@@ -38,9 +38,9 @@ Route::prefix('reports')->group(base_path('routes/reports.php'));
 
 
 
-Route::get('/dashboard', [App\Http\Controllers\Dashboard\DashboardController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/finance', [App\Http\Controllers\Dashboard\FinanceController::class, 'finance'])->name('finance');
+
+
 
 Route::get('/services', [App\Http\Controllers\Services\ServicesController::class, 'servicesTable'])->name('services.table');
 
@@ -48,28 +48,9 @@ Route::get('/services', [App\Http\Controllers\Services\ServicesController::class
 Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices']);
 
 
-
-Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices']);
-
-
 Route::get('/empresas', [App\Http\Controllers\Companies\CompanyController::class, 'index']);
 Route::get('/empresas-add', [App\Http\Controllers\Companies\CompanyController::class, 'addCompany']);
 Route::get('/empresas-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany']);
-
-
-// Route::get('/empresas', function () {
-//     return view('companies.edit-companies');
-// });
-
-
-// Route::get('/empresas-add', function () {
-//     return view('companies.add-companies');
-// });
-
-
-// Route::get('/empresas-edit', function () {
-//     return view('edit-companies');
-// });
 
 
 Route::get('/empresas/testando', function () {
@@ -177,9 +158,7 @@ Route::get('/empresas/testando', function () {
 //         dd("gateway-pay");
 //     })->name('finance-gateway-pay');
 
-    
-
-      
+          
 // });
 
 
