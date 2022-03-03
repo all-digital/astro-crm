@@ -968,13 +968,11 @@
                             })  
                         }
 
-
                     },
                     //// end method onFinishing
 
                     onFinished: function() {
-                        
-                        
+                                                
                         Swal.fire({
                                 icon: 'success',
                                 title: 'SUccess',
@@ -982,8 +980,7 @@
                                 // footer: 'top..',
                                 showConfirmButton: true,
                                 // timer: 3000
-                            })  
-                    
+                            })                      
                     },
                     //// end method onFinished
 
