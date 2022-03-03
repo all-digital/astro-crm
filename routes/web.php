@@ -48,9 +48,9 @@ Route::get('/services', [App\Http\Controllers\Services\ServicesController::class
 Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices']);
 
 
-Route::get('/empresas', [App\Http\Controllers\Companies\CompanyController::class, 'index']);
-Route::get('/empresas-add', [App\Http\Controllers\Companies\CompanyController::class, 'addCompany']);
-Route::get('/empresas-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany']);
+Route::get('/empresas', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
+Route::get('/empresas-add', [App\Http\Controllers\Companies\CompanyController::class, 'addCompany'])->name('company.add');
+Route::get('/empresas-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany'])->name('company.edit');
 
 
 Route::get('/empresas/testando', function () {
