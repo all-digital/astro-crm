@@ -537,33 +537,23 @@
     <script src="{{asset('assets/libs/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
     <!-- form wizard -->
     <script src="{{asset('assets/libs/jquery-steps/build/jquery.steps.min.js')}}"></script>
-
-    <!-- form wizard init -->
-    {{-- <script src="{{asset('assets/js/pages/form-wizard.init.js')}}"></script> --}}
-
+ 
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>   
 
-    <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>
-    {{-- <script src="{{'assets\libs\sweetalert2\sweetalert2.min.js'}}"></script>        --}}
+    <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 @endpush
 
 @push('customized-js')
-    <script>
-
-       // não consegui trazer para esse script, não esta renderizando corretamente. Toda a Logica esta no arquivo
-       // public\assets\libs\jquery-steps\build\jquery.steps.min.js
+    <script>      
         /*! 
         * (http://www.jquery-steps.com)        
         */
      
         $(function(){
-            $("#form-horizontal").steps(
-                     
-     
-                
+            $("#form-horizontal").steps(                                          
                 {                
                     headerTag: "h3",
                     bodyTag: "fieldset",
@@ -594,11 +584,7 @@
                     transitionEffect: "slide",
                     transitionEffectSpeed: 200,
 
-
-
-
                     onStepChanging: function() {
-
                                     
                         let form = document.querySelector('#form-horizontal')
 
@@ -616,7 +602,6 @@
                         let validPricePerPlate = document.querySelector('#pricePerPlate-valid')
                         let validUserLimit = document.querySelector('#userLimit-valid')
                         let validPricePerExtraUser = document.querySelector('#pricePerExtraUser-valid')
-
 
                         //validating if the input is empty
 
@@ -681,9 +666,7 @@
                         //     validPricePerExtraUser.removeAttribute('class')
                         // }
 
-                        //end valitation 
-
-                                        
+                        //end valitation                                         
 
                         //validating filling in the fields
 
@@ -694,64 +677,60 @@
                             validCnpj.setAttribute('class',"d-none")   
                         }                            
                             
-                        if(form.socialReason.value.length >= 1){
+                        if(form.socialReason.value.length >= 2){
                             form.socialReason.removeAttribute("style")
                             validSocialReason.setAttribute('class',"d-none")    
                         }
                                                         
 
-                        if(form.fantasyName.value.length > 1 ){
+                        if(form.fantasyName.value.length >= 2 ){
                             form.fantasyName.removeAttribute("style")
                             validFantasyName.setAttribute('class',"d-none")   
                         }
                                                         
 
-                        if(form.status.value.length > 1){
+                        if(form.status.value.length >= 1){
                             form.status.removeAttribute("style")
                             validStatus.setAttribute('class',"d-none")   
                         }                                                         
 
-                        if(form.responsible.value.length > 1){
+                        if(form.responsible.value.length >= 2){
                             form.responsible.removeAttribute("style")
                             validResponsible.setAttribute('class',"d-none") 
                         }                          
                                                     
-                        if(form.email.value.length > 1){
+                        if(form.email.value.length >= 6){
                             form.email.removeAttribute("style")
                             validEmail.setAttribute('class',"d-none") 
-                        } 
-                                            
+                        }                                            
 
                         //Informações de Pagamento
-                        if(form.monthPayment.value.length > 1){
+                        if(form.monthPayment.value.length >= 1){
                             form.monthPayment.removeAttribute("style")
                             validMonthPayment.setAttribute('class',"d-none")
                         }
 
-                        if(form.activation.value.length > 1){
+                        if(form.activation.value.length >= 1){
                             form.activation.removeAttribute("style")
                             validActivation.setAttribute('class',"d-none")                              
                         }
 
-                        if(form.pricePerPlate.value.length > 1){
+                        if(form.pricePerPlate.value.length >= 1){
                             form.pricePerPlate.removeAttribute("style")
                             validPricePerPlate.setAttribute('class',"d-none")                              
                         }
 
-                        if(form.userLimit.value.length > 1){
+                        if(form.userLimit.value.length >= 1){
                             form.userLimit.removeAttribute("style")
                             validUserLimit.setAttribute('class',"d-none")                              
                         }
 
-                        if(form.pricePerExtraUser.value.length > 1){
+                        if(form.pricePerExtraUser.value.length >= 1){
                             form.pricePerExtraUser.removeAttribute("style")
                             validPricePerExtraUser.setAttribute('class',"d-none")                              
                         }
 
-
-
-                        return !0                          
-
+                        return !0                       
 
                     },
                         //// end method onStepChanging
@@ -781,7 +760,6 @@
                         console.log(form.activation.value)
                         console.log(form.pricePerPlate.value)
 
-
                     },
 
                         //// end method onStepChanged
@@ -792,7 +770,6 @@
                     onFinishing: function() {
 
                         let form = document.querySelector('#form-horizontal')    
-
 
                         let validCnpjConfirmation = document.querySelector('#cnpjConfirmation-valid')
                         let validSocialReasonConfirmation = document.querySelector('#socialReasonConfirmation-valid')
@@ -809,62 +786,58 @@
                         let validPricePerExtraUserConfirmation = document.querySelector('#pricePerExtraUserConfirmation-valid')
 
 
-
-
                         if(form.cnpjConfirmation.value == "")
                         {
-                        form.cnpjConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validCnpjConfirmation.removeAttribute('class')  
+                            form.cnpjConfirmation.setAttribute("style","background-color: #ffdddd;")
+                            validCnpjConfirmation.removeAttribute('class')  
                         }else{
-                        form.cnpjConfirmation.removeAttribute("style")
-                        validCnpjConfirmation.setAttribute("class","d-none")
+                            form.cnpjConfirmation.removeAttribute("style")
+                            validCnpjConfirmation.setAttribute("class","d-none")
                         }
-
 
                         if(form.socialReasonConfirmation.value == "")
                         {
-                        form.socialReasonConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validSocialReasonConfirmation.removeAttribute('class') 
+                            form.socialReasonConfirmation.setAttribute("style","background-color: #ffdddd;")
+                            validSocialReasonConfirmation.removeAttribute('class') 
                         }else{
-                        form.socialReasonConfirmation.removeAttribute("style")
-                        validSocialReasonConfirmation.setAttribute("class","d-none")
+                            form.socialReasonConfirmation.removeAttribute("style")
+                            validSocialReasonConfirmation.setAttribute("class","d-none")
                         }
-
 
                         if(form.fantasyNameConfirmation.value == "")
                         {
-                        form.fantasyNameConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validFantasyNameConfirmation.removeAttribute('class') 
+                            form.fantasyNameConfirmation.setAttribute("style","background-color: #ffdddd;")
+                            validFantasyNameConfirmation.removeAttribute('class') 
                         }else{
-                        form.fantasyNameConfirmation.removeAttribute("style")
-                        validFantasyNameConfirmation.setAttribute("class","d-none")
+                            form.fantasyNameConfirmation.removeAttribute("style")
+                            validFantasyNameConfirmation.setAttribute("class","d-none")
                         }
 
                         if(form.statusConfirmation.value == "")
                         {
-                        form.statusConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validStatusConfirmation.removeAttribute('class') 
+                            form.statusConfirmation.setAttribute("style","background-color: #ffdddd;")
+                            validStatusConfirmation.removeAttribute('class') 
                         }else{
-                        form.statusConfirmation.removeAttribute("style")
-                        validStatusConfirmation.setAttribute("class","d-none")
+                            form.statusConfirmation.removeAttribute("style")
+                            validStatusConfirmation.setAttribute("class","d-none")
                         }
 
                         if(form.responsibleConfirmation.value == "")
                         {
-                        form.responsibleConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validResponsibleConfirmation.removeAttribute('class') 
+                            form.responsibleConfirmation.setAttribute("style","background-color: #ffdddd;")
+                            validResponsibleConfirmation.removeAttribute('class') 
                         }else{
-                        form.responsibleConfirmation.removeAttribute("style")
-                        validResponsibleConfirmation.setAttribute("class","d-none")
+                            form.responsibleConfirmation.removeAttribute("style")
+                            validResponsibleConfirmation.setAttribute("class","d-none")
                         }
 
                         if(form.emailConfirmation.value == "")
                         {
-                        form.emailConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validEmailConfirmation.removeAttribute('class') 
+                            form.emailConfirmation.setAttribute("style","background-color: #ffdddd;")
+                            validEmailConfirmation.removeAttribute('class') 
                         }else{
-                        form.emailConfirmation.removeAttribute("style")
-                        validEmailConfirmation.setAttribute("class","d-none")
+                            form.emailConfirmation.removeAttribute("style")
+                            validEmailConfirmation.setAttribute("class","d-none")
                         }
 
 
@@ -888,7 +861,6 @@
                         //     validMonthPaymentConfirmation.setAttribute("class","d-none")
                         // }
 
-
                         // if(form.activationConfirmation.value == "")
                         // {
                         //     form.activationConfirmation.setAttribute("style","background-color: #ffdddd;")
@@ -897,7 +869,6 @@
                         //     form.activationConfirmation.removeAttribute("style")
                         //     validActivationConfirmation.setAttribute("class","d-none")
                         // }
-
 
                         // if(form.pricePerPlateConfirmation.value == "")
                         // {
@@ -936,7 +907,6 @@
                         if(form.responsibleConfirmation.hasAttribute("style")) validation = false
                         if(form.emailConfirmation.hasAttribute("style")) validation = false
 
-
                         if(validation === false)
                         {
                             Swal.fire({
@@ -946,20 +916,17 @@
                                 // footer: 'top..',
                                 showConfirmButton: false,
                                 timer: 3000
-                            })                           
+                            })                          
 
                         }else{
+
                             return !0                            
                         }
 
-
-
                     },
-
                         //// end method onFinishing
 
                     onFinished: function(event) {
-
 
                         let form = document.querySelector('#form-horizontal')
 
@@ -991,6 +958,8 @@
                         //     form.pricePerExtraUser.value
                         // )
 
+                        let authUser =  {{ Js::from(auth()->user()) }};
+
                         let result = {
                         "cnpj" :             form.cnpj.value,
                         "socialReason":      form.socialReason.value,
@@ -1002,7 +971,8 @@
                         "activation":        activation,
                         "pricePerPlate":     pricePerPlate,
                         "userLimit":         form.userLimit.value,
-                        "pricePerExtraUser": pricePerExtraUser
+                        "pricePerExtraUser": pricePerExtraUser,
+                        "auth":  authUser
                         }
 
                         console.log("result => ", result)
@@ -1018,7 +988,7 @@
 
                         console.log('onFinished => ')
 
-                        fetch('/cadastrar',{ 
+                        fetch('/api/company-add',{ 
                                 method:'post',        
                                 body: JSON.stringify(result),
                                 headers:{
@@ -1030,9 +1000,9 @@
                         .then(res => { 
                                 
                             console.log(res)
-                            location.reload()                            
+                            // location.reload()                            
                         })
-                        .catch((e)=> {console.log("erro => ", e)} )
+                        .catch((e)=> {console.log("error => ", e)} )
                         
                     }, //// end method onFinished
 
@@ -1057,7 +1027,6 @@
                                 unmaskAsNumber: false
                                 
                         });
-
 
                         ////////////////////////////////////////////
                         let im_activation = new Inputmask( 'currency',{"autoUnmask": false,
@@ -1121,10 +1090,10 @@
                                         icon: 'error',
                                         title: '<h1>Oops...</h1>',
                                         text: 'CNPJ inválido',
-                                        footer: 'tente novamente..',
+                                        // footer: 'tente novamente..',
                                         showConfirmButton: false,
                                         // color: '#fff',
-                                        background:"#c3cef8",
+                                        // background:"#c3cef8",
                                         timer: 3500
                                     })
 
@@ -1132,20 +1101,15 @@
 
                                     form.socialReason.value = res.nome
                                     form.fantasyName.value = res.fantasia
-                                    form.status.value = res.status                                
+                                    // form.status.value = res.status                                
                                     form.email.value = res.email
 
                                 }
 
-
                             })
                             .catch((error)=> console.log("erro api cnpj => ",error))
                         })
-
-
                     },
-
-
                    
                     ////////////////////////////////////////////////////////////////////////////////////
                     //// end methods onInit
@@ -1159,11 +1123,8 @@
                         previous: "Anterior",
                         loading: "Carregando ..."
                     }
-
-                }
-            
+                }            
             )});
-      
-        
+              
     </script>
 @endpush

@@ -48,9 +48,9 @@ Route::get('/services', [App\Http\Controllers\Services\ServicesController::class
 Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices']);
 
 
-Route::get('/empresas', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
-Route::get('/empresas-add', [App\Http\Controllers\Companies\CompanyController::class, 'addCompany'])->name('company.add');
-Route::get('/empresas-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany'])->name('company.edit');
+Route::get('/company', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
+Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'addCompany'])->name('company.add');
+Route::get('/company-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany'])->name('company.edit');
 
 
 Route::get('/empresas/testando', function () {
@@ -192,10 +192,7 @@ Route::get('/user-edit', function(){
 
 Route::prefix('teste')->group(function () {
     
-    Route::get('/teste', function(){
-
-        return view('teste');
-    });
+    Route::get('/teste', [App\Http\Controllers\Companies\CompanyController::class, 'teste']);
     //
     Route::get('/teste2', function () {
         // Matches The "/admin/users" URL

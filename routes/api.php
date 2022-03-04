@@ -30,6 +30,14 @@ Route::post('/teste', function(){
 
 });
 
+
+Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);
+
+Route::post('/company-add',[App\Http\Controllers\Api\CompanyController::class, 'addCompany']);
+
+
+
+
 Route::get('/teste', function(){
 
     //dd(' teste api ');
@@ -44,7 +52,7 @@ Route::get('/teste', function(){
         
 });
 
-Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
