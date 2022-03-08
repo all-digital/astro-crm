@@ -754,12 +754,6 @@
 
                         console.log("onStepChanging => esta carregando os campo para confirmação")
 
-                        /////apagar
-                        console.log(form.pricePerExtraUser.value)
-                        console.log(form.monthPayment.value)
-                        console.log(form.activation.value)
-                        console.log(form.pricePerPlate.value)
-
                     },
 
                         //// end method onStepChanged
@@ -958,6 +952,7 @@
                         //     form.pricePerExtraUser.value
                         // )
 
+                        //pegando dados do user logado
                         let authUser =  {{ Js::from(auth()->user()) }};
 
                         let result = {
@@ -972,7 +967,7 @@
                         "pricePerPlate":     pricePerPlate,
                         "userLimit":         form.userLimit.value,
                         "pricePerExtraUser": pricePerExtraUser,
-                        "auth":  authUser
+                        "authUser":  authUser
                         }
 
                         console.log("result => ", result)
@@ -998,7 +993,7 @@
                         })            
                         .then(res=> res.json())
                         .then(res => { 
-                                
+                                                   
                             console.log(res)
                             // location.reload()                            
                         })
