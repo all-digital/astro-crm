@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,26 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('create-service', function (User $user) {
+            //verificar se ele possui a regra de gerente
+            //se sim, verificar se ele possui a permissão de creata sservices
+
+            $user_permission = $user->load('roles.permissions')->roles->transform(function($role){
+                
+                return $role->permissions->transform(function($permission){                    
+                   return  $permission->name;
+                });
+
+            });
+
+           return in_array('create-service',$user_permission->first()->toArray());
+
+        });
+
+
+
+        
+
         //
-    }
+    }//end boot
 }
