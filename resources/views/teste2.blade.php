@@ -16,7 +16,11 @@
 
 @section('content')
 
-    <h1>Teste 2 </h1>
+    @can('create-service')
+        <h1>gerente autorizado </h1>
+    @endcan
+
+    {{-- <h1>Teste 2 </h1> --}}
 @endsection
 
 @push('script-js')
