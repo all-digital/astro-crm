@@ -18,11 +18,26 @@ class RolePermissionsTableSeeder extends Seeder
     public function run()
     {
         RolePermission::insert([
-
-            // [
-            //     'role_id'=> 1,
-            //     'permission_id' => 6            
-            // ],
+            //gerente  => create-user     
+            [
+                'role_id'=> 3,
+                'permission_id' => 33        
+            ],
+            //gerente  => create-service 
+            [
+                'role_id'=> 3,
+                'permission_id' => 34           
+            ],
+            //gerente  => create-company 
+            [
+                'role_id'=> 3,
+                'permission_id' => 35     
+            ],
+            //gerente  => create-client
+            [
+                'role_id'=> 3,
+                'permission_id' => 36           
+            ]
             
 
         ]);

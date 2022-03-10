@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use Illuminate\Http\Request;
-use App\Models\Companies;
 use App\Models\Services;
+
+use App\Models\Companies;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,37 @@ Route::prefix('reports')->group(base_path('routes/reports.php'));
 
 
 
+Route::get('dd', function(){
 
+    // dd(auth()->user());
+    // dd(auth()->user()->load('roles.permissions'));
+
+
+    if (! Gate::allows('create-service')) {
+        //abort(403);
+        return "vc não esta autorizado";
+
+    }else{
+       // return 'vc esta autorizado para essa tela';
+        return view('teste2');
+    }
+
+
+    //$user = auth()->user();
+
+    // $user_permission = $user->load('roles.permissions')->roles->transform(function($role){
+
+    //     //return $role;
+                
+    //     return $role->permissions->transform(function($permission){                    
+    //        return  $permission->name;
+    //     });
+
+    // });
+
+    // dd($user_permission->first()->toArray());
+
+});
 
 
 

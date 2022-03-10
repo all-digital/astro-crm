@@ -26,10 +26,10 @@ class UserSeeder extends Seeder
         $faker = Faker::create();
 
         $user = User::create([
-            // 'name'=> 'admin',
-            // 'email' => 'admin@admin',
-            'name'=> $faker->name(),
-            'email' => $faker->email(),
+            'name'=> 'darcio',
+            'email' => 'darcio@dss',
+            // 'name'=> $faker->name(),
+            // 'email' => $faker->email(),
             'password' => Hash::make('123456789'),
             'companie' => $faker->company(),
             'superiors'=> $faker->name(),
