@@ -39,7 +39,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtFirstNameBilling" name="cnpj" 
                                                 type="text" class="form-control" >
-                                                <span id="cnpj-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="cnpj-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 14 caracteres</span>
                                         </div>
 
                                     </div>
@@ -51,7 +51,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtLastNameBilling" name="socialReason"
                                                 type="text" readonly class="form-control">
-                                                <span id="socialReason-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="socialReason-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 2 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtCompanyBilling" name="fantasyName"
                                                 type="text" class="form-control">
-                                                <span id="fantasyName-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="fantasyName-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 2 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtEmailAddressBilling" name="responsible"
                                                 type="text" class="form-control">
-                                                <span id="responsible-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="responsible-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 2 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtEmailAddressBilling" name="email"
                                             type="text" class="form-control">
-                                            <span id="email-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                            <span id="email-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 6 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -340,7 +340,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtFirstNameBilling" readonly name="cnpjConfirmation"
                                                 type="text" class="form-control">
-                                                <span id="cnpjConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="cnpjConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 14 caracteres</span>
                                         </div>
 
                                     </div>
@@ -352,7 +352,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtLastNameBilling" readonly name="socialReasonConfirmation"
                                                 type="text" class="form-control">
-                                                <span id="socialReasonConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="socialReasonConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 2 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +365,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtCompanyBilling2" readonly name="fantasyNameConfirmation"
                                                 type="text" class="form-control">
-                                                <span id="fantasyNameConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="fantasyNameConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 2 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -389,7 +389,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtEmailAddressBilling" readonly name="responsibleConfirmation"
                                                 type="text" class="form-control">
-                                                <span id="responsibleConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                                <span id="responsibleConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 2 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -400,7 +400,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtEmailAddressBilling" readonly name="emailConfirmation"
                                             type="text" class="form-control">
-                                            <span id="emailConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                            <span id="emailConfirmation-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 6 caracteres</span>
                                         </div>
                                     </div>
                                 </div>
@@ -611,13 +611,13 @@
                             validCnpj.removeAttribute('class')     
                         }
 
-                        if((!form.socialReason.value.trim())){           
+                        if((!form.socialReason.value.trim()) || form.socialReason.value.length <=2){           
 
                             form.socialReason.setAttribute("style","background-color: #ffdddd;")
                             validSocialReason.removeAttribute('class')                        
                         }
 
-                        if((!form.fantasyName.value.trim())){
+                        if((!form.fantasyName.value.trim()) || form.fantasyName.value.length <=2){
 
                             form.fantasyName.setAttribute("style","background-color: #ffdddd;")
                             validFantasyName.removeAttribute('class')
@@ -629,13 +629,13 @@
                             validStatus.removeAttribute('class') 
                         }
 
-                        if((!form.responsible.value.trim())){
+                        if((!form.responsible.value.trim()) || form.responsible.value.length <= 2 ){
 
                             form.responsible.setAttribute("style","background-color: #ffdddd;")
                             validResponsible.removeAttribute('class')
                         }
 
-                        if((!form.email.value.trim() )){
+                        if((!form.email.value.trim()) || form.email.value.length <= 5 ){
 
                             form.email.setAttribute("style","background-color: #ffdddd;")
                             validEmail.removeAttribute('class')
@@ -666,12 +666,13 @@
                         //     validPricePerExtraUser.removeAttribute('class')
                         // }
 
-                        //end valitation                                         
+                        //end valitation 
+
 
                         //validating filling in the fields
+                        //if filled in the field and cleared
 
-
-                        //Informações da Empresa
+                        //Informações da Empresa => caso campo esteja preenchido, ele remove a msg de erro
                         if(form.cnpj.value.length >= 14){
                             form.cnpj.removeAttribute("style")
                             validCnpj.setAttribute('class',"d-none")   
@@ -696,8 +697,9 @@
 
                         if(form.responsible.value.length >= 2){
                             form.responsible.removeAttribute("style")
-                            validResponsible.setAttribute('class',"d-none") 
-                        }                          
+                            validResponsible.setAttribute('class',"d-none")
+                        }
+                                                         
                                                     
                         if(form.email.value.length >= 6){
                             form.email.removeAttribute("style")
@@ -737,6 +739,7 @@
 
                     onStepChanged: function() {
 
+                        //atribuindo os valores do form para o form de validação
                         let form = document.querySelector('#form-horizontal')
 
                         form.cnpjConfirmation.value = form.cnpj.value	
@@ -747,15 +750,15 @@
                         form.emailConfirmation.value = form.email.value
                         form.mainColorConfirmation.value = form.mainColor.value
                         // form.logoConfirmation.value = form.logo.value
+                        form.userLimitConfirmation.value = form.userLimit.value
                         form.monthPaymentConfirmation.value = form.monthPayment.value
                         form.activationConfirmation.value = form.activation.value
                         form.pricePerPlateConfirmation.value = form.pricePerPlate.value
                         form.pricePerExtraUserConfirmation.value = form.pricePerExtraUser.value
 
-                        console.log("onStepChanging => esta carregando os campo para confirmação")
+                        // console.log("onStepChanging => esta carregando os campo para confirmação")
 
                     },
-
                         //// end method onStepChanged
 
                     onCanceled: function() {},
@@ -780,7 +783,7 @@
                         let validPricePerExtraUserConfirmation = document.querySelector('#pricePerExtraUserConfirmation-valid')
 
 
-                        if(form.cnpjConfirmation.value == "")
+                        if(form.cnpjConfirmation.value == "" || form.cnpjConfirmation.value.length <= 13)
                         {
                             form.cnpjConfirmation.setAttribute("style","background-color: #ffdddd;")
                             validCnpjConfirmation.removeAttribute('class')  
@@ -789,7 +792,7 @@
                             validCnpjConfirmation.setAttribute("class","d-none")
                         }
 
-                        if(form.socialReasonConfirmation.value == "")
+                        if(form.socialReasonConfirmation.value == "" || form.socialReasonConfirmation.value.length <= 1)
                         {
                             form.socialReasonConfirmation.setAttribute("style","background-color: #ffdddd;")
                             validSocialReasonConfirmation.removeAttribute('class') 
@@ -798,7 +801,7 @@
                             validSocialReasonConfirmation.setAttribute("class","d-none")
                         }
 
-                        if(form.fantasyNameConfirmation.value == "")
+                        if(form.fantasyNameConfirmation.value == "" || form.fantasyNameConfirmation.value.length <= 1)
                         {
                             form.fantasyNameConfirmation.setAttribute("style","background-color: #ffdddd;")
                             validFantasyNameConfirmation.removeAttribute('class') 
@@ -816,7 +819,7 @@
                             validStatusConfirmation.setAttribute("class","d-none")
                         }
 
-                        if(form.responsibleConfirmation.value == "")
+                        if(form.responsibleConfirmation.value == "" || form.responsibleConfirmation.value.length <= 1 )
                         {
                             form.responsibleConfirmation.setAttribute("style","background-color: #ffdddd;")
                             validResponsibleConfirmation.removeAttribute('class') 
@@ -825,7 +828,7 @@
                             validResponsibleConfirmation.setAttribute("class","d-none")
                         }
 
-                        if(form.emailConfirmation.value == "")
+                        if(form.emailConfirmation.value == "" || form.emailConfirmation.value.length <=5)
                         {
                             form.emailConfirmation.setAttribute("style","background-color: #ffdddd;")
                             validEmailConfirmation.removeAttribute('class') 
@@ -873,13 +876,13 @@
                         //     validPricePerPlateConfirmation.setAttribute("class","d-none")
                         // }
 
-                        if(form.userLimitConfirmation.value <= 1)
+                        if( form.userLimitConfirmation.value == ""  || form.userLimitConfirmation.value ==  "vazio")
                         {
-                        form.userLimitConfirmation.setAttribute("style","background-color: #ffdddd;")
-                        validUserLimitConfirmation.removeAttribute('class') 
+                            form.userLimitConfirmation.setAttribute("style","background-color: #ffdddd;")
+                            validUserLimitConfirmation.removeAttribute('class') 
                         }else{
-                        form.userLimitConfirmation.removeAttribute("style")
-                        validUserLimitConfirmation.setAttribute("class","d-none")
+                            form.userLimitConfirmation.removeAttribute("style")
+                            validUserLimitConfirmation.setAttribute("class","d-none")
                         }
 
                         // if(form.pricePerExtraUserConfirmation.value == "")
@@ -891,7 +894,7 @@
                         //     validPricePerExtraUserConfirmation.setAttribute("class","d-none")
                         // }
 
-                        console.log("onFinishing") 
+                       // console.log("onFinishing") 
 
                         let validation = true
 
@@ -900,6 +903,7 @@
                         if(form.statusConfirmation.hasAttribute("style")) validation = false
                         if(form.responsibleConfirmation.hasAttribute("style")) validation = false
                         if(form.emailConfirmation.hasAttribute("style")) validation = false
+                        if(form.userLimitConfirmation.hasAttribute("style")) validation = false
 
                         if(validation === false)
                         {
@@ -929,57 +933,26 @@
                         let pricePerPlate    = form.pricePerPlate.value.replace("R$","")                           
                         let pricePerExtraUser = form.pricePerExtraUser.value.replace("R$","")
 
-                        // console.log("valores =>>>>>>",
-                        //     monthPayment,
-                        //     activation,
-                        //     pricePerPlate,
-                        //     pricePerExtraUser
-                        // );
-
-                        // console.log(
-                        //     form.cnpj.value,
-                        //     form.socialReason.value,
-                        //     form.fantasyName.value,
-                        //     form.status.value,
-                        //     form.responsible.value,
-                        //     form.email.value,
-                        //     // form.mainColor.value,
-                        //     // form.logo.value,
-                        //     form.monthPayment.value,
-                        //     form.activation.value,
-                        //     form.pricePerPlate.value,
-                        //     form.userLimit.value,
-                        //     form.pricePerExtraUser.value
-                        // )
 
                         //pegando dados do user logado
                         let authUser =  {{ Js::from(auth()->user()) }};
 
                         let result = {
-                        "cnpj" :             form.cnpj.value,
-                        "socialReason":      form.socialReason.value,
-                        "fantasyName":       form.fantasyName.value,
-                        "status":            form.status.value,
-                        "responsible":       form.responsible.value,
-                        "email":             form.email.value,                            
-                        "monthPayment":      monthPayment,
-                        "activation":        activation,
-                        "pricePerPlate":     pricePerPlate,
-                        "userLimit":         form.userLimit.value,
-                        "pricePerExtraUser": pricePerExtraUser,
-                        "authUser":  authUser
+                            "cnpj" :             form.cnpj.value,
+                            "socialReason":      form.socialReason.value,
+                            "fantasyName":       form.fantasyName.value,
+                            "status":            form.status.value,
+                            "responsible":       form.responsible.value,
+                            "email":             form.email.value,                            
+                            "monthPayment":      monthPayment,
+                            "activation":        activation,
+                            "pricePerPlate":     pricePerPlate,
+                            "userLimit":         form.userLimit.value,
+                            "pricePerExtraUser": pricePerExtraUser,
+                            "authUser":  authUser
                         }
 
-                        console.log("result => ", result)
-
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Sucesso',
-                            text: 'Cadastro efetuado com sucesso',
-                            // footer: 'top..',
-                            showConfirmButton: false,
-                            timer: 3500
-                        })
+                        //console.log("result => ", result)
 
                         console.log('onFinished => ')
 
@@ -993,9 +966,52 @@
                         })            
                         .then(res=> res.json())
                         .then(res => { 
-                                                   
-                            console.log(res)
-                            // location.reload()                            
+
+
+                            if(res.status)
+                            {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sucesso',
+                                    text: 'Cadastro efetuado com sucesso',
+                                    // footer: 'top..',
+                                    showConfirmButton: false,
+                                    timer: 3500
+                                 })
+
+                                 // location.reload()  
+                            }else{
+
+                                let result = `<span></span>`
+                                res.forEach(function(element){
+                                    result += `<li>${element}</li>`
+                                })
+    
+                                let ul = document.createElement('ul')   
+                                ul.style ="list-style-type:none;"                     
+                                ul.innerHTML = result
+                                
+                                console.log(ul)
+                                console.log(result)
+    
+                                Swal.fire({
+                                    title: '<strong>Erros encontrados, dados não foram salvos</strong>',
+                                    icon: 'error',
+                                    html: ul,                                    
+                                    showCloseButton: true,
+                                    // showCancelButton: true,
+                                    focusConfirm: true,
+                                    // confirmButtonText:
+                                    //     '<i class="fa fa-thumbs-up"></i> Great!',
+                                    // confirmButtonAriaLabel: 'Thumbs up, great!',
+                                    // cancelButtonText:
+                                    //     '<i class="fa fa-thumbs-down"></i>',
+                                    cancelButtonAriaLabel: 'Thumbs down'
+                                })
+
+                            }//end else
+
+                                       
                         })
                         .catch((e)=> {console.log("error => ", e)} )
                         

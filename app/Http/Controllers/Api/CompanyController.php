@@ -17,11 +17,11 @@ class CompanyController extends Controller
         $authRequest = $request->input('authUser');
         
 
-        debug($request->all());
+        //debug($request->all());
 
         $validator = Validator::make($request->all(), [            
                 "cnpj" => 'required|min:14',
-                "socialReason" => 'required|min:3',
+                "socialReason" => 'required|min:2',
                 "fantasyName" => 'required|min:2',
                 "status" => 'required|min:1',
                 "responsible" => 'required|min:2',
@@ -34,34 +34,45 @@ class CompanyController extends Controller
             ],
              //msg
             [
-                "cnpj.mim" =>  "minimo de 14 caracteres",
-                "socialReason.min" => 'minimo de 3 caracteres',
-                "fantasyName.min" => 'minimo de 3 caracteres',
-                "status.min" => 'minimo de 1 caracteres',
-                "responsible.min" => 'minimo de 2 caracteres',
-                "email.min" => 'minimo de 6 caracteres',
-                "monthPayment.min" => 'minimo de 1 caracteres',
-                "activation.min" => 'minimo de 1 caracteres',
-                "pricePerPlate.min" => 'minimo de 1 caracteres',
-                "userLimit.min" => 'minimo de 1 caracteres',
-                "pricePerExtraUser.min" => 'minimo de 1 caracteres',
+                "cnpj.mim" =>  "cnpj : minimo de 14 caracteres",
+                "socialReason.min" => 'Razão Social : minimo de 2 caracteres',
+                "fantasyName.min" => 'Nome Fantasia : minimo de 2 caracteres',
+                "status.min" => 'Status : minimo de 1 caracteres',
+                "responsible.min" => 'Responsável : minimo de 2 caracteres',
+                "email.min" => 'E-mail : minimo de 6 caracteres',
+                "monthPayment.min" => 'Mensalidade : minimo de 1 caracteres',
+                "activation.min" => 'Ativação : minimo de 1 caracteres',
+                "pricePerPlate.min" => 'Preço por Placa : minimo de 1 caracteres',
+                "userLimit.min" => 'Limite de Usuários : minimo de 1 caracteres',
+                "pricePerExtraUser.min" => 'Preço por usuário extra : minimo de 1 caracteres',
 
-                "monthPayment.required" => 'campo obrigatorio',
-                "activation.required" => 'campo obrigatorio',
-                "pricePerPlate.required" => 'campo obrigatorio',
-                "userLimit.required" => 'campo obrigatorio',
-                "pricePerExtraUser.required" => 'campo obrigatorio',
+                "cnpj.required" =>  "cnpj : campo obrigatorio ",
+                "socialReason.required" => 'Razão Social : campo obrigatorio ',
+                "fantasyName.required" => 'Nome Fantasia : campo obrigatorio ',
+                "status.required" => 'Status : campo obrigatorio ',
+                "responsible.required" => 'Responsável : campo obrigatorio ',
+                "email.required" => 'E-mail : campo obrigatorio ',
+
+
+                "monthPayment.required" => 'Mensalidade : campo obrigatorio ',
+                "activation.required" => 'Ativação : campo obrigatorio',
+                "pricePerPlate.required" => 'Preço por Placa : campo obrigatorio',
+                "userLimit.required" => 'Limite de Usuários : campo obrigatorio',
+                "pricePerExtraUser.required" => 'Preço por usuário extra : campo obrigatorio',
             ]
         );
 
 
         if ($validator->fails()) {
 
-            return response()->json($validator->errors());    
-        }
+            //debug($validator->errors());
+            //debug($validator->errors()->messages()->values());
+            $validMsg = collect($validator->errors()->messages());
+
+            return response()->json($validMsg->values());  
+        }            
         
-        // debug($validator->validated());
-        
+        // debug($validator->validated());        
         
         // $companies = Companies::create([       
                 
