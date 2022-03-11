@@ -33,7 +33,7 @@ Route::post('/teste', function(){
 
 Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);
 
-Route::post('/company-add',[App\Http\Controllers\Api\CompanyController::class, 'addCompany']);
+Route::post('/company-add',[App\Http\Controllers\Api\CompanyController::class, 'createCompany']);
 
 
 

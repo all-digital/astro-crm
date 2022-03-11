@@ -11,7 +11,7 @@ use App\Models\Companies;
 class CompanyController extends Controller
 {
 
-    public function addCompany(Request $request)
+    public function createCompany(Request $request)
     {
         //Pegando user authenticator da ação
         $authRequest = $request->input('authUser');
@@ -65,14 +65,11 @@ class CompanyController extends Controller
 
         if ($validator->fails()) {
 
-            //debug($validator->errors());
-            //debug($validator->errors()->messages()->values());
             $validMsg = collect($validator->errors()->messages());
 
             return response()->json($validMsg->values());  
-        }            
-        
-        // debug($validator->validated());        
+        }         
+               
         
         // $companies = Companies::create([       
                 

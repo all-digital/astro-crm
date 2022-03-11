@@ -900,6 +900,7 @@
 
                         if(form.cnpjConfirmation.hasAttribute("style")) validation = false
                         if(form.socialReasonConfirmation.hasAttribute("style")) validation = false
+                        if(form.fantasyNameConfirmation.hasAttribute("style")) validation = false
                         if(form.statusConfirmation.hasAttribute("style")) validation = false
                         if(form.responsibleConfirmation.hasAttribute("style")) validation = false
                         if(form.emailConfirmation.hasAttribute("style")) validation = false
@@ -951,10 +952,8 @@
                             "pricePerExtraUser": pricePerExtraUser,
                             "authUser":  authUser
                         }
-
-                        //console.log("result => ", result)
-
-                        console.log('onFinished => ')
+                        
+                        // console.log('onFinished => ')
 
                         fetch('/api/company-add',{ 
                                 method:'post',        
@@ -991,9 +990,7 @@
                                 ul.style ="list-style-type:none;"                     
                                 ul.innerHTML = result
                                 
-                                console.log(ul)
-                                console.log(result)
-    
+                                 
                                 Swal.fire({
                                     title: '<strong>Erros encontrados, dados não foram salvos</strong>',
                                     icon: 'error',
@@ -1093,7 +1090,7 @@
                             })            
                             .then(res=> res.json())
                             .then(res => {
-                                console.log(res)
+                                // console.log(res)
 
                                 if(res.status == "ERROR")
                                 {

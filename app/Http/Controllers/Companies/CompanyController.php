@@ -24,9 +24,9 @@ class CompanyController extends Controller
 
 
 
-    public function addCompany()
+    public function createCompany()
     {
-        return view('companies.add_companies');   
+        return view('companies.create_companies');   
 
     }//end method
 

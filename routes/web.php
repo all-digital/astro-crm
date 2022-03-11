@@ -80,7 +80,7 @@ Route::get('/export-services', [App\Http\Controllers\Services\ServicesController
 
 
 Route::get('/company', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
-Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'addCompany'])->name('company.add');
+Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'createCompany'])->name('company.add');
 Route::get('/company-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany'])->name('company.edit');
 
 
