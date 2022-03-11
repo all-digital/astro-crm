@@ -12,13 +12,13 @@ class CompanyController extends Controller
 {
 
     public function index()
-    {
+    {        
 
-        $companies = Companies::All();
+        $companies = Companies::where('user_id', auth()->user()->id)->get();            
 
-        // dd($companies->toArray());
+        $companies = $companies->toArray();
         
-        return view('companies.index');
+        return view('companies.index', compact('companies'));
 
     }//end method
 
