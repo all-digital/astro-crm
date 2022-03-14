@@ -30,6 +30,7 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
+                                <th>Modulos</th>
                                 <th>Razão Social</th>
                                 <th>Nome Fantasia</th>
                                 <th>CNPJ</th>
@@ -114,6 +115,7 @@
                 
                         data: companies,
                         columns: [
+                            {data: 'modulos'},
                             {data: 'social_Reason'},
                             {data: 'fantasy_name'},
                             {data: 'cnpj' }, 
