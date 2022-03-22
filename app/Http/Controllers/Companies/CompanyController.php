@@ -30,7 +30,7 @@ class CompanyController extends Controller
             $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
 
             $id = $value['id'];
-            $value['modulos'] = "<button class='btn btn-primary' onClick='alert(`o id é $id`)'>Modulos</button>";
+            $value['modulos'] = "<button class='btn btn-primary p-1' onClick='alert(`o id é $id`)'>Modulos</button>";
 
 
             return $value;
@@ -56,18 +56,6 @@ class CompanyController extends Controller
         return view('companies.edit_companies');
 
     }//method
-
-
-    // public function teste(Request $request)
-    // {
-    //     debug(Auth::user());
-    //     debug(Auth::user()->name);
-    //     debug($request->user());
-    //     debug("teste company");
-
-    //     return view('teste');
-    // }
-
-    
+   
 
 }//end class

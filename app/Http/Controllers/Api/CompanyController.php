@@ -13,7 +13,7 @@ class CompanyController extends Controller
 
     public function createCompany(Request $request)
     {
-        //Pegando user authenticator da ação
+        //getting the authenticated user of the action
         $authRequest = $request->input('authUser');
         
 

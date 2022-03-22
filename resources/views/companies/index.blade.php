@@ -30,23 +30,23 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th>Modulos</th>
-                                <th>Razão Social</th>
-                                <th>Nome Fantasia</th>
-                                <th>CNPJ</th>
-                                <th>Status</th>
-                                <th>Responsável</th>
-                                <th>Sobrenome</th>
-                                <th>Email</th>
-                                <th>Última Alteração</th>                                
+                                <th><strong>Modulos</strong></th>
+                                <th><strong>Razão Social</strong></th>
+                                <th><strong>Nome Fantasia</strong></th>
+                                <th><strong>CNPJ</strong></th>
+                                <th><strong>Status</strong></th>
+                                <th><strong>Responsável</strong></th>
+                                <th><strong>Sobrenome</strong></th>
+                                <th><strong>Email</strong></th>
+                                <th><strong>Última Alteração</strong></th>                                
                                 {{-- <th>Usuário da Última Alteração</th>
                                 <th>Data de Inserção</th>
                                 <th>Usuário de Inserção</th>--}}
-                                <th>Mensalidade</th>
-                                <th>Ativação</th>
-                                <th>Preço por Placa</th>
-                                <th>Limite de Usuarios</th>
-                                <th>Preço por Usuario extra</th>                         
+                                <th><strong>Mensalidade</strong></th>
+                                <th><strong>Ativação</strong></th>
+                                <th><strong>Preço por Placa</strong></th>
+                                <th><strong>Limite de Usuarios</strong></th>
+                                <th><strong>Preço por Usuario extra</strong></th>                         
                       
                             </tr>
                         </thead>
