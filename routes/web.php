@@ -79,6 +79,7 @@ Route::get('/services', [App\Http\Controllers\Services\ServicesController::class
 Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices']);
 
 
+//router related to company
 Route::get('/company', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
 Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'createCompany'])->name('company.add');
 Route::get('/company-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany'])->name('company.edit');
@@ -211,15 +212,7 @@ Route::get('/user-edit', function(){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Route::get('/teste', function(){
 
-//     return view('teste');
-// });
-
-// Route::get('teste2/teste2', function(){
-
-//     return view('teste2');
-// });
 
 Route::prefix('teste')->group(function () {
     
@@ -230,56 +223,6 @@ Route::prefix('teste')->group(function () {
         return view('teste2');
     });
 });
-
-// Route::get('/teste', function(){
-
-//     //dd(' teste api ');
-//     //sleep(5);
-
-//     //dd(collect(['nome'=>'darcio','value'=>255,'series'=>45])->toArray());
-
-//     //dd(request()->is('api/teste'));
-//     //request()->segments()[0];
-    
-//     // return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
-//     dd(auth()->user()->name);
-    
-// });
-
-
-
-Route::post('/cadastrar', function(Request $request){
-
-
-    
-
-    $companies = Companies::create([       
-                
-        "cnpj"  =>             $request->input('cnpj'),
-        "social_Reason" =>      $request->input('socialReason'),
-        "fantasy_name" =>       $request->input('fantasyName'),
-        "status" =>            $request->input('status'),
-        "name_responsible"      =>  auth()->user()->name,
-        "last_name_responsible" =>       $request->input('responsible'),
-        "email_responsible" =>             $request->input('email'),       
-        "color"  =>                                  "azul",
-        "logo"  =>                                  "logo",                       
-        "monthly_payment" =>      $request->input('monthPayment'),
-        "activation" =>        $request->input('activation'),
-        "price_per_plate" =>     $request->input('pricePerPlate'),
-        "user_limit" =>         $request->input('userLimit'),
-        "price_per_extra_user" => $request->input('pricePerExtraUser'),
-        "user_id" => auth()->user()->id
-    ]);
-
-    $companies->save();
-
-    return ["status"=>"sucesso"];
-             
-});
-
-
-
 
 
 
