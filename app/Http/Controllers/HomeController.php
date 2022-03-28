@@ -86,4 +86,22 @@ class HomeController extends Controller
 
 
 
+
+
+
+    public function veiculos()
+    {
+
+        
+        $services1 = Services::where('company_id',1);
+        $services = $services1->simplePaginate(6);
+        
+        // $services1->count();
+
+        // dd($services1->count());
+
+        return view('vehicles.index',["services"=>$services]);
+    }//end method
+
+
 }//end class
