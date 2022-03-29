@@ -212,12 +212,21 @@ Route::get('/user-edit', function(){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/veiculos', [App\Http\Controllers\HomeController::class, 'veiculos']);
+Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
+
+Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
 
 
+// Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
+Route::get('/veiculos-list', function(){
+
+    return view('vehicles.vehicles_list');
+});
 
 
-
+Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index']);
+Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'EquipmentList']);
+//
 
 Route::prefix('teste')->group(function () {
     

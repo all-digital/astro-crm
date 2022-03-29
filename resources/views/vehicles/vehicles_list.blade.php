@@ -1,118 +1,160 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('nav-header')
+{{-- 
+@php
+    dd($companies)
+@endphp --}}
 
  <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">VEÍCULOS</h4>
+                    <h4 class="page-title mb-0 font-size-18">LISTAGEM DE VEÍCULOS</h4>
                 </div>
             </div>
         </div>
-        <!-- end page title -->
-    
+        <!-- end page title -->    
 @endsection
 
 @section('content')
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
 
-          <div class="row">
+                    <h4 class="card-title">Opcões de Relatório</h4>                
 
-            <div class="col-lg-2"></div>
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th><strong>Modulos</strong></th>
+                                <th><strong>Razão Social</strong></th>
+                                <th><strong>Nome Fantasia</strong></th>
+                                <th><strong>CNPJ</strong></th>
+                                <th><strong>Status</strong></th>
+                                <th><strong>Responsável</strong></th>
+                                <th><strong>Sobrenome</strong></th>
+                                <th><strong>Email</strong></th>
+                                <th><strong>Última Alteração</strong></th>                                
+                                {{-- <th>Usuário da Última Alteração</th>
+                                <th>Data de Inserção</th>
+                                <th>Usuário de Inserção</th>--}}
+                                <th><strong>Mensalidade</strong></th>
+                                <th><strong>Ativação</strong></th>
+                                <th><strong>Preço por Placa</strong></th>
+                                <th><strong>Limite de Usuarios</strong></th>
+                                <th><strong>Preço por Usuario extra</strong></th>                         
+                      
+                            </tr>
+                        </thead>
 
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-2">VEÍCULOS</h4>
-                        <p class="card-title-desc">Todos os campos são obrigatorios </p>
+                        <tbody>
+                            {{-- datatable --}}
+                        </tbody>
+                    </table>
 
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div>
-                                        <div class="mb-3 mb-4">
-                                            <label class="form-label" for="company">Empresa</label>
-                                            <input type="text" name="company" class="form-control">
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                            <label class="form-label" for="status">Status</label>
-                                            <select name="status" class="form-control">
-                                              <option value="Ativo">Ativo</option>
-                                              <option value="Inativo">Inativo</option>
-                                            </select>                                          
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label class="form-label" for="vehicles">Veículo</label>
-                                          <select name="vehicles" class="form-control">
-                                            <option value="Carro">Carro</option>
-                                            <option value="Moto">Moto</option>
-                                            <option value="Caminhão">Caminhão</option>
-                                            <option value="Onibus">Ônibus</option>
-                                            <option value="Microonibus">Microônibus</option>
-                                            <option value="Bicicleta">Bicicleta</option>
-                                            <option value="Pessoa">Pessoa</option>
-                                            <option value="Pet">Pet</option>
-                                          </select>                 
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="brand" class="form-label">Marca</label>
-                                          <input type="text" name="brand" class="form-control">
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="model" class="form-label">Modelo</label>
-                                          <input type="text" name="model" class="form-control">                                            
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mt-4 mt-lg-0">                                       
-                                        <div class="mb-3 mb-4">
-                                          <label for="year" class="form-label">Ano</label>
-                                          <input type="text" name="year" class="form-control">                                            
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="vehicle_plate" class="form-label">Placa</label>
-                                          <input type="text" name="vehicle_plate" class="form-control">
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="value" class="form-label">Value</label>
-                                          <input type="text" name="value" class="form-control">                                        
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="equipment" class="form-label">Equipamento</label>                                         
-                                          <select name="status" class="form-control">
-                                            <option value="Ativo">equipamentos</option>
-                                            <option value="Inativo">equipamentos 2</option>
-                                          </select>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                                                                                 
-
-                            <div style="text-align: right;">
-                              <button class="btn btn-info waves-effect waves-light px-5 my-2">Cadastrar</button>
-                            </div>
-                            
-                        </form>
-                    </div>
                 </div>
             </div>
-
-            <div class="col-lg-2"></div>
-
-          </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+                            
 
 
 @endsection
 
-@push('script-js')
+@push('script-js')        
+    <script src="{{asset('assets/libs/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+
+    <!-- Required datatable js -->
+    <script src="{{asset('assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <!-- Buttons examples -->
+    <script src="{{asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/libs/jszip/jszip.min.js')}}"></script>
+    <script src="{{asset('assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
+    <script src="{{asset('assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
+    <!-- Responsive examples -->
+    <script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+
+    {{-- <!-- Datatable init js -->  {{--exemplo datatable --}}
+    {{-- <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script> --}}
+
+    <!-- App js -->
+    <script src="{{asset('assets/js/app.js')}}"></script>
 
 @endpush
 
-
-
 @push('customized-js')
-   
+
+    <script>
+
+            companies = [{"activation": "100.00",
+                            "cnpj": "1769431944",
+                            "color": "verde",
+                            "created_at": "25/01/2022 16:37",
+                            "email_responsible": "auer.thaddeus@gmail.com",
+                            "fantasy_name": "Zemlak-Runolfsson",
+                            "id": 1,
+                            "last_name_responsible": "Cartwright",
+                            "logo": "logo teste",
+                            "modulos": "<button class='btn btn-primary p-1' onClick='alert(`o id é 1`)'>Modulos</button>",
+                            "monthly_payment": "100.00",
+                            "name_responsible": "Sonia Goyette",
+                            "price_per_extra_user": "1000,15",
+                            "price_per_plate": "100,20",
+                            "social_Reason": "Ortiz, Halvorson and Lind",
+                            "status": "Status OK",
+                            "updated_at": "25/01/2022 16:37",
+                            "user_id": 1,
+                            "user_limit": "5"}]
+                              
+            $(document).ready(function(){
+
+                $("#datatable").DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                            'excel',
+                            'csv',                            
+                            'print',
+                            'pageLength',         
+                            'colvis',
+                            ],
+                
+                        data: companies,
+                        columns: [
+                            {data: 'modulos'},
+                            {data: 'social_Reason'},
+                            {data: 'fantasy_name'},
+                            {data: 'cnpj' }, 
+                            { data: 'status'},                          
+                            { data: 'name_responsible' },
+                            { data: 'last_name_responsible' },
+                            { data: 'email_responsible' },
+                            { data: 'updated_at' },
+                            { data: 'monthly_payment' },
+                            { data: 'activation' },
+                            { data: 'price_per_plate' },
+                            { data: 'user_limit' },
+                            { data: 'price_per_extra_user' }                                                   
+                        ]               
+                })
+                                                
+            });
+
+           
+    </script>    
+
+
+
+    
 @endpush
