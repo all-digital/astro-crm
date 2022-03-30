@@ -57,11 +57,12 @@
                                               <option value="Inativo">Inativo</option>
                                             </select>                                          
                                         </div>
-                                        <div class="mb-3 mb-4 row">
 
-                                          <div class="col-6">                                            
-                                            <label class="form-label" for="vehicles">Veículo</label>
-                                            <select name="vehicles" class="form-control">
+                                        <div class="mb-3 mb-4" >                                                                                     
+                                        <label class="form-label" for="provider">Veículo</label>
+
+                                          <div id="provider">
+                                            <select name="provider" class="form-control" >
                                               <option value="Carro">Carro</option>
                                               <option value="Moto">Moto</option>
                                               <option value="Caminhão">Caminhão</option>
@@ -70,12 +71,13 @@
                                               <option value="Bicicleta">Bicicleta</option>
                                               <option value="Pessoa">Pessoa</option>
                                               <option value="Pet">Pet</option>
-                                            </select>                 
-                                          </div>
-                                          <div class="col-6">
+                                              <option value="semResultado" class="text-danger">Nenhuma das opções</option>
+                                            </select>              
+                                          </div>                                                                                      
+                                          {{-- <div class="col-6">
                                             <label class="form-label" for="vehicles">Veículo</label>
                                             <input type="text" value="teste" class="form-control"> 
-                                          </div>
+                                          </div> --}}
                                         </div>
                                         <div class="mb-3 mb-4">
                                           <label for="brand" class="form-label">Marca</label>
@@ -163,7 +165,22 @@
 @endsection
 
 @push('script-js')
+  <script>
 
+    let provider = document.getElementById('provider')
+
+    console.log(provider)
+
+    provider.addEventListener('change', function(){
+
+        if(provider.children[0].value == "semResultado")
+        {  
+          provider.innerHTML = `<input type="text" class="form-control @error('provider') is-invalid @enderror" value="{{ old('provider') }}" placeholder="Insira o nome do fornecedor">`
+        }
+    
+    })
+
+  </script>        
 @endpush
 
 
