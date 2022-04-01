@@ -33,7 +33,7 @@
                             </div>
                         @endif
                      
-                        <form id="formEquipment" action="" method="POST">
+                        <form id="formVehicles" action="{{route('equipment.create')}}" method="POST">
                           @csrf
 
                             <div class="row">

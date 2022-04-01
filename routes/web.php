@@ -213,6 +213,11 @@ Route::get('/user-edit', function(){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
+//Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
+Route::get('/veiculos-edit', function(){
+    return view('vehicles.vehicles_edit');
+});
+
 
 Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
 
@@ -224,9 +229,24 @@ Route::get('/veiculos-list', function(){
 });
 
 
-Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index']);
-Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'EquipmentList']);
+Route::get('/equip-index', function(){
+    return view('teste');
+});
+
+Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
+Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'show']);
+Route::get('/equip-edit', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit']);
+
 //
+
+Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'create'])->name('equipment.create');
+Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
+
+
+
+
+
+
 
 Route::prefix('teste')->group(function () {
     

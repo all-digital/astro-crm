@@ -24,7 +24,7 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-2 btn btn-info" style="cursor: default;">EQUIPAMENTOS</h4>
+                        <h4 class="card-title mb-2 btn btn-info" style="cursor: default;">Simcard 03</h4>
                         <p class="card-title-desc">Todos os campos são obrigatorios </p>
 
                         @if(session('success'))
@@ -33,7 +33,7 @@
                             </div>
                         @endif
                      
-                        <form id="formEquipment" action="" method="POST">
+                        <form id="formVehicles" action="{{route('equipment.update')}}" method="POST">
                           @csrf
 
                             <div class="row">
@@ -57,6 +57,17 @@
                                               <option value="Inativo">Inativo</option>
                                             </select>                                          
                                         </div>
+
+                                       <div class="mb-3 mb-4">
+                                          <label for="user_insert" class="form-label">Usuário de Inserção</label>
+                                          <input type="text" name="user_insert" class="form-control" readonly value="Lih shaw">                                          
+                                        </div> 
+                                        
+                                        <div class="mb-3 mb-4">
+                                          <label for="date_insert" class="form-label">Data de Inserção</label>
+                                          <input type="text" name="date_insert" class="form-control" readonly value="01/01/2023">                                          
+                                        </div>  
+                           
 
                                         <div class="mb-3 mb-4" >                                                                                     
                                         <label class="form-label" for="provider">Fornecedor</label>
@@ -115,13 +126,7 @@
                                           </div>
 
                                         </div>
-                                       
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="mt-4 mt-lg-0">   
-                                      
                                         <div class="mb-3 mb-4">
                                           <label for="model" class="form-label">Modelo</label>
                                           <input type="text" name="model" class="form-control @error('model') is-invalid @enderror" value="{{ old('model') }}">  
@@ -132,6 +137,13 @@
                                             </div>
                                           @enderror
                                         </div>
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mt-4 mt-lg-0">   
+                                      
 
                                         <div class="mb-3 mb-4">
                                           <label for="year" class="form-label">IMEI</label>
@@ -146,6 +158,30 @@
                                         </div>
 
                                         <div class="mb-3 mb-4">
+                                          <label class="form-label" for="client">Cliente</label>
+                                          <input type="text" name="client" class="form-control  @error('client') is-invalid @enderror" value="{{ old('client') }}">                                             
+                                          
+                                          @error('client')                                           
+                                                <div class="invalid-feedback">
+                                                 {{$message}}                                          
+                                                </div>
+                                          @enderror
+
+                                      </div>
+
+                                        <div class="mb-3 mb-4">
+                                          <label class="form-label" for="company">Veiculo</label>
+                                          <input type="text" name="vehicle" class="form-control  @error('vehicle') is-invalid @enderror" value="{{ old('vehicle') }}">                                             
+                                          
+                                          @error('vehicle')                                           
+                                                <div class="invalid-feedback">
+                                                 {{$message}}                                          
+                                                </div>
+                                          @enderror
+
+                                      </div>
+
+                                        <div class="mb-3 mb-4">
                                           <label for="value" class="form-label">Simcards</label>
                                           <input type="text" name="simcards" class="form-control @error('simcards') is-invalid @enderror" value="{{ old('simcards') }}">   
                                           
@@ -154,13 +190,24 @@
                                               {{$message}}                                          
                                             </div>
                                           @enderror
-                                        </div>                                       
+                                        </div>
+
+                                        <div class="mb-3 mb-4">
+                                          <label for="user_last_edit" class="form-label">Usuário da Última edição</label>
+                                          <input type="text" name="user_last_edit" class="form-control" readonly value="Mustafar">                                          
+                                        </div> 
+                                        
+                                        <div class="mb-3 mb-4">
+                                          <label for="date_last_edit" class="form-label">Data da Última edição</label>
+                                          <input type="text" name="date_last_edit" class="form-control" readonly value="01/01/2023">                                          
+                                        </div>  
+                                                                
                                     </div>
                                 </div>
                             </div>                                                                                 
 
                             <div style="text-align: right;">
-                              <button class="btn btn-info waves-effect waves-light px-5 my-2">Cadastrar</button>
+                              <button class="btn btn-info waves-effect waves-light px-5 my-2">Editar</button>
                             </div>
                             
                         </form>

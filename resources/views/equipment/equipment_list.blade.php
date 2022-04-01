@@ -30,24 +30,19 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th><strong>Modulos</strong></th>
-                                <th><strong>Razão Social</strong></th>
-                                <th><strong>Nome Fantasia</strong></th>
-                                <th><strong>CNPJ</strong></th>
+                                <th><strong>Editar</strong></th>
+                                <th><strong>Excluir</strong></th>
+                                <th><strong>Empresa</strong></th>
                                 <th><strong>Status</strong></th>
-                                <th><strong>Responsável</strong></th>
-                                <th><strong>Sobrenome</strong></th>
-                                <th><strong>Email</strong></th>
-                                <th><strong>Última Alteração</strong></th>                                
-                                {{-- <th>Usuário da Última Alteração</th>
-                                <th>Data de Inserção</th>
-                                <th>Usuário de Inserção</th>--}}
-                                <th><strong>Mensalidade</strong></th>
-                                <th><strong>Ativação</strong></th>
-                                <th><strong>Preço por Placa</strong></th>
-                                <th><strong>Limite de Usuarios</strong></th>
-                                <th><strong>Preço por Usuario extra</strong></th>                         
-                      
+                                <th><strong>Usuario Inserção</strong></th>
+                                <th><strong>Data Inserção</strong></th>
+                                <th><strong>Fornecedor</strong></th>
+                                <th><strong>Modelo</strong></th>
+                                <th><strong>IMEI</strong></th>
+                                <th><strong>Veículo</strong></th>                               
+                                <th><strong>Simcard</strong></th>
+                                <th><strong>Usuario Última Edição</strong></th>
+                                <th><strong>Data Última Edição</strong></th>                                                          
                             </tr>
                         </thead>
 
@@ -97,8 +92,9 @@
 @push('customized-js')
 
     <script>
-
-            companies = [{"activation": "100.00",
+            let teste = "id é 1 teste foi"
+            companies = [{
+                            "activation": "100.00",
                             "cnpj": "1769431944",
                             "color": "verde",
                             "created_at": "25/01/2022 16:37",
@@ -107,16 +103,26 @@
                             "id": 1,
                             "last_name_responsible": "Cartwright",
                             "logo": "logo teste",
-                            "modulos": "<button class='btn btn-primary p-1' onClick='alert(`o id é 1`)'>Modulos</button>",
+                            "edit": "<a class='btn btn-outline-primary fas fa-edit ms-2' onClick='alert(`${teste}`)' href='https://www.w3schools.com'></a>",
+                            "delete": "<button class='btn btn-outline-primary fas fa-trash-alt ms-3' onClick='alert(`o id é 1`)'></button>",
                             "monthly_payment": "100.00",
                             "name_responsible": "Sonia Goyette",
-                            "price_per_extra_user": "1000,15",
-                            "price_per_plate": "100,20",
-                            "social_Reason": "Ortiz, Halvorson and Lind",
-                            "status": "Status OK",
-                            "updated_at": "25/01/2022 16:37",
-                            "user_id": 1,
-                            "user_limit": "5"}]
+                        },
+                        {
+                            "activation": "100.00",
+                            "cnpj": "1769431944",
+                            "color": "verde",
+                            "created_at": "25/01/2022 16:37",
+                            "email_responsible": "auer.thaddeus@gmail.com",
+                            "fantasy_name": "Zemlak-Runolfsson",
+                            "id": 1,
+                            "last_name_responsible": "Cartwright",
+                            "logo": "logo teste",
+                            "edit": "<a class='btn btn-outline-primary fas fa-edit ms-2' onClick='alert(`${teste}`)' href='https://www.w3schools.com'></a>",
+                            "delete": "<button class='btn btn-outline-primary fas fa-trash-alt ms-3' onClick='alert(`o id é 1`)'></button>",
+                            "monthly_payment": "100.00",
+                            "name_responsible": "Sonia Goyette",
+                        }]
                               
             $(document).ready(function(){
 
@@ -132,20 +138,20 @@
                 
                         data: companies,
                         columns: [
-                            {data: 'modulos'},
-                            {data: 'social_Reason'},
+                            {data: 'edit'},
+                            {data: 'delete'},
+                            {data: 'activation'},
                             {data: 'fantasy_name'},
                             {data: 'cnpj' }, 
-                            { data: 'status'},                          
+                            { data: 'color'},                          
                             { data: 'name_responsible' },
                             { data: 'last_name_responsible' },
                             { data: 'email_responsible' },
-                            { data: 'updated_at' },
+                            { data: 'created_at' },
                             { data: 'monthly_payment' },
                             { data: 'activation' },
-                            { data: 'price_per_plate' },
-                            { data: 'user_limit' },
-                            { data: 'price_per_extra_user' }                                                   
+                            { data: 'logo' }
+                                                                         
                         ]               
                 })
                                                 
