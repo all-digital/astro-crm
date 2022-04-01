@@ -107,7 +107,7 @@
                             "id": 1,
                             "last_name_responsible": "Cartwright",
                             "logo": "logo teste",
-                            "modulos": "<button class='btn btn-primary p-1' onClick='alert(`o id é 1`)'>Modulos</button>",
+                            "modulos": "<a class='btn btn-outline-primary fas fa-edit ms-2' onClick='alert(`${teste}`)' href='https://www.w3schools.com' target='_blank'></a>",
                             "monthly_payment": "100.00",
                             "name_responsible": "Sonia Goyette",
                             "price_per_extra_user": "1000,15",
