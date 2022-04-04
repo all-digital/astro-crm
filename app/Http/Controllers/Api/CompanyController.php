@@ -26,11 +26,11 @@ class CompanyController extends Controller
                 "status" => 'required|min:1',
                 "responsible" => 'required|min:2',
                 "email" => 'required|min:6',
-                "monthPayment" => 'required|min:1',
-                "activation" => 'required|min:1',
-                "pricePerPlate" => 'required|min:1',
+                "monthPayment" => 'required|min:2',
+                "activation" => 'required|min:2',
+                "pricePerPlate" => 'required|min:2',
                 "userLimit" => 'required|min:1',
-                "pricePerExtraUser" => 'required|min:1',  
+                "pricePerExtraUser" => 'required|min:2',  
             ],
              //msg
             [
@@ -71,26 +71,26 @@ class CompanyController extends Controller
         }         
                
         
-        // $companies = Companies::create([       
+        $companies = Companies::create([       
                 
-        //     "cnpj"  =>                  $request->input('cnpj'),
-        //     "social_Reason" =>          $request->input('socialReason'),
-        //     "fantasy_name" =>           $request->input('fantasyName'),
-        //     "status" =>                 $request->input('status'),
-        //     "name_responsible" =>       $request->input('responsible'),
-        //     "last_name_responsible" =>  $request->input('responsible'),
-        //     "email_responsible" =>      $request->input('email'),       
-        //     "color" =>                  "azul",
-        //     "logo"  =>                  "logo",                       
-        //     "monthly_payment" =>        $request->input('monthPayment'),
-        //     "activation" =>             $request->input('activation'),
-        //     "price_per_plate" =>        $request->input('pricePerPlate'),
-        //     "user_limit" =>             $request->input('userLimit'),
-        //     "price_per_extra_user" =>   $request->input('pricePerExtraUser'),
-        //     "user_id" =>                $authRequest['id']
-        // ]);
+            "cnpj"  =>                  $request->input('cnpj'),
+            "social_Reason" =>          $request->input('socialReason'),
+            "fantasy_name" =>           $request->input('fantasyName'),
+            "status" =>                 $request->input('status'),
+            "name_responsible" =>       $request->input('responsible'),
+            "last_name_responsible" =>  $request->input('responsible'),
+            "email_responsible" =>      $request->input('email'),       
+            "color" =>                  "azul",
+            "logo"  =>                  "logo",                       
+            "monthly_payment" =>        $request->input('monthPayment'),
+            "activation" =>             $request->input('activation'),
+            "price_per_plate" =>        $request->input('pricePerPlate'),
+            "user_limit" =>             $request->input('userLimit'),
+            "price_per_extra_user" =>   $request->input('pricePerExtraUser'),
+            "user_id" =>                $authRequest['id']
+        ]);
     
-       // $companies->save();   
+       $companies->save();   
         
         return response()->json(['status'  => 'Sucesso']);                               
         

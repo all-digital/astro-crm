@@ -16,7 +16,6 @@
 
 
 @section('content')
-
      
     <div class="row">
         <div class="col-sm-12">
@@ -132,7 +131,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            
+
                             </div>
 
                             <div class="row">
@@ -154,9 +153,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </fieldset>
-
 
                         <h3>Informações de Pagamento</h3>
                         <fieldset>
@@ -199,11 +196,7 @@
                                     <div class="mb-3 row">
                                         <label for="userLimit"
                                             class="col-lg-3 col-form-label">Limite de Usuários</label>
-                                        <div class="col-lg-9">
-                                            {{-- <input id="txtCardVerificationNumber"
-                                            name="userLimit" type="number" value="5"
-                                            class="form-control">
-                                             --}}                                            
+                                        <div class="col-lg-9">                                          
 
                                                 <select name="userLimit" id="txtCardVerificationNumber" class="form-control">
                                                     <option value="">vazio</option>
@@ -328,10 +321,10 @@
                         </fieldset>
                         <h3>Confirmação</h3>
                         <fieldset>
+                            {{-- info readonly not changeable--}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3 row">
-
                                         {{-- readonly --}}
                                         <label for="cnpjConfirmation"
                                             class="col-lg-3 col-form-label">CNPJ
@@ -516,7 +509,6 @@
                                 </div>
                             </div>
 
-                            
                         </fieldset>
                     </form>
 
@@ -541,9 +533,10 @@
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>   
 
-    <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>    
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('assets\libs\inputmask\min\jquery.inputmask.bundle.min.js')}}"></script>
     
+    <script src="{{asset('custom\css\sweetalert2@11.css')}}"></script> 
+        
 @endpush
 
 @push('customized-js')
@@ -975,10 +968,13 @@
                                     text: 'Cadastro efetuado com sucesso',
                                     // footer: 'top..',
                                     showConfirmButton: false,
-                                    timer: 3500
+                                    timer: 3300
                                  })
 
-                                 // location.reload()  
+                                 setInterval(() => {
+                                    location.reload() 
+                                 }, 3500);
+                                  
                             }else{
 
                                 let result = `<span></span>`
@@ -1078,45 +1074,69 @@
                         form.cnpj.addEventListener('blur',function(e){                            
                             e.preventDefault()
 
+                            console.log("value cnpj acima => ",form.cnpj.value, form.cnpj.value.length)
+
                             cnpj = form.cnpj.value.replace(".", "");
                             cnpj = cnpj.replace(".", "");
                             cnpj = cnpj.replace("-", "");
-                            cnpj = cnpj.replace("/", "");                            
+                            cnpj = cnpj.replace("/", "");
+
+                            cnpj = cnpj.replace("_","")
+                            console.log("value cnpj => ",cnpj, cnpj.length)
+
+                            
+                            if(cnpj.length >= 14){
+
+                                fetch(`api/cnpj/${cnpj}`,{ 
+                                method:'get',                                
+                                headers:{"Content-type":"application/json"}
+    
+                                })            
+                                .then(res=> res.json())
+                                .then(res => {
+                                    // console.log(res)
+    
+                                    if(res.status == "ERROR")
+                                    {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: '<h1>Oops...</h1>',
+                                            text: 'CNPJ inválido',
+                                            // footer: 'tente novamente..',
+                                            showConfirmButton: false,
+                                            // color: '#fff',
+                                            // background:"#c3cef8",
+                                            timer: 3500
+                                        })
+    
+                                    }else{
+    
+                                        form.socialReason.value = res.nome
+                                        form.fantasyName.value = res.fantasia
+                                        // form.status.value = res.status                                
+                                        form.email.value = res.email
+    
+                                    }
+    
+                                })
+                                .catch((error)=> console.log("erro api receita federal => ",error))
+
+                            }else{
+
+                                Swal.fire({
+                                            icon: 'error',
+                                            title: '<h1>Oops...</h1>',
+                                            text: 'CNPJ inválido',
+                                            // footer: 'tente novamente..',
+                                            showConfirmButton: false,
+                                            // color: '#fff',
+                                            // background:"#c3cef8",
+                                            timer: 3500
+                                        })
+                            }//end if valid cnpj.length
                         
-                            fetch(`api/cnpj/${cnpj}`,{ 
-                            method:'get',                                
-                            headers:{"Content-type":"application/json"}
 
-                            })            
-                            .then(res=> res.json())
-                            .then(res => {
-                                // console.log(res)
-
-                                if(res.status == "ERROR")
-                                {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: '<h1>Oops...</h1>',
-                                        text: 'CNPJ inválido',
-                                        // footer: 'tente novamente..',
-                                        showConfirmButton: false,
-                                        // color: '#fff',
-                                        // background:"#c3cef8",
-                                        timer: 3500
-                                    })
-
-                                }else{
-
-                                    form.socialReason.value = res.nome
-                                    form.fantasyName.value = res.fantasia
-                                    // form.status.value = res.status                                
-                                    form.email.value = res.email
-
-                                }
-
-                            })
-                            .catch((error)=> console.log("erro api cnpj => ",error))
-                        })
+                        })//end form.cnpj
                     },
                    
                     ////////////////////////////////////////////////////////////////////////////////////
