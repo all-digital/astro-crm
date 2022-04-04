@@ -28,9 +28,9 @@
                             <div class="col-12 col-xl-6 mx-8">                              
                                 
                                 <div class="card">
-                                    <div class="card-body">
-        
-                                        <h1 class="card-title font-size-20">Criação de Usuario</h1>
+                                    <div class="card-body">        
+                                        
+                                         <h4 class="card-title mb-2 btn btn-info" style="cursor: default;"> EDIÇÃO DE USUÁRIO</h4>
                                         <p class="card-title-desc">Todos os campos são obrigatorios </p>
         
                                         <form id="form-create-user" action="">
