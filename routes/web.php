@@ -193,16 +193,10 @@ Route::get('/empresas/testando', function () {
           
 // });
 
+Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'createUser']);
+Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'editUser']);
 
-Route::get('/user', function(){
 
-    return view('users.create_user');
-});
-
-Route::get('/user-edit', function(){
-
-    return view('users.edit_user');
-});
 
 
 
@@ -212,14 +206,14 @@ Route::get('/user-edit', function(){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
+Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'showCreate']);
 //Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
 Route::get('/veiculos-edit', function(){
     return view('vehicles.vehicles_edit');
 });
 
 
-Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
+Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('vehicles.create');
 
 
 // Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
@@ -228,6 +222,11 @@ Route::get('/veiculos-list', function(){
     return view('vehicles.vehicles_list');
 });
 
+
+/////////////////////////
+/////////////////////////
+/////////////////////////
+/////////////////////////
 
 Route::get('/equip-index', function(){
     return view('teste');

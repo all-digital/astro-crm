@@ -12,7 +12,7 @@ class VehiclesController extends Controller
     
 
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
 
         
@@ -36,7 +36,7 @@ class VehiclesController extends Controller
 
 
 
-    public function veiculos()
+    public function showCreate()
     {
 
         
