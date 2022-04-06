@@ -243,6 +243,25 @@ Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class,
 
 
 
+/////////////////////////
+/////////////////////////
+/////////////////////////
+/////////////////////////
+
+
+Route::get('simcards',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit']);
+Route::get('simcards-list',[App\Http\Controllers\Simcards\SimcardsController::class, 'index']);
+
+Route::post('simcard-edit',[App\Http\Controllers\Simcards\SimcardsController::class, 'edit'])->name('simcard.edit');
+
+
+
+
+
+
+
+
+
 
 
 

@@ -127,3 +127,6 @@ Route::post('/tabela-add', function(Request $request){
 
     return  collect(['status'=>'sucess'])->toArray();
 });
+
+
+Route::post('simcard-create', [App\Http\Controllers\Api\SimcardsController::class, 'store'])->name('simcard.create.post');
