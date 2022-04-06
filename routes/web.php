@@ -261,7 +261,9 @@ Route::post('simcard-edit',[App\Http\Controllers\Simcards\SimcardsController::cl
 
 
 
-
+Route::get('client', function(){
+    return view('clients.create_client');
+});
 
 
 
@@ -272,7 +274,7 @@ Route::prefix('teste')->group(function () {
     //
     Route::get('/teste2', function () {
         // Matches The "/admin/users" URL
-        return view('teste2');
+        return view('clients.create_client');
     });
 });
 

@@ -743,9 +743,9 @@
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>
 
-    <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>
-    {{-- <script src="{{'assets\libs\sweetalert2\sweetalert2.min.js'}}"></script> --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('assets\libs\inputmask\min\jquery.inputmask.bundle.min.js')}}"></script>
+    <script src="{{asset('custom\css\sweetalert2@11.css')}}"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
 @endpush
 
@@ -852,14 +852,13 @@
                             if(bodyCnpj.hasAttribute('style')) bodyCnpj.removeAttribute("style")
                             
                         }else{
-                            console.log("tsete")
+                            console.log("teste")
                             bodyCnpj.setAttribute("style","display: none;") 
                             if(bodyCpf.hasAttribute('style')) bodyCpf.removeAttribute("style")
                             
                         }//end if
-                                                                     
-                        console.log("onStepChanging")
-                        
+                                                                    
+                                                
                         return true;                                      
                     
                     },//end onStepChanging
@@ -953,7 +952,7 @@
 
                             ////////////////////////////////
 
-                          cnpj.addEventListener('blur',function(e){                            
+                            cnpj.addEventListener('blur',function(e){                            
                                 e.preventDefault()
 
                                 console.log(cnpj.value)
@@ -965,48 +964,49 @@
                                 cnpj = cnpj.replace("-", "");
                                 cnpj = cnpj.replace("/", "");   
                                 
-                                console.log(cnpj)
-                            
-                                fetch(`api/cnpj/${cnpj}`,{ 
-                                method:'get',                                
-                                headers:{"Content-type":"application/json"}
+                                // console.log("dddddddddd",cnpj)                              
 
-                                })            
-                                .then(res=> res.json())
-                                .then(res => {
-                                    console.log(res)
+                                    fetch(`api/cnpj/${cnpj}`,{ 
+                                    method:'get',                                
+                                    headers:{"Content-type":"application/json"}
+    
+                                    })            
+                                    .then(res=> res.json())
+                                    .then(res => {
+                                        console.log(res)
+    
+                                        if(res.status == "ERROR")
+                                        {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: '<h1>CNPJ inválido.</h1>',                                                                           
+                                                showConfirmButton: false,
+                                                color: '#fff',
+                                                // background:"#c3cef8",
+                                                timer: 3500
+                                            })
+                                            form.cnpj.value = ""
+    
+                                        }else{
+                                            socialReason.value = res.nome
+                                            fantasyName.value = res.fantasia                                                                   
+                                            email.value = res.email
+    
+                                            andress.value = res.logradouro
+                                            city.value = res.municipio
+                                            numberAndress.value = res.numero
+                                            phoneFixo.value = res.telefone
+                                            state.value = res.uf
+                                            complement.value = res.complemento
+                                            zipCode.value = res.cep
+                                            district.value = res.bairro
+                                        }
+    
+                                    })
+                                    .catch((error)=> console.log("erro api cnpj => ",error))
 
-                                    if(res.status == "ERROR")
-                                    {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: '<h1>CNPJ inválido.</h1>',                                                                           
-                                            showConfirmButton: false,
-                                            color: '#fff',
-                                            // background:"#c3cef8",
-                                            timer: 3500
-                                        })
-
-                                    }else{
-                                        socialReason.value = res.nome
-                                        fantasyName.value = res.fantasia                                                                   
-                                        email.value = res.email
-
-                                        andress.value = res.logradouro
-                                        city.value = res.municipio
-                                        numberAndress.value = res.numero
-                                        phoneFixo.value = res.telefone
-                                        state.value = res.uf
-                                        complement.value = res.complemento
-                                        zipCode.value = res.cep
-                                        district.value = res.bairro
-                                    }
-
-                                })
-                                .catch((error)=> console.log("erro api cnpj => ",error))
-
-                            })//end cnpj
-                           
+                                                           
+                            })//end cnpj                           
                             
                         }// end cnpj
 
@@ -1061,7 +1061,6 @@
     
         ///////////////////////////////////////////////////////////////////////////////////
 
-
                                 //2 e a proxima 
                                 //Informaçoes do Cliente
                         if(currentIndex == 3)
@@ -1107,8 +1106,6 @@
                                 dateInsert.removeAttribute("style")
                                 dateInsertValid.setAttribute("class","d-none")
                             }//end
-
-
 
                             ////validating if the input is empty
                             //// CNPJ
@@ -1181,7 +1178,6 @@
                                 emailFinance.removeAttribute("style")
                                 emailFinanceValid.setAttribute("class","d-none")
                             }//end
-
 
                             //validating if the input is empty
                             ////CPF
@@ -1360,7 +1356,7 @@
                         } //    
                                                               
                         
-                        console.log(event, currentIndex, priorIndex)
+                        // console.log(event, currentIndex, priorIndex)
                     
                     },
 
@@ -1451,30 +1447,89 @@
                                      
                     },
 
-                    onFinished: function (event, currentIndex) {
+                    onFinished: function (event, currentIndex,res) {
 
 
                         let loading = document.querySelector(".modal-container-loading")  
                         loading.classList.remove('to-hide')
 
-                        setInterval(function () { location.reload()  }, 2000);
+                        let typeCnpj = false
+                        if("validando -> ",document.getElementById('radio-cnpj').checked) typeCnpj = true
 
-                        //enviar o ajax
-                        // fetch('/cadastrar',{ 
-                        //         method:'post',        
-                        //         body: JSON.stringify(result),
-                        //         headers:{
-                        //             "Content-type":"application/json",
-                        //             'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        //         }                            
-                        // })            
-                        // .then(res=> res.json())
-                        // .then(res => { 
+                        let result = {
+                        
+                        company : document.querySelector('#company').value,
+                        infoStatus : document.querySelector('#infoStatus').value,
+                        responsible : document.querySelector('#responsible').value,
+                        dateInsert : document.querySelector('#date_insert').value,
+
+                        //////cnpj
+                        cnpj : document.querySelector('#cnpj').value,
+                        socialReason : document.querySelector('#socialReason').value,
+                        fantasyName : document.querySelector('#fantasyName').value,
+                        name : document.querySelector('#name').value,
+                        lastName : document.querySelector('#lastName').value,
+                        email : document.querySelector('#email').value,
+                        emailFinance : document.querySelector('#emailFinance').value,
+
+                        //////cpf
+                        cpf : document.querySelector('#cpf').value,
+                        cpfName : document.querySelector('#cpfName').value,
+                        cpfLastName : document.querySelector('#cpfLastName').value,
+                        cpfEmailFinance : document.querySelector('#cpfEmailFinance').value,
+                        cpfEmail : document.querySelector('#cpfEmail').value,
+              
+                        ///// informaçoes pessoais                        
+                        phoneCelula : document.querySelector('#phoneCelula').value,    
+                        phoneFixo : document.querySelector('#phoneFixo').value,
+                        phoneWhatsap : document.querySelector('#phoneWhatsap').value,
+                        andress : document.querySelector('#andress').value,
+                        numberAndress : document.querySelector('#numberAndress').value,
+                        zipCode : document.querySelector('#zipCode').value,
+                        city : document.querySelector('#city').value,
+                        state : document.querySelector('#state').value,
+                        country : document.querySelector('#country').value,
+                        complement : document.querySelector('#complement').value,
+                        trackingPlatform : document.querySelector('#trackingPlatform').value,
+                        district : document.querySelector('#district').value,
+
+                        typeCnpj : typeCnpj
+
+                    }
+
+                    console.log(result)
+                        
+                        
+                        fetch('api/client-create',{ 
+                                method:'post',        
+                                body: JSON.stringify(result),
+                                headers:{
+                                    "Content-type":"application/json",
+                                    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                }                            
+                        })            
+                        .then(res=> res.json())
+                        .then(res => { 
                                 
-                        //     console.log(res)
-                        //     location.reload()                            
-                        // })
-                        // .catch((e)=> {console.log("erro => ", e)} )
+                            let loading = document.querySelector(".modal-container-loading")  
+                            loading.classList.add('to-hide')
+
+                            console.log(res)
+                            // location.reload()     
+                            
+                            Swal.fire({
+                                        icon: 'success',
+                                        title: '<h1>Cadastro efetuado com sucesso.</h1>',                                                                           
+                                        showConfirmButton: false,
+                                        color: '#fff',
+                                        // background:"#c3cef8",
+                                        timer: 3300
+                                    })
+
+                                    setInterval(function () { location.reload()  }, 3500)
+                                    
+                        })
+                        .catch((e)=> {console.log("erro => ", e)} )
 
 
                      },
