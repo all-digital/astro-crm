@@ -382,12 +382,11 @@
 
                             console.log(res)
                             // location.reload()
-
-                            Swal.fire(
-                            'Concluido!',
-                            'Alterado com succeso!',
-                            'success'
-                            )
+                            // Swal.fire(
+                            // 'Concluido!',
+                            // 'Alterado com succeso!',
+                            // 'success'
+                            // )
                         
                         })
                         .catch((e)=> {
