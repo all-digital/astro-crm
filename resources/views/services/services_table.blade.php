@@ -42,17 +42,17 @@
                         <table class="table table-editable table-nowrap align-middle table-edits">
                             <thead>
                                 <tr>                                
-                                    <th style="text-align: center;">Deletar</th>
-                                    <th style="text-align: center;">Editar</th>
-                                    <th style="text-align: center;">Empresa</th>
-                                    <th style="text-align: center;">Status</th>
-                                    <th style="text-align: center;">Usuário de Inserção</th>
-                                    <th style="text-align: center;">Data de Inserção</th>
-                                    <th style="text-align: center;">Categoria</th>
-                                    <th style="text-align: center;">Título do Serviço</th>
-                                    <th style="text-align: center;">Preço</th>
-                                    <th style="text-align: center;">Data da Última Alteração</th>
-                                    <th style="text-align: center;">Usuário da Última Alteração</th>
+                                    <th style="text-align: center;"><strong>Deletar</strong></th>
+                                    <th style="text-align: center;"><strong>Editar</strong></th>
+                                    <th style="text-align: center;"><strong>Empresa</strong></th>
+                                    <th style="text-align: center;"><strong>Status</strong></th>
+                                    <th style="text-align: center;"><strong>Usuário de Inserção</strong></th>
+                                    <th style="text-align: center;"><strong>Data de Inserção</strong></th>
+                                    <th style="text-align: center;"><strong>Categoria</strong></th>
+                                    <th style="text-align: center;"><strong>Título do Serviço</strong></th>
+                                    <th style="text-align: center;"><strong>Preço</strong></th>
+                                    <th style="text-align: center;"><strong>Data da Última Alteração</strong></th>
+                                    <th style="text-align: center;"><strong>Usuário da Última Alteração</strong></th>
                                 </tr>
                             </thead>
                         
@@ -272,16 +272,14 @@
 
     <!-- Table Editable plugin -->
     <script src="{{asset('assets/libs/table-edits/build/table-edits.min.js')}}"></script>
-
-    {{-- <script src="{{asset('assets/js/pages/table-editable.int.js')}}"></script> --}}
-
+    
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>
 
     <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>
 
-    {{-- <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script> --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('custom\css\sweetalert2@11.css')}}"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
 @endpush
 
@@ -358,8 +356,7 @@
                                 unmaskAsNumber: false                                
                             });
                         im_addPrice.mask(price)
-                       
-                        
+                                               
                     },//end edit
                     
                     save:function(values){
@@ -368,16 +365,45 @@
                         .addClass("fa-pencil-alt")
                         .attr("title","Edit"),
                         this in e&&(e[this].destroy(),delete e[this])
-
-
-
-                        console.log(values)
-                    
+                          
+                        let id = this.getAttribute("data-id")   
+                        console.log(values)                     
                         
+                        fetch(`api/table-services-update/${id}`,{ 
+                        method:'put',
+                        body: JSON.stringify(values),    
+                        headers:{
+                                "Content-type":"application/json",
+                                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                }   
+                        })            
+                        .then(res=> res.json())
+                        .then(res => {   
+
+                            console.log(res)
+                            // location.reload()
+
+                            Swal.fire(
+                            'Concluido!',
+                            'Alterado com succeso!',
+                            'success'
+                            )
+                        
+                        })
+                        .catch((e)=> {
+                            console.log("erro => ", e)
+                            // let loading = document.getElementById("modal-loading")
+                            // loading.classList.add('to-hide')
+                            Swal.fire(
+                            'Serviço não Alterado!',
+                            'Ocorreu algum erro!',
+                            'error'
+                            )
+
+                        } )
                     
                     },//end save
-                                            
-                
+                                                            
             })//end  table-edits 
 
 
@@ -397,26 +423,47 @@
                 confirmButtonText: 'Yes'
                 }).then((result) => {
 
-
-
                     if (result.isConfirmed) {
-                        Swal.fire(
-                        'Concluido!',
-                        'Deletado com succeso!',
-                        'success'
-                        )
 
-                        location.reload()
+                        fetch(`api/table-services-delete/${id}`,{ 
+                        method:'delete',      
+                        headers:{
+                                "Content-type":"application/json",
+                                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                }   
+                        })            
+                        .then(res=> res.json())
+                        .then(res => {   
 
+                            console.log(res)
+                            location.reload()
+
+                            Swal.fire(
+                            'Concluido!',
+                            'Deletado com succeso!',
+                            'success'
+                            )
+                        
+                        })
+                        .catch((e)=> {
+                            console.log("erro => ", e)
+                            // let loading = document.getElementById("modal-loading")
+                            // loading.classList.add('to-hide')
+                            Swal.fire(
+                            'Serviço não foi excluido!',
+                            'Ocorreu algum erro!',
+                            'error'
+                            )
+
+                        } )
+                      
                     }
 
-            })            
+                })            
 
         }//end function
 
     
-
-
 
         //// ref a parte de cadastro de novo serviço
 
@@ -483,21 +530,25 @@
                 addServices.addPrice = addServices.addPrice.replace("R$","")
                 addServices.addPrice = addServices.addPrice.trim()
 
-                console.log(addServices)
+                console.log("addServices ->",addServices)
 
-                // fetch('api/tabela-add',{ 
-                //     method:'post',        
-                //     body: JSON.stringify(addServices),
-                //     headers:{"Content-type":"application/json"}
-                //     })            
-                //     .then(res=> res.json())
-                //     .then(res => { 
+                fetch('api/table-services-add',{ 
+                    method:'post',        
+                    body: JSON.stringify(addServices),
+                    headers:{"Content-type":"application/json"}
+                    })            
+                    .then(res=> res.json())
+                    .then(res => { 
                         
-                //         console.log(res)
-                //         location.reload()
+                        console.log(res)
+                        location.reload()
                     
-                //     })
-                //     .catch((e)=> {console.log("erro => ", e)} )
+                    })
+                    .catch((e)=> {
+                        console.log("erro => ", e)
+                        let loading = document.getElementById("modal-loading")
+                        loading.classList.add('to-hide')
+                    } )
 
             }
 

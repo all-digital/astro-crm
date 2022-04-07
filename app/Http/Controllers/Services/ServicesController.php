@@ -16,15 +16,11 @@ class ServicesController extends Controller
     public function servicesTable()
     {
 
-
-        $services1 = Services::where('company_id',1);
-        $services = $services1->simplePaginate(6);
+        $services = Services::where('company_id',1);
+        $services = $services->simplePaginate(6);
         
-        // $services1->count();
 
-        // dd($services1->count());
-
-        return view('services.services-table',["services"=>$services]);
+        return view('services.services_table',["services"=>$services]);
     }//end method
 
     public function exportServices() 

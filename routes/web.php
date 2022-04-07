@@ -54,15 +54,12 @@ Route::get('dd', function(){
 
 
     //$user = auth()->user();
-
     // $user_permission = $user->load('roles.permissions')->roles->transform(function($role){
+    //     //return $role;   
 
-    //     //return $role;
-                
     //     return $role->permissions->transform(function($permission){                    
     //        return  $permission->name;
     //     });
-
     // });
 
     // dd($user_permission->first()->toArray());
@@ -72,14 +69,16 @@ Route::get('dd', function(){
 
 
 
-
+                                            ////service
 Route::get('/services', [App\Http\Controllers\Services\ServicesController::class, 'servicesTable'])->name('services.table');
 
 //excell
 Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices']);
 
 
-//router related to company
+
+                                        //router related to company
+
 Route::get('/company', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
 Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'createCompany'])->name('company.add');
 Route::get('/company-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany'])->name('company.edit');
@@ -89,69 +88,63 @@ Route::get('/empresas/testando', function () {
     return view('companies');
 });
 
+                                            ////user
+
+Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'createUser']);
+Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'editUser']);
+
+                                           ////veiculos
+
+Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'showCreate']);
+//Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
+Route::get('/veiculos-edit', function(){
+    return view('vehicles.vehicles_edit');
+});
+
+Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('vehicles.create');
+
+// Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
+Route::get('/veiculos-list', function(){
+    return view('vehicles.vehicles_list');
+});
+
+
+                                            ////equip
+
+Route::get('/equip-index', function(){
+    return view('teste');
+});
+
+Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
+Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'show']);
+Route::get('/equip-edit', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit']);
+
+Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'create'])->name('equipment.create');
+Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
+
+
+                                             ////simcards 
+
+Route::get('simcards',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit']);
+Route::get('simcards-list',[App\Http\Controllers\Simcards\SimcardsController::class, 'index']);
+
+Route::post('simcard-edit',[App\Http\Controllers\Simcards\SimcardsController::class, 'edit'])->name('simcard.edit');
+
+
+                                               ////client
+                                               
+Route::get('client', function(){
+    return view('clients.create_client');
+});
 
 
 
-                                          ////////////routes teste
+
+
+                                        ////////////routes teste
 // Route::get('redirect', function(){
-
 //     return redirect()->route('finance-gateway-pay');
-
 // });
-
-// Route::prefix('dashboards')->group(function () {
-//     Route::get('/principal', function () {
-//         dd("principal"); 
-//     })->name('dashboards-main');
-
-//     Route::get('/financeiro', function () {
-//         dd("financeiro");
-//     })->name('dashboards-finance');
-
-//     Route::get('/vendas', function () {
-//         dd("vendas");
-//     })->name('dashboards-sales');
-
-//     Route::get('/leads', function () {
-//         dd("leads");
-//     })->name('dashboards-leads');
-
-//     Route::get('/estoque', function () {
-//         dd("estoque");
-//     })->name('dashboards-stock');
-   
-// });
-
-
-
-// Route::prefix('crm')->group(function () {
-
-//     Route::get('/leads', function () {
-//         dd("leads");
-//     })->name('crm-leads');
-
-//     Route::get('/clientes', function () {
-//         dd("clientes");
-//     })->name('crm-clients');
-
-//     Route::get('/pipeline-vendas', function () {
-//         dd("/pipeline-vendas");
-//     })->name('crm-pipeline-sales');
-
-//     Route::get('/pedidos', function () {
-//         dd("pedidos");
-//     })->name('crm-requests');
-
-//     Route::get('/veiculos', function () {
-//         dd("veiculos");
-//     })->name('crm-cars');
-
-//     Route::get('/propostas', function () {
-//         dd("propostas");
-//     })->name('crm-proposals');
-   
-// });
-
 
 // Route::prefix('relatorios')->group(function () {
 
@@ -178,93 +171,8 @@ Route::get('/empresas/testando', function () {
       
 // });
 
-
-// Route::prefix('financeiro')->group(function () {
-
-//     Route::get('/visao-geral', function () {
-//         dd("visao-geral");
-//     })->name('finance-vision-geral');
-
-
-//     Route::get('/gateway-pagamento', function () {
-//         dd("gateway-pay");
-//     })->name('finance-gateway-pay');
-
-          
-// });
-
-Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'createUser']);
-Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'editUser']);
-
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'showCreate']);
-//Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
-Route::get('/veiculos-edit', function(){
-    return view('vehicles.vehicles_edit');
-});
-
-
-Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('vehicles.create');
-
-
-// Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
-Route::get('/veiculos-list', function(){
-
-    return view('vehicles.vehicles_list');
-});
-
-
-/////////////////////////
-/////////////////////////
-/////////////////////////
-/////////////////////////
-
-Route::get('/equip-index', function(){
-    return view('teste');
-});
-
-Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
-Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'show']);
-Route::get('/equip-edit', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit']);
-
-//
-
-Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'create'])->name('equipment.create');
-Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
-
-
-
-/////////////////////////
-/////////////////////////
-/////////////////////////
-/////////////////////////
-
-
-Route::get('simcards',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit']);
-Route::get('simcards-list',[App\Http\Controllers\Simcards\SimcardsController::class, 'index']);
-
-Route::post('simcard-edit',[App\Http\Controllers\Simcards\SimcardsController::class, 'edit'])->name('simcard.edit');
-
-
-
-
-
-
-
-
-Route::get('client', function(){
-    return view('clients.create_client');
-});
-
 
 
 
@@ -279,20 +187,3 @@ Route::prefix('teste')->group(function () {
 });
 
 
-
-// Route::get('/empresas-list', function () {
-
-//     // $service = Companies::where('user_id', ">" ,1)->get()->toArray();
-//     // dd($service);
-
-//     $companie = DB::table('companies')                        
-//     ->select('cnpj','social_Reason','fantasy_name','status','name_responsible','email_responsible','monthly_payment','activation','price_per_plate','monthly_payment','user_limit','price_per_extra_user');
-//     // ->where('login', '=' ,$login)
-//     // ->where('carrier', '=' ,$request->operadora)
-//     // ->where('status', '=' , '0')->get(); 
-
-//     // $com = $companie->values();
-//     // dd($com);
-
-//     return view('list-companies', ["companie" => $companie]);
-// });

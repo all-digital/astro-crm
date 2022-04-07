@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Models\Services;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,28 +36,6 @@ Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCN
 Route::post('/company-add',[App\Http\Controllers\Api\CompanyController::class, 'createCompany']);
 
 
-
-
-Route::get('/teste', function(){
-
-    //dd(' teste api ');
-    //sleep(5);
-
-    //dd(collect(['nome'=>'darcio','value'=>255,'series'=>45])->toArray());
-
-    //dd(request()->is('api/teste'));
-    //request()->segments()[0];
-    
-    // return collect(['nome'=>'darcio','value'=>255,'series'=>45])->toJson();
-        
-});
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -67,9 +45,7 @@ Route::get('/tabela-servicos', function(){
 
     $servicos = Services::where('company_id',1)->get()->toArray();
 
-    dd($servicos);
-
-    
+    dd($servicos);    
 });
 
 Route::post('/tabela', function(Request $request){
@@ -82,12 +58,8 @@ Route::post('/tabela', function(Request $request){
     
 
     // $service = new Services();
-
     // $service = $service->find($id);
-
     // $service->update($request->all());
-
-
     // $service->save();
 
     $service = Services::find($id);
@@ -110,26 +82,12 @@ Route::post('/tabela', function(Request $request){
     
 });
 
-Route::post('/tabela-add', function(Request $request){
+Route::post('/table-services-add',[App\Http\Controllers\Api\ServicesController::class, 'store']);
+Route::delete('/table-services-delete/{id}',[App\Http\Controllers\Api\ServicesController::class, 'destroy']);
+Route::put('table-services-update/{id}',[App\Http\Controllers\Api\ServicesController::class, 'update']);
 
-
-    $service = Services::create([
-        'company' => "Alldigital",
-        'status' => $request->input('addStatus'),
-        'category' => $request->input('addCategory'),
-        'name' => $request->input('addService'),
-        'price' => $request->input('addPrice'),
-        'responsible_for_insert' => "Admin",
-        "company_id" => 1
-    ]);
-
-    $service->save();
-
-    return  collect(['status'=>'sucess'])->toArray();
-});
 
 
 Route::post('simcard-create', [App\Http\Controllers\Api\SimcardsController::class, 'store'])->name('simcard.create.post');
-
 
 Route::post('client-create', [App\Http\Controllers\Api\ClientController::class, 'store'])->name('client.create.post');
