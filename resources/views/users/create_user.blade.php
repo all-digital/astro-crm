@@ -31,25 +31,30 @@
                                     <div class="card-body">        
                                         {{-- <h1 class="card-title font-size-20"><strong>CRIACÃO DE USUÁRIO</strong></h1> --}}
                                         <h4 class="card-title mb-2 btn btn-info" style="cursor: default;">CRIAÇÃO DE USUÁRIO</h4>
-                                        <p class="card-title-desc">Todos os campos são obrigatorios </p>
+                                        <p class="card-title-desc">Todos os campos são obrigatorios </p>                                        
         
-                                        <form id="form-create-user" action="">
-
+                                        <form id="form-create-user" action="{{route('user.store')}}" method="post">
+                                            @csrf
                                             
                                             <div class="mb-3 row">
-                                                <label for="empresas" class="col-md-3 col-form-label">Empresa</label>
+                                                <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="empresa"
-                                                    id="create-user-empresa">
+                                                    <input class="form-control @error('create_user_company') is-invalid @enderror" value="{{ old('create_user_company') }}" type="text" value="empresa"
+                                                    id="create_user_company" name="create_user_company">
+
+                                                    @error('create_user_company')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             
                                             
                                             <div class="mb-3 row" readonly>
-                                                <label class="col-md-3 col-form-label">Status</label>
+                                                <label class="col-md-3 col-form-label" for="create_user_status">Status</label>
                                                 <div class="col-md-9">
-                                                    <select id="create-user-status" class="form-select" aria-label="Default select example">
-                                                        {{-- <option selected>Selecione</option> --}}
+                                                    <select id="create_user_status" name="create_user_status" class="form-select" aria-label="Default select example">                                                        
                                                         <option value="ativo" selected >Ativo</option>
                                                         <option value="inativo">Inativo</option>
                                                     </select>
@@ -62,17 +67,23 @@
                                             
                                             
                                             <div class="mb-3 row">
-                                                <label for="example-search-input" class="col-md-3 col-form-label">Login</label>
+                                                <label for="create_user_loginEmail" class="col-md-3 col-form-label">Login</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="email" value="login Email"
-                                                    id="create-user-loginEmail">
+                                                    <input class="form-control @error('create_user_loginEmail') is-invalid @enderror" value="{{ old('create_user_loginEmail') }}"  type="text" value="login Email"
+                                                    id="create_user_loginEmail" name="create_user_loginEmail">
+
+                                                    @error('create_user_loginEmail')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label class="col-md-3 col-form-label">Perfil</label>
+                                                <label class="col-md-3 col-form-label" for="create_user_perfil">Perfil</label>
                                                 <div class="col-md-9">
-                                                    <select id="create-user-perfil" class="form-select" aria-label="Default select example" required>
+                                                    <select id="create_user_perfil" name="create_user_perfil" class="form-select" aria-label="Default select example" >
                                                         <option selected> </option>
                                                         <option value="admin">Admin</option>
                                                         <option value="gerente comercial">Gerente Comercial</option>
@@ -85,9 +96,9 @@
                                             </div>
                                         
                                             <div class="mb-3 row">
-                                                <label class="col-md-3 col-form-label">Superior</label>
+                                                <label class="col-md-3 col-form-label" for="create_user_upper">Superior</label>
                                                 <div class="col-md-9">
-                                                    <select id="create-user-upper" class="form-select" aria-label="Default select example" required>
+                                                    <select id="create_user_upper" name="create_user_upper" class="form-select" aria-label="Default select example" >
                                                         <option selected> upper</option>
                                                                     
                                                         {{-- Lista todos os Gerentes Comerciais e Admins --}}
@@ -96,26 +107,45 @@
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-tel-input" class="col-md-3 col-form-label">Nome</label>
+                                                <label for="user_create_name" class="col-md-3 col-form-label">Nome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="Nome" required
-                                                        id="user-create-name">
+                                                    <input class="form-control @error('user_create_name') is-invalid @enderror" value="{{ old('user_create_name') }}" type="text" value="Nome" 
+                                                        id="user_create_name" name="user_create_name">
+
+                                                    @error('user_create_name')                                           
+                                                       <div class="invalid-feedback">
+                                                           {{$message}}                                          
+                                                       </div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-tel-input" class="col-md-3 col-form-label">Sobrenome</label>
+                                                <label for="user_create_lastname" class="col-md-3 col-form-label">Sobrenome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="Sobrenome" required
-                                                        id="user-create-lastname">
+                                                    <input class="form-control @error('user_create_lastname') is-invalid @enderror" value="{{ old('user_create_lastname') }}" type="text" value="Sobrenome" 
+                                                        id="user_create_lastname" name="user_create_lastname">
+
+                                                        @error('user_create_lastname')                                           
+                                                            <div class="invalid-feedback">
+                                                                {{$message}}                                          
+                                                            </div>
+                                                        @enderror
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Senha</label>
+                                                <label for="create_user_password" class="col-md-3 col-form-label">Senha</label>
                                                 <div class="col-md-8">
-                                                    <input class="form-control" x-bind:type="password" value="" required
-                                                        id="create-user-password">
+                                                    <h5 class="modal-title mt-0" id="title-msg-password"></h5>
+                                                    <input class="form-control @error('create_user_password') is-invalid @enderror" x-bind:type="password"  
+                                                        id="create_user_password" name="create_user_password">
+
+                                                        @error('create_user_password')                                           
+                                                            <div class="invalid-feedback">
+                                                                {{$message}}                                          
+                                                            </div>
+                                                        @enderror
                                                 </div>
 
                                                 <template x-if="passwordEye">
@@ -133,10 +163,15 @@
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Confirmação de senha</label>
+                                                <label for="create_user_password_confirm" class="col-md-3 col-form-label">Confirmação de senha</label>
                                                 <div class="col-md-8">
-                                                    <input class="form-control" x-bind:type="confirmPassword" value="" required
-                                                        id="create-user-password">
+                                                    <input class="form-control @error('create_user_password_confirm') is-invalid @enderror" x-bind:type="confirmPassword"                                                         id="create_user_password_confirm" name="create_user_password_confirm">
+
+                                                        @error('create_user_password_confirm')                                           
+                                                            <div class="invalid-feedback">
+                                                                {{$message}}                                          
+                                                            </div>
+                                                        @enderror
                                                 </div>
 
                                                 <template x-if="confirmPasswordEye">
@@ -154,38 +189,55 @@
                                             </div>
                                             
                                             <div class="mb-3 row">
-                                                <label for="logo"
+                                                <label for="create_user_avatar"
                                                 class="col-md-3 col-form-label d-flex flex-column">Avatar <span class="badge rounded-pill bg-light text-dark">obs:  + ou - 40px</span></label> 
                                                 <div class="col-md-9">
-                                                    <input id="create-user-avatar" name="avatar"
-                                                        type="file" class="form-control" title="imagem de mais ou menos 40px">
+                                                    <input id="create_user_avatar" name="create_user_avatar"
+                                                         class="form-control @error('create_user_avatar') is-invalid @enderror" title="imagem de mais ou menos 40px">
+
+                                                        @error('create_user_avatar')                                           
+                                                            <div class="invalid-feedback">
+                                                                {{$message}}                                          
+                                                            </div>
+                                                        @enderror
                                                 </div>
                                             </div>
                                             
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Data de inserção</label>
+                                                <label for="create_user_date_insert" class="col-md-3 col-form-label">Data de inserção</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="02/02/2022" readonly
-                                                        id="create-user-password">
+                                                    <input class="form-control @error('create_user_date_insert') is-invalid @enderror" value="{{ old('create_user_date_insert') }}" type="text"  readonly
+                                                        id="create_user_date_insert"  name="create_user_date_insert">
+
+                                                    @error('create_user_date_insert')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror    
+
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Usuario de Inserção</label>
+                                                <label for="create_user_user_insert" class="col-md-3 col-form-label">Usuario de Inserção</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="admin" readonly
-                                                        id="create-user-password">
+                                                    <input class="form-control @error('create_user_user_insert') is-invalid @enderror" value="{{ old('create_user_user_insert') }}" type="text" value="admin" readonly
+                                                        id="create_user_user_insert" name="create_user_user_insert">
+
+                                                    @error('create_user_user_insert')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
+
                                                 </div>
                                             </div>
-                                        
-                                        
+                                                                       
                                            
                                             <div style="text-align: right;">
-                                                <button class="btn btn-info waves-effect waves-light px-5 my-2">Cadastrar</button>
+                                                <button class="btn btn-info waves-effect waves-light px-5 my-2" >Cadastrar</button>
                                             </div>
-
                                         </form>
-
                                     </div>
                                     {{-- end card body --}}
                                     
@@ -206,9 +258,7 @@
 
 @push('script-js')
 
- 
-
-<script src="assets/js/app.js"></script>
+<script src="{{asset('assets/js/app.js')}}"></script>
        
 @endpush
 
@@ -253,9 +303,8 @@
                     return
                 }
 
-            }//end eyeConfirm
-
-
+            },//end eyeConfirm
+           
         }
     }//end app
 

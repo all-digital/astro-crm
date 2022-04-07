@@ -90,8 +90,10 @@ Route::get('/empresas/testando', function () {
 
                                             ////user
 
-Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'createUser']);
-Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'editUser']);
+Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'show']);
+Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'showEdit']);
+
+Route::post('/user',[App\Http\Controllers\Users\UsersController::class, 'store'])->name('user.store');
 
                                            ////veiculos
 
