@@ -100,9 +100,9 @@ Route::put('/user-edit',[App\Http\Controllers\Users\UsersController::class, 'upd
 
 Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'showCreate']);
 //Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
-Route::get('/veiculos-edit', function(){
-    return view('vehicles.vehicles_edit');
-});
+Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'editShow']);
+
+Route::put('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'editStore'])->name('vehicles.update');
 
 Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('vehicles.create');
 
