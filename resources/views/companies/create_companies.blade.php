@@ -1108,6 +1108,7 @@
                                             // background:"#c3cef8",
                                             timer: 3500
                                         })
+                                        form.cnpj.value = ""
     
                                     }else{
     
@@ -1125,7 +1126,7 @@
 
                                 Swal.fire({
                                             icon: 'error',
-                                            title: '<h1>Oops...</h1>',
+                                            title: '<h2>Quantidade menor do que o esperado</h2>',
                                             text: 'CNPJ inválido',
                                             // footer: 'tente novamente..',
                                             showConfirmButton: false,
@@ -1133,6 +1134,7 @@
                                             // background:"#c3cef8",
                                             timer: 3500
                                         })
+                                        form.cnpj.value = ""
                             }//end if valid cnpj.length
                         
 
