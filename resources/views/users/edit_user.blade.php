@@ -32,15 +32,25 @@
                                         
                                          <h4 class="card-title mb-2 btn btn-info" style="cursor: default;"> EDIÇÃO DE USUÁRIO</h4>
                                         <p class="card-title-desc">Todos os campos são obrigatorios </p>
-        
-                                        <form id="form-create-user" action="">
 
-                                            
+                                        @if ($errors->has('create_user_password'))
+                                            <div class="text-danger" >{{ $errors->get('create_user_password')[0] }} </div>                                                  
+                                        @endif
+        
+                                        <form id="form-create-user" action="{{route('user.update')}}" method="POST" >
+                                        @method('PUT')  
+                                        @csrf 
                                             <div class="mb-3 row">
-                                                <label for="empresas" class="col-md-3 col-form-label">Empresa</label>
+                                                <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="empresa"
-                                                    id="create-user-empresa">
+                                                    <input class="form-control @error('create_user_company') is-invalid @enderror" value="{{ old('create_user_company') }}" type="text" value="empresa"
+                                                    id="create_user_company" name="create_user_company">
+
+                                                    @error('create_user_company')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             
@@ -61,17 +71,23 @@
                                             id="add-status" readonly> --}}                                            
                                             
                                             <div class="mb-3 row">
-                                                <label for="example-search-input" class="col-md-3 col-form-label">Login</label>
+                                                <label for="create_user_loginEmail" class="col-md-3 col-form-label">Login</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="email" value="login Email"
-                                                    id="create-user-loginEmail">
+                                                    <input class="form-control  @error('create_user_loginEmail') is-invalid @enderror" value="{{ old('create_user_loginEmail') }}" type="email" value="login@Email"
+                                                    id="create_user_loginEmail" name="create_user_loginEmail">
+
+                                                    @error('create_user_loginEmail')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 row">
                                                 <label class="col-md-3 col-form-label">Perfil</label>
                                                 <div class="col-md-9">
-                                                    <select id="create-user-perfil" class="form-select" aria-label="Default select example" required>
+                                                    <select id="create-user-perfil" class="form-select" aria-label="Default select example"  >
                                                         <option selected> </option>
                                                         <option value="admin">Admin</option>
                                                         <option value="gerente comercial">Gerente Comercial</option>
@@ -84,9 +100,9 @@
                                             </div>
                                         
                                             <div class="mb-3 row">
-                                                <label class="col-md-3 col-form-label">Superior</label>
+                                                <label class="col-md-3 col-form-label" for="create_user_upper">Superior</label>
                                                 <div class="col-md-9">
-                                                    <select id="create-user-upper" class="form-select" aria-label="Default select example" required>
+                                                    <select id="create_user_upper" name="create_user_upper" class="form-select" aria-label="Default select example" required>
                                                         <option selected> upper</option>
                                                                     
                                                         {{-- Lista todos os Gerentes Comerciais e Admins --}}
@@ -95,18 +111,30 @@
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-tel-input" class="col-md-3 col-form-label">Nome</label>
+                                                <label for="user_create_name" class="col-md-3 col-form-label">Nome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="Nome" required
-                                                        id="user-create-name">
+                                                    <input class="form-control @error('user_create_name') is-invalid @enderror" value="{{ old('user_create_name') }}" type="text" value="Nome"  
+                                                        id="user_create_name" name="user_create_name">
+
+                                                    @error('user_create_name')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-tel-input" class="col-md-3 col-form-label">Sobrenome</label>
+                                                <label for="user_create_lastname" class="col-md-3 col-form-label">Sobrenome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="Sobrenome" required
-                                                        id="user-create-lastname">
+                                                    <input class="form-control @error('user_create_lastname') is-invalid @enderror" value="{{ old('user_create_lastname') }}" type="text" value="Sobrenome"  
+                                                        id="user_create_lastname" name="user_create_lastname">
+
+                                                    @error('user_create_lastname')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -116,10 +144,11 @@
 
                                             <div class="mb-3 row">                                                    
                                                 <div class="col-md-12">
-                                                    <button type="button" class="btn btn-outline-primary waves-effect waves-light"
+                                                    <button type="button" class="btn btn-outline-primary waves-effect waves-light is-invalid"
                                                     data-bs-toggle="modal" data-bs-target=".bs-example-modal-center">Alterar senha
                                                     </button>
-                                                </div>
+                                                </div>                                              
+
                                             </div>
 
 
@@ -137,12 +166,16 @@
                                                         <div id="valid-password-edit">
 
                                                                 <div class="mb-3 row">
-                                                                    <label for="example-password-input" class="col-md-3 col-form-label">Senha</label>
+                                                                    <label for="create_user_password" class="col-md-3 col-form-label">Senha</label>
                                                                     <div class="col-md-7">
                                                                         
-                                                                        <input  class="form-control" x-bind:type="password" id="password" value="" required
-                                                                        id="create-user-password">
-                                                                    
+                                                                        <input  class="form-control @error('create_user_password') is-invalid @enderror" value="{{ old('create_user_password') }}" x-bind:type="password" id="password"   
+                                                                        id="create_user_password" name='create_user_password'>
+                                                                        @error('create_user_password')                                           
+                                                                        <div class="invalid-feedback">
+                                                                            {{$message}}                                          
+                                                                        </div>
+                                                                        @enderror
                                                                     </div>
                                                                 
                                                                     <div class="col-xl-2 col-lg-2 col-sm-2" x-show="!passwordEye" >
@@ -157,10 +190,17 @@
                                                                 </div>
 
                                                                 <div class="mb-3 row">
-                                                                    <label for="example-password-input" class="col-md-3 col-form-label">Confirmação de senha</label>
+                                                                    <label for="create_user_password" class="col-md-3 col-form-label">Confirmação de senha</label>
                                                                     <div class="col-md-7">
-                                                                        <input class="form-control" x-bind:type="confirmPassword" id="confirmPassword" value="" required
-                                                                            id="create-user-password">
+                                                                        <input class="form-control @error('create_user_password_confirm') is-invalid @enderror" value="{{ old('create_user_password_confirm') }}" x-bind:type="confirmPassword" id="confirmPassword" value=""  
+                                                                            id="create_user_password_confirm" name='create_user_password_confirm'>
+
+                                                                            @error('create_user_password_confirm')                                           
+                                                                            <div class="invalid-feedback">
+                                                                                {{$message}}                                          
+                                                                            </div>
+                                                                            @enderror
+                                                                    
                                                                     </div>
 
                                                                     <div class="col-xl-2 col-lg-2 col-sm-2" x-show="! confirmPasswordEye">
@@ -174,7 +214,7 @@
                                                                 </div>
 
                                                                 <div style="text-align: center;">
-                                                                    <button id="valid-password-edit-user" class="btn btn-info waves-effect waves-light px-5" x-on:click="validPassword()">Validar Senha</button>
+                                                                    <button id="valid-password-edit-user" class="btn btn-info waves-effect waves-light px-5" x-on:click="validPassword()" onclick="event.preventDefault();">Validar Senha</button>
                                                                 </div>
                                                                 
                                                         </div>
@@ -204,24 +244,35 @@
                                             <div class="mb-3 row">
                                                 <label for="example-password-input" class="col-md-3 col-form-label">Data de Último Acesso</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="02/02/2022" readonly
-                                                        id="create-user-dateLast">
+                                                    <input class="form-control @error('create_user_dateLast') is-invalid @enderror" value="{{ old('create_user_dateLast') }}" type="text" readonly
+                                                        id="create_user_dateLast" name="create_user_dateLast">
+
+                                                    @error('create_user_dateLast')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Data de Última Alteração</label>
+                                                <label for="create_user_lastAcess" class="col-md-3 col-form-label">Data de Última Alteração</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="admin" readonly
-                                                        id="create-user-lastAcess">
+                                                    <input class="form-control @error('create_user_lastAcess') is-invalid @enderror" value="{{ old('create_user_lastAcess') }}" type="text" value="admin" readonly
+                                                        id="create_user_lastAcess" name="create_user_lastAcess">
                                                 </div>
                                             </div>
                                             
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Usuário da Última Alteração</label>
+                                                <label for="create_user_lastUserAcess" class="col-md-3 col-form-label">Usuário da Última Alteração</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="admin" readonly
-                                                        id="create-user-lastUserAcess">
+                                                    <input class="form-control @error('create_user_lastUserAcess') is-invalid @enderror" value="{{ old('create_user_lastUserAcess') }}" type="text" value="admin" readonly
+                                                        id="create_user_lastUserAcess" name='create_user_lastUserAcess'>
+                                                    @error('create_user_lastUserAcess')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             
@@ -230,16 +281,28 @@
                                             <div class="mb-3 row">
                                                 <label for="example-password-input" class="col-md-3 col-form-label">Data de inserção</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="02/02/2022" readonly
-                                                        id="create-user-password">
+                                                    <input class="form-control @error('create_user_date_insert') is-invalid @enderror" value="{{ old('create_user_date_insert') }}" type="text" value="02/02/2022" readonly
+                                                        id="create_user_date_insert" name="create_user_date_insert">
+
+                                                    @error('create_user_date_insert')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Usuario de Inserção</label>
+                                                <label for="create_user_user_insert" class="col-md-3 col-form-label">Usuario de Inserção</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control" type="text" value="admin" readonly
-                                                        id="create-user-password">
+                                                    <input class="form-control @error('create_user_user_insert') is-invalid @enderror" value="{{ old('create_user_user_insert') }}" type="text" value="admin" readonly
+                                                        id="create_user_user_insert" name="create_user_user_insert">
+
+                                                    @error('create_user_user_insert')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                                                                   

@@ -94,6 +94,7 @@ Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'show']);
 Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'showEdit']);
 
 Route::post('/user',[App\Http\Controllers\Users\UsersController::class, 'store'])->name('user.store');
+Route::put('/user-edit',[App\Http\Controllers\Users\UsersController::class, 'update'])->name('user.update');
 
                                            ////veiculos
 
