@@ -23,13 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('country');
             $table->string('state');
             $table->string('complement');
-
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable()->default(null);
-            
-            // $table->unsignedBigInteger('company_id');
-            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->nullable()->default(null);
-
+        
             $table->timestamps();
         });
     }
