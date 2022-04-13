@@ -25,6 +25,7 @@ class Companies extends Model
         'price_per_plate',
         'user_limit',
         'price_per_extra_user',
+        'address_id',
         'user_id'
     ];
 
@@ -42,6 +43,11 @@ class Companies extends Model
     public function equipment()
     {
         return $this->hasMany(Equipments::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 
 }//end class 

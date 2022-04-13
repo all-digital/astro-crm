@@ -9,5 +9,18 @@ class Address extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['address','number_address','zip_code','city','country','state','complement','user_id','company_id'];
-}
+    protected $fillable = ['address','number_address','zip_code','city','country','state','complement'];
+
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Companies::class);
+    }
+
+
+}//end 

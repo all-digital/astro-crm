@@ -27,7 +27,8 @@ class User extends Authenticatable
         'companie',
         'superiors',
         'status',
-        'avatar'
+        'avatar',
+        'address_id'
     ];
 
     /**
@@ -67,6 +68,11 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class,'user_roles','user_id','role_id' );
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 
     
