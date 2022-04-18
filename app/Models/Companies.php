@@ -24,8 +24,7 @@ class Companies extends Model
         'activation',
         'price_per_plate',
         'user_limit',
-        'price_per_extra_user',
-        'address_id',
+        'price_per_extra_user',        
         'user_id'
     ];
 
@@ -47,7 +46,7 @@ class Companies extends Model
 
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        return $this->hasOne(Address::class,'company_id');
     }
 
 }//end class 

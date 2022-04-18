@@ -27,8 +27,8 @@ class User extends Authenticatable
         'companie',
         'superiors',
         'status',
-        'avatar',
-        'address_id'
+        'avatar'
+        
     ];
 
     /**
@@ -72,7 +72,7 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        return $this->hasOne(Address::class);
     }
 
     

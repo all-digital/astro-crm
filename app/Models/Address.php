@@ -9,17 +9,17 @@ class Address extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['address','number_address','zip_code','city','country','state','complement'];
+    protected $fillable = ['address','number_address','zip_code','city','country','state','complement','user_id', 'company_id'];
 
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function company()
     {
-        return $this->hasOne(Companies::class);
+        return $this->belongsTo(Companies::class);
     }
 
 
