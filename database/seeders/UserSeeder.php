@@ -27,33 +27,26 @@ class UserSeeder extends Seeder
         $faker = Faker::create();
         ////
 
-
-        $address = Address::create([
-            'address' => Hash::make('123456789'),
-            'number_address' => $faker->company(),
-            'zip_code'=> $faker->name(),
-            'city' => Hash::make('123456789'),
-            'country' => $faker->company(),
-            'state'=> $faker->name(),
-            'complement'=> $faker->name()
+        
+        $user = User::create([
+            'cnpj' => rand(),
+            'social_Reason' => $faker->company(),
+            'fantasy_name' => $faker->company(),
+            'status' =>'Status OK',
+            'name_responsible' => $faker->name(),
+            'last_name_responsible' => $faker->lastName(),
+            'email_responsible' => $faker->email(),
+            'color' =>'verde',
+            'logo' =>'logo teste',
+            'monthly_payment' =>'100.00',
+            'activation' =>'100.00',
+            'price_per_plate' =>'100,20',
+            'user_limit' =>'5',
+            'price_per_extra_user' =>'1000,15',
+            'address_id' => $IDaddress
+            
         ]);
-
-        $IDaddress = $address->id;
-
-        $address->user()->create([
-            // 'name'=> 'admin6',
-            // 'email' => 'admin6@admin',
-            'name'=> $faker->name(),
-            'email' => $faker->email(),
-            'password' => Hash::make('123456789'),
-            'companie' => $faker->company(),
-            'superiors'=> $faker->name(),
-            'status'=> "status ok",
-            'avatar' => "avatar"
-        ]);
-
-        $user = User::find($address->user->id);
-
+        
         $user->profile()->create([
             'login'=> $faker->name(),
             'profile' => "perfil teste",
@@ -79,7 +72,64 @@ class UserSeeder extends Seeder
             
         ]);
 
-        /////forma antiga
+
+
+        ///////////// forma aonde a chave estrangeira estava nas tabelas fortes e não na tabela de anddresses
+
+        // $address = Address::create([
+        //     'address' => Hash::make('123456789'),
+        //     'number_address' => $faker->company(),
+        //     'zip_code'=> $faker->name(),
+        //     'city' => Hash::make('123456789'),
+        //     'country' => $faker->company(),
+        //     'state'=> $faker->name(),
+        //     'complement'=> $faker->name()
+        // ]);
+
+        // $IDaddress = $address->id;
+
+        // $address->user()->create([
+        //     // 'name'=> 'admin6',
+        //     // 'email' => 'admin6@admin',
+        //     'name'=> $faker->name(),
+        //     'email' => $faker->email(),
+        //     'password' => Hash::make('123456789'),
+        //     'companie' => $faker->company(),
+        //     'superiors'=> $faker->name(),
+        //     'status'=> "status ok",
+        //     'avatar' => "avatar"
+        // ]);
+
+        // $user = User::find($address->user->id);
+
+        // $user->profile()->create([
+        //     'login'=> $faker->name(),
+        //     'profile' => "perfil teste",
+            
+        // ]);
+
+        // $user->company()->create([
+        //     'cnpj' => rand(),
+        //     'social_Reason' => $faker->company(),
+        //     'fantasy_name' => $faker->company(),
+        //     'status' =>'Status OK',
+        //     'name_responsible' => $faker->name(),
+        //     'last_name_responsible' => $faker->lastName(),
+        //     'email_responsible' => $faker->email(),
+        //     'color' =>'verde',
+        //     'logo' =>'logo teste',
+        //     'monthly_payment' =>'100.00',
+        //     'activation' =>'100.00',
+        //     'price_per_plate' =>'100,20',
+        //     'user_limit' =>'5',
+        //     'price_per_extra_user' =>'1000,15',
+        //     'address_id' => $IDaddress
+            
+        // ]);
+
+
+
+        /////////////////////////////////////forma antiga
 
         // $user = User::create([
         //     'name'=> 'admin2',
