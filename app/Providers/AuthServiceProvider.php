@@ -27,15 +27,14 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('create-service', function (User $user) {
-            //verificar se ele possui a regra de gerente
-            //se sim, verificar se ele possui a permissão de creata sservices
+            //verificar se ele possui a regra de gerente por exemplo
+            //se sim, verificar se ele possui a permissão de creata services
 
             $user_permission = $user->load('roles.permissions')->roles->transform(function($role){
                 
                 return $role->permissions->transform(function($permission){                    
                    return  $permission->name;
                 });
-
             });
 
            return in_array('create-service',$user_permission->first()->toArray());

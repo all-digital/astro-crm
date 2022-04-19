@@ -27,7 +27,7 @@ class AddAddressesCompanyId extends Migration
     public function down()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            $table->dropColumn('company_id');
+            // $table->dropColumn('company_id');
         });
     }
 }

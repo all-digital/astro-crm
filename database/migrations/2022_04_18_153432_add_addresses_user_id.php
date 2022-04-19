@@ -27,7 +27,7 @@ class AddAddressesUserId extends Migration
     public function down()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+            // $table->dropColumn('user_id');
         });
     }
 }

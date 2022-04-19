@@ -37,32 +37,45 @@ Route::prefix('reports')->group(base_path('routes/reports.php'));
 
 
 
-Route::get('dd', function(){
+Route::get('permissao', function(){
+    $user = auth()->user();
+
+    if (Gate::forUser($user)->allows('create-service1')) {
+        // The user can update the post...
+
+        dd("teste");
+    }
+     
+    if (Gate::forUser($user)->denies('create-service')) {
+        // The user can't update the post...
+        dd('teste2->2');
+    }
+
+
 
     // dd(auth()->user());
     // dd(auth()->user()->load('roles.permissions'));
 
+    // if (! Gate::allows('create-service')) {
+    //     //abort(403);
+    //     return "vc não esta autorizado";
 
-    if (! Gate::allows('create-service')) {
-        //abort(403);
-        return "vc não esta autorizado";
-
-    }else{
-       // return 'vc esta autorizado para essa tela';
-        return view('teste2');
-    }
+    // }else{
+    //    // return 'vc esta autorizado para essa tela';
+    //     return view('teste2');
+    // }
 
 
-    //$user = auth()->user();
-    // $user_permission = $user->load('roles.permissions')->roles->transform(function($role){
-    //     //return $role;   
+    $user = auth()->user();
+    $user_permission = $user->load('roles.permissions')->roles->transform(function($role){
+        //return $role;   
 
-    //     return $role->permissions->transform(function($permission){                    
-    //        return  $permission->name;
-    //     });
-    // });
+        return $role->permissions->transform(function($permission){                    
+           return  $permission->name;
+        });
+    });
 
-    // dd($user_permission->first()->toArray());
+    dd($user_permission->first()->toArray());
 
 });
 
