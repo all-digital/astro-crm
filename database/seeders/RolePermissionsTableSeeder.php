@@ -21,24 +21,29 @@ class RolePermissionsTableSeeder extends Seeder
             //gerente  => create-user     
             [
                 'role_id'=> 3,
-                'permission_id' => 33        
+                'permission_id' => 1        
             ],
             //gerente  => create-service 
             [
                 'role_id'=> 3,
-                'permission_id' => 34           
+                'permission_id' => 2           
             ],
             //gerente  => create-company 
             [
                 'role_id'=> 3,
-                'permission_id' => 35     
+                'permission_id' => 3     
             ],
             //gerente  => create-client
             [
                 'role_id'=> 3,
-                'permission_id' => 36           
-            ]
-            
+                'permission_id' => 4           
+            ],
+
+            //gerente  => create-equipment
+            [
+                'role_id'=> 3,
+                'permission_id' => 5           
+            ]    
 
         ]);
     }

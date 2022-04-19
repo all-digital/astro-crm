@@ -28,7 +28,7 @@ class TestOfPopulationSeeder extends Seeder
             'name' => $faker->name(),
             'price' => '120,00',
             'responsible_for_insert' => $faker->name(),
-            'company_id' => '1'
+            'company_id' => '2'
         ]);
 
         $equipment = Equipments::create([
@@ -39,7 +39,7 @@ class TestOfPopulationSeeder extends Seeder
             'model' => "model teste",
             'imei' => rand(),
             'simcard' => "12235",
-            'company_id' => '1'
+            'company_id' => '2'
         ]);
     }
 }

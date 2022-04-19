@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
             'email' => $faker->email(),
             'password' => Hash::make('123456789'),
             'companie' => $faker->company(),
+            // 'companie' => 'allDigital',
             'superiors'=> $faker->name(),
             'status'=> "status ok",
             'avatar' => "avatar"
@@ -82,7 +83,7 @@ class UserSeeder extends Seeder
 
 
         $user->address()->create([
-            'address' => Hash::make('123456789'),
+            'address' => $faker->company(),
             'number_address' => $faker->company(),
             'zip_code'=> $faker->name(),
             'city' => Hash::make('123456789'),
