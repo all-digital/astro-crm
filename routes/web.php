@@ -40,6 +40,16 @@ Route::prefix('reports')->group(base_path('routes/reports.php'));
 Route::get('permissao', function(){
     $user = auth()->user();
 
+    // $user_permission = $user->load('roles.permissions')->roles->transform(function($role){      
+    //     return $role->permissions->transform(function($permission){                    
+    //        return  $permission->name;
+    //     });
+    // });
+
+    // dd($user_permission->first()->toArray());
+
+    ///////////////////////////////////////
+
     if (Gate::forUser($user)->allows('delete-simcard')) {      
         //dd("teste entrou delete-simcard policy");
          return view('teste2');
@@ -47,34 +57,23 @@ Route::get('permissao', function(){
     
     if (Gate::forUser($user)->allows('view-user')) {       
         dd("teste entrou view-user policy");        
-    }       
-
+    }    
+    
+    if (Gate::forUser($user)->allows('create-service')) {       
+        dd("create-service entrou ");
+        // return view('teste2');
+    }
+    
     if (Gate::forUser($user)->allows('edit-user')) {       
         dd("teste entrou edit-user policy");
     }
-    
 
-    if (Gate::forUser($user)->allows('create-service')) {       
-        dd("create-service entrou ");
-        return view('teste2');
-    }
-     
     // if (Gate::forUser($user)->allows('create-user')) {        
     //     dd('create-user   entrou ');
     // }
 
-    dd('parou');
-
-    // $user = auth()->user();
-    // $user_permission = $user->load('roles.permissions')->roles->transform(function($role){
-    //     //return $role;   
-
-    //     return $role->permissions->transform(function($permission){                    
-    //        return  $permission->name;
-    //     });
-    // });
-
-    // dd($user_permission->first()->toArray());
+    // dd('parou');
+      
 
 });
 
