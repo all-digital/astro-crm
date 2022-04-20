@@ -33,6 +33,12 @@
                                          <h4 class="card-title mb-2 btn btn-info" style="cursor: default;"> EDIÇÃO DE USUÁRIO</h4>
                                         <p class="card-title-desc">Todos os campos são obrigatorios </p>
 
+                                        @if(session('success'))
+                                            <div class="alert alert-success">
+                                                {{session('success')}}
+                                            </div>
+                                        @endif
+
                                         @if ($errors->has('create_user_password'))
                                             <div class="text-danger" >{{ $errors->get('create_user_password')[0] }} </div>                                                  
                                         @endif

@@ -29,8 +29,11 @@ class UsersController extends Controller
     }//end showEdit
 
     public function store(UserCreateRequest $request)
-    {              
- 
+    {     
+        // dd($request->all());
+        return redirect('user')                
+                   ->withSuccess('Usuario cadastrado com Sucesso');
+
         // if ($validator->fails()) {
         //     return redirect('user')
         //                 ->withErrors($validator)
@@ -41,8 +44,9 @@ class UsersController extends Controller
 
     public function update(UserEditRequest $request)
     {
-
-    //    dd($request->all());
+        return redirect('user')                
+                   ->withSuccess('Usuario cadastrado com Sucesso');
+      
 
     }//end update
 

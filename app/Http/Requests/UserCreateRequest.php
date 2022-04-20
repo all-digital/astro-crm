@@ -28,16 +28,15 @@ class UserCreateRequest extends FormRequest
             'create_user_status' => 'required',
             'create_user_loginEmail' => 'required|min:6',
             'create_user_perfil' => 'required|min:6',
-            'create_user_upper' => 'required|min:6',
-            'user_create_name' => 'required|min:6',
-            'user_create_name' => 'required|min:6',
+            'create_user_upper' => 'required|min:3',
+            'user_create_name' => 'required|min:6',            
             'user_create_lastname' => 'required|min:6',
             // 'create_user_avatar' => 
-            'create_user_date_insert' => 'required|date',
-            'create_user_user_insert' => 'required|date',
+            // 'create_user_date_insert' => 'required|date',
+            // 'create_user_user_insert' => 'required|date',
 
-            'create_user_password' => 'required_with:create_user_password_confirm|same:create_user_password_confirm|min:8',
-            'create_user_password_confirm' => 'required|min:8'                     
+            // 'create_user_password' => 'required_with:create_user_password_confirm|same:create_user_password_confirm|min:8',
+            // 'create_user_password_confirm' => 'required|min:8',                     
         ];
     }
 

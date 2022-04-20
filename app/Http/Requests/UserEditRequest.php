@@ -32,11 +32,11 @@ class UserEditRequest extends FormRequest
             'create_user_password' => 'required_with:create_user_password_confirm|same:create_user_password_confirm|min:8',
             'create_user_password_confirm' => 'required|min:8',
             // 'avatar' =>  ,
-            'create_user_dateLast' => 'required|min:6',
-            'create_user_lastAcess' => 'required|min:6',
-            'create_user_lastUserAcess' => 'required|min:6',
-            'create_user_date_insert' => 'required|min:6',
-            'create_user_user_insert' => 'required|min:6',
+            // 'create_user_dateLast' => 'required|min:6',
+            // 'create_user_lastAcess' => 'required|min:6',
+            // 'create_user_lastUserAcess' => 'required|min:6',
+            // 'create_user_date_insert' => 'required|min:6',
+            // 'create_user_user_insert' => 'required|min:6',
         ];
     }
     //  valid -> date 'required|date_format:d/m/Y';
