@@ -36,25 +36,32 @@ Route::prefix('reports')->group(base_path('routes/reports.php'));
 
 
 
-
+// rota de teste de permissão
 Route::get('permissao', function(){
     $user = auth()->user();
 
-    if (Gate::forUser($user)->allows('delete-simcard')) {       
-        dd("teste entrou delete-simcard policy");
+    if (Gate::forUser($user)->allows('delete-simcard')) {      
+        //dd("teste entrou delete-simcard policy");
+         return view('teste2');
     }
     
+    if (Gate::forUser($user)->allows('view-user')) {       
+        dd("teste entrou view-user policy");        
+    }       
+
+    if (Gate::forUser($user)->allows('edit-user')) {       
+        dd("teste entrou edit-user policy");
+    }
     
 
     if (Gate::forUser($user)->allows('create-service')) {       
         dd("create-service entrou ");
+        return view('teste2');
     }
-
      
     // if (Gate::forUser($user)->allows('create-user')) {        
     //     dd('create-user   entrou ');
     // }
-
 
     dd('parou');
 

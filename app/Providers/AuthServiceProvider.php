@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Policies\CreatePolicy;
+use App\Policies\EditPolicy;
+use App\Policies\ViewPolicy;
+use App\Policies\DeletePolicy;
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -84,7 +88,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-equipment', [DeletePolicy::class, 'deleteEquipment']);
         Gate::define('delete-vehicle', [DeletePolicy::class, 'deleteVehicle']);
         Gate::define('delete-order-of-service', [DeletePolicy::class, 'deleteOrderOfService']);
-        Gate::define('delete-simcard', [DeletePolicy::class, 'deleteSimcard']);    
+        Gate::define('delete-simcard', [DeletePolicy::class, 'deleteSimcard']);
 
         //
     }//end boot

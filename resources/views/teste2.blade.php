@@ -16,8 +16,8 @@
 
 @section('content')
 
-    @can('create-service')
-        <h1>gerente autorizado </h1>
+    @can('delete-simcard')
+        <h1>super admim autorizado </h1>
     @endcan
 
     {{-- <h1>Teste 2 </h1> --}}
