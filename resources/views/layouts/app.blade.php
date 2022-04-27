@@ -29,7 +29,7 @@
     <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
-    
+
 
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
@@ -459,17 +459,16 @@
                                     </div>
                                 </div>
                             </div>
-    
-    
-    
-    
-    
+                   
                             <!-- USER -->
     
                             <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img class="rounded-circle header-profile-user" src="{{asset('assets/images/users/avatar-2.jpg')}}"
+                                    <img class="rounded-circle header-profile-user"
+                                     {{-- src="{{asset('assets/images/users/avatar-2.jpg')}}" --}}
+                                     src="{{ asset('storage/users/8.png') }}"
+
                                         alt="Header Avatar">
                                     <span class="d-none d-xl-inline-block ms-1" style="color: #000;">{{ Auth::user()->name ?? ''}}</span>
                                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block" style="color: #000;"></i>

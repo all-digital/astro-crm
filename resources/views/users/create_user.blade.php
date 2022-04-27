@@ -39,7 +39,7 @@
                                             </div>
                                         @endif
         
-                                        <form id="form-create-user" action="{{route('user.store')}}" method="post">
+                                        <form id="form-create-user" action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             
                                             <div class="mb-3 row">
@@ -87,20 +87,31 @@
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label class="col-md-3 col-form-label" for="create_user_perfil">Perfil</label>
-                                                <div class="col-md-9">
-                                                    <select id="create_user_perfil" name="create_user_perfil" class="form-select" aria-label="Default select example" >
-                                                        <option selected> </option>
-                                                        <option value="admin">Admin</option>
-                                                        <option value="gerente comercial">Gerente Comercial</option>
-                                                        <option value="vendedorivo" >Vendedor</option>
-                                                        <option value="financeiro">Financeiro</option>
-                                                        <option value="suporte" >Suporte</option>
-                                                        <option value="tecnico" >Tecnico</option>                                                         
-                                                    </select>
+                                               <label class="col-md-3 col-form-label">Permissão de Usuario</label>
+                                               <div class="col-md-9">
+                                                    <select id="create_user_perfil" name="create_user_perfil[]" class="select2 form-control select2-multiple @error('create_user_perfil') is-invalid @enderror" multiple="multiple"
+                                                        data-placeholder="Adicione o nivel de permissionamento do usuario">
+                                                        <optgroup label="Nivel 1">
+                                                            <option value="admin">Admin</option>                                                        <option value="gerente">Gerente</option>
+                                                            <option value="gerente">Supervior</option>
+                                                        </optgroup>
+                                                        <optgroup label="Nivel 2">                                                       
+                                                            <option value="vendedor" >Vendedor</option>
+                                                            <option value="financeiro">Financeiro</option>
+                                                            <option value="suporte" >Suporte</option>
+                                                            <option value="tecnico" >Tecnico</option> 
+                                                        </optgroup>                                                   
+        
+                                                    </select> 
+
+                                                    @error('create_user_perfil')                                           
+                                                    <div class="invalid-feedback">
+                                                        {{$message}}                                          
+                                                    </div>
+                                                 @enderror
                                                 </div>
-                                            </div>
-                                        
+                                            </div>    
+
                                             <div class="mb-3 row">
                                                 <label class="col-md-3 col-form-label" for="create_user_upper">Superior</label>
                                                 <div class="col-md-9">
@@ -111,6 +122,8 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            
 
                                             <div class="mb-3 row">
                                                 <label for="user_create_name" class="col-md-3 col-form-label">Nome</label>
@@ -196,10 +209,10 @@
                                             
                                             <div class="mb-3 row">
                                                 <label for="create_user_avatar"
-                                                class="col-md-3 col-form-label d-flex flex-column">Avatar <span class="badge rounded-pill bg-light text-dark">obs:  + ou - 40px</span></label> 
+                                                class="col-md-3 col-form-label d-flex flex-column">Avatar <span class="badge rounded-pill bg-light text-dark">obs:  + ou - 60px</span></label> 
                                                 <div class="col-md-9">
-                                                    <input id="create_user_avatar" name="create_user_avatar"
-                                                         class="form-control @error('create_user_avatar') is-invalid @enderror" title="imagem de mais ou menos 40px">
+                                                    <input type="file" id="create_user_avatar" name="create_user_avatar"
+                                                         class="form-control @error('create_user_avatar') is-invalid @enderror" title="imagem de mais ou menos 60px">
 
                                                         @error('create_user_avatar')                                           
                                                             <div class="invalid-feedback">
@@ -263,6 +276,28 @@
 
 
 @push('script-js')
+<script src="assets/libs/jquery/jquery.min.js"></script>
+<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="assets/libs/simplebar/simplebar.min.js"></script>
+<script src="assets/libs/node-waves/waves.min.js"></script>
+<script src="assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+<script src="assets/libs/select2/js/select2.min.js"></script>
+<script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+<script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+
+<!-- form repeater js -->
+<script src="assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
+
+<!-- form repeater init -->
+<script src="assets/js/pages/form-repeater.init.js"></script>
+
+
+<!-- form advanced init -->
+<script src="assets/js/pages/form-advanced.init.js"></script>
 
 <script src="{{asset('assets/js/app.js')}}"></script>
        
@@ -318,3 +353,7 @@
 </script>
 
 @endpush
+
+
+                                       
+                                  
