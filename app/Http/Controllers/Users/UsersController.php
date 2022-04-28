@@ -10,7 +10,8 @@ use App\Http\Requests\UserEditRequest;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-//use Illuminate\Support\Facades\Validator;
+use App\Models\UserRole;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -35,28 +36,32 @@ class UsersController extends Controller
         $user = User::create([
             'name'=> $request->user_create_name,
             'email' => $request->create_user_loginEmail,
-            'password' => Hash::make($request->create_user_password),
-            'companie' => $request->create_user_company,          
-            'superiors'=> $request->create_user_upper,
-            'status'=> $request->create_user_status,
-            'avatar' => "avatar"                     
+            'password' => Hash::make($request->create_user_password),                                 
         ]);
 
-        //valid upload image
-
-        //kebab_case();  //deixa tudo em kebab        
-        //$imagem->getClientOriginalName();  //name original do arquivo
-
+        foreach ($request->create_user_perfil as $value) {            
+            // UserRole::create(['user_id'=> $user->id, 'role_id' => $value]);
+            // echo "$user->id  $value ||";
+            DB::table('user_roles')->insert([
+                "user_id"=> $user->id,
+                "role_id" => $value
+            ]);
+        }      
+        
         $imagem = $request->create_user_avatar;
         $extension = $imagem->extension();
         
         $nameImage = "$user->id.$extension";
 
-        $upload = $imagem->storeAs('users',$nameImage);
+        $PathImage = $imagem->storeAs('users',$nameImage);     
 
         $user->profile()->create([
             'login'=> $request->user_create_name,
-            'profile' => $nameImage          
+            'profile' => $nameImage,
+            'companie' => $user->profile()->get('companie')[0]->companie, 
+            'superiors'=> $request->create_user_upper,
+            'status'=> $request->create_user_status,
+            'avatar' => $PathImage     
         ]);
 
         $user->address()->create([

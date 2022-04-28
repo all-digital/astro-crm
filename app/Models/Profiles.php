@@ -14,7 +14,11 @@ class Profiles extends Model
 
     protected $fillable = [
         'login',
-        'profile',
+        'profile', 
+        'companie',
+        'superiors',
+        'status',
+        'avatar',
         'user_id'
     ];
 

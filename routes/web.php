@@ -40,13 +40,13 @@ Route::prefix('reports')->group(base_path('routes/reports.php'));
 Route::get('permissao', function(){
     $user = auth()->user();
 
-    // $user_permission = $user->load('roles.permissions')->roles->transform(function($role){      
-    //     return $role->permissions->transform(function($permission){                    
-    //        return  $permission->name;
-    //     });
-    // });
+    $user_permission = $user->load('roles.permissions')->roles->transform(function($role){      
+        return $role->permissions->transform(function($permission){                    
+           return  $permission->name;
+        });
+    });
 
-    // dd($user_permission->first()->toArray());
+    dd($user_permission->first()->toArray());
 
     ///////////////////////////////////////
 
@@ -77,6 +77,29 @@ Route::get('permissao', function(){
 
 });
 
+Route::get('dd', function(){
+    $user = auth()->user();
+    // dd($user->profile()->get('companie')[0]->companie);  
+   // dd(auth()->user()->profile()->get('companie')[0]->companie);
+
+   $createuserser = [
+    0 => "gerente",
+    1 => "vendedor",
+    2 => "suporte"
+   ];
+
+   $create_User = [
+    0 => "1",
+    1 => "3",    
+   ];
+
+   foreach ($create_User as $value) {
+    echo "$value <br>";
+  }
+
+
+
+});
 
 
 

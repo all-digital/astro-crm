@@ -26,26 +26,26 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
         ////
-
         
         $user = User::create([
             // 'name'=> 'suport',
             // 'email' => 'suport@suport',
-            'name'=> $faker->name(),
-            'email' => $faker->email(),
-            'password' => Hash::make('123456789'),
-            'companie' => $faker->company(),
-            // 'companie' => 'allDigital',
-            'superiors'=> $faker->name(),
-            'status'=> "status ok",
-            'avatar' => "avatar"
-            
-            
+            'name'=> 'admin',
+            'email' => 'admin@admin',
+            // 'name'=> $faker->name(),
+            // 'email' => $faker->email(),
+            'password' => Hash::make('123456789'),                      
+                        
         ]);
         
         $user->profile()->create([
             'login'=> $faker->name(),
             'profile' => "perfil teste",
+            // 'companie' => $faker->company(),
+            'companie' => 'allDigital',
+            'superiors'=> $faker->name(),
+            'status'=> "status ok",
+            'avatar' => "avatar"
             
         ]);
 

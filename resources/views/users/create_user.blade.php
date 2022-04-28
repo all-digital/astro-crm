@@ -45,8 +45,8 @@
                                             <div class="mb-3 row">
                                                 <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('create_user_company') is-invalid @enderror" value="{{ old('create_user_company') }}" type="text" value="empresa"
-                                                    id="create_user_company" name="create_user_company">
+                                                    <input class="form-control @error('create_user_company') is-invalid @enderror"  type="text" readonly
+                                                    id="create_user_company" name="create_user_company" value="{{auth()->user()->profile()->get('companie')[0]->companie}}">
 
                                                     @error('create_user_company')                                           
                                                         <div class="invalid-feedback">
@@ -92,14 +92,14 @@
                                                     <select id="create_user_perfil" name="create_user_perfil[]" class="select2 form-control select2-multiple @error('create_user_perfil') is-invalid @enderror" multiple="multiple"
                                                         data-placeholder="Adicione o nivel de permissionamento do usuario">
                                                         <optgroup label="Nivel 1">
-                                                            <option value="admin">Admin</option>                                                        <option value="gerente">Gerente</option>
-                                                            <option value="gerente">Supervior</option>
+                                                            <option value="1">Admin</option>                                                        <option value="3">Gerente</option>
+                                                            <option value="5">Supervior</option>
                                                         </optgroup>
                                                         <optgroup label="Nivel 2">                                                       
-                                                            <option value="vendedor" >Vendedor</option>
-                                                            <option value="financeiro">Financeiro</option>
-                                                            <option value="suporte" >Suporte</option>
-                                                            <option value="tecnico" >Tecnico</option> 
+                                                            <option value="4" >Coodenador</option>
+                                                            {{-- <option value="financeiro">Financeiro</option> --}}
+                                                            <option value="6" >Suporte</option>
+                                                            {{-- <option value="tecnico" >Tecnico</option>  --}}
                                                         </optgroup>                                                   
         
                                                     </select> 
@@ -276,24 +276,10 @@
 
 
 @push('script-js')
-<script src="assets/libs/jquery/jquery.min.js"></script>
-<script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/libs/metismenu/metisMenu.min.js"></script>
-<script src="assets/libs/simplebar/simplebar.min.js"></script>
-<script src="assets/libs/node-waves/waves.min.js"></script>
-<script src="assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
-
 <script src="assets/libs/select2/js/select2.min.js"></script>
 <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
 <script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-
-
-<!-- form repeater js -->
-<script src="assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
-
-<!-- form repeater init -->
-<script src="assets/js/pages/form-repeater.init.js"></script>
 
 
 <!-- form advanced init -->
