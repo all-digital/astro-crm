@@ -1,12 +1,13 @@
 <?php
 
 use App\Models\Services;
-
 use App\Models\Companies;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -82,22 +83,35 @@ Route::get('dd', function(){
     // dd($user->profile()->get('companie')[0]->companie);  
    // dd(auth()->user()->profile()->get('companie')[0]->companie);
 
-   $createuserser = [
-    0 => "gerente",
-    1 => "vendedor",
-    2 => "suporte"
-   ];
+//    $createuserser = [
+//     0 => "gerente",
+//     1 => "vendedor",
+//     2 => "suporte"
+//    ];
 
-   $create_User = [
-    0 => "1",
-    1 => "3",    
-   ];
+//    $create_User = [
+//     0 => "1",
+//     1 => "3",    
+//    ];
 
-   foreach ($create_User as $value) {
-    echo "$value <br>";
-  }
+//    foreach ($create_User as $value) {
+//     echo "$value <br>";
+//   }
+
+//   dd(auth()->user()->profile->companie);
+
+  // Storage::get('file.jpg'),
+        // Storage::path('file.jpg');
+        // Storage::directories($directory);
 
 
+    //     dd(Storage::delete("users/9.png"));
+
+    //     $t = '9.png';
+
+    // dd(  Storage::exists("users/.$t") );
+
+        dd(url('/services'));
 
 });
 
@@ -126,9 +140,19 @@ Route::get('/empresas/testando', function () {
 
 Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'show']);
 Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'showEdit']);
+Route::get('/user-list', [App\Http\Controllers\Users\UsersController::class, 'index']);
 
 Route::post('/user',[App\Http\Controllers\Users\UsersController::class, 'store'])->name('user.store');
 Route::put('/user-edit',[App\Http\Controllers\Users\UsersController::class, 'update'])->name('user.update');
+
+
+                                            ////profile
+Route::get('/profile/{id}', function($id){
+    
+    return view('profiles.index');
+    // dd(base64_decode($id), base64_encode(5));   
+
+});                                            
 
                                            ////veiculos
 
