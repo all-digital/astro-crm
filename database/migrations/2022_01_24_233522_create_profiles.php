@@ -20,10 +20,13 @@ class CreateProfiles extends Migration
             $table->string('companie');
             $table->string('superiors')->nullable();
             $table->string('status')->nullable();
-            $table->string('avatar')->nullable();    
+            $table->string('avatar')->nullable(); 
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
 
             $table->timestamps();
         });

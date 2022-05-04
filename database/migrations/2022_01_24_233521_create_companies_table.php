@@ -28,10 +28,7 @@ class CreateCompaniesTable extends Migration
             $table->string('activation');
             $table->string('price_per_plate');
             $table->string('user_limit');
-            $table->string('price_per_extra_user');
-
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('price_per_extra_user');          
 
             $table->timestamps();
         });
