@@ -26,11 +26,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     {{-- ref ao select2 Multiple Select --}}
-    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link href="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link href="{{asset('assets/libs/select2/css/select2.min.css')}}"" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" />
 
-
+    
+    
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -44,7 +45,7 @@
       
      <link href="{{asset('assets/css/app.css')}}"  rel="stylesheet" type="text/css" />          
      
-     <link rel="stylesheet" href="{{asset('custom/css/style.css')}}">  
+     <link href="{{asset('custom/css/style.css')}}" rel="stylesheet">  
      
      <link  href="{{asset('custom/css/animation.css')}}" rel="stylesheet">
 
@@ -466,10 +467,10 @@
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user"
-                                    @if (auth()->user()->profile()->get('avatar')[0]->avatar == "null")                                    
+                                    @if (auth()->user()->profile->avatar == "null")                                    
                                         src="{{asset('assets/images/users/avatar-2.jpg')}}" style="max-width: 100px; max-height: 100px;"                          
                                     @else                                                                      
-                                        src="{{ url('storage/'.auth()->user()->profile()->get('avatar')[0]->avatar) }}" 
+                                        src="{{ url('storage/'.auth()->user()->profile()->get('avatar')[0]->avatar) }}" style="max-width: 100px; max-height: 100px;"
                                     @endif
                                         alt="Header Avatar">
                                     <span class="d-none d-xl-inline-block ms-1" style="color: #000;">{{ Auth::user()->name ?? ''}}</span>

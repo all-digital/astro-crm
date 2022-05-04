@@ -30,10 +30,10 @@ class UserSeeder extends Seeder
         $user = User::create([
             // 'name'=> 'suport',
             // 'email' => 'suport@suport',
-            'name'=> 'admin',
-            'email' => 'admin@admin',
-            // 'name'=> $faker->name(),
-            // 'email' => $faker->email(),
+            // 'name'=> 'admin2',
+            // 'email' => 'admin@admi2',
+            'name'=> $faker->name(),
+            'email' => $faker->email(),
             'password' => Hash::make('123456789'),                      
                         
         ]);
@@ -42,31 +42,30 @@ class UserSeeder extends Seeder
             'login'=> $faker->name(),
             'profile' => "perfil teste",
             // 'companie' => $faker->company(),
-            'companie' => 'allDigital',
+            'companie' => 'all digital',
             'superiors'=> $faker->name(),
             'status'=> "status ok",
-            'avatar' => "avatar"
-            
+            'avatar' => "avatar",
+            "company_id"=>1            
         ]);
 
-        $user->company()->create([
-            'cnpj' => rand(),
-            'social_Reason' => $faker->company(),
-            'fantasy_name' => $faker->company(),
-            'status' =>'Status OK',
-            'name_responsible' => $faker->name(),
-            'last_name_responsible' => $faker->lastName(),
-            'email_responsible' => $faker->email(),
-            'color' =>'verde',
-            'logo' =>'logo teste',
-            'monthly_payment' =>'100.00',
-            'activation' =>'100.00',
-            'price_per_plate' =>'100,20',
-            'user_limit' =>'5',
-            'price_per_extra_user' =>'1000,15'
-            
-            
-        ]);
+        // $user->company()->create([
+        //     'cnpj' => rand(),
+        //     'social_Reason' => $faker->company(),
+        //     'fantasy_name' => $faker->company(),
+        //     'status' =>'Status OK',
+        //     'name_responsible' => $faker->name(),
+        //     'last_name_responsible' => $faker->lastName(),
+        //     'email_responsible' => $faker->email(),
+        //     'color' =>'verde',
+        //     'logo' =>'logo teste',
+        //     'monthly_payment' =>'100.00',
+        //     'activation' =>'100.00',
+        //     'price_per_plate' =>'100,20',
+        //     'user_limit' =>'5',
+        //     'price_per_extra_user' =>'1000,15'
+                        
+        // ]);
 
         // $id = $user->company->id;
         // $company = Companies::find($id);

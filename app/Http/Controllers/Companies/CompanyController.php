@@ -13,12 +13,17 @@ class CompanyController extends Controller
 {
 
     public function index()
-    {        
+    {      
 
-        $companiesResult = Companies::where('user_id', auth()->user()->id)->get();            
+        // dd(auth()->user()->profile->company_id);
 
+
+        /////////
+        
+        $companiesResult = Companies::where('id', auth()->user()->profile->company_id)->get();            
+        
         $companies = $companiesResult->toArray();
-
+        // dd($companies );
 
         $companies = array_map(function($value){
 

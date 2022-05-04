@@ -19,6 +19,7 @@ class Profiles extends Model
         'superiors',
         'status',
         'avatar',
+        'company_id',
         'user_id'
     ];
 
@@ -28,6 +29,10 @@ class Profiles extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function company()
+    {
+        return $this->belongsTo(Companies::class);
+    }
 
 }//end class
 
