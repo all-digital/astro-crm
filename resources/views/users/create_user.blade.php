@@ -41,20 +41,38 @@
         
                                         <form id="form-create-user" action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
                                             @csrf
-                                            
-                                            <div class="mb-3 row">
-                                                <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
-                                                <div class="col-md-9">
-                                                    <input class="form-control @error('create_user_company') is-invalid @enderror"  type="text" readonly
-                                                    id="create_user_company" name="create_user_company" value="{{auth()->user()->profile()->get('companie')[0]->companie}}">
 
-                                                    @error('create_user_company')                                           
-                                                        <div class="invalid-feedback">
-                                                            {{$message}}                                          
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                            {{-- super admin  --}}
+                                            @if ($admin)
+                                                <div class="mb-3 row">
+                                                    <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control @error('create_user_company') is-invalid @enderror"  type="text" 
+                                                        id="create_user_company" name="create_user_company" value="{{$company}}">
+
+                                                        @error('create_user_company')                                           
+                                                            <div class="invalid-feedback">
+                                                                {{$message}}                                          
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>                                                
+                                            @else
+                                                <div class="mb-3 row">
+                                                    <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
+                                                    <div class="col-md-9">
+                                                        <input class="form-control @error('create_user_company') is-invalid @enderror"  type="text" readonly
+                                                        id="create_user_company" name="create_user_company" value="{{$company}}">
+
+                                                        @error('create_user_company')                                           
+                                                            <div class="invalid-feedback">
+                                                                {{$message}}                                          
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>                                                 
+                                            @endif
+                                            
                                             
                                             
                                             <div class="mb-3 row" readonly>
@@ -65,18 +83,12 @@
                                                         <option value="inativo">Inativo</option>
                                                     </select>
                                                 </div>
-                                            </div>
-                                            
-                                            {{-- criar um if por q só adm vai poder alterar nesse caso readonly só funciona em input --}}
-                                            {{-- <input class="form-control" type="search" value="Ativo"
-                                            id="add-status" readonly> --}}
-                                            
+                                            </div>                                                                                    
                                             
                                             <div class="mb-3 row">
                                                 <label for="create_user_loginEmail" class="col-md-3 col-form-label">Login</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('create_user_loginEmail') is-invalid @enderror" value="{{ old('create_user_loginEmail') }}"  type="text" value="login Email"
-                                                    id="create_user_loginEmail" name="create_user_loginEmail">
+                                                    <input class="form-control @error('create_user_loginEmail') is-invalid @enderror" value="{{ old('create_user_loginEmail') }}" type="email" id="create_user_loginEmail" title='Deve ser um email válido' name="create_user_loginEmail" >
 
                                                     @error('create_user_loginEmail')                                           
                                                         <div class="invalid-feedback">
@@ -91,15 +103,17 @@
                                                <div class="col-md-9">
                                                     <select id="create_user_perfil" name="create_user_perfil[]" class="select2 form-control select2-multiple @error('create_user_perfil') is-invalid @enderror" multiple="multiple"
                                                         data-placeholder="Adicione o nivel de permissionamento do usuario">
-                                                        <optgroup label="Nivel 1">
-                                                            <option value="1">Admin</option>                                                        <option value="3">Gerente</option>
-                                                            <option value="5">Supervior</option>
+                                                        <optgroup label="Nivel 1">                                                            
+                                                            <option value="1">Admin</option> 
+                                                            <option value="2">Gerente</option>
+                                                            <option value="3">Coordenador</option>                                                            
                                                         </optgroup>
                                                         <optgroup label="Nivel 2">                                                       
-                                                            <option value="4" >Coodenador</option>
-                                                            {{-- <option value="financeiro">Financeiro</option> --}}
-                                                            <option value="6" >Suporte</option>
-                                                            {{-- <option value="tecnico" >Tecnico</option>  --}}
+                                                            <option value="4">Comercial</option>
+                                                            <option value="5">Vendedor</option>
+                                                            <option value="6">Financeiro</option>
+                                                            <option value="7" >Suporte</option>
+                                                            <option value="8" >Técnico</option> 
                                                         </optgroup>                                                   
         
                                                     </select> 

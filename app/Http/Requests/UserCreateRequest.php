@@ -32,7 +32,7 @@ class UserCreateRequest extends FormRequest
             'user_create_name' => 'required|min:6',            
             'user_create_lastname' => 'required|min:6',
             'create_user_perfil' => 'required',
-            'create_user_avatar' => 'required|file|dimensions:max_width=120,max_height=130',
+            'create_user_avatar' => 'file|dimensions:max_width=120,max_height=130',
             // 'create_user_date_insert' => 'required|date',
             // 'create_user_user_insert' => 'required|date',
             'create_user_password' => 'required_with:create_user_password_confirm|same:create_user_password_confirm|min:8',

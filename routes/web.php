@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+
+
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -139,11 +142,11 @@ Route::get('/empresas/testando', function () {
                                             ////user
 
 Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'show']);
-Route::get('/user-edit', [App\Http\Controllers\Users\UsersController::class, 'showEdit']);
+Route::get('/user-edit/{id}', [App\Http\Controllers\Users\UsersController::class, 'showEdit']);
 Route::get('/user-list', [App\Http\Controllers\Users\UsersController::class, 'index']);
 
 Route::post('/user',[App\Http\Controllers\Users\UsersController::class, 'store'])->name('user.store');
-Route::put('/user-edit',[App\Http\Controllers\Users\UsersController::class, 'update'])->name('user.update');
+Route::put('/user-edit/{id}',[App\Http\Controllers\Users\UsersController::class, 'update'])->name('user.update');
 
 
                                             ////profile
@@ -239,7 +242,24 @@ Route::get('client', function(){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+Route::get('test', function(){
 
+    // $avatar = User::find(2)->profile->avatar;
+    // dd( $avatar);
+
+    $img = Storage::get('users/user.png');
+    $extension = $img->extension();
+    dd($extension);
+
+    dd(auth()->user()->id);
+
+    $user = auth()->user()->with('profile')->find(1)->toArray();
+
+    
+    dd($user["profile"]['companie']);
+
+    dd(auth()->user()->profile->company_id);
+});
 
 Route::prefix('teste')->group(function () {
     

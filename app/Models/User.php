@@ -53,10 +53,10 @@ class User extends Authenticatable
     }
 
 
-    public function company()
-    {
-        return $this->hasOne(Companies::class);
-    }
+    // public function company()
+    // {
+    //     return $this->hasOne(Companies::class);
+    // }
 
 
     //Relations 

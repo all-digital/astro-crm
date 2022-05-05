@@ -49,7 +49,7 @@
                                             <div class="text-danger" >{{ $errors->get('update_user_password')[0] }} </div>                                                  
                                         @endif
         
-                                        <form id="fnamem-update_user" action="{{route('user.update')}}" method="POST" enctype="multipart/form-data">
+                                        <form id="form-update_user" action="{{route('user.update',$id)}}" method="POST" enctype="multipart/form-data">
                                         @method('PUT')  
                                         @csrf 
                                             <div class="mb-3 row">
@@ -254,7 +254,7 @@
                                              <!-- /.modal-content -->
 
                                              <img class="rounded-circle header-profile-user"
-                                                src="{{ url('storage/'.auth()->user()->profile()->get('avatar')[0]->avatar) }}" style="max-width: 100px; max-height: 100px;"
+                                                src="{{ url('storage/'.$avatar) }}" style="max-width: 100px; max-height: 100px;"
                                              >
                                             
                                             
@@ -363,18 +363,17 @@
 
 @endsection
 
-
 @push('script-js')
-<script src="assets/libs/select2/js/select2.min.js"></script>
-<script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-<script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+<script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
 
 
 <!-- form advanced init -->
-<script src="assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
  
-<script src="assets/js/app.js"></script>
+<script src="{{asset('assets/js/app.js')}}"></script>
        
 @endpush
 
