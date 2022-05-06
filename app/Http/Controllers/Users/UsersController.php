@@ -21,21 +21,22 @@ class UsersController extends Controller
 {
     
     public function index()
-    {          
+    {         
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
         $idCompany = auth()->user()->profile->company->id;
 
-        $users = Profiles::where('company_id', $idCompany)      
-        ->get();
-                    
+        $users = Profiles::where('company_id', $idCompany)->get();    
         $users = $users->toArray();
+                           
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
 
-        //teste 
-        $admin = true;
-
-        $url = url('/profile');
+        $urlProfile = url('/profile');
         $urlEditUser = url('/user-edit');
         //
-        $users = array_map(function($value)use ($url, $urlEditUser, $admin){
+        $users = array_map(function($value)use ($urlProfile, $urlEditUser, $permission){
 
             // $created_at = Carbon::parse($value['created_at'], 'UTC');
             // $updated_at = Carbon::parse($value['updated_at'], 'UTC');
@@ -43,13 +44,13 @@ class UsersController extends Controller
             // $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
             // $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
 
-            $id = $value['id'];
+            $id = $value['user_id'];
 
-            if($admin)
+            if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
             {
-                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$url\\$id' >Perfil</a> <a class='btn btn-primary' target ='_blank' href='$urlEditUser\\$id' >Alterar</a> </div>";
+                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a> <a class='btn btn-primary' target ='_blank' href='$urlEditUser\\$id' >Alterar</a> </div>";
             }else{
-                $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$url\\$id' >Perfil</a></div>" ;
+                $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a></div>" ;
             }
            
             $avatar = $value['avatar'];
@@ -58,7 +59,7 @@ class UsersController extends Controller
             return $value; 
         },$users);
 
-        return view('users.list_user',compact('users')); 
+        return view('users.list_user',compact('users','permission')); 
     }//end index
 
 
@@ -66,17 +67,30 @@ class UsersController extends Controller
     {   
         $company = User::find(auth()->user()->id)->profile->company->social_Reason;
 
-        //test
-        $admin = false;
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
 
-        return view('users.create_user',compact('company','admin'));
+        return view('users.create_user',compact('company','permission'));
     }//end show
 
     public function showEdit(Request $request, $id)
-    {          
-        $avatar = User::find($id)->profile->avatar;
-    //    dd( $avatar);
-        return view('users.edit_user',compact('id', 'avatar'));
+    {   
+        $user = User::with('profile')->find($id);  
+
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
+
+        
+        $roles = $user->roles()->get()->toArray();                
+        $roles = array_map(function($value){
+            return $value['id'];    
+        },$roles);
+    
+        return view('users.edit_user',compact('id', 'user','roles','permission'));
     }//end showEdit
 
 
@@ -126,9 +140,9 @@ class UsersController extends Controller
             'company_id'=>$companyUserAuth,
             'avatar' => $PathImage     
         ]);
-
         $user->save();
 
+        debug($user->id);
 
         return redirect('user')                
         ->withSuccess('Usuario Cadastrado com Sucesso');

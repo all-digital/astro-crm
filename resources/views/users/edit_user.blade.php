@@ -52,10 +52,13 @@
                                         <form id="form-update_user" action="{{route('user.update',$id)}}" method="POST" enctype="multipart/form-data">
                                         @method('PUT')  
                                         @csrf 
+                                        
+                                        {{-- superAdmin --}}
+                                        @if (in_array('Super Admin',$permission) || in_array('Admin',$permission) )
                                             <div class="mb-3 row">
                                                 <label for="update_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ old('update_user_company') }}" type="text" value="empresa"
+                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ $user->profile->companie }}" type="text" value="empresa"
                                                     id="update_user_company" name="update_user_company">
 
                                                     @error('update_user_company')                                           
@@ -64,19 +67,42 @@
                                                         </div>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                            
-                                            
-                                            <div class="mb-3 row" readonly>
-                                                <label class="col-md-3 col-form-label">Status</label>
+                                            </div>                                            
+                                        @else
+                                            <div class="mb-3 row">
+                                                <label for="update_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <select name="update_user_status" class="form-select" aria-label="Default select example">
-                                                        {{-- <option selected>Selecione</option> --}}
-                                                        <option value="ativo" selected >Ativo</option>
-                                                        <option value="inativo">Inativo</option>
-                                                    </select>
+                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ $user->profile->companie}}" type="text" value="empresa"
+                                                    id="update_user_company" name="update_user_company" readonly>
+
+                                                    @error('update_user_company')                                           
+                                                        <div class="invalid-feedback">
+                                                            {{$message}}                                          
+                                                        </div>
+                                                    @enderror
                                                 </div>
-                                            </div>
+                                            </div> 
+                                        @endif
+                                            
+                                            @if (in_array('Super Admin',$permission) || in_array('Admin',$permission))
+                                                <div class="mb-3 row" readonly>
+                                                    <label class="col-md-3 col-form-label">Status</label>
+                                                    <div class="col-md-9">
+                                                        <select name="update_user_status" class="form-select" aria-label="Default select example">
+                                                            {{-- <option selected>Selecione</option> --}}
+                                                            <option value="ativo" selected >Ativo</option>
+                                                            <option value="inativo">Inativo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>                                                
+                                            @else
+                                                <div class="mb-3 row" readonly>
+                                                    <label class="col-md-3 col-form-label">Status</label>
+                                                    <div class="col-md-9">
+                                                        <input name="update_user_status" class="form-control" value="{{$user->profile->status}}" readonly>                                                        
+                                                    </div>
+                                                </div> 
+                                            @endif
                                             
                                             {{-- criar um if por q só adm vai poder alterar nesse caso readonly só funciona em input --}}
                                             {{-- <input class="form-control" type="search" value="Ativo"
@@ -85,7 +111,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_loginEmail" class="col-md-3 col-form-label">Login</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control  @error('update_user_loginEmail') is-invalid @enderror" value="{{ old('update_user_loginEmail') }}" type="email" value="login@Email"
+                                                    <input class="form-control  @error('update_user_loginEmail') is-invalid @enderror" value="{{ $user->email }}" type="email" value="login@Email"
                                                     id="update_user_loginEmail" name="update_user_loginEmail" readonly>
 
                                                     @error('update_user_loginEmail')                                           
@@ -101,17 +127,19 @@
                                                 <div class="col-md-9">
                                                      <select id="update_user_perfil" name="update_user_perfil[]" class="select2 form-control select2-multiple @error('update_user_perfil') is-invalid @enderror" multiple="multiple"
                                                          data-placeholder="Adicione o nivel de permissionamento do usuario">
-                                                         <optgroup label="Nivel 1">
-                                                             <option value="1">Admin</option>                                                        
-                                                             <option value="5">Supervior</option>
-                                                             <option value="3">Gerente</option>
-                                                         </optgroup>
-                                                         <optgroup label="Nivel 2">                                                       
-                                                             <option value="4" >Coodenador</option>
-                                                             {{-- <option value="financeiro">Financeiro</option> --}}
-                                                             <option value="6" >Suporte</option>
-                                                             {{-- <option value="tecnico" >Tecnico</option>  --}}
-                                                         </optgroup>                                                   
+                                                     
+                                                         <optgroup label="Nivel 1">                                                            
+                                                            <option value="1" @if(in_array(1,$roles)) selected @endif>Admin</option> 
+                                                            <option value="2" @if(in_array(2,$roles)) selected @endif>Gerente</option>
+                                                            <option value="3" @if(in_array(3,$roles)) selected @endif>Coordenador</option>                                                            
+                                                        </optgroup>
+                                                        <optgroup label="Nivel 2">                                                       
+                                                            <option value="4"@if(in_array(4,$roles)) selected @endif>Comercial</option>
+                                                            <option value="5"@if(in_array(5,$roles)) selected @endif>Vendedor</option>
+                                                            <option value="6"@if(in_array(6,$roles)) selected @endif>Financeiro</option>
+                                                            <option value="7"@if(in_array(7,$roles)) selected @endif>Suporte</option>
+                                                            <option value="8"@if(in_array(8,$roles)) selected @endif>Técnico</option> 
+                                                        </optgroup>                                             
          
                                                      </select> 
  
@@ -137,7 +165,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_name" class="col-md-3 col-form-label">Nome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_name') is-invalid @enderror" value="{{ old('update_user_name') }}" type="text" value="Nome"  
+                                                    <input class="form-control @error('update_user_name') is-invalid @enderror" value="{{ $user->name }}" type="text" value="Nome"  
                                                         id="update_user_name" name="update_user_name">
 
                                                     @error('update_user_name')                                           
@@ -151,7 +179,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_lastname" class="col-md-3 col-form-label">Sobrenome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_lastname') is-invalid @enderror" value="{{ old('update_user_lastname') }}" type="text" value="Sobrenome"  
+                                                    <input class="form-control @error('update_user_lastname') is-invalid @enderror" value="{{ $user->lastName ?? "arrumar no banco" }}" type="text" value="Sobrenome"  
                                                         id="update_user_lastname" name="update_user_lastname">
 
                                                     @error('update_user_lastname')                                           
@@ -254,7 +282,7 @@
                                              <!-- /.modal-content -->
 
                                              <img class="rounded-circle header-profile-user"
-                                                src="{{ url('storage/'.$avatar) }}" style="max-width: 100px; max-height: 100px;"
+                                                src="{{ url('storage/'.$user->profile->avatar) }}" style="max-width: 100px; max-height: 100px;"
                                              >
                                             
                                             

@@ -244,6 +244,23 @@ Route::get('client', function(){
 
 Route::get('test', function(){
 
+
+   dd( $authUser = auth()->user()->roles()->get()->toArray());
+
+    $user = User::find(3);
+
+    $Permission = $user->roles()->get()->toArray();
+  
+
+    $p = array_map(function($value){
+
+        return $value['name'];
+
+    },$Permission);
+
+
+    dd($p);
+
     // $avatar = User::find(2)->profile->avatar;
     // dd( $avatar);
 

@@ -43,7 +43,7 @@
                                             @csrf
 
                                             {{-- super admin  --}}
-                                            @if ($admin)
+                                            @if (in_array('Super Admin',$permission))
                                                 <div class="mb-3 row">
                                                     <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                     <div class="col-md-9">
@@ -109,7 +109,7 @@
                                                             <option value="3">Coordenador</option>                                                            
                                                         </optgroup>
                                                         <optgroup label="Nivel 2">                                                       
-                                                            <option value="4">Comercial</option>
+                                                            <option value="4" >Comercial</option>
                                                             <option value="5">Vendedor</option>
                                                             <option value="6">Financeiro</option>
                                                             <option value="7" >Suporte</option>
