@@ -16,7 +16,6 @@ class CompanyController extends Controller
         //getting the authenticated user of the action
         $authRequest = $request->input('authUser');
         
-
         //debug($request->all());
 
         $validator = Validator::make($request->all(), [            
@@ -96,5 +95,13 @@ class CompanyController extends Controller
         
 
     }//end methods
+
+    public function editCompany(Request $request)
+    {
+        debug($request->all());
+
+        return response()->json(['status'  => 'Sucesso na edição']);
+
+    }//end editCompany
 
 }//end class

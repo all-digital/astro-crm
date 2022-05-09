@@ -14,18 +14,26 @@ class CompanyController extends Controller
 
     public function index()
     {      
-
-        // dd(auth()->user()->profile->company_id);
-
-
-        /////////
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
         
-        $companiesResult = Companies::where('id', auth()->user()->profile->company_id)->get();            
-        
-        $companies = $companiesResult->toArray();
-        // dd($companies );
 
-        $companies = array_map(function($value){
+        if(in_array('Super Admin',$permission))
+        {
+            $companies = Companies::all()->toArray();
+        }else{
+
+            $companiesResult = Companies::where('id', auth()->user()->profile->company_id)->get();         
+            $companies = $companiesResult->toArray();              
+
+        }//end else
+
+        
+        $urlEditCompany = url('/company-edit');
+
+        $companies = array_map(function($value)use($urlEditCompany, $permission){
 
 
             $created_at = Carbon::parse($value['created_at'], 'UTC');
@@ -35,7 +43,13 @@ class CompanyController extends Controller
             $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
 
             $id = $value['id'];
-            $value['modulos'] = "<button class='btn btn-primary p-1' onClick='alert(`o id é $id`)'>Modulos</button>";
+           
+            if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
+            {
+                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='#' >Modulos</a> <a class='btn btn-primary' target ='_blank' href='$urlEditCompany\\$id' >Editar</a> </div>";
+            }else{
+                $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlEditCompany\\$id' >Editar</a></div>" ;
+            }
 
 
             return $value;
@@ -50,17 +64,26 @@ class CompanyController extends Controller
 
 
 
-    public function createCompany()
+    public function showCreateCompany()
     {
-        return view('companies.create_companies');   
+        return view('companies.create_company');   
 
     }//end method
 
-    public function editCompany()
+    public function showEditCompany(Request $request, $id)
     {
-        return view('companies.edit_companies');
+        $company = Companies::find($id)->toArray();
+
+        debug($id);
+        debug($company);
+
+       return view('companies.edit_company',compact('company'));
 
     }//method
    
+    public function update($request, $id)
+    {
+
+    }//end update
 
 }//end class

@@ -131,8 +131,8 @@ Route::get('/export-services', [App\Http\Controllers\Services\ServicesController
                                         //router related to company
 
 Route::get('/company', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
-Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'createCompany'])->name('company.add');
-Route::get('/company-edit', [App\Http\Controllers\Companies\CompanyController::class, 'editCompany'])->name('company.edit');
+Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'showCreateCompany'])->name('company.add');
+Route::get('/company-edit/{id}', [App\Http\Controllers\Companies\CompanyController::class, 'showEditCompany'])->name('company.edit');
 
 
 Route::get('/empresas/testando', function () {

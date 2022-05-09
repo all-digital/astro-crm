@@ -108,7 +108,7 @@
                 
                         data: companies,
                         columns: [
-                            {data: 'modulos'},
+                            {data: 'button'},
                             {data: 'social_Reason'},
                             {data: 'fantasy_name'},
                             {data: 'cnpj' }, 

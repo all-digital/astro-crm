@@ -28,7 +28,7 @@
                     <h4 class="card-title">Editar Empresa</h4>
 
                     <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
-                        <h3>Nome da Empresa</h3>
+                        {{-- <h3>{{$company['companies']}}</h3> --}}
                         <fieldset>
                             <div class="row">
                                 <div class="col-md-6">
@@ -928,25 +928,6 @@
                             form.email.removeAttribute("style")
                             validEmail.setAttribute("class","d-none")
                         }
-
-
-
-                          console.log(
-                            form.cnpj.value,
-                            form.socialReason.value,
-                            form.fantasyName.value,
-                            form.status.value,
-                            form.responsible.value,
-                            form.email.value,
-                            // form.mainColor.value,
-                            // form.logo.value,
-                            form.monthPayment.value,
-                            form.activation.value,
-                            form.pricePerPlate.value,
-                            form.userLimit.value,
-                            form.pricePerExtraUser.value
-                        )
-
                         
 
                         let validation = true
@@ -972,15 +953,54 @@
                     //// end method onFinishing
 
                     onFinished: function() {
+
+                        let form = document.querySelector('#form-horizontal')
+                        
+                        let result = {
+                            "cnpj" :             form.cnpj.value,
+                            "socialReason":      form.socialReason.value,
+                            "fantasyName":       form.fantasyName.value,
+                            "status":            form.status.value,
+                            "responsible":       form.responsible.value,
+                            "email":             form.email.value.value,                            
+                            "monthPayment":      form.monthPayment.value,
+                            "activation":        form.activation.value,
+                            "pricePerPlate":     form.pricePerPlate.value,
+                            "userLimit":         form.userLimit.value,
+                            "pricePerExtraUser": form.pricePerExtraUser.value
+                            // "authUser":  authUser
+                        }
+
+                        console.log(result)
+
+                        fetch('/api/company-edit',{ 
+                                method:'PUT',        
+                                body: JSON.stringify(result),
+                                headers:{
+                                    "Content-type":"application/json",
+                                    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                }                            
+                        })
+                        .then(res => res.json())
+                        .then((res)=>{
+
+                            console.log(res)
+                        
+                            Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: 'passou',
+                                    // footer: 'top..',
+                                    showConfirmButton: true,
+                                    // timer: 3000
+                            })  
+                        
+                        })
+                        .catch((error)=>{console.log("error => ",error)})      
+
                                                 
-                        Swal.fire({
-                                icon: 'success',
-                                title: 'SUccess',
-                                text: 'passou',
-                                // footer: 'top..',
-                                showConfirmButton: true,
-                                // timer: 3000
-                            })                      
+                                                        
+
                     },
                     //// end method onFinished
 
