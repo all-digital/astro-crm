@@ -206,6 +206,11 @@ Route::get('client', function(){
 });
 
 
+                                              ////ordenService
+
+Route::get('os', fn()=> 
+   view('orderService.index')
+);                                              
 
 
 
@@ -279,8 +284,10 @@ Route::get('test', function(){
 });
 
 Route::prefix('teste')->group(function () {
+
+    Route::get('/teste', fn()=> dd('testando .......'));
     
-    Route::get('/teste', [App\Http\Controllers\Companies\CompanyController::class, 'teste']);
+    // Route::get('/teste', [App\Http\Controllers\Companies\CompanyController::class, 'teste']);
     //
     Route::get('/teste2', function () {
         // Matches The "/admin/users" URL
