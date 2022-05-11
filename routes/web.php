@@ -208,10 +208,8 @@ Route::get('client', function(){
 
                                               ////ordenService
 
-Route::get('os', fn()=> 
-   view('orderService.index')
-);                                              
-
+Route::get('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'show']);                                              
+Route::post('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'store'])->name('os.store');    
 
 
                                         ////////////routes teste
