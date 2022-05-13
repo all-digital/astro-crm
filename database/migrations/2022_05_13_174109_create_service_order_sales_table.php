@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServicesOrderMaintenance extends Migration
+class CreateServiceOrderSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateServicesOrderMaintenance extends Migration
      */
     public function up()
     {
-        Schema::create('services_order_maintenance', function (Blueprint $table) {
+        Schema::create('service_order_sales', function (Blueprint $table) {
             $table->id();
             $table->string('customer');
             $table->string('status');
@@ -36,8 +36,8 @@ class CreateServicesOrderMaintenance extends Migration
             $table->string('country_customer');
 
             $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers');
-            
+            $table->foreign('customer_id')->references('id')->on('customers');           
+           
             $table->timestamps();
         });
     }
@@ -49,6 +49,6 @@ class CreateServicesOrderMaintenance extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services_order_maintenance');
+        Schema::dropIfExists('service_order_sales');
     }
 }

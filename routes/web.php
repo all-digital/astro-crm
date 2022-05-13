@@ -205,6 +205,10 @@ Route::get('client', function(){
     return view('clients.create_client');
 });
 
+Route::get('client-list', function(){
+    return view('clients.index');
+});
+
 
                                               ////ordenService
 
