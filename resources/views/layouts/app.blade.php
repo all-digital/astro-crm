@@ -21,6 +21,11 @@
 
     <script src="{{asset('libs/alpinejs_3.7.1.min.js')}}" defer></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script>
+       window.Sortablejs = Sortable;
+    </script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -30,7 +35,13 @@
     <link href="{{asset('assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" />
 
-    
+
+
+      <!-- leads kanban-->
+      <!-- dragula css -->
+      <link href="assets/libs/dragula/dragula.min.css" rel="stylesheet" type="text/css" />      
+      <!-- Lightbox css -->
+      <link href="assets/libs/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
     
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
@@ -48,6 +59,9 @@
      <link href="{{asset('custom/css/style.css')}}" rel="stylesheet">  
      
      <link  href="{{asset('custom/css/animation.css')}}" rel="stylesheet">
+     
+     <!-- leads kanban-->
+     <link href="{{asset('custom/css/kanban.css')}}" rel="stylesheet">
 
      @livewireStyles
 
