@@ -189,9 +189,7 @@ Route::get('/equip-index', function(){
     return view('teste');
 });
 
-Route::get('teste', function(){
-    return view('teste');
-});
+
 
 Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
 Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'show']);
@@ -308,3 +306,12 @@ Route::prefix('teste')->group(function () {
 });
 
 
+//////////////////
+
+Route::get('teste', function(){
+    return view('teste');
+});
+
+Route::get('teste1', function(){
+    return view('kanban');
+});

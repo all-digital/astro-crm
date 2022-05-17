@@ -16,12 +16,15 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         Role::insert([
-            ['name'=>'Super Admin'],    //id 1
-            ['name'=>'Admin'],          //id 2
-            ['name'=>'Gerencia'],       //id 3
-            ['name'=>'Coordenador'],    //id 4
-            ['name'=>'Supervisor'],     //id 5
-            ['name'=>'Suporte']         //id 6   
+            ['name'=>'Super Admin'],   //id 1
+            ['name'=>'Admin'],         //id 2
+            ['name'=>'Gerente'],       //id 3
+            ['name'=>'Coordenador'],   //id 4
+            ['name'=>'Comercial'],     //id 5
+            ['name'=>'Vendedor'] ,     //id 6 
+            ['name'=>'Financeiro'],    // id 7 
+            ['name'=>'Suporte'],       // id 8 
+            ['name'=>'Tecnico']        //id 9     
         ]);
     }
 }

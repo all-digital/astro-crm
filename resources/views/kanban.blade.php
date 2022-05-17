@@ -43,125 +43,22 @@
 
 
 
-
                     <!-- ?  ------------------------------------   -->
                     <!-- ?  CSS PARA ROLAR A TELA   -->
 
-                <div class="row" style="flex-wrap: nowrap; overflow-x: scroll;"
-                x-data x-init="Sortable.create($el,{
-                    animation:150,
-                    {{-- handle:'.image-test' --}}
-                })">
-                                  
-                 
+                <!-- ?  div master   -->
+                <div class="row" style="flex-wrap: nowrap; overflow-x: scroll;">                     
+                  
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
-
-                        <div  x-data x-init="Sortable.create($el,{
-                            animation:150,
-                            {{-- handle:'.image-test' --}}
-                        })">
-                            
-                            <div class="card card-collun-title">
-
-                                <div class="card-body">
-
-                                    <!-- <div class="dropdown float-right">
-                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- !  ------------------------------------   -->
-                                    <!-- !  TITULO DA COLUNA   -->
-                                    <h4 class="card-title mb-4" style="color: white;">Perdido</h4>
-
-                                    <div class="extra-info row">
-
-                                        <div class="col-6 cards-qtd">0 Leads</div>
-
-                                        <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
-
-                                        <!-- <div class="col-6 cards-qtd">0 Cards</div>
-
-                                        <div class="col-6 income">R$ 0,00</div> -->
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <!-- !   CARD DE CRIAR NOVO LEAD / OPORTUNIDADE   -->
-
-                            <div class="card board-cards">
-
-                                <div class="card-body" style="width: 321px; padding: 0px;">
-
-                                    <div id="lost" class="pb-1 task-list">
-
-                                        <div class="card new-card" style="border-radius: 10px;">
-                                            <div class="card-body teste" >
-                                                <p>+ Add Novo Lead</p>
-                                                <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card board-cards">
-
-                                <div class="card-body" style="width: 321px; padding: 0px;">
-
-                                    <div id="lost" class="pb-1 task-list">
-
-                                        <div class="card new-card" style="border-radius: 10px;">
-                                            <div class="card-body teste">
-                                                <p>+ Add Novo Lead teste</p>
-                                                <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        {{--  end fim --}}
-
-                        </div>
-
+                           
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
 
                             <div class="card card-collun-title">
 
-                                <div class="card-body">
-
-                                    <!-- <div class="dropdown float-right">
-                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </div> -->
-
+                                <div class="card-body">                          
                                     <!-- !  ------------------------------------   -->
                                     <!-- !  TITULO DA COLUNA   -->
-                                    <h4 class="card-title mb-4" style="color: white;">Contato Pendente</h4>
+                                    <h4 class="card-title mb-4" style="color: white;">Pedido</h4>
 
                                     <div class="extra-info row">
 
@@ -180,17 +77,34 @@
 
                             </div>
 
-                            <div class="card board-cards">
+                        
+                            <div class="card board-cards " style="width: 321px; padding: 0px;" >
 
-                                <div class="card-body" style="width: 321px; padding: 0px;">
 
-                                    <div id="pending_contact" class="pb-1 task-list">
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
+                                
 
-                                        <div class="card task-box" style="border-radius: 10px;"
-                                         {{-- x-data x-init="Sortable.create($el)" --}}
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                    onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids 1', groupIds)
+                                    }  
+                                    {{-- handle:'.image-test' --}}
+                                    })">
 
-                                         >
-
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="1">
+                                    
                                             <div class="card-body">
 
                                                 <!-- !    TAGS COLORIDAS    -->
@@ -265,7 +179,7 @@
                                         <!-- end task card -->
 
                                         
-                                        <div class="card task-box" style="border-radius: 10px;">
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="2">
                                             <div class="card-body">
 
                                                 <!-- !    TAGS COLORIDAS    -->
@@ -328,37 +242,19 @@
                                             </div>
 
                                         </div>
-
-                                        <div class="card new-card" style="border-radius: 10px;">
-                                            <div class="card-body">
-                                                <p>+ Add Novo Lead</p>
-                                                <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
-                                            </div>
-                                        </div>
+                                                                            
 
                                     </div>
-                                </div>
                             </div>
+                            
                         </div>
-
+                        {{--  fim  coluna--}}
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
 
                             <div class="card card-collun-title">
 
-                                <div class="card-body">
-
-                                    <!-- <div class="dropdown float-right">
-                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </div> -->
-
+                                <div class="card-body">                          
                                     <!-- !  ------------------------------------   -->
                                     <!-- !  TITULO DA COLUNA   -->
                                     <h4 class="card-title mb-4" style="color: white;">Contato Pendente</h4>
@@ -380,48 +276,185 @@
 
                             </div>
 
-                            <!-- !   CARD DE CRIAR NOVO LEAD / OPORTUNIDADE   -->
+                        
+                            <div class="card board-cards " style="width: 321px;" >
 
-                            <div class="card board-cards">
 
-                                <div class="card-body" style="width: 321px; padding: 0px;">
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
+                                
 
-                                    <div id="iniciated_contact" class="pb-1 task-list">
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                      onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids 2', groupIds)
+                                     }  
+                                    {{-- handle:'.image-test' --}}
+                                  })">
 
-                                        <div class="card new-card" style="border-radius: 10px;">
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="3">
+                                     
                                             <div class="card-body">
-                                                <p>+ Add Novo Lead</p>
-                                                <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #FF3838;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #891BE8;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- *    IMAGEM DE CAPA    -->
+
+                                                <a class="image-popup-no-margins" href="photo.png">                                                
+                                                    <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
+                                                </a>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        SP
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            Car System
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Facebook</li>
+                                                        <li class="py-1 li-style">CNPJ</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
                                             </div>
 
                                         </div>
+                                        <!-- end task card -->
+
+                                        
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="4">
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        RJ
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            João França
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Website</li>
+                                                        <li class="py-1 li-style">CPF</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                                                               
 
                                     </div>
-                                </div>
                             </div>
-
-
-
+                            
                         </div>
-
-
+                        {{--  fim  coluna--}}
+                       
+                        
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
 
                             <div class="card card-collun-title">
 
-                                <div class="card-body">
-
-                                    <!-- <div class="dropdown float-right">
-                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </div> -->
-
+                                <div class="card-body">                          
                                     <!-- !  ------------------------------------   -->
                                     <!-- !  TITULO DA COLUNA   -->
                                     <h4 class="card-title mb-4" style="color: white;">Aguardando Retorno</h4>
@@ -443,47 +476,184 @@
 
                             </div>
 
-                            <!-- !   CARD DE CRIAR NOVO LEAD / OPORTUNIDADE   -->
+                        
+                            <div class="card board-cards " style="width: 321px;" >
 
-                            <div class="card board-cards">
 
-                                <div class="card-body" style="width: 321px; padding: 0px;">
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
+                                
 
-                                    <div id="waiting" class="pb-1 task-list">
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                      onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids 3', groupIds)
+                                     }  
+                                    {{-- handle:'.image-test' --}}
+                                    })">
 
-                                        <div class="card new-card" style="border-radius: 10px;">
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="5">
+                                     
                                             <div class="card-body">
-                                                <p>+ Add Novo Lead</p>
-                                                <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #FF3838;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #891BE8;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- *    IMAGEM DE CAPA    -->
+
+                                                <a class="image-popup-no-margins" href="photo.png">                                                
+                                                    <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
+                                                </a>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        SP
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            Car System
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Facebook</li>
+                                                        <li class="py-1 li-style">CNPJ</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
                                             </div>
 
                                         </div>
+                                        <!-- end task card -->
+
+                                        
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="6">
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        RJ
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            João França
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Website</li>
+                                                        <li class="py-1 li-style">CPF</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                                                               
 
                                     </div>
-                                </div>
                             </div>
-
-
-
+                            
                         </div>
+                        {{--  fim  coluna--}}
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
 
                             <div class="card card-collun-title">
 
-                                <div class="card-body">
-
-                                    <!-- <div class="dropdown float-right">
-                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                    </div> -->
-
+                                <div class="card-body">                          
                                     <!-- !  ------------------------------------   -->
                                     <!-- !  TITULO DA COLUNA   -->
                                     <h4 class="card-title mb-4" style="color: white;">Convertido</h4>
@@ -505,27 +675,182 @@
 
                             </div>
 
-                            <!-- !   CARD DE CRIAR NOVO LEAD / OPORTUNIDADE   -->
+                        
+                            <div class="card board-cards " style="width: 321px;" >
 
-                            <div class="card board-cards">
 
-                                <div class="card-body" style="width: 321px; padding: 0px;">
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
+                                
 
-                                    <div id="win" class="pb-1 task-list">
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                      onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids 4', groupIds)
+                                     }  
+                                    {{-- handle:'.image-test' --}}
+                                  })">
 
-                                        <div class="card new-card" style="border-radius: 10px;">
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="7">
+                                     
                                             <div class="card-body">
-                                                <p>+ Add Novo Lead</p>
-                                                <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #FF3838;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #891BE8;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- *    IMAGEM DE CAPA    -->
+
+                                                <a class="image-popup-no-margins" href="photo.png">                                                
+                                                    <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
+                                                </a>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        SP
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            Car System
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Facebook</li>
+                                                        <li class="py-1 li-style">CNPJ</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
                                             </div>
 
                                         </div>
+                                        <!-- end task card -->
+
+                                        
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="8">
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        RJ
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            João França
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Website</li>
+                                                        <li class="py-1 li-style">CPF</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                                                               
 
                                     </div>
-                                </div>
                             </div>
+                            
                         </div>
+                        {{--  fim  coluna--}}
+
+ 
                 </div>
+                <!-- ?  end -> div master   -->
 
 @endsection
 

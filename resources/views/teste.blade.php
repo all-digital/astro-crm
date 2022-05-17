@@ -5,7 +5,13 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18">leads</h4>
+               
+                @if (isSuperAdmin(['Admin','Gerente','Super Admin']))
+                     <h4 class="page-title mb-0 font-size-18">leads teste passou   iffffffffffffff </h4>                
+                @else
+                    <h4 class="page-title mb-0 font-size-18">leads teste entrou no elseeeeeeeeee    </h4>  
+                @endif
+                
 
             </div>
         </div>
