@@ -5,13 +5,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-               
-                @if (isSuperAdmin(['Admin','Gerente','Super Admin']))
-                     <h4 class="page-title mb-0 font-size-18">leads teste passou   iffffffffffffff </h4>                
-                @else
-                    <h4 class="page-title mb-0 font-size-18">leads teste entrou no elseeeeeeeeee    </h4>  
-                @endif
-                
+                <h4 class="page-title mb-0 font-size-18">leads</h4>
 
             </div>
         </div>
@@ -48,95 +42,819 @@
                 </div>
 
 
-                <div class="container">
-                    <div class="row mt-5">
 
-                        <div class="col-6 my-5" >
+                    <!-- ?  ------------------------------------   -->
+                    <!-- ?  CSS PARA ROLAR A TELA   -->
 
-                            <h2 class="mb-3">Lista de tareas</h2>
-            
-                            <div class="list-group" id="tareas" x-data x-init="Sortable.create($el,{
-                                animation:150,
-                                group:{
-                                    name:'lista',
-                                    pull:true
-                                }
-                                {{-- handle:'.image-test' --}}
-                            })">
-            
-                                <div class="titulo list-group-item list-group-item-primary" >
-                                    <h5 class="mb-0">Tareas personales</h5>
-                                </div>
-            
-                                <div class="list-group-item" >
-                                    <h5><i class="fas fa-grip-lines mr-2"></i> Ir al cine</h5>
-                                    <p class="mb-0">A las 8pm</p>
+                <!-- ?  div master   -->
+                <div class="row" style="flex-wrap: nowrap; overflow-x: scroll;">                     
+                
+                    
+
+
+
+
+                           
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
+
+                            <div class="card card-collun-title">
+
+                                <div class="card-body">                          
+                                    <!-- !  ------------------------------------   -->
+                                    <!-- !  TITULO DA COLUNA   -->
+                                    <h4 class="card-title mb-4" style="color: white;">Pedido</h4>
+
+                                    <div class="extra-info row">
+
+                                        <div class="col-6 cards-qtd">0 Leads</div>
+
+                                        <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
+
+                                        <!-- <div class="col-6 cards-qtd">0 Cards</div>
+
+                                        <div class="col-6 income">R$ 0,00</div> -->
+
+                                    </div>
+
                                 </div>
 
-                                <div class="titulo list-group-item list-group-item-primary" >
-                                    <h5 class="mb-0">Tareas personales</h5>
-                                </div>
-            
-                                <div class="list-group-item" >
-                                    <h5><i class="fas fa-grip-lines mr-2"></i> Ir al cine</h5>
-                                    <p class="mb-0">A las 8pm</p>
-                                </div>
+
+                            </div>
+
+                        
+                            <div class="card board-cards " style="width: 321px; padding: 0px;" >
+
+
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
                                 
-            
-                                <div class="list-group-item" >
-                                    <h5 class="mb-0"><i class="fas fa-grip-lines mr-2"></i> Comprar pizza</h5>
-                                </div>            
-                                                             
-                            </div>                            
-                        </div>
+
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                    onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids Pedido', groupIds)
+                                    }  
+                                    {{-- handle:'.image-test' --}}
+                                    })">
+
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="1">
+                                    
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #FF3838;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #891BE8;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- *    IMAGEM DE CAPA    -->
+
+                                                <a class="image-popup-no-margins" href="photo.png">                                                
+                                                    <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
+                                                </a>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        SP
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            Car System group-id="1"
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Facebook</li>
+                                                        <li class="py-1 li-style">CNPJ</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
 
 
-                                        {{-- DIVISÃO --}}
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
 
 
-                        <div class="col-6 my-5" >
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
 
-                            <h2 class="mb-3">Lista de tareas</h2>
-            
-                            <div class="list-group" id="tareas" x-data x-init="Sortable.create($el,{
-                                animation:150,
-                                group:{
-                                    name:'lista',
-                                    pull:true
-                                }
-                                {{-- handle:'.image-test' --}}
-                            })">
-            
-                                <div class="titulo list-group-item list-group-item-primary" >
-                                    <h5 class="mb-0">Tareas personales</h5>
-                                </div>
-            
-                          
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- end task card -->
+
+                                        
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="2">
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        RJ
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            João França group-id="2"
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Website</li>
+                                                        <li class="py-1 li-style">CPF</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                                                            
+
+                                    </div>
+                            </div>
                             
-                                
-            
-                                <div class="list-group-item" >
-                                    <h5 class="mb-0"><i class="fas fa-grip-lines mr-2"></i> Comprar pizza</h5>
-                                </div>            
-                                                             
-                            </div>                            
                         </div>
-            
+                        {{--  fim  coluna--}}
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
+
+                            <div class="card card-collun-title">
+
+                                <div class="card-body">                          
+                                    <!-- !  ------------------------------------   -->
+                                    <!-- !  TITULO DA COLUNA   -->
+                                    <h4 class="card-title mb-4" style="color: white;">Contato Pendente</h4>
+
+                                    <div class="extra-info row">
+
+                                        <div class="col-6 cards-qtd">0 Leads</div>
+
+                                        <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
+
+                                        <!-- <div class="col-6 cards-qtd">0 Cards</div>
+
+                                        <div class="col-6 income">R$ 0,00</div> -->
+
+                                    </div>
+
+                                </div>
 
 
-                   
+                            </div>
 
-                    </div>
+                        
+                            <div class="card board-cards " style="width: 321px;" >
+
+
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
+                                
+
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                      onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids Contato Pendente', groupIds)
+                                     }  
+                                    {{-- handle:'.image-test' --}}
+                                  })">
+
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="3">
+                                     
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #FF3838;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #891BE8;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- *    IMAGEM DE CAPA    -->
+
+                                                <a class="image-popup-no-margins" href="photo.png">                                                
+                                                    <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
+                                                </a>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        SP
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            Car System group-id="3"
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Facebook</li>
+                                                        <li class="py-1 li-style">CNPJ</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- end task card -->
+
+                                        
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="4">
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        RJ
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            João França group-id="4"
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Website</li>
+                                                        <li class="py-1 li-style">CPF</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                                                               
+
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        {{--  fim  coluna--}}
+                       
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
+
+                            <div class="card card-collun-title">
+
+                                <div class="card-body">                          
+                                    <!-- !  ------------------------------------   -->
+                                    <!-- !  TITULO DA COLUNA   -->
+                                    <h4 class="card-title mb-4" style="color: white;">Aguardando Retorno</h4>
+
+                                    <div class="extra-info row">
+
+                                        <div class="col-6 cards-qtd">0 Leads</div>
+
+                                        <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
+
+                                        <!-- <div class="col-6 cards-qtd">0 Cards</div>
+
+                                        <div class="col-6 income">R$ 0,00</div> -->
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        
+                            <div class="card board-cards " style="width: 321px;" >
+
+
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
+                                
+
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                      onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids Aguardando Retorno', groupIds)
+                                     }  
+                                    {{-- handle:'.image-test' --}}
+                                    })">
+
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="5">
+                                     
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #FF3838;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #891BE8;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- *    IMAGEM DE CAPA    -->
+
+                                                <a class="image-popup-no-margins" href="photo.png">                                                
+                                                    <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
+                                                </a>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        SP
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            Car System group-id="5"
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Facebook</li>
+                                                        <li class="py-1 li-style">CNPJ</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- end task card -->
+
+                                        
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="6">
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        RJ
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            João França group-id="6"
+                                                        </a> 
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Website</li>
+                                                        <li class="py-1 li-style">CPF</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                                                               
+
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        {{--  fim  coluna--}}
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
+
+                            <div class="card card-collun-title">
+
+                                <div class="card-body">                          
+                                    <!-- !  ------------------------------------   -->
+                                    <!-- !  TITULO DA COLUNA   -->
+                                    <h4 class="card-title mb-4" style="color: white;">Convertido</h4>
+
+                                    <div class="extra-info row">
+
+                                        <div class="col-6 cards-qtd">0 Leads</div>
+
+                                        <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
+
+                                        <!-- <div class="col-6 cards-qtd">0 Cards</div>
+
+                                        <div class="col-6 income">R$ 0,00</div> -->
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        
+                            <div class="card board-cards " style="width: 321px;" >
+
+
+                                    <div class="card new-card " style="border-radius: 10px;">
+                                        <div class="card-body">
+                                            <p>+ Add Novo Lead</p>
+                                            <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                                        </div>
+                                    </div>
+                                
+
+                                    <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
+                                    animation:150,
+                                    group:{
+                                        name:'lista',
+                                        pull:true,
+                                        put:true
+                                    },
+                                      onSort({to}){
+                                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                                        console.log('group ids Convertido', groupIds)
+                                     }  
+                                    {{-- handle:'.image-test' --}}
+                                  })">
+
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="7">
+                                     
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #FF3838;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #891BE8;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- *    IMAGEM DE CAPA    -->
+
+                                                <a class="image-popup-no-margins" href="photo.png">                                                
+                                                    <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
+                                                </a>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        SP
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            Car System group-id="7"
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Facebook</li>
+                                                        <li class="py-1 li-style">CNPJ</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- end task card -->
+
+                                        
+                                        <div class="card task-box" style="border-radius: 10px;" group-id="8">
+                                            <div class="card-body">
+
+                                                <!-- !    TAGS COLORIDAS    -->
+
+                                                <div class="row">
+                                                    <div class="col-3 tag-color" style="background-color: #4339F2;"></div>
+                                                    <div class="col-3 tag-color" style="background-color: #1AD698;"></div>
+                                                </div>
+
+                                                <!-- ?   REGIAO    -->
+
+                                                <div class="float-right ml-2">
+                                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                                        RJ
+                                                    </span>
+                                                </div>
+
+                                                <!-- !  INFOS DO LEAD   -->
+
+                                                <div>
+                                                    <h5 class="font-size-15">
+                                                        <a href="javascript: void(0);" class="text-dark">
+                                                            João França group-id="8"
+                                                        </a>
+                                                    </h5>
+                                                    <ul class="pl-3 mb-4 text-muted">
+                                                        <li class="py-1 li-style">Contato Pendente</li>
+                                                        <li class="py-1 li-style">Website</li>
+                                                        <li class="py-1 li-style">CPF</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- *   PESSOA RESPONSÁVEL OU PESSOAS RESPONSÁVEIS    -->
+
+                                                <div class="team float-left">
+
+                                                    <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="Responsáve;">
+
+
+                                                    <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
+
+                                                    <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
+
+                                                    <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
+                                                        <span class="avatar-title rounded-circle bg-primary text-white">
+                                                            3 +
+                                                        </span>
+                                                    </div> -->
+                                                </div>
+
+                                                <!-- <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">R$ 145,00</h5>
+                                                    <p class="mb-0 text-muted">Valor Total</p>
+                                                </div> -->
+                                                <div class="text-right">
+                                                    <h5 class="font-size-15 mb-1">20/05/2022</h5>
+                                                    <p class="mb-0 text-muted">Inserção</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                                                               
+
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        {{--  fim  coluna--}}
+
+ 
                 </div>
-
-
-
-                                  
-                 
-
-
-                   
-
+                <!-- ?  end -> div master   -->
 
 @endsection
 
