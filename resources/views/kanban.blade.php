@@ -98,7 +98,7 @@
                                     },
                                     onSort({to}){
                                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                                        console.log('group ids 1', groupIds)
+                                        console.log('group ids Pedido', groupIds)
                                     }  
                                     {{-- handle:'.image-test' --}}
                                     })">
@@ -297,7 +297,7 @@
                                     },
                                       onSort({to}){
                                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                                        console.log('group ids 2', groupIds)
+                                        console.log('group ids Contato Pendente', groupIds)
                                      }  
                                     {{-- handle:'.image-test' --}}
                                   })">
@@ -497,7 +497,7 @@
                                     },
                                       onSort({to}){
                                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                                        console.log('group ids 3', groupIds)
+                                        console.log('group ids Aguardando Retorno', groupIds)
                                      }  
                                     {{-- handle:'.image-test' --}}
                                     })">
@@ -696,7 +696,7 @@
                                     },
                                       onSort({to}){
                                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                                        console.log('group ids 4', groupIds)
+                                        console.log('group ids Convertido', groupIds)
                                      }  
                                     {{-- handle:'.image-test' --}}
                                   })">
