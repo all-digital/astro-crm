@@ -47,23 +47,40 @@
                         pull:true,
                         put:true
                     },
-                    {{-- onRemove(event){
-                        const groupIds = Array.from(event.to.children).map(item => item.getAttribute('group-id'))
-                        console.log('onRemove Pedido ',groupIds)
-
-                        @this.pedidoonRemove(groupIds)
-                    }, --}}
-
+                    
                     onSort({to}){
                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
                         console.log('group ids Pedido', groupIds)   
                         
                         @this.pedido(groupIds)
                     },  
+                    
+                    onRemove(event){
+                        const groupIds = event.target.children[1]
+                        console.log('onRemove -->> Pedido ',groupIds)
 
-                    {{-- onUpdate(event){q
+
+                            {{-- @this.pedidoRemove(groupIds)
+                        
+
+                         console.log(event) --}}
+
+                        
+                    },
+
+                    {{--
+                    onChange({to}){
+                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                        console.log('group ids Pedido', groupIds)   
+                        
+                        @this.pedido(groupIds)
+                    }, --}}
+
+                    {{-- onMove(event){
                         const groupIds = Array.from(event.to.children).map(item => item.getAttribute('group-id'))
                         console.log('onUpdate->Pedido ',groupIds)
+
+                        @this.pedido(groupIds)
                     }     --}}
 
                     {{-- handle:'.image-test' --}}

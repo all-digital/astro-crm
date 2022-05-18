@@ -14,22 +14,27 @@ class Kanban extends Component
 
     public function pedido($params)
     {
-        dd($params);
+        dd("pedido",$params);
+    }
+
+    public function pedidoRemove($params)
+    {
+        dd("pedidoRemove",$params);
     }
 
     public function contatoPendente($params)
     {
-        dd($params);
+        dd("contatoPendente",$params);
     }
 
     public function aguardandoRetorno($params)
     {
-        dd($params);
+        dd("aguardandoRetorno",$params);
     }
 
     public function convertido($params)
     {
-        dd($params);
+        dd("convertido",$params);
     }
     
 
