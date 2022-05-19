@@ -9,7 +9,7 @@
             <div class="card-body">                          
                 <!-- !  ------------------------------------   -->
                 <!-- !  TITULO DA COLUNA   -->
-                <h4 class="card-title mb-4" style="color: white;">Pedido</h4>
+                <h4 class="card-title mb-4" style="color: white;">Perdido</h4>
 
                 <div class="extra-info row">
 
@@ -32,10 +32,12 @@
         <div class="card board-cards " style="width: 321px; padding: 0px;" >
 
 
-                <div class="card new-card " style="border-radius: 10px;">
+                <div class="card new-card" style="border-radius: 10px;">
                     <div class="card-body">
-                        <p>+ Add Novo Lead</p>
+                        {{-- <p>+ Add Novo Lead</p> --}}
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                        <button type="button" class="btn  waves-effect waves-light"
+                                data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
                     </div>
                 </div>
             
@@ -46,51 +48,39 @@
                         name:'lista',
                         pull:true,
                         put:true
-                    },
-                    
-                    onSort({to}){
+                    },  
+                    {{-- draggable:'.nao',  --}}
+                                  
+                    {{-- onSort({to}){
                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
                         console.log('group ids Pedido', groupIds)   
                         
                         @this.pedido(groupIds)
-                    },  
+                    },   --}}
                     
                     onRemove(event){
-                        const groupIds = event.target.children[1]
-                        console.log('onRemove -->> Pedido ',groupIds)
+                        const groupIds = event.item.getAttribute('group-id')
+                        console.log('onRemove -->> Perdido ',groupIds)
 
-
-                            {{-- @this.pedidoRemove(groupIds)
-                        
-
-                         console.log(event) --}}
-
-                        
+                            {{-- @this.pedidoRemove(groupIds)                        
+                         console.log(event) --}}                        
                     },
-
-                    {{--
+                    
                     onChange({to}){
                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                        console.log('group ids Pedido', groupIds)   
+                        
+                        console.log('onChange -> perdido',groupIds) 
                         
                         @this.pedido(groupIds)
-                    }, --}}
-
-                    {{-- onMove(event){
-                        const groupIds = Array.from(event.to.children).map(item => item.getAttribute('group-id'))
-                        console.log('onUpdate->Pedido ',groupIds)
-
-                        @this.pedido(groupIds)
-                    }     --}}
-
-                    {{-- handle:'.image-test' --}}
-
+                    },            
 
                     })">
 
                     @foreach ($Pedido as $item)
                         @livewire('leads.lead',['groupId' => $item['id'], 'name'=>$item['name']]) 
-                    @endforeach                                            
+                    @endforeach    
+                    
+                    
 
                 </div>
         </div>
@@ -129,7 +119,8 @@
 
                 <div class="card new-card " style="border-radius: 10px;">
                     <div class="card-body">
-                        <p>+ Add Novo Lead</p>
+                        <button type="button" class="btn btn-outline-info waves-effect waves-light"
+                                data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
                     </div>
                 </div>
@@ -142,21 +133,28 @@
                     pull:true,
                     put:true
                 },
-                  onSort({to}){
-                    const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                    console.log('group ids Contato Pendente', groupIds)
+                {{-- onSort({to}){
+                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                        console.log('group ids Pedido', groupIds)   
+                        
+                        @this.pedido(groupIds)
+                    },   --}}
+                    
+                    onRemove(event){
+                        const groupIds = event.item.getAttribute('group-id')
+                        console.log('onRemove -->> ContatoPendente ',groupIds)
 
-                    @this.contatoPendente(groupIds)
-                 },
-                 {{-- onRemove(event){
-                    const groupIds = Array.from(event.to.children).map(item => item.getAttribute('group-id'))
-                    console.log('onRemove Contato Pendente ',groupIds)
-                } --}}
-                 {{-- onUpdate(event){
-                    const groupIds = Array.from(event.to.children).map(item => item.getAttribute('group-id'))
-                    console.log('onUpdate->Contato Pendente ',groupIds)
-                }    --}}
-                {{-- handle:'.image-test' --}}
+                            {{-- @this.pedidoRemove(groupIds)                        
+                         console.log(event) --}}                        
+                    },
+                    
+                    onChange({to}){
+                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                        
+                        console.log('onChange -> ContatoPendente',groupIds) 
+                        
+                        @this.contatoPendente(groupIds)
+                    }, 
 
               })">
 
@@ -206,7 +204,8 @@
 
                 <div class="card new-card " style="border-radius: 10px;">
                     <div class="card-body">
-                        <p>+ Add Novo Lead</p>
+                        <button type="button" class="btn btn-outline-info waves-effect waves-light"
+                        data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
                     </div>
                 </div>
@@ -219,13 +218,22 @@
                     pull:true,
                     put:true
                 },
-                  onSort({to}){
-                    const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                    console.log('group ids Aguardando Retorno', groupIds)
+                    onRemove(event){
+                        const groupIds = event.item.getAttribute('group-id')
+                        console.log('onRemove -->> AguardandoRetorno ',groupIds)
 
-                    @this.aguardandoRetorno(groupIds)
-                 }  
-                {{-- handle:'.image-test' --}}
+                            {{-- @this.pedidoRemove(groupIds)                        
+                        console.log(event) --}}                        
+                    },
+                    
+                    onChange({to}){
+                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                        
+                        console.log('onChange -> AguardandoRetorno',groupIds) 
+                        
+                        @this.aguardandoRetorno(groupIds)
+                    }, 
+
                 })">
 
             @foreach ($AguardandoRetorno as $item)
@@ -271,7 +279,8 @@
 
                 <div class="card new-card " style="border-radius: 10px;">
                     <div class="card-body">
-                        <p>+ Add Novo Lead</p>
+                        <button type="button" class="btn btn-outline-info waves-effect waves-light"
+                                data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
                     </div>
                 </div>
@@ -284,13 +293,21 @@
                     pull:true,
                     put:true
                 },
-                  onSort({to}){
-                    const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
-                    console.log('group ids Convertido', groupIds)
+                    onRemove(event){
+                        const groupIds = event.item.getAttribute('group-id')
+                        console.log('onRemove -->> Convertido ',groupIds)
 
-                    @this.convertido(groupIds)
-                 }  
-                {{-- handle:'.image-test' --}}
+                            {{-- @this.pedidoRemove(groupIds)                        
+                        console.log(event) --}}                        
+                    },
+                    
+                    onChange({to}){
+                        const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
+                        
+                        console.log('onChange -> Convertido',groupIds) 
+                        
+                        @this.convertido(groupIds)
+                    }, 
               })">
 
               @foreach ($Convertido as $item)

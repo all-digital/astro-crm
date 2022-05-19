@@ -54,6 +54,128 @@
                 @livewire('leads.kanban',['Pedido'=>$Pedido,'ContatoPendente'=>$ContatoPendente,'AguardandoRetorno'=>$AguardandoRetorno,'Convertido'=>$Convertido])  
                 <!-- ?  end -> div master   -->
 
+
+                {{-- modal para criaçao de um card --}}
+                <div id="modalLead" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myModalLabel">NOVO SERVIÇO
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card-body">
+        
+                                        <div class="mb-3 row" style="justify-content: center;">
+                                            <label for="example-text-input"
+                                                class="col-md-3 col-form-label">Empresa</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="text" value="{{Auth::user()->companie}}"
+                                                    id="example-text-input" readonly>
+                                            </div>
+                                        </div>
+        
+                                        <div class="mb-3 row" style="justify-content: center;">
+                                            <label for="example-search-input"
+                                                class="col-md-3 col-form-label">Status</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="search" value="Ativo"
+                                                    id="add-status" readonly>
+                                            </div>
+                                        </div>
+        
+                                        <div class="mb-3 row" style="justify-content: center;">
+        
+                                            <label for="example-email-input"
+                                                class="col-md-3 col-form-label">Usuário</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="text" value={{Auth::user()->name}}
+                                                    id="example-email-input" required readonly>
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="mb-3 row" style="justify-content: center;">
+        
+                                            <label for="example-url-input" class="col-md-3 col-form-label">Data
+                                                de Inserção</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="url" value={{date("d/m/Y")}}
+                                                    id="add-date-created" readonly>
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="mb-3 row" style="justify-content: center;">
+        
+                                            <label for="example-email-input"
+                                                class="col-md-3 col-form-label">Categoria</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="text" id="add-category"
+                                                    required >
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="mb-3 row" style="justify-content: center;">
+        
+                                            <label for="example-url-input"
+                                                class="col-md-3 col-form-label">Título do Serviço</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="text" id="add-name-service"
+                                                    required>
+                                            </div>
+        
+                                        </div>
+        
+                                        
+                                        {{-- <div class="mb-3 row" style="justify-content: center;">
+        
+                                            <label for="example-email-input"
+                                                class="col-md-3 col-form-label">Frequência</label>
+                                            <div class="col-md-7">
+                                                <select class="form-control select2" type="text" id="add-frequencia"
+                                                    required>
+                                                <option value="Selecionar">Selecionar</option>
+                                                <option value="Avulso">Avulso</option>
+                                                <option value="Recorrente">Recorrente</option>
+                                                </select>
+                                            </div>
+        
+                                        </div> --}}
+        
+                                        <div class="mb-3 row" style="justify-content: center;">
+        
+                                            <label for="example-email-input"
+                                                class="col-md-3 col-form-label">Preço</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="text" id="add-price"
+                                                    required>
+                                            </div>
+        
+                                        </div>
+        
+                                    </div>
+                                </div>
+                                <!-- end col -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger waves-effect waves-light"
+                                data-bs-dismiss="modal">CANCELAR</button>
+                            <button type="button" id="btn-register" class="btn btn-success waves-effect waves-light">CADASTRAR</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
 @endsection
 
 
