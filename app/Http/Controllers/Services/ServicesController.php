@@ -8,15 +8,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ServicesExport;
+use App\Models\User;
+
 
 
 class ServicesController extends Controller
 {
     
     public function servicesTable()
-    {
+    {        
+        $userCompany = User::find(auth()->user()->id);
 
-        $services = Services::where('company_id',1);
+        $services = Services::where('company_id', $userCompany->profile->company->id);        
         $services = $services->simplePaginate(6);
         
 

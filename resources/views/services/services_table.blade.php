@@ -150,13 +150,16 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card-body">
-
+                            <div class="card-body">                                                                  
+                                                                        
+                                <input type="hidden" name="userId" id="userId" value="{{Auth::user()->id}}"
+                                required>                                 
+                                
                                 <div class="mb-3 row" style="justify-content: center;">
                                     <label for="example-text-input"
                                         class="col-md-3 col-form-label">Empresa</label>
                                     <div class="col-md-7">
-                                        <input class="form-control" type="text" value="{{Auth::user()->companie}}"
+                                        <input class="form-control" type="text" value="{{Auth::user()->profile->companie}}"
                                             id="example-text-input" readonly>
                                     </div>
                                 </div>
@@ -479,13 +482,15 @@
             let addService = document.getElementById('add-name-service')
             let addPrice = document.getElementById('add-price')
             let addfrequencia = document.getElementById('add-frequencia')
+            let userId = document.getElementById('userId')
 
             let addServices = {
                 "addStatus"       : addStatus.value,
                 "addCategory"     : addCategory.value,
                 "addService"      : addService.value,
                 "addPrice"        : addPrice.value,
-                "addfrequencia"   : addfrequencia.value
+                "addfrequencia"   : addfrequencia.value,
+                "userId"          : userId.value
             }
 
             // validando campos

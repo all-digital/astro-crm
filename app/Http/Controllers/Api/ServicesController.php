@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Services;
+use App\Models\User;
 
 class ServicesController extends Controller
 {
@@ -13,6 +14,9 @@ class ServicesController extends Controller
 
     public function store(Request $request)
     {
+        debug($request->input('userId'));
+        $user = User::find($request->input('userId'));               
+
         $service = Services::create([
             'company' => "Alldigital",
             'status' => $request->input('addStatus'),
@@ -20,7 +24,7 @@ class ServicesController extends Controller
             'name' => $request->input('addService'),
             'price' => $request->input('addPrice'),
             'responsible_for_insert' => "Admin",
-            "company_id" => 1
+            "company_id" => $user->profile->company->id
         ]);
     
        $service->save();
