@@ -144,6 +144,8 @@ Route::get('/company', [App\Http\Controllers\Companies\CompanyController::class,
 Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'showCreateCompany'])->name('company.add');
 Route::get('/company-edit/{id}', [App\Http\Controllers\Companies\CompanyController::class, 'showEditCompany'])->name('company.edit');
 
+Route::put('/company-edit/{id}',[App\Http\Controllers\Companies\CompanyController::class, 'update'])->name('company.update');
+
 
 Route::get('/empresas/testando', function () {
     return view('companies');

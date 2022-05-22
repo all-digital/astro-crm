@@ -115,7 +115,7 @@
                                         <label for="mainColor"
                                             class="col-lg-3 col-form-label">Cor Principal</label>
                                         <div class="col-lg-9">
-                                            <input id="txtFirstNameShipping" name="mainColor"
+                                            <input id="mainColor" name="mainColor"
                                                 type="color" class="form-control" style="padding: 15px;">
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                         <label for="logo"
                                             class="col-lg-3 col-form-label">Logo</label>
                                         <div class="col-lg-9">
-                                            <input id="txtLastNameShipping" name="logo"
+                                            <input id="logo" name="logo"
                                                 type="file" class="form-control">
                                         </div>
                                     </div>
@@ -943,6 +943,8 @@
                             "pricePerPlate":     pricePerPlate,
                             "userLimit":         form.userLimit.value,
                             "pricePerExtraUser": pricePerExtraUser,
+                            "color":             form.mainColor.value,
+                            "logo":              form.logo.value,           
                             "authUser":  authUser
                         }
                         

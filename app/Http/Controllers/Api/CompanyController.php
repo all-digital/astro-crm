@@ -16,7 +16,7 @@ class CompanyController extends Controller
         //getting the authenticated user of the action
         $authRequest = $request->input('authUser');
         
-        //debug($request->all());
+        debug($request->all());
 
         $validator = Validator::make($request->all(), [            
                 "cnpj" => 'required|min:14',
@@ -69,6 +69,7 @@ class CompanyController extends Controller
             return response()->json($validMsg->values());  
         }         
                
+        debug($request->all());
         
         $companies = Companies::create([       
                 
@@ -79,7 +80,7 @@ class CompanyController extends Controller
             "name_responsible" =>       $request->input('responsible'),
             "last_name_responsible" =>  $request->input('responsible'),
             "email_responsible" =>      $request->input('email'),       
-            "color" =>                  "azul",
+            "color" =>                  $request->input('color'),
             "logo"  =>                  "logo",                       
             "monthly_payment" =>        $request->input('monthPayment'),
             "activation" =>             $request->input('activation'),

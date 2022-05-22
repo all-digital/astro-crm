@@ -81,9 +81,32 @@ class CompanyController extends Controller
 
     }//method
    
-    public function update($request, $id)
+    public function update(Request $request, $id)
     {
+        //dd($request->all());
 
+        $company = Companies::find($id);
+
+        $company->cnpj              = $request->cnpj;
+        $company->social_Reason     = $request->social_Reason;
+        $company->fantasy_name      = $request->fantasy_name;
+        $company->status            = $request->status;
+        $company->name_responsible  = $request->name_responsible;
+        // $company->email_responsible             = $request->email_responsible;
+        $company->name_responsible  = $request->name_responsible;
+        // $company->logo             = $request->logo;
+        // $company->color             = $request->color;
+        $company->monthly_payment      = $request->monthly_payment ?: '1,00';
+        $company->activation        = $request->activation ?: '1,00';
+        $company->price_per_plate     = $request->price_per_plate ?: '1,00'; 
+        $company->user_limit         = $request->user_limit ?: '1,00';
+        $company->price_per_extra_user = $request->price_per_extra_user ?: '1,00';
+               
+        $company->save();
+
+
+        return redirect("company-edit/$id")                
+        ->withSuccess('Usuario Alterado com Sucesso');
     }//end update
 
 }//end class
