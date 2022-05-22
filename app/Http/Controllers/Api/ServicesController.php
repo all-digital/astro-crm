@@ -13,8 +13,7 @@ class ServicesController extends Controller
     
 
     public function store(Request $request)
-    {
-        debug($request->input('userId'));
+    {        
         $user = User::find($request->input('userId'));               
 
         $service = Services::create([
