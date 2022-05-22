@@ -306,6 +306,10 @@ Route::prefix('teste')->group(function () {
 });
 
 
+
+
+Route::get('lead', [App\Http\Controllers\Leads\LeadController::class, 'index']);  
+Route::post('lead', [App\Http\Controllers\Leads\LeadController::class, 'store'])->name('lead.store');  
 //////////////////
 
 Route::get('teste', function(){

@@ -3,9 +3,7 @@
   
                            
     <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
-
         <div class="card card-collun-title">
-
             <div class="card-body">                          
                 <!-- !  ------------------------------------   -->
                 <!-- !  TITULO DA COLUNA   -->
@@ -22,26 +20,21 @@
                     <div class="col-6 income">R$ 0,00</div> -->
 
                 </div>
-
             </div>
-
-
         </div>
 
     
         <div class="card board-cards " style="width: 321px; padding: 0px;" >
-
 
                 <div class="card new-card" style="border-radius: 10px;">
                     <div class="card-body">
                         {{-- <p>+ Add Novo Lead</p> --}}
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
                         <button type="button" class="btn  waves-effect waves-light"
-                                data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
+                                data-bs-toggle="modal" data-bs-target="#modalLeadPerdido">+ Add Novo Lead</button>
                     </div>
                 </div>
             
-
                 <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
                     animation:150,
                     group:{
@@ -77,11 +70,9 @@
                     })">
 
                     @foreach ($Pedido as $item)
-                        @livewire('leads.lead',['groupId' => $item['id'], 'name'=>$item['name']]) 
+                      @include('components.leads.leads',['groupId' => $item['id'], 'name'=>$item['name']]) 
                     @endforeach    
-                    
-                    
-
+                   
                 </div>
         </div>
         
@@ -89,9 +80,7 @@
     {{--  fim  coluna--}}
 
     <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
-
         <div class="card card-collun-title">
-
             <div class="card-body">                          
                 <!-- !  ------------------------------------   -->
                 <!-- !  TITULO DA COLUNA   -->
@@ -106,21 +95,16 @@
                     <!-- <div class="col-6 cards-qtd">0 Cards</div>
 
                     <div class="col-6 income">R$ 0,00</div> -->
-
                 </div>
-
             </div>
-
         </div>
-
     
         <div class="card board-cards " style="width: 321px;" >
 
-
                 <div class="card new-card " style="border-radius: 10px;">
                     <div class="card-body">
-                        <button type="button" class="btn btn-outline-info waves-effect waves-light"
-                                data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
+                        <button type="button" class="btn  waves-effect waves-light"
+                        data-bs-toggle="modal" data-bs-target="#modalLeadContatoPendente">+ Add Novo Lead</button>
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
                     </div>
                 </div>
@@ -158,13 +142,11 @@
 
               })">
 
-                   {{-- <livewire:leads.lead></livewire:leads.lead> --}}
+               
                 @foreach ($ContatoPendente as $item)
-                   @livewire('leads.lead',['groupId' => $item['id'], 'name'=>$item['name']]) 
-                @endforeach                               
-
-                                                           
-
+                  @include('components.leads.leads',['groupId' => $item['id'], 'name'=>$item['name']]) 
+                @endforeach                              
+                                           
                 </div>
         </div>
         
@@ -173,9 +155,7 @@
    
     
     <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
-
         <div class="card card-collun-title">
-
             <div class="card-body">                          
                 <!-- !  ------------------------------------   -->
                 <!-- !  TITULO DA COLUNA   -->
@@ -192,24 +172,19 @@
                     <div class="col-6 income">R$ 0,00</div> -->
 
                 </div>
-
             </div>
-
-
         </div>
 
     
         <div class="card board-cards " style="width: 321px;" >
 
-
                 <div class="card new-card " style="border-radius: 10px;">
                     <div class="card-body">
-                        <button type="button" class="btn btn-outline-info waves-effect waves-light"
-                        data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
+                        <button type="button" class="btn  waves-effect waves-light"
+                        data-bs-toggle="modal" data-bs-target="#modalLeadAguardandoRetorno">+ Add Novo Lead</button>
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
                     </div>
-                </div>
-            
+                </div>            
 
                 <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
                 animation:150,
@@ -237,25 +212,22 @@
                 })">
 
             @foreach ($AguardandoRetorno as $item)
-                @livewire('leads.lead',['groupId' => $item['id'], 'name'=>$item['name']]) 
-            @endforeach  
-                                                           
-
+              @include('components.leads.leads',['groupId' => $item['id'], 'name'=>$item['name']]) 
+            @endforeach 
+            
                 </div>
         </div>
         
     </div>
     {{--  fim  coluna--}}
 
+
     <div class="col-lg-3 col-md-3 col-sm-12 col-xl-3">
-
         <div class="card card-collun-title">
-
             <div class="card-body">                          
                 <!-- !  ------------------------------------   -->
                 <!-- !  TITULO DA COLUNA   -->
                 <h4 class="card-title mb-4" style="color: white;">Convertido</h4>
-
                 <div class="extra-info row">
 
                     <div class="col-6 cards-qtd">0 Leads</div>
@@ -267,24 +239,19 @@
                     <div class="col-6 income">R$ 0,00</div> -->
 
                 </div>
-
             </div>
-
-
         </div>
 
     
         <div class="card board-cards " style="width: 321px;" >
 
-
                 <div class="card new-card " style="border-radius: 10px;">
                     <div class="card-body">
-                        <button type="button" class="btn btn-outline-info waves-effect waves-light"
-                                data-bs-toggle="modal" data-bs-target="#modalLead">+ Add Novo Lead</button>
+                        <button type="button" class="btn  waves-effect waves-light"
+                                data-bs-toggle="modal" data-bs-target="#modalLeadConvertido">+ Add Novo Lead</button>
                         <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
                     </div>
-                </div>
-            
+                </div>            
 
                 <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
                 animation:150,
@@ -308,13 +275,12 @@
                         
                         @this.convertido(groupIds)
                     }, 
-              })">
+                })">
 
               @foreach ($Convertido as $item)
-                @livewire('leads.lead',['groupId' => $item['id'], 'name'=>$item['name']]) 
+                @include('components.leads.leads',['groupId' => $item['id'], 'name'=>$item['name']]) 
               @endforeach  
                                                            
-
                 </div>
         </div>
         
