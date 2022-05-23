@@ -195,10 +195,10 @@ Route::get('/equip-index', function(){
 
 Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
 Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'show']);
-Route::get('/equip-edit', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit']);
+Route::get('/equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit']);
 
-Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'create'])->name('equipment.create');
-Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
+Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'store'])->name('equipment.store');
+Route::put('equip/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
 
 
                                              ////simcards 

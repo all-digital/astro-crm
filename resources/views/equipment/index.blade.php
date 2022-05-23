@@ -33,7 +33,7 @@
                             </div>
                         @endif
                      
-                        <form id="formEquipment" action="" method="POST">
+                        <form id="formEquipment" action="{{route('equipment.store')}}" method="POST"> 
                           @csrf
 
                             <div class="row">
@@ -41,7 +41,8 @@
                                     <div>
                                         <div class="mb-3 mb-4">
                                             <label class="form-label" for="company">Empresa</label>
-                                            <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror" value="{{ old('company') }}">                                             
+                                            <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror"
+                                             value="{{ Auth::user()->profile->companie}}" readonly>                                             
                                             
                                             @error('company')                                           
                                                   <div class="invalid-feedback">
@@ -53,7 +54,7 @@
                                         <div class="mb-3 mb-4">
                                             <label class="form-label" for="status">Status</label>
                                             <select name="status" class="form-control">
-                                              <option value="Ativo">Ativo</option>
+                                              <option value="estoque">Estoque</option>
                                               <option value="Inativo">Inativo</option>
                                             </select>                                          
                                         </div>

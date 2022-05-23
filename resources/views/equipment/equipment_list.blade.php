@@ -92,38 +92,10 @@
 @push('customized-js')
 
     <script>
-            let teste = "id é 1 teste foi"
-            companies = [{
-                            "activation": "100.00",
-                            "cnpj": "1769431944",
-                            "color": "verde",
-                            "created_at": "25/01/2022 16:37",
-                            "email_responsible": "auer.thaddeus@gmail.com",
-                            "fantasy_name": "Zemlak-Runolfsson",
-                            "id": 1,
-                            "last_name_responsible": "Cartwright",
-                            "logo": "logo teste",
-                            "edit": "<a class='btn btn-outline-primary fas fa-edit ms-2' onClick='alert(`${teste}`)' href='https://www.w3schools.com'></a>",
-                            "delete": "<button class='btn btn-outline-primary fas fa-trash-alt ms-3' onClick='alert(`o id é 1`)'></button>",
-                            "monthly_payment": "100.00",
-                            "name_responsible": "Sonia Goyette",
-                        },
-                        {
-                            "activation": "100.00",
-                            "cnpj": "1769431944",
-                            "color": "verde",
-                            "created_at": "25/01/2022 16:37",
-                            "email_responsible": "auer.thaddeus@gmail.com",
-                            "fantasy_name": "Zemlak-Runolfsson",
-                            "id": 1,
-                            "last_name_responsible": "Cartwright",
-                            "logo": "logo teste",
-                            "edit": "<a class='btn btn-outline-primary fas fa-edit ms-2' onClick='alert(`${teste}`)' href='https://www.w3schools.com'></a>",
-                            "delete": "<button class='btn btn-outline-primary fas fa-trash-alt ms-3' onClick='alert(`o id é 1`)'></button>",
-                            "monthly_payment": "100.00",
-                            "name_responsible": "Sonia Goyette",
-                        }]
-                              
+
+    let equipments = {{ Js::from($equipments)}};
+            console.log(equipments)
+           
             $(document).ready(function(){
 
                 $("#datatable").DataTable({
@@ -136,22 +108,22 @@
                             'colvis',
                             ],
                 
-                        data: companies,
+                        data: equipments,
                         columns: [
-                            {data: 'edit'},
-                            {data: 'delete'},
-                            {data: 'activation'},
-                            {data: 'fantasy_name'},
-                            {data: 'cnpj' }, 
-                            { data: 'color'},                          
-                            { data: 'name_responsible' },
-                            { data: 'last_name_responsible' },
-                            { data: 'email_responsible' },
-                            { data: 'created_at' },
-                            { data: 'monthly_payment' },
-                            { data: 'activation' },
-                            { data: 'logo' }
-                                                                         
+                            {data: 'button'},
+                            {data: 'company'},
+                            {data: 'status'},
+                            {data: 'responsible_for_insert'},
+                            {data: 'created_at'},
+                            {data: 'provider' }, 
+                            { data: 'brand'},                          
+                            { data: 'model' },
+                            { data: 'imei' },
+                            { data: 'veiculo' },
+                            { data: 'simcard' },
+                            { data: 'user_last_alter'},
+                            { data: 'updated_at' }
+                                                                                                     
                         ]               
                 })
                                                 
