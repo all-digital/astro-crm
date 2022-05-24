@@ -17,7 +17,7 @@
 
                 <div class="extra-info row">
 
-                    <div class="col-6 cards-qtd">0 Leads</div>
+                    <div class="col-6 cards-qtd">0 Oportunidades</div>
 
                     <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
 
@@ -48,7 +48,9 @@
                         pull:true,
                         put:true
                     },
-                    chosenClass: 'listAnimation',  
+                    chosenClass: 'listAnimation',
+                    {{-- swapThreshold: 0,   
+                    fallbackTolerance: '2px', --}}
                     {{-- draggable:'.nao',  --}}
                                   
                     {{-- onSort({to}){
@@ -95,7 +97,7 @@
 
                 <div class="extra-info row">
 
-                    <div class="col-6 cards-qtd">0 Leads</div>
+                    <div class="col-6 cards-qtd">0 Oportunidades</div>
 
                     <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
 
@@ -108,24 +110,26 @@
     
         <div class="card board-cards " style="width: 321px;" >
 
-            <div class="card " style="border-radius: 10px;">
-                <div class="card-body d-flex justify-content-center">
-                    {{-- <p>+ Add Novo Lead</p> --}}
-                    <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
-                    <button type="button" class="btn  waves-effect waves-light"
-                            data-bs-toggle="modal" data-bs-target="#modalLeadContatoPendente">+ Add Novo Lead</button>
+                <div class="card " style="border-radius: 10px;">
+                    <div class="card-body d-flex justify-content-center">
+                        {{-- <p>+ Add Novo Lead</p> --}}
+                        <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                        <button type="button" class="btn  waves-effect waves-light"
+                                data-bs-toggle="modal" data-bs-target="#modalLeadContatoPendente">+ Add Novo Lead</button>
+                    </div>
                 </div>
-            </div>
             
 
                 <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
-                animation:150,
+                animation:100,
                 group:{
                     name:'lista',
                     pull:true,
                     put:true
                 },
                 chosenClass: 'listAnimation',
+                {{-- swapThreshold: 0,
+                fallbackTolerance: '2px', --}}
                 {{-- onSort({to}){
                         const groupIds = Array.from(to.children).map(item => item.getAttribute('group-id'))
                         console.log('group ids Pedido', groupIds)   
@@ -172,7 +176,7 @@
 
                 <div class="extra-info row">
 
-                    <div class="col-6 cards-qtd">0 Leads</div>
+                    <div class="col-6 cards-qtd">0 Oportunidades</div>
 
                     <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
 
@@ -187,23 +191,25 @@
     
         <div class="card board-cards " style="width: 321px;" >
 
-            <div class="card " style="border-radius: 10px;">
-                <div class="card-body d-flex justify-content-center">
-                    {{-- <p>+ Add Novo Lead</p> --}}
-                    <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
-                    <button type="button" class="btn  waves-effect waves-light"
-                            data-bs-toggle="modal" data-bs-target="#modalLeadAguardandoRetorno">+ Add Novo Lead</button>
-                </div>
-            </div>             
+                <div class="card " style="border-radius: 10px;">
+                    <div class="card-body d-flex justify-content-center">
+                        {{-- <p>+ Add Novo Lead</p> --}}
+                        <!-- TODO: Para a tela de Oportunidade, considerar este texto <p>+ Add Nova Oportunidade</p> -->
+                        <button type="button" class="btn  waves-effect waves-light"
+                                data-bs-toggle="modal" data-bs-target="#modalLeadAguardandoRetorno">+ Add Novo Lead</button>
+                    </div>
+                </div>          
 
                 <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
-                animation:150,
+                animation:100,
                 group:{
                     name:'lista',
                     pull:true,
                     put:true
                 },
                 chosenClass: 'listAnimation',
+                {{-- swapThreshold: 1,
+                fallbackTolerance: '2px', --}}
                     onRemove(event){
                         const groupIds = event.item.getAttribute('group-id')
                         console.log('onRemove -->> AguardandoRetorno ',groupIds)
@@ -241,7 +247,7 @@
                 <h4 class="card-title mb-4" style="color: white;">Convertido</h4>
                 <div class="extra-info row">
 
-                    <div class="col-6 cards-qtd">0 Leads</div>
+                    <div class="col-6 cards-qtd">0 Oportunidades</div>
 
                     <!-- TODO: PARA OPORTUNIDADES, UTILIZAR OS CARDS ABAIXO -->
 
@@ -263,16 +269,18 @@
                         <button type="button" class="btn  waves-effect waves-light"
                                 data-bs-toggle="modal" data-bs-target="#modalLeadConvertido">+ Add Novo Lead</button>
                     </div>
-                </div>               
+                </div>          
 
                 <div id="pending_contact" class="pb-1 task-list"  x-data x-init="Sortable.create($el,{
-                animation:150,
+                animation:100,
                 group:{
-                    name:'lista',
+                    name:'lista1',
                     pull:true,
                     put:true
                 },
                 chosenClass: 'listAnimation',
+                {{-- swapThreshold: 0,
+                fallbackTolerance: '2px', --}}
                     onRemove(event){
                         const groupIds = event.item.getAttribute('group-id')
                         console.log('onRemove -->> Convertido ',groupIds)

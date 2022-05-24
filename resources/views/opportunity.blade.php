@@ -1,11 +1,11 @@
 @extends('layouts.app')
-    
+
 @section('nav-header')
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18">leads</h4>
+                <h4 class="page-title mb-0 font-size-18">Oportunidades</h4>
 
             </div>
         </div>
@@ -14,12 +14,11 @@
 
 @endsection
 
-
 @php    
-    $Pedido = [['name'=>'darcio', 'id'=>1],['name'=>'Murilo', 'id'=>2]];
-    $ContatoPendente = [['name'=>'Fabiana', 'id'=>3],['name'=>'darcio', 'id'=>4]];
-    $AguardandoRetorno = [['name'=>'Murilo', 'id'=>5],['name'=>'darcio', 'id'=>6],['name'=>'Murilo', 'id'=>7]];
-    $Convertido = [['name'=>'darcio', 'id'=>8]];
+    $Pedido = [['name'=>'darcio oport', 'id'=>1],['name'=>'Murilo', 'id'=>2]];
+    $ContatoPendente = [['name'=>'Fabiana oport', 'id'=>3],['name'=>'darcio', 'id'=>4]];
+    $AguardandoRetorno = [['name'=>'Murilo oport', 'id'=>5],['name'=>'darcio', 'id'=>6],['name'=>'Murilo oport', 'id'=>7]];
+    $Convertido = [['name'=>'darcioss oport', 'id'=>8]];
 @endphp
 
 @section('content')
@@ -28,8 +27,7 @@
 
                     <div class="col-12 itens-board-bar">
                          <!-- ? ONDE VAI O TITULO DO QUADRO - EM LEDAS FICA LEAD, EM OPORTUNIDADES O NOME DO QUADRO-->
-                         <h3>Funil de Leads</h3>
-
+                         <h3>Oportunidades</h3>
 
                             <!-- ? USAR TUDO ABAIXO PARA OPORTUNIDADES -->
                             <!-- <span class="space-item-board-bar"> | </span>
@@ -51,15 +49,13 @@
                     <!-- ?  CSS PARA ROLAR A TELA   -->
 
                 <!-- ?  div master   -->
-                @livewire('leads.kanban',['Pedido'=>$Pedido,'ContatoPendente'=>$ContatoPendente,'AguardandoRetorno'=>$AguardandoRetorno,'Convertido'=>$Convertido])  
+                @livewire('opportunity.opportunity',['Pedido'=>$Pedido,'ContatoPendente'=>$ContatoPendente,'AguardandoRetorno'=>$AguardandoRetorno,'Convertido'=>$Convertido])  
                 <!-- ?  end -> div master   -->
 
-                
-
-                @include('components.leads.modal_add_lead',['title'=>"Perdido",'idModal'=>'Perdido'])
-                @include('components.leads.modal_add_lead',['title'=>"Contato Pendente",'idModal'=>'ContatoPendente'])
-                @include('components.leads.modal_add_lead',['title'=>"Aguardando Retorno",'idModal'=>'AguardandoRetorno'])
-                @include('components.leads.modal_add_lead',['title'=>"Convertido",'idModal'=>'Convertido'])
+                @include('components.opportunity.modal_add_opportunity',['title'=>"Perdido",'idModal'=>'Perdido'])
+                @include('components.opportunity.modal_add_opportunity',['title'=>"Contato Pendente",'idModal'=>'ContatoPendente'])
+                @include('components.opportunity.modal_add_opportunity',['title'=>"Aguardando Retorno",'idModal'=>'AguardandoRetorno'])
+                @include('components.opportunity.modal_add_opportunity',['title'=>"Convertido",'idModal'=>'Convertido'])
                 
 
 @endsection
@@ -98,7 +94,6 @@
     <script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script>
     <!-- form advanced init -->
     <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
-       
        
 @endpush
 

@@ -314,10 +314,10 @@ Route::get('lead', [App\Http\Controllers\Leads\LeadController::class, 'index']);
 Route::post('lead', [App\Http\Controllers\Leads\LeadController::class, 'store'])->name('lead.store');  
 //////////////////
 
-Route::get('teste', function(){
-    return view('teste');
+Route::get('oportunidade', function(){
+    return view('opportunity');
 });
 
-Route::get('teste1', function(){
+Route::get('teste', function(){
     return view('kanban');
 });

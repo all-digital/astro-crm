@@ -1,4 +1,5 @@
 
+
 <div class="card task-box" style="border-radius: 10px;" group-id="{{$groupId}}">
                                      
   <div class="card-body">
@@ -14,10 +15,10 @@
 
       <!-- *    IMAGEM DE CAPA    -->
 
-      {{-- <a class="image-popup-no-margins" href="photo.png">  
-          <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">                                              
+      {{-- <a class="image-popup-no-margins" href="photo.png">                                                
+          <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
       </a> --}}
-      {{-- <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">   --}}
+      <img class="img-fluid img-card-banner image-test" alt="" src="photo.png" width="75">
 
       <!-- ?   REGIAO    -->
 
@@ -46,12 +47,13 @@
 
       <div class="team float-left">
 
-          {{-- <img src="{{ url('storage/'.auth()->user()->profile()->get('avatar')[0]->avatar) }}" class="rounded-circle avatar-xs m-1 " alt="Responsáve;"> --}}
-          <img src="user.png" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+          <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1 " alt="Responsáve;">
+
 
           <!-- TODO:   PARA OPORTUNIDADES USAR O CODIGO ABAXIO   -->
 
           <!-- <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs m-1" alt="">
+
 
           <div class="avatar-xs  d-inline-block" style="margin-left: -23px;">
               <span class="avatar-title rounded-circle bg-primary text-white">
