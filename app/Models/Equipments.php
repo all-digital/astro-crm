@@ -17,13 +17,25 @@ class Equipments extends Model
         'model',
         'imei',
         'simcard',
-        'company_id'
+        'company_id',
+        'simcard_id',
+        'vehicle_id',
     ];
 
 
     public function company()
     {
         return $this->belongsTo(Companies::class);
+    }
+
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicles::class);
+    }
+
+    public function simcard()
+    {
+        return $this->belongsTo(Vehicles::class);
     }
 
 }

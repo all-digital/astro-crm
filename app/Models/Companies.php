@@ -24,23 +24,18 @@ class Companies extends Model
         'activation',
         'price_per_plate',
         'user_limit',
-        'price_per_extra_user'    
+        'price_per_extra_user',
+        'responsible_to_insert'   
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
-
-    public function service()
+    public function client()
     {
-        return $this->hasMany(Services::class);
-    }
-
-    public function equipment()
-    {
-        return $this->hasMany(Equipments::class);
+        return $this->hasMany(Clients::class);
     }
 
     public function address()
@@ -48,9 +43,15 @@ class Companies extends Model
         return $this->hasOne(Address::class,'company_id');
     }
 
-    public function profile()
+    public function services()
     {
-        return $this->hasMany(Profiles::class);
+        return $this->hasMany(Services::class);
     }
+
+    public function equipments()
+    {
+        return $this->hasMany(Equipments::class);
+    }
+   
 
 }//end class 

@@ -22,8 +22,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
-        'password'   
+        'last_name',
+        'email',        
+        'login',
+        'avatar',
+        'company',
+        'status',
+        'password',       
+        'company_id'        
         
     ];
 
@@ -46,21 +52,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function profile()
+    public function company()
     {
-        return $this->hasOne(Profiles::class);
+        return $this->belongsTo(Companies::class);
     }
 
-
-    // public function company()
-    // {
-    //     return $this->hasOne(Companies::class);
-    // }
-
-
-    //Relations 
-
+    //Relations permission rules
     public function roles()
     {
         return $this->belongsToMany(Role::class,'user_roles','user_id','role_id' );

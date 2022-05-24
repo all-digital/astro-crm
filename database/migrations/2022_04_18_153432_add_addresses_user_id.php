@@ -13,10 +13,10 @@ class AddAddressesUserId extends Migration
      */
     public function up()
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('complement')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
+        // Schema::table('addresses', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('user_id')->after('complement')->nullable();
+        //     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        // });
     }
 
     /**

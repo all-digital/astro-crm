@@ -26,6 +26,12 @@ class CreateEquipmentsTable extends Migration
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
 
+            $table->unsignedBigInteger('simcard_id');
+            $table->foreign('simcard_id')->references('id')->on('simcards');
+
+            $table->unsignedBigInteger('vehicle_id');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles');
+
             $table->timestamps();
         });
     }

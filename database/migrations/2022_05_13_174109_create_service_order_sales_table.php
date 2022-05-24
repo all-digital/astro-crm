@@ -15,28 +15,27 @@ class CreateServiceOrderSalesTable extends Migration
     {
         Schema::create('service_order_sales', function (Blueprint $table) {
             $table->id();
-            $table->string('customer');
-            $table->string('status');
-            $table->string('company');
-            $table->string('type_order_of_service');
-            $table->string('vehicles');
-            $table->string('equipments');
-            $table->string('simcard');
-            $table->string('services');
-            $table->string('adhesion_fee');
-            $table->string('monthly_payment');
-            $table->string('recurrence');
-            $table->string('customer_adress');
-            $table->string('responsible_for_insert');
-            $table->string('services_order_sale');
-            $table->string('subtype');
-            $table->string('adress_customer');
-            $table->string('zip_code_customer');
-            $table->string('city_customer');
-            $table->string('country_customer');
-
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers');           
+            $table->string('client')->nullable();
+            $table->string('status')->nullable();
+            $table->string('company')->nullable();
+            $table->string('type_order_of_service')->nullable();
+            $table->string('vehicles')->nullable();
+            $table->string('equipments')->nullable();
+            $table->string('simcard')->nullable();
+            $table->string('services')->nullable();
+            $table->string('adhesion_fee')->nullable();
+            $table->string('monthly_payment')->nullable();
+            $table->string('recurrence')->nullable();            
+            $table->string('responsible_for_insert')->nullable();
+            $table->string('services_order_sale')->nullable();
+            $table->string('subtype')->nullable();
+            $table->string('address_client')->nullable();
+            $table->string('zip_code_customer')->nullable();
+            $table->string('city_client')->nullable();
+            $table->string('country_client')->nullable();
+                     
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
            
             $table->timestamps();
         });

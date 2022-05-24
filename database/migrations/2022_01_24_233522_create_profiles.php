@@ -13,23 +13,23 @@ class CreateProfiles extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
-            $table->string('login');
-            $table->string('profile');
-            $table->string('companie');
-            $table->string('superiors')->nullable();
-            $table->string('status')->nullable();
-            $table->string('avatar')->nullable(); 
+        // Schema::create('profiles', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('login');
+        //     $table->string('profile');
+        //     $table->string('companie');
+        //     $table->string('superiors')->nullable();
+        //     $table->string('status')->nullable();
+        //     $table->string('avatar')->nullable(); 
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+        //     $table->unsignedBigInteger('user_id');
+        //     $table->foreign('user_id')->references('id')->on('users');
 
-            $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies');
+        //     $table->unsignedBigInteger('company_id');
+        //     $table->foreign('company_id')->references('id')->on('companies');
 
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
     }
 
     /**
