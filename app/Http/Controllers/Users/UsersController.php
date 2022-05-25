@@ -23,9 +23,9 @@ class UsersController extends Controller
     public function index()
     {         
         $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
-        $idCompany = auth()->user()->profile->company->id;
+        $idCompany = auth()->user()->company->id;
 
-        $users = Profiles::where('company_id', $idCompany)->get();    
+        $users = User::where('company_id', $idCompany)->get();    
         $users = $users->toArray();
                            
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
@@ -41,10 +41,11 @@ class UsersController extends Controller
             // $created_at = Carbon::parse($value['created_at'], 'UTC');
             // $updated_at = Carbon::parse($value['updated_at'], 'UTC');
 
-            // $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+            // $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');z
             // $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
-
-            $id = $value['user_id'];
+           
+           $id = $value['id'];
+           $value['company'] = 'teste';
 
             if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
             {
@@ -59,13 +60,14 @@ class UsersController extends Controller
             return $value; 
         },$users);
 
+        // dd($users);
         return view('users.list_user',compact('users','permission')); 
     }//end index
 
 
     public function show()
     {   
-        $company = User::find(auth()->user()->id)->profile->company->social_Reason;
+        $company = User::find(auth()->user()->id)->company->social_Reason;
 
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
@@ -77,7 +79,7 @@ class UsersController extends Controller
 
     public function showEdit(Request $request, $id)
     {   
-        $user = User::with('profile')->find($id);  
+        $user = User::find($id);  
 
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
@@ -97,14 +99,49 @@ class UsersController extends Controller
     public function store(UserCreateRequest $request)
     {   
         //get company_id to user logged
-        $companyUserAuth = auth()->user()->profile->company_id; 
+        $companyUserAuth = auth()->user()->company_id; 
+
+        // $user = User::create([
+        //     'name'=> $request->user_create_name,
+        //     'email' => $request->create_user_loginEmail,
+        //     'password' => Hash::make($request->create_user_password),                                 
+        // ]);
+        // $user->save();        
 
         $user = User::create([
             'name'=> $request->user_create_name,
+            'last_name' => $request->user_create_name,
             'email' => $request->create_user_loginEmail,
-            'password' => Hash::make($request->create_user_password),                                 
+            'password' => Hash::make($request->create_user_password),                         
+            'login'=> $request->create_user_loginEmail,       
+            'status'=> $request->create_user_status,
+            'company_id'=>$companyUserAuth,
+            // 'avatar' => $PathImage 
         ]);
-        $user->save();        
+        $user->save();
+        
+        //save upload of image
+        if( $request->has('create_user_avatar') )
+       {
+           $imagem = $request->create_user_avatar;
+           $extension = $imagem->extension();
+            
+            $nameImage = "$user->id.$extension";
+            $PathImage = $imagem->storeAs('users',$nameImage);           
+       }else{  
+
+            $PathImage = 'users/user.png';            
+       }
+
+       //apagar depois
+    //    $user->last_name = "testesss";
+
+        //save path image    
+        $user->avatar = $PathImage;
+        $user->save();
+
+
+       
 
         //add roles and permissions
         foreach ($request->create_user_perfil as $value) {           
@@ -114,33 +151,18 @@ class UsersController extends Controller
                 "role_id" => $value
             ]);
         }    
-        
-        //save upload of image
-       if( $request->has('create_user_avatar') )
-       {
-            $imagem = $request->create_user_avatar;
-            $extension = $imagem->extension();
-            
-            $nameImage = "$user->id.$extension";
-            $PathImage = $imagem->storeAs('users',$nameImage);           
-       }else{  
 
-            $PathImage = 'users/user.png';            
-       }
-        
-            
-
-        //create of profile
-        $user->profile()->create([
-            'login'=> $request->create_user_loginEmail,
-            'profile' => $request->user_create_name,
-            'companie' => auth()->user()->profile->companie,
-            'superiors'=> $request->create_user_upper,
-            'status'=> $request->create_user_status,
-            'company_id'=>$companyUserAuth,
-            'avatar' => $PathImage     
-        ]);
-        $user->save();
+        // //create of profile
+        // $user->profile()->create([
+        //     'login'=> $request->create_user_loginEmail,
+        //     'profile' => $request->user_create_name,
+        //     'companie' => auth()->user()->profile->companie,
+        //     'superiors'=> $request->create_user_upper,
+        //     'status'=> $request->create_user_status,
+        //     'company_id'=>$companyUserAuth,
+        //     'avatar' => $PathImage     
+        // ]);
+        // $user->save();
 
         debug($user->id);
 
@@ -203,21 +225,15 @@ class UsersController extends Controller
             Storage::delete($nameImage);
             $PathImage = $imagem->storeAs(null,$nameImage);        
             
-            $userUpdate->profile()->update([
-                    'login'=> $request->update_user_name,
-                    'profile' => "profile",
-                    'companie' => auth()->user()->profile->companie,
-                    'superiors'=> $request->update_user_upper,
+            $userUpdate->update([
+                    'login'=> $request->update_user_name,                                         
                     'status'=> $request->update_user_status,
                     'avatar' => $PathImage  
             ]);
         }//end if valid image  
         
-        $userUpdate->profile()->update([
-                'login'=> $request->update_user_name,
-                'profile' => "profile",
-                'companie' => auth()->user()->profile->companie,
-                'superiors'=> $request->update_user_upper,
+        $userUpdate->update([
+                'login'=> $request->update_user_name,                               
                 'status'=> $request->update_user_status,            
         ]);
         

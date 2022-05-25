@@ -107,12 +107,12 @@
                         data: users,
                         columns: [
                             {data: 'button'},
-                            {data: 'companie'},
+                            {data: 'company'},
                             {data: 'status'},
-                            {data: 'profile' }, 
+                            {data: 'last_name' }, 
                             { data: 'status'},                          
                             { data: 'login' },
-                            { data: 'profile' },
+                            { data: 'email' },
                             { data: 'avatar' }
                                                   
                         ]               

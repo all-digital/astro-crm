@@ -19,7 +19,7 @@ class ServicesController extends Controller
     {        
         $userCompany = User::find(auth()->user()->id);
 
-        $services = Services::where('company_id', $userCompany->profile->company->id);        
+        $services = Services::where('company_id', $userCompany->company->id);        
         $services = $services->simplePaginate(6);
         
 

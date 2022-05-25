@@ -19,7 +19,7 @@ class ServicesExport implements FromView
         // $services = new Services();
         
         return view('exports.services', [
-            'services' => Services::where("company_id", $user->profile->company->id)->get()
+            'services' => Services::where("company_id", $user->company->id)->get()
         ]);
 
 

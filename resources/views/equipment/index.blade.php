@@ -42,7 +42,7 @@
                                         <div class="mb-3 mb-4">
                                             <label class="form-label" for="company">Empresa</label>
                                             <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror"
-                                             value="{{ Auth::user()->profile->companie}}" readonly>                                             
+                                             value="{{ Auth::user()->company->social_Reason}}" readonly>                                             
                                             
                                             @error('company')                                           
                                                   <div class="invalid-feedback">

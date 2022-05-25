@@ -15,15 +15,15 @@ class ServicesController extends Controller
     public function store(Request $request)
     {        
         $user = User::find($request->input('userId'));               
-
+        debug($request->input('socialReason'));
         $service = Services::create([
-            'company' => "Alldigital",
+            'company' => $request->input('socialReason'),
             'status' => $request->input('addStatus'),
             'category' => $request->input('addCategory'),
             'name' => $request->input('addService'),
             'price' => $request->input('addPrice'),
             'responsible_for_insert' => "Admin",
-            "company_id" => $user->profile->company->id
+            "company_id" => $user->company->id
         ]);
     
        $service->save();

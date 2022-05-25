@@ -58,7 +58,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ $user->profile->companie }}" type="text" value="empresa"
+                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ $user->company->social_Reason }}" type="text" value="empresa"
                                                     id="update_user_company" name="update_user_company">
 
                                                     @error('update_user_company')                                           
@@ -72,7 +72,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ $user->profile->companie}}" type="text" value="empresa"
+                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ $user->company->social_Reason}}" type="text" value="empresa"
                                                     id="update_user_company" name="update_user_company" readonly>
 
                                                     @error('update_user_company')                                           
@@ -99,7 +99,7 @@
                                                 <div class="mb-3 row" readonly>
                                                     <label class="col-md-3 col-form-label">Status</label>
                                                     <div class="col-md-9">
-                                                        <input name="update_user_status" class="form-control" value="{{$user->profile->status}}" readonly>                                                        
+                                                        <input name="update_user_status" class="form-control" value="{{$user->status}}" readonly>                                                        
                                                     </div>
                                                 </div> 
                                             @endif
@@ -282,7 +282,7 @@
                                              <!-- /.modal-content -->
 
                                              <img class="rounded-circle header-profile-user"
-                                                src="{{ url('storage/'.$user->profile->avatar) }}" style="max-width: 100px; max-height: 100px;"
+                                                src="{{ url('storage/'.$user->avatar) }}" style="max-width: 100px; max-height: 100px;"
                                              >
                                             
                                             

@@ -156,11 +156,11 @@
                                 required>                                 
                                 
                                 <div class="mb-3 row" style="justify-content: center;">
-                                    <label for="example-text-input"
+                                    <label for="social_Reason"
                                         class="col-md-3 col-form-label">Empresa</label>
                                     <div class="col-md-7">
-                                        <input class="form-control" type="text" value="{{Auth::user()->profile->companie}}"
-                                            id="example-text-input" readonly>
+                                        <input class="form-control" type="text" name="social_Reason" value="{{Auth::user()->company->social_Reason}}"
+                                            id="social_Reason" readonly>
                                     </div>
                                 </div>
 
@@ -482,6 +482,7 @@
             let addService = document.getElementById('add-name-service')
             let addPrice = document.getElementById('add-price')
             let addfrequencia = document.getElementById('add-frequencia')
+            let socialReason = document.getElementById('social_Reason')
             let userId = document.getElementById('userId')
 
             let addServices = {
@@ -490,6 +491,7 @@
                 "addService"      : addService.value,
                 "addPrice"        : addPrice.value,
                 "addfrequencia"   : addfrequencia.value,
+                "socialReason"    : socialReason.value,
                 "userId"          : userId.value
             }
 

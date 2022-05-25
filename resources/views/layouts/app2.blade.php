@@ -474,10 +474,10 @@
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user" 
-                                    @if (auth()->user()->profile->avatar == "null")                                    
+                                    @if (auth()->user()->avatar == "null")                                    
                                         src="{{asset('assets/images/users/avatar-2.jpg')}}" style="max-width: 100px; max-height: 100px;"                          
                                     @else                                                                      
-                                        src="{{ url('storage/'.auth()->user()->profile()->get('avatar')[0]->avatar) }}" style="max-width: 100px; max-height: 100px;"
+                                        src="{{ url('storage/'.auth()->user()->avatar) }}" style="max-width: 100px; max-height: 100px;"
                                     @endif
                                         alt="Header Avatar">
                                     <span class="d-none d-xl-inline-block ms-1" style="color: #000;">{{ Auth::user()->name ?? ''}}</span>
