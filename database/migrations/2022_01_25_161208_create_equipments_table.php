@@ -23,13 +23,13 @@ class CreateEquipmentsTable extends Migration
             $table->string('simcard');
             $table->string('responsible_for_insert');
 
-            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies');
 
-            $table->unsignedBigInteger('simcard_id');
+            $table->unsignedBigInteger('simcard_id')->nullable();
             $table->foreign('simcard_id')->references('id')->on('simcards');
 
-            $table->unsignedBigInteger('vehicle_id');
+            $table->unsignedBigInteger('vehicle_id')->nullable();
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
 
             $table->timestamps();

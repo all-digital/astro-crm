@@ -30,24 +30,30 @@ class UserSeeder extends Seeder
         $user = User::create([
             // 'name'=> 'suport',
             // 'email' => 'suport@suport',
-            // 'name'=> 'admin2',
-            // 'email' => 'admin@admi2',
-            'name'=> $faker->name(),
+            'name'=> 'admin',
+            'last_name' => $faker->lastName(),
+            'email' => 'admin@admin',
+            'login' => 'login',
+            'avatar' => null,
+            'status'=> 'ativo',  
+
             'email' => $faker->email(),
-            'password' => Hash::make('123456789'),                      
+            'password' => Hash::make('123456789'),       
+                  
+            'company_id' => 1
                         
         ]);
         
-        $user->profile()->create([
-            'login'=> $faker->name(),
-            'profile' => "perfil teste",
-            // 'companie' => $faker->company(),
-            'companie' => 'all digital',
-            'superiors'=> $faker->name(),
-            'status'=> "status ok",
-            'avatar' => "avatar",
-            "company_id"=>1            
-        ]);
+        // $user->profile()->create([
+        //     'login'=> $faker->name(),
+        //     'profile' => "perfil teste",
+        //     // 'companie' => $faker->company(),
+        //     'companie' => 'all digital',
+        //     'superiors'=> $faker->name(),
+        //     'status'=> "status ok",
+        //     'avatar' => "avatar",
+        //     "company_id"=>1            
+        // ]);
 
         // $user->company()->create([
         //     'cnpj' => rand(),
@@ -81,15 +87,15 @@ class UserSeeder extends Seeder
         // ]);
 
 
-        $user->address()->create([
-            'address' => $faker->company(),
-            'number_address' => $faker->company(),
-            'zip_code'=> $faker->name(),
-            'city' => Hash::make('123456789'),
-            'country' => $faker->company(),
-            'state'=> $faker->name(),
-            'complement'=> $faker->name()
-        ]);
+        // $user->address()->create([
+        //     'address' => $faker->company(),
+        //     'number_address' => $faker->company(),
+        //     'zip_code'=> $faker->name(),
+        //     'city' => Hash::make('123456789'),
+        //     'country' => $faker->company(),
+        //     'state'=> $faker->name(),
+        //     'complement'=> $faker->name()
+        // ]);
 
 
 

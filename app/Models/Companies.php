@@ -30,12 +30,12 @@ class Companies extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class,'company_id');
     }
 
     public function client()
     {
-        return $this->hasMany(Clients::class);
+        return $this->hasMany(Clients::class,'company_id');
     }
 
     public function address()
@@ -45,12 +45,12 @@ class Companies extends Model
 
     public function services()
     {
-        return $this->hasMany(Services::class);
+        return $this->hasMany(Services::class,'company_id');
     }
 
     public function equipments()
     {
-        return $this->hasMany(Equipments::class);
+        return $this->hasMany(Equipments::class,'company_id');
     }
    
 

@@ -36,7 +36,7 @@ class Clients extends Model
 
     public function address()
     {
-        return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class,'client_id');
     }
 
     public function company()
@@ -46,17 +46,17 @@ class Clients extends Model
 
     public function vehicles()
     {
-        return $this->hasMany(Vehicles::class);
+        return $this->hasMany(Vehicles::class,'client_id');
     }
 
     public function serviceOrderMaintenances()
     {
-        return $this->hasMany(ServiceOrderMaintenances::class);
+        return $this->hasMany(ServiceOrderMaintenances::class,'client_id');
     }
 
     public function serviceOrderSales()
     {
-        return $this->hasMany(ServiceOrderSales::class);
+        return $this->hasMany(ServiceOrderSales::class,'client_id');
     }
 
 
