@@ -15,13 +15,13 @@ class CreateEquipmentsTable extends Migration
     {
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();            
-            $table->string('status');
-            $table->string('provider');
-            $table->string('brand');
-            $table->string('model');
-            $table->string('imei');
-            $table->string('simcard');
-            $table->string('responsible_for_insert');
+            $table->string('status')->nullable();
+            $table->string('provider')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('model')->nullable();
+            $table->string('imei')->nullable();
+            $table->string('simcard')->nullable();
+            $table->string('responsible_for_insert')->nullable();
 
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies');

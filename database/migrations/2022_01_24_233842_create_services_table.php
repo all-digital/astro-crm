@@ -15,12 +15,12 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('company');
-            $table->string('status');
-            $table->string('category');
-            $table->string('name');
-            $table->string('price');
-            $table->string('responsible_for_insert');
+            $table->string('company')->nullable();
+            $table->string('status')->nullable();
+            $table->string('category')->nullable();
+            $table->string('name')->nullable();
+            $table->string('price')->nullable();
+            $table->string('responsible_for_insert')->nullable();
 
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
