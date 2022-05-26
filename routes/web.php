@@ -170,6 +170,8 @@ Route::get('/profile/{id}', function($id){
 });                                            
 
                                            ////veiculos
+                                         
+Route::get('/veiculos-list', [App\Http\Controllers\Vehicles\VehiclesController::class, 'index'])->name('vehicles.list');
 
 Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'showCreate']);
 //Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
@@ -179,10 +181,10 @@ Route::put('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::
 
 Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('vehicles.create');
 
-// Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('vehicles.create');
-Route::get('/veiculos-list', function(){
-    return view('vehicles.vehicles_list');
-});
+
+// Route::get('/veiculos-list', function(){
+//     return view('vehicles.vehicles_list');
+// });
 
 
                                             ////equip

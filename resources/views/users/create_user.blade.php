@@ -17,8 +17,10 @@
 
 @section('content')
 
-                    <!-- end page title -->
+                    @inject('listCompany', 'App\Models\Companies')
 
+                    <!-- end page title -->
+                   
                     <div class="row" x-data="app()">
 
                             {{-- coluna fantasma  --}}
@@ -47,14 +49,19 @@
                                                 <div class="mb-3 row">
                                                     <label for="create_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                     <div class="col-md-9">
-                                                        <input class="form-control @error('create_user_company') is-invalid @enderror"  type="text" 
-                                                        id="create_user_company" name="create_user_company" value="{{$company}}">
+                                                        {{-- <input class="form-control @error('create_user_company') is-invalid @enderror"  type="text" 
+                                                        id="create_user_company" name="create_user_company" value="{{$company}}"> --}}
+                                                        <select id="create_user_company" name="create_user_company" class="form-select" aria-label="Default select example">
+                                                            @foreach ($listCompany->all()->toArray() as $item)
 
-                                                        @error('create_user_company')                                           
-                                                            <div class="invalid-feedback">
-                                                                {{$message}}                                          
-                                                            </div>
-                                                        @enderror
+                                                                <option value="{{$item['id']}}">{{$item['social_Reason']}}</option>
+                                                                
+                                                            @endforeach                                                        
+                                                            {{-- <option value="ativo" selected >Ativo</option> --}}
+                                                        </select>
+
+
+                                                       
                                                     </div>
                                                 </div>                                                
                                             @else
@@ -104,16 +111,16 @@
                                                     <select id="create_user_perfil" name="create_user_perfil[]" class="select2 form-control select2-multiple @error('create_user_perfil') is-invalid @enderror" multiple="multiple"
                                                         data-placeholder="Adicione o nivel de permissionamento do usuario">
                                                         <optgroup label="Nivel 1">                                                            
-                                                            <option value="1">Admin</option> 
-                                                            <option value="2">Gerente</option>
-                                                            <option value="3">Coordenador</option>                                                            
+                                                            <option value="2">Admin</option> 
+                                                            <option value="3">Gerente</option>
+                                                            <option value="4">Coordenador</option>                                                            
                                                         </optgroup>
                                                         <optgroup label="Nivel 2">                                                       
-                                                            <option value="4" >Comercial</option>
-                                                            <option value="5">Vendedor</option>
-                                                            <option value="6">Financeiro</option>
-                                                            <option value="7" >Suporte</option>
-                                                            <option value="8" >Técnico</option> 
+                                                            <option value="5" >Comercial</option>
+                                                            <option value="6">Vendedor</option>
+                                                            <option value="7">Financeiro</option>
+                                                            <option value="8" >Suporte</option>
+                                                            <option value="9" >Técnico</option> 
                                                         </optgroup>                                                   
         
                                                     </select> 
@@ -126,16 +133,16 @@
                                                 </div>
                                             </div>    
 
-                                            <div class="mb-3 row">
+                                            {{-- <div class="mb-3 row">
                                                 <label class="col-md-3 col-form-label" for="create_user_upper">Superior</label>
                                                 <div class="col-md-9">
                                                     <select id="create_user_upper" name="create_user_upper" class="form-select" aria-label="Default select example" >
                                                         <option selected> upper</option>
                                                                     
-                                                        {{-- Lista todos os Gerentes Comerciais e Admins --}}
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
+                                            {{-- Lista todos os Gerentes Comerciais e Admins --}}
 
                                             
 

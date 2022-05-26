@@ -54,7 +54,7 @@
                                         @csrf 
                                         
                                         {{-- superAdmin --}}
-                                        @if (in_array('Super Admin',$permission) || in_array('Admin',$permission) )
+                                        @if (in_array('Super Admin',$permission) )
                                             <div class="mb-3 row">
                                                 <label for="update_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
@@ -129,16 +129,16 @@
                                                          data-placeholder="Adicione o nivel de permissionamento do usuario">
                                                      
                                                          <optgroup label="Nivel 1">                                                            
-                                                            <option value="1" @if(in_array(1,$roles)) selected @endif>Admin</option> 
-                                                            <option value="2" @if(in_array(2,$roles)) selected @endif>Gerente</option>
-                                                            <option value="3" @if(in_array(3,$roles)) selected @endif>Coordenador</option>                                                            
+                                                            <option value="2" @if(in_array(2,$roles)) selected @endif>Admin</option> 
+                                                            <option value="3" @if(in_array(3,$roles)) selected @endif>Gerente</option>
+                                                            <option value="4" @if(in_array(4,$roles)) selected @endif>Coordenador</option>                                                            
                                                         </optgroup>
                                                         <optgroup label="Nivel 2">                                                       
-                                                            <option value="4"@if(in_array(4,$roles)) selected @endif>Comercial</option>
-                                                            <option value="5"@if(in_array(5,$roles)) selected @endif>Vendedor</option>
-                                                            <option value="6"@if(in_array(6,$roles)) selected @endif>Financeiro</option>
-                                                            <option value="7"@if(in_array(7,$roles)) selected @endif>Suporte</option>
-                                                            <option value="8"@if(in_array(8,$roles)) selected @endif>Técnico</option> 
+                                                            <option value="5"@if(in_array(5,$roles)) selected @endif>Comercial</option>
+                                                            <option value="6"@if(in_array(6,$roles)) selected @endif>Vendedor</option>
+                                                            <option value="7"@if(in_array(7,$roles)) selected @endif>Financeiro</option>
+                                                            <option value="8"@if(in_array(8,$roles)) selected @endif>Suporte</option>
+                                                            <option value="9"@if(in_array(9,$roles)) selected @endif>Técnico</option> 
                                                         </optgroup>                                             
          
                                                      </select> 

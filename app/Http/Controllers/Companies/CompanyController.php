@@ -83,7 +83,7 @@ class CompanyController extends Controller
    
     public function update(Request $request, $id)
     {
-        //dd($request->all());
+        // dd($request->all());
 
         $company = Companies::find($id);
 
@@ -95,12 +95,12 @@ class CompanyController extends Controller
         // $company->email_responsible             = $request->email_responsible;
         $company->name_responsible  = $request->name_responsible;
         // $company->logo             = $request->logo;
-        // $company->color             = $request->color;
-        $company->monthly_payment      = $request->monthly_payment ?: '1,00';
-        $company->activation        = $request->activation ?: '1,00';
-        $company->price_per_plate     = $request->price_per_plate ?: '1,00'; 
-        $company->user_limit         = $request->user_limit ?: '1,00';
-        $company->price_per_extra_user = $request->price_per_extra_user ?: '1,00';
+        $company->color             = $request->color;
+        $company->monthly_payment      = $request->monthPayment;
+        $company->activation        = $request->activation;
+        $company->price_per_plate     = $request->pricePerPlate; 
+        $company->user_limit         = $request->userLimit;
+        $company->price_per_extra_user = $request->pricePerExtraUser;
                
         $company->save();
 

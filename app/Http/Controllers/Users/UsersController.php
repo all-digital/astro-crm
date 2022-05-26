@@ -9,7 +9,6 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserEditRequest;
 
 use App\Models\User;
-use App\Models\Profiles;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserRole;
 use Illuminate\Support\Facades\DB;
@@ -96,8 +95,8 @@ class UsersController extends Controller
     }//end showEdit
 
 
-    public function store(UserCreateRequest $request)
-    {   
+    public function store(UserCreateRequest  $request)
+    {               
         //get company_id to user logged
         $companyUserAuth = auth()->user()->company_id; 
 
@@ -106,7 +105,19 @@ class UsersController extends Controller
         //     'email' => $request->create_user_loginEmail,
         //     'password' => Hash::make($request->create_user_password),                                 
         // ]);
-        // $user->save();        
+        // $user->save();     
+
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
+
+
+        //add o id escolhido pelo super admin
+        if(in_array('Super Admin',$permission))
+        {
+            $companyUserAuth = $request->create_user_company;
+        };
 
         $user = User::create([
             'name'=> $request->user_create_name,
@@ -134,7 +145,7 @@ class UsersController extends Controller
        }
 
        //apagar depois
-    //    $user->last_name = "testesss";
+       //$user->last_name = "testesss";
 
         //save path image    
         $user->avatar = $PathImage;
