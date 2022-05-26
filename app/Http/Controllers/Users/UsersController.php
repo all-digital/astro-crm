@@ -156,7 +156,7 @@ class UsersController extends Controller
         // $user->profile()->create([
         //     'login'=> $request->create_user_loginEmail,
         //     'profile' => $request->user_create_name,
-        //     'companie' => auth()->user()->profile->companie,
+        //     'companie' => auth()->user()->company,
         //     'superiors'=> $request->create_user_upper,
         //     'status'=> $request->create_user_status,
         //     'company_id'=>$companyUserAuth,

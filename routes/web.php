@@ -101,7 +101,7 @@ Route::get('dd', function(){
 //     echo "$value <br>";
 //   }
 
-//   dd(auth()->user()->profile->companie);
+//   dd(auth()->user()->company);
 
   // Storage::get('file.jpg'),
         // Storage::path('file.jpg');
@@ -278,7 +278,7 @@ Route::get('test', function(){
 
     dd($p);
 
-    // $avatar = User::find(2)->profile->avatar;
+    // $avatar = User::find(2)->avatar;
     // dd( $avatar);
 
     $img = Storage::get('users/user.png');
@@ -292,7 +292,7 @@ Route::get('test', function(){
     
     dd($user["profile"]['companie']);
 
-    dd(auth()->user()->profile->company_id);
+    dd(auth()->user()->company->id);
 });
 
 Route::prefix('teste')->group(function () {

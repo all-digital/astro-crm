@@ -25,7 +25,7 @@ class CompanyController extends Controller
             $companies = Companies::all()->toArray();
         }else{
 
-            $companiesResult = Companies::where('id', auth()->user()->profile->company_id)->get();         
+            $companiesResult = Companies::where('id', auth()->user()->company->id)->get();         
             $companies = $companiesResult->toArray();              
 
         }//end else

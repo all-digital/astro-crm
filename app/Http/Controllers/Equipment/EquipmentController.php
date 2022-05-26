@@ -24,7 +24,7 @@ class EquipmentController extends Controller
     {
 
         $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
-        $idCompany = auth()->user()->profile->company_id;
+        $idCompany = auth()->user()->company->id;
 
         $equipments = Equipments::where('company_id', $idCompany)->get();    
         $equipments = $equipments->toArray();
@@ -77,7 +77,7 @@ class EquipmentController extends Controller
             'model' => $request->model,
             'imei' => $request->imei,
             'simcard' => $request->simcards,
-            'company_id' => auth()->user()->profile->company_id
+            'company_id' => auth()->user()->company->id
         ]);
 
         return redirect()                   
