@@ -25,6 +25,7 @@ class CreateEquipmentsTable extends Migration
             $table->string('imei')->nullable();
             $table->string('simcard')->nullable();            
             $table->string('responsible_for_insert')->nullable();
+            $table->string('responsible_last_updated')->nullable();
 
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies');

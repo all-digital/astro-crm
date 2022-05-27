@@ -31,6 +31,7 @@ class CreateClients extends Migration
             $table->string('email')->nullable();
             $table->string('email_finance')->nullable();
             $table->string('tracking_platform')->nullable();
+            $table->string('responsible_last_updated')->nullable();
 
            $table->unsignedBigInteger('company_id');
            $table->foreign('company_id')->references('id')->on('companies');    

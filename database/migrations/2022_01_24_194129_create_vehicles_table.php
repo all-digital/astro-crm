@@ -26,7 +26,8 @@ class CreateVehiclesTable extends Migration
             $table->string('year')->nullable();
             $table->string('value')->nullable();
             $table->string('equipment')->nullable();
-            $table->string('license_plate')->nullable();            
+            $table->string('license_plate')->nullable(); 
+            $table->string('responsible_last_updated')->nullable();           
 
             $table->unsignedBigInteger('client_id')->nullable();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');

@@ -29,7 +29,8 @@ class CreateCompaniesTable extends Migration
             $table->string('price_per_plate')->nullable();
             $table->string('user_limit')->nullable();
             $table->string('price_per_extra_user')->nullable();
-            $table->string('responsible_to_insert')->nullable();                   
+            $table->string('responsible_to_insert')->nullable(); 
+            $table->string('responsible_last_updated')->nullable();                  
 
             $table->timestamps();
         });

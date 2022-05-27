@@ -23,6 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('country')->nullable();
             $table->string('state')->nullable();
             $table->string('complement')->nullable();
+            $table->string('responsible_last_updated')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

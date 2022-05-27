@@ -33,6 +33,7 @@ class CreateServiceOrderSalesTable extends Migration
             $table->string('zip_code_customer')->nullable();
             $table->string('city_client')->nullable();
             $table->string('country_client')->nullable();
+            $table->string('responsible_last_updated')->nullable();
                      
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');

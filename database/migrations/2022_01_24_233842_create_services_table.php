@@ -21,6 +21,7 @@ class CreateServicesTable extends Migration
             $table->string('name')->nullable();
             $table->string('price')->nullable();
             $table->string('responsible_for_insert')->nullable();
+            $table->string('responsible_last_updated')->nullable();
 
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
