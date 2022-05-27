@@ -175,9 +175,9 @@ Route::get('/veiculos-list', [App\Http\Controllers\Vehicles\VehiclesController::
 
 Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'showCreate']);
 //Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
-Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'editShow']);
+Route::get('/veiculos-edit/{id}', [App\Http\Controllers\Vehicles\VehiclesController::class, 'editShow']);
 
-Route::put('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'editStore'])->name('vehicles.update');
+Route::put('/veiculos-edit/{id}', [App\Http\Controllers\Vehicles\VehiclesController::class, 'update'])->name('vehicles.update');
 
 Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('vehicles.create');
 

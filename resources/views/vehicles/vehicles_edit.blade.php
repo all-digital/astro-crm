@@ -16,6 +16,7 @@
 
 @section('content')
 
+          @inject('listCompany', 'App\Models\Companies')
 
           <div class="row">
 
@@ -32,119 +33,160 @@
                                 {{session('success')}}
                             </div>
                         @endif
-                     
-                        <form id="formVehicles" action="{{route('vehicles.update')}}" method="POST">
+
+                        <form id="formVehicles" action="{{route('vehicles.update',$id)}}" method="POST">
                           @method('PUT')
-                          @csrf
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div>
-                                        <div class="mb-3 mb-4">
-                                            <label class="form-label" for="company">Empresa</label>
-                                            <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror" value="{{ old('company') }}">                                             
-                                            
-                                            @error('company')                                           
-                                                  <div class="invalid-feedback">
-                                                   {{$message}}                                          
-                                                  </div>
-                                            @enderror
-
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                            <label class="form-label" for="status">Status</label>
-                                            <select name="status" class="form-control">
-                                              <option value="Ativo">Ativo</option>
-                                              <option value="Inativo">Inativo</option>
+                          @csrf                    
+                           
+                              <div class="row">
+                                  <div class="col-lg-6">
+                                      <div>
+                                         
+                                          {{-- super admin  --}}
+                                          @if (in_array('Super Admin',$permission))
+                                            <div class="mb-3 mb-4">
+                                              <label for="company" class="form-label">Empresa</label>
+                                                
+                                                
+                                                  <select id="company" name="company" class="form-select" aria-label="Default select example">
+                                                      @foreach ($listCompany->all()->toArray() as $item)
+  
+                                                          <option value="{{$item['social_Reason']}}">{{$item['social_Reason']}}</option>
+                                                          
+                                                      @endforeach                                                        
+                                                      
+                                                  </select>
+                                                   
+                                                
+                                            </div>                                                
+                                          @else
+                                              <div class="mb-3 mb-4">
+                                                  <label for="company" class="form-label">Empresa</label>
+                                                 
+                                                      <input class="form-control @error('company') is-invalid @enderror"  type="text" readonly
+                                                      id="company" name="company" value="{{auth()->user()->company->social_Reason }}">
+  
+                                                      @error('company')                                           
+                                                          <div class="invalid-feedback">
+                                                              {{$message}}                                          
+                                                          </div>
+                                                      @enderror
+                                                  
+                                              </div>                                                 
+                                          @endif
+  
+                                          <div class="mb-3 mb-4">
+                                            <label class="form-label" for="client">Cliente</label>
+                                            <select name="client" class="form-control">
+  
+                                              <option value="null">Sem vínculo</option>
+                                              @foreach ($client as $item)
+                                                <option value="{{$item['id']}}">{{$item['name']}}</option>                                                
+                                              @endforeach
+                                                                                      
                                             </select>                                          
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label class="form-label" for="vehicles">Veículo</label>
-                                          <select name="vehicles" class="form-control">
-                                            <option value="Carro">Carro</option>
-                                            <option value="Moto">Moto</option>
-                                            <option value="Caminhão">Caminhão</option>
-                                            <option value="Onibus">Ônibus</option>
-                                            <option value="Microonibus">Microônibus</option>
-                                            <option value="Bicicleta">Bicicleta</option>
-                                            <option value="Pessoa">Pessoa</option>
-                                            <option value="Pet">Pet</option>
-                                          </select>                 
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="brand" class="form-label">Marca</label>
-                                          <input type="text" name="brand" class="form-control @error('brand') is-invalid @enderror" value="{{ old('brand') }}">
+                                          </div>     
+  
+                                          <div class="mb-3 mb-4">
+                                              <label class="form-label" for="status">Status</label>
+                                              <select name="status" class="form-control">
+                                                <option value="Ativo">Ativo</option>
+                                                <option value="Inativo">Inativo</option>
+                                              </select>                                          
+                                          </div>
+  
+                                          <div class="mb-3 mb-4">
+                                            <label class="form-label" for="type_vehicles">Veículo</label>
+                                            <select name="type_vehicles" class="form-control">
+                                              <option value="Carro">Carro</option>
+                                              <option value="Moto">Moto</option>
+                                              <option value="Caminhão">Caminhão</option>
+                                              <option value="Onibus">Ônibus</option>
+                                              <option value="Microonibus">Microônibus</option>
+                                              <option value="Bicicleta">Bicicleta</option>
+                                              <option value="Pessoa">Pessoa</option>
+                                              <option value="Pet">Pet</option>
+                                            </select>                 
+                                          </div>
+  
+  
+                                          <div class="mb-3 mb-4">
+                                            <label class="form-label" for="brand">Marca</label>
+                                            <select name="brand" class="form-control">
+                                              <option value="CHEVROLET">CHEVROLET</option>
+                                              <option value="VOLKSWAGEN">VOLKSWAGEN</option>
+                                              <option value="FIAT">FIAT</option>
+                                              <option value="CITROEN">CITROEN</option>
+                                              <option value="HONDA">HONDA</option>
+                                            </select>                                          
+                                          </div>                                                                                                                 
+  
+                                      </div>
+                                  </div>
+  
+                                  <div class="col-lg-6">
+                                      <div class="mt-4 mt-lg-0">  
+  
+                                          <div class="mb-3 mb-4">
+                                            <label class="form-label" for="model">Modelo</label>
+                                            <select name="model" class="form-control">
+                                              <option value="Marca">Marca</option>
+                                              <option value="Marca">Marca</option>
+                                              <option value="Marca">Marca</option>
+                                              <option value="Marca">Marca</option>
+                                              <option value="Marca">Marca</option>
+                                            </select>                                          
+                                          </div> 
+                                        
+                                          <div class="mb-3 mb-4">
+                                            <label class="form-label" for="year">Ano</label>
+                                            <select name="year" class="form-control">
+                                              <option value="year">year</option>
+                                              <option value="year">year</option>
+                                              <option value="year">year</option>
+                                              <option value="year">year</option>
+                                              <option value="year">year</option>
+                                            </select>                                          
+                                          </div> 
+                                         
+  
+                                          <div class="mb-3 mb-4">
+                                            <label for="vehicle_plate" class="form-label">Placa</label>
+                                            <input type="text" name="vehicle_plate" class="form-control @error('vehicle_plate') is-invalid @enderror" value="{{ old('vehicle_plate') }}">
+  
+                                            @error('vehicle_plate')                                           
+                                              <div class="invalid-feedback">
+                                                {{$message}}                                          
+                                              </div>
+                                            @enderror
+                                          </div>
+                                          
+                                          <div class="mb-3 mb-4">
+                                            <label for="value" class="form-label">Value</label>
+                                            <input type="text" name="value" class="form-control @error('value') is-invalid @enderror" value="{{ old('value') }}">   
                                             
-                                          @error('brand')                                           
-                                            <div class="invalid-feedback">
+                                            @error('value')                                           
+                                              <div class="invalid-feedback">
                                                 {{$message}}                                          
-                                            </div>
-                                          @enderror
-
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="model" class="form-label">Modelo</label>
-                                          <input type="text" name="model" class="form-control @error('model') is-invalid @enderror" value="{{ old('model') }}">  
-                                          
-                                          @error('model')                                           
-                                            <div class="invalid-feedback">
-                                                {{$message}}                                          
-                                            </div>
-                                          @enderror
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mt-4 mt-lg-0">                                       
-                                        <div class="mb-3 mb-4">
-                                          <label for="year" class="form-label">Ano</label>
-                                          <input type="text" name="year" class="form-control @error('year') is-invalid @enderror" value="{{ old('year') }}">       
-
-                                          @error('year')                                           
-                                            <div class="invalid-feedback">
-                                              {{$message}}                                          
-                                            </div>
-                                          @enderror
-                                          
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="vehicle_plate" class="form-label">Placa</label>
-                                          <input type="text" name="vehicle_plate" class="form-control @error('vehicle_plate') is-invalid @enderror" value="{{ old('vehicle_plate') }}">
-
-                                          @error('vehicle_plate')                                           
-                                            <div class="invalid-feedback">
-                                              {{$message}}                                          
-                                            </div>
-                                          @enderror
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="value" class="form-label">Value</label>
-                                          <input type="text" name="value" class="form-control @error('value') is-invalid @enderror" value="{{ old('value') }}">   
-                                          
-                                          @error('value')                                           
-                                            <div class="invalid-feedback">
-                                              {{$message}}                                          
-                                            </div>
-                                          @enderror
-                                        </div>
-                                        <div class="mb-3 mb-4">
-                                          <label for="equipment" class="form-label">Equipamento</label>                                         
-                                          <select name="status" class="form-control" >                                                                                                                                 
-                                            <option value="Ativo">equipamentos</option>
-                                            <option value="Inativo">equipamentos 2</option>
-                                          </select>  
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                                                                                 
-
-                            <div style="text-align: right;">
-                              <button class="btn btn-info waves-effect waves-light px-5 my-2">Cadastrar</button>
-                            </div>
-                            
-                        </form>
+                                              </div>
+                                            @enderror
+                                          </div>
+                                          <div class="mb-3 mb-4">
+                                            <label for="equipment" class="form-label">Equipamento</label>                                         
+                                            <select name="equipment" class="form-control" >                                                                                                                                 
+                                              <option value="equipamentos 1">equipamentos</option>
+                                              <option value="equipamentos 2">equipamentos 2</option>
+                                            </select>  
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>                                                                                 
+  
+                              <div style="text-align: right;">
+                                <button class="btn btn-info waves-effect waves-light px-5 my-2">Enviar Edição</button>
+                              </div>
+                              
+                          </form>
                     </div>
                 </div>
             </div>

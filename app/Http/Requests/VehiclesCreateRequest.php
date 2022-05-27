@@ -24,9 +24,9 @@ class VehiclesCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company' => 'required|min:2|max:155',
+            'company' => 'required|min:1|max:155',
             'status' => 'required|max:20',
-            'vehicles' => 'required|min:2|max:155',
+            
             'brand' => 'required|min:2|max:155',
             'model' => 'required|min:2|max:155',
             'year' => 'required',

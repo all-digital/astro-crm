@@ -30,24 +30,19 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th><strong>Modulos</strong></th>
-                                <th><strong>Razão Social</strong></th>
-                                <th><strong>Nome Fantasia</strong></th>
-                                <th><strong>CNPJ</strong></th>
-                                <th><strong>Status</strong></th>
-                                <th><strong>Responsável</strong></th>
-                                <th><strong>Sobrenome</strong></th>
-                                <th><strong>Email</strong></th>
-                                <th><strong>Última Alteração</strong></th>                                
-                                {{-- <th>Usuário da Última Alteração</th>
-                                <th>Data de Inserção</th>
-                                <th>Usuário de Inserção</th>--}}
-                                <th><strong>Mensalidade</strong></th>
-                                <th><strong>Ativação</strong></th>
-                                <th><strong>Preço por Placa</strong></th>
-                                <th><strong>Limite de Usuarios</strong></th>
-                                <th><strong>Preço por Usuario extra</strong></th>                         
-                      
+                                <th><strong>Botão</strong></th>
+                                <th><strong>Empresa</strong></th>
+                                <th><strong>Status</strong></th>                               
+                                <th><strong>Usuário de Inserção</strong></th>
+                                <th><strong>Data de Inserção</strong></th>
+                                <th><strong>Marca</strong></th>
+                                <th><strong>Modelo</strong></th>                               
+                                <th><strong>Ano</strong></th>
+                                <th><strong>Placa</strong></th>
+                                <th><strong>Valor</strong></th>
+                                <th><strong>Equipamento</strong></th>
+                                <th><strong>Data última atualização</strong></th>                         
+                                <th><strong>Usuario última atualização</strong></th>  
                             </tr>
                         </thead>
 
@@ -117,7 +112,11 @@
                             "updated_at": "25/01/2022 16:37",
                             "user_id": 1,
                             "user_limit": "5"}]
-                              
+
+              
+            let vehicles = {{ Js::from($vehicles)}};
+            console.log(vehicles)
+
             $(document).ready(function(){
 
                 $("#datatable").DataTable({
@@ -130,27 +129,57 @@
                             'colvis',
                             ],
                 
-                        data: companies,
+                        data: vehicles,
                         columns: [
-                            {data: 'modulos'},
-                            {data: 'social_Reason'},
+                            {data: 'button'},
+                            {data: 'company'},
                             {data: 'fantasy_name'},
-                            {data: 'cnpj' }, 
-                            { data: 'status'},                          
-                            { data: 'name_responsible' },
-                            { data: 'last_name_responsible' },
-                            { data: 'email_responsible' },
-                            { data: 'updated_at' },
-                            { data: 'monthly_payment' },
-                            { data: 'activation' },
-                            { data: 'price_per_plate' },
-                            { data: 'user_limit' },
-                            { data: 'price_per_extra_user' }                                                   
+                            {data: 'responsible_for_insert'}, 
+                            { data: 'created_at'},                          
+                            { data: 'responsible_for_insert'},
+                            { data: 'brand'},
+                            { data: 'model'},
+                            { data: 'year'},
+                            { data: 'license_plate'},
+                            { data: 'equipment'},
+                            { data: 'equipment'},
+                            { data: 'updated_at'},
+                                                                              
                         ]               
                 })
                                                 
             });
 
+                               // {data: 'button'},
+            //                 {data: 'company'},
+            //                 {data: 'fantasy_name'},
+            //                 {data: 'responsible_for_insert' }, 
+            //                 { data: 'created_at'},                          
+            //                 { data: 'responsible_for_insert' },
+            //                 { data: 'brand' },
+            //                 { data: 'model' },
+            //                 { data: 'year' },
+            //                 { data: 'license_plate' },
+            //                 { data: 'equipment' },
+            //                 { data: 'license_plate' },
+            //                 { data: 'updated_at' },
+            //                 { data: 'id' }     
+
+
+            // {data: 'modulos'},
+            //                 {data: 'social_Reason'},
+            //                 {data: 'fantasy_name'},
+            //                 {data: 'cnpj' }, 
+            //                 { data: 'status'},                          
+            //                 { data: 'name_responsible' },
+            //                 { data: 'last_name_responsible' },
+            //                 { data: 'email_responsible' },
+            //                 { data: 'updated_at' },
+            //                 { data: 'monthly_payment' },
+            //                 { data: 'activation' },
+            //                 { data: 'price_per_plate' },
+            //                 { data: 'user_limit' },
+            //                 { data: 'price_per_extra_user' }       
            
     </script>    
 
