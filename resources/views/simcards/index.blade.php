@@ -164,7 +164,7 @@
                                        <label  class="col-md-3 col-form-label" for="numberLine">Numero da Linha</label>
                                        <div class="col-md-9">
                                            <input type="text" name="numberLine" value="" 
-                                               id="create-simcard-lineNumber" class="form-control">   
+                                               id="create-simcard-numberLine" class="form-control">   
                                                
                                               <div id="create-simcard-lineNumber-error" class="d-none"> 
                                                 <span>campo obrigatorio, minimo de 3 caracteres </span>                                     
@@ -230,25 +230,9 @@
 
     <script>
 
-            companies = [{"activation": "100.00",
-                            "cnpj": "1769431944",
-                            "color": "verde",
-                            "created_at": "25/01/2022 16:37",
-                            "email_responsible": "auer.thaddeus@gmail.com",
-                            "fantasy_name": "Zemlak-Runolfsson",
-                            "id": 1,
-                            "last_name_responsible": "Cartwright",
-                            "logo": "logo teste",
-                            "modulos": "<a class='btn btn-outline-primary fas fa-edit ms-2' onClick='alert(`${teste}`)' href='https://www.w3schools.com' target='_blank'></a>",
-                            "monthly_payment": "100.00",
-                            "name_responsible": "Sonia Goyette",
-                            "price_per_plate": "1000,15",                            
-                            "social_Reason": "Ortiz, Halvorson and Lind",
-                            "status": "Status OK",
-                            "updated_at": "25/01/2022 16:37",
-                            "user_id": 1,
-                        }]
-                              
+            let simcards = {{ Js::from($simcards)}};
+                             console.log(simcards)
+                                        
             $(document).ready(function(){
 
                 $("#datatable").DataTable({
@@ -261,20 +245,20 @@
                             'colvis',
                             ],
                 
-                        data: companies,
+                        data: simcards,
                         columns: [
-                            {data: 'modulos'},
-                            {data: 'social_Reason'},
-                            {data: 'fantasy_name'},
-                            {data: 'cnpj' }, 
-                            { data: 'status'},                          
-                            { data: 'name_responsible' },
-                            { data: 'last_name_responsible' },
-                            { data: 'email_responsible' },
+                            {data: 'button'},
+                            {data: 'company'},
+                            {data: 'status'},
+                            { data: 'responsible_for_insert' },
+                            { data: 'created_at' },
+                            { data: 'provider'},                          
+                            { data: 'brand'},
+                            { data: 'iccid'},
+                            { data: 'number_of_line' },                            
+                            { data: 'id' },
+                            { data: 'id' },
                             { data: 'updated_at' },
-                            { data: 'monthly_payment' },
-                            { data: 'activation' },
-                            { data: 'price_per_plate' }
                                                                          
                         ]               
                 })
@@ -327,7 +311,7 @@
               let provider = document.getElementById('create-simcard-provider')  
               let brand = document.getElementById('create-simcard-brand')
               let iccid = document.getElementById('create-simcard-iccid')
-              let lineNumber = document.getElementById('create-simcard-lineNumber')
+              let lineNumber = document.getElementById('create-simcard-numberLine')
 
               console.log(company.value,status.value,provider.value,brand.value,iccid.value, lineNumber.value)
               console.log(company,status,provider,brand,iccid, lineNumber)
@@ -361,7 +345,7 @@
               }
 
               
-              if(provider.value.length <= 2)
+              if(provider.value.length <= 1)
               {
                 provider.classList.add('is-invalid')
                 
@@ -373,7 +357,7 @@
               }
 
               
-              if(brand.value.length <= 2)
+              if(brand.value.length <= 1)
               {
                 brand.classList.add('is-invalid')
 
@@ -419,8 +403,8 @@
                     iccid.classList.contains("is-invalid")    ||  lineNumber.classList.contains("is-invalid")                                 
                 ))                    
                 {
-                    // let loading = document.getElementById("modal-loading")
-                    // loading.classList.remove('to-hide')
+                    let loading = document.getElementById("modal-loading")
+                    loading.classList.remove('to-hide')
 
                     let simcard = {
                         company:     company.value,
@@ -428,12 +412,10 @@
                         provider:    provider.value,
                         brand:       brand.value,
                         iccid:       iccid.value,
-                        lineNumber:  lineNumber.value
+                        numberLine:  lineNumber.value
 
                     }
-
-                    console.log(simcard)
-                    
+                                        
                     fetch('api/simcard-create',{ 
                         method:'post',        
                         body: JSON.stringify(simcard),                        
@@ -445,10 +427,15 @@
                         .then(res=> res.json())
                         .then(res => { 
                             
-                            console.log(res)
-                            // location.reload()
-                        
+                          if(res.refreshScreen == true ){                            
+                             location.reload()
+                          }else{
+                             alert(res.status)
+                          }
+
+                            loading.classList.add('to-hide')                           
                         })
+                            
                         .catch((e)=> {console.log("erro => ", e)} )
 
                 }

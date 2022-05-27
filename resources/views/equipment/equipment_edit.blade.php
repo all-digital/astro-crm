@@ -16,7 +16,7 @@
 
 @section('content')
 
-
+          @inject('listCompany', 'App\Models\Companies')
           <div class="row">
 
             <div class="col-lg-2"></div>
@@ -40,22 +40,26 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div>
-                                        <div class="mb-3 mb-4">
-                                            <label class="form-label" for="company">Empresa</label>
-                                            <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror" value="{{ old('company') }}">                                             
-                                            
-                                            @error('company')                                           
-                                                  <div class="invalid-feedback">
-                                                   {{$message}}                                          
-                                                  </div>
-                                            @enderror
+                                     
+                                      <div class="mb-3 mb-4">
+                                        <label class="form-label" for="company">Empresa</label>
+                                        <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror"
+                                         value="{{ Auth::user()->company->social_Reason}}" readonly>                                             
+                                        
+                                        @error('company')                                           
+                                              <div class="invalid-feedback">
+                                               {{$message}}                                          
+                                              </div>
+                                        @enderror
+                                      </div>       
 
-                                        </div>
                                         <div class="mb-3 mb-4">
                                             <label class="form-label" for="status">Status</label>
                                             <select name="status" class="form-control">
-                                              <option value="Ativo">Ativo</option>
-                                              <option value="Inativo">Inativo</option>
+                                              <option value="estoque">Estoque</option>
+                                              <option value="vinculado">Vinculado</option>
+                                              <option value="manutenção">Manutenção</option>
+                                              <option value="cancelado">Cancelado</option>
                                             </select>                                          
                                         </div>
 

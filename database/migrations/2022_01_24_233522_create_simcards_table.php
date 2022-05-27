@@ -22,9 +22,7 @@ class CreateSimcardsTable extends Migration
             $table->string('brand')->nullable();
             $table->string('number_of_line')->nullable();
             $table->string('iccid')->nullable();
-            $table->string('avatar')->nullable();
-
-
+            
             $table->timestamps();
         });
     }

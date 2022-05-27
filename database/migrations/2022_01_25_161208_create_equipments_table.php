@@ -14,13 +14,16 @@ class CreateEquipmentsTable extends Migration
     public function up()
     {
         Schema::create('equipments', function (Blueprint $table) {
-            $table->id();            
+            $table->id();   
+            $table->string('company')->nullable();
+            $table->string('client')->nullable(); 
+            $table->string('vehicle')->nullable();      
             $table->string('status')->nullable();
             $table->string('provider')->nullable();
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
             $table->string('imei')->nullable();
-            $table->string('simcard')->nullable();
+            $table->string('simcard')->nullable();            
             $table->string('responsible_for_insert')->nullable();
 
             $table->unsignedBigInteger('company_id')->nullable();

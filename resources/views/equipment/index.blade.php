@@ -16,7 +16,7 @@
 
 @section('content')
 
-
+          @inject('listCompany', 'App\Models\Companies')
           <div class="row">
 
             <div class="col-lg-2"></div>
@@ -39,23 +39,42 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div>
-                                        <div class="mb-3 mb-4">
-                                            <label class="form-label" for="company">Empresa</label>
-                                            <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror"
-                                             value="{{ Auth::user()->company->social_Reason}}" readonly>                                             
-                                            
-                                            @error('company')                                           
-                                                  <div class="invalid-feedback">
-                                                   {{$message}}                                          
-                                                  </div>
-                                            @enderror
 
-                                        </div>
+
+                                      @if (in_array('Super Admin',$permission))
+                                            <div class="mb-3 mb-4">
+                                              <label class="form-label" for="company">Empresa</label>
+                                              <select id="company" name="company" class="form-select" aria-label="Default select example">
+                                                @foreach ($listCompany->all()->toArray() as $item)
+
+                                                    <option value="{{$item['id']}}">{{$item['social_Reason']}}</option>
+                                                    
+                                                @endforeach   
+                                              </select>  
+                                            </div> 
+                                      @else
+                                            <div class="mb-3 mb-4">
+                                                <label class="form-label" for="company">Empresa</label>
+                                                <input type="text" name="company" class="form-control  @error('company') is-invalid @enderror"
+                                                value="{{ Auth::user()->company->social_Reason}}" readonly>                                             
+                                                
+                                                @error('company')                                           
+                                                      <div class="invalid-feedback">
+                                                      {{$message}}                                          
+                                                      </div>
+                                                @enderror
+
+                                            </div>                                          
+                                      @endif
+                                      
+
                                         <div class="mb-3 mb-4">
                                             <label class="form-label" for="status">Status</label>
                                             <select name="status" class="form-control">
                                               <option value="estoque">Estoque</option>
-                                              <option value="Inativo">Inativo</option>
+                                              <option value="vinculado">Vinculado</option>
+                                              <option value="manutenção">Manutenção</option>
+                                              <option value="cancelado">Cancelado</option>
                                             </select>                                          
                                         </div>
 

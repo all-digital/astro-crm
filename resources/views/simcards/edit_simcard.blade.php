@@ -38,8 +38,10 @@
                                           </div>
                                          @endif
         
-                                        <form id="form-create-simcard" action="{{route('simcard.edit')}}" method="POST"> 
+                                        <form id="form-create-simcard" action="{{route('simcard.edit',$id)}}" method="POST"> 
+                                         @method('PUT')
                                          @csrf
+                                         
                                             <div class="mb-3 row">
                                                 <label for="company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">

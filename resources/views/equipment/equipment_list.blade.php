@@ -30,13 +30,13 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th><strong>Editar</strong></th>
-                                <th><strong>Excluir</strong></th>
+                                <th><strong>Botão</strong></th>
                                 <th><strong>Empresa</strong></th>
-                                <th><strong>Status</strong></th>
+                                <th><strong>Status</strong></th>                                
                                 <th><strong>Usuario Inserção</strong></th>
                                 <th><strong>Data Inserção</strong></th>
                                 <th><strong>Fornecedor</strong></th>
+                                <th><strong>Marca</strong></th>
                                 <th><strong>Modelo</strong></th>
                                 <th><strong>IMEI</strong></th>
                                 <th><strong>Veículo</strong></th>                               

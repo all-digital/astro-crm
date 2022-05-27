@@ -107,14 +107,15 @@
             }]
 
         
-            // let users = {{ Js::from($users)}};
-            // console.log(users)
-                              
+                                         
             $(document).ready(function(){
 
                 $("#datatable").DataTable({
                     dom: 'Bfrtip',
                     buttons: [                         
+                            'excel',
+                            'csv',                            
+                            'print',
                             'pageLength',         
                             'colvis',
                             ],

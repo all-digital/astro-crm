@@ -197,18 +197,19 @@ Route::get('/equip-index', function(){
 
 Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
 Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'show']);
-Route::get('/equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit']);
+Route::get('/equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit'])->name('equipment.edit.show');
 
 Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'store'])->name('equipment.store');
-Route::put('equip/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
+Route::put('equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
 
 
                                              ////simcards 
 
-Route::get('simcards',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit']);
-Route::get('simcards-list',[App\Http\Controllers\Simcards\SimcardsController::class, 'index']);
+// Route::get('simcard',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit']);
+Route::get('simcard',[App\Http\Controllers\Simcards\SimcardsController::class, 'index']);
+Route::get('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit'])->name('simcard.edit.show');
 
-Route::post('simcard-edit',[App\Http\Controllers\Simcards\SimcardsController::class, 'edit'])->name('simcard.edit');
+Route::put('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController::class, 'update'])->name('simcard.edit');
 
 
                                                ////client

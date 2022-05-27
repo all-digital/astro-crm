@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Equipment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\EquipmentStoreRequest;
+use App\Http\Requests\EquipmentEditRequest;
 use App\Models\Equipments;
+
+use Carbon\Carbon;
 
 class EquipmentController extends Controller
 {
@@ -13,10 +16,14 @@ class EquipmentController extends Controller
     public function index(Request $request)
     {
 
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
 
         //dd("teste");
        // return redirect()->route('equipment.index');
-        return view('equipment.index');
+        return view('equipment.index',compact('permission'));
 
     }//end method
 
@@ -38,11 +45,11 @@ class EquipmentController extends Controller
         //
         $equipments = array_map(function($value)use ($urlEditEquipment, $permission){
 
-            // $created_at = Carbon::parse($value['created_at'], 'UTC');
-            // $updated_at = Carbon::parse($value['updated_at'], 'UTC');
+            $created_at = Carbon::parse($value['created_at'], 'UTC');
+            $updated_at = Carbon::parse($value['updated_at'], 'UTC');
 
-            // $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
-            // $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
+            $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+            $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
 
             $id = $value['id'];
             $value['user_last_alter'] = 'user_last_alter';
@@ -60,7 +67,6 @@ class EquipmentController extends Controller
 
             return $value; 
         },$equipments);
-
         
         return view('equipment.equipment_list',compact('permission', 'equipments')); 
             
@@ -87,7 +93,6 @@ class EquipmentController extends Controller
 
     public function edit(Request $request, $id)
     {
-
         return view('equipment.equipment_edit',compact('id'));
 
         // return redirect()                   
@@ -95,14 +100,33 @@ class EquipmentController extends Controller
         // ->withSuccess('Equipamento cadastrado com Sucesso');
     }
 
-
-    public function update(Request $request)
+    
+    public function update(EquipmentEditRequest $request, $id)
     {
-        dd($request->all());
+        //EquipmentEditRequest
+        // dd($request->all());
 
-        return redirect()                   
-        ->route('equipment.store')
-        ->withSuccess('Equipamento cadastrado com Sucesso');
+        $equipment = Equipments::find($id);
+
+        $equipment->update([
+            // 'company'=>$request->company,
+            // 'client'=>$request->company,
+            'status' => $request->status,
+            'responsible_for_insert' => auth()->user()->name,    
+            'provider' => $request->provider,
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'imei' => $request->imei,
+            'simcard' => $request->simcards,  
+            // 'vehicle' => $request->vehicle          
+        ]);
+
+        $equipment->save();
+
+        // return redirect("equip-edit/$id") 
+        return redirect() 
+        ->route('equipment.edit.show',$id)                
+        ->withSuccess('Equipamento Atualizado com Sucesso');
     }
 
 
