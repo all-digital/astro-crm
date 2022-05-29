@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EquipmentStoreRequest;
 use App\Http\Requests\EquipmentEditRequest;
 use App\Models\Equipments;
+use App\Models\Simcards;
+use App\Models\Clients;
+
+use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 
@@ -15,19 +19,25 @@ class EquipmentController extends Controller
     
     public function index(Request $request)
     {
+        $idCompany = auth()->user()->company->id;
 
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
             return $value['name'];    
         },$rolesAuthUser);
 
-        //dd("teste");
+
+        $simcards = Simcards::select('id','number_of_line','iccid')
+                    ->where('company_id', $idCompany)
+                    ->where('status','estoque')->get();
+
+        $simcards = $simcards->toArray();
        // return redirect()->route('equipment.index');
-        return view('equipment.index',compact('permission'));
+        return view('equipment.index',compact('permission','simcards'));
 
     }//end method
 
-    public function show(Request $request)
+    public function list(Request $request)
     {
 
         $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
@@ -52,9 +62,9 @@ class EquipmentController extends Controller
             $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
 
             $id = $value['id'];
-            $value['user_last_alter'] = 'user_last_alter';
-            $value['company'] = 'name company';
-            $value['veiculo'] = 'veiculo';
+            // $value['user_last_alter'] = 'user_last_alter';
+            // $value['company'] = 'name company';
+            // $value['veiculo'] = 'veiculo';
 
 
             ///// criar a regra para saber se o simcard esta vazio ou não e se pode ser excluido
@@ -76,14 +86,15 @@ class EquipmentController extends Controller
     {
 
         $equipment = Equipments::create([
-            'status' => $request->company,
+            'status' => $request->status,
             'responsible_for_insert' => auth()->user()->name,    
             'provider' => $request->provider,
             'brand' => $request->brand,
             'model' => $request->model,
             'imei' => $request->imei,
             'simcard' => $request->simcards,
-            'company_id' => auth()->user()->company->id
+            'company_id' => auth()->user()->company->id,
+            'simcard_id' => $request->simcards
         ]);
 
         return redirect()                   
@@ -93,8 +104,38 @@ class EquipmentController extends Controller
 
     public function edit(Request $request, $id)
     {
-        return view('equipment.equipment_edit',compact('id'));
+        $idCompany = auth()->user()->company->id;
 
+        $vehicles = DB::select( DB::raw("select vehicles.id, vehicles.license_plate,vehicles.model 
+        from vehicles inner join clients on clients.id = vehicles.client_id where clients.company_id = $idCompany;") );
+
+        $vehicles = collect([$vehicles])->toArray()[0];
+
+        $clients = Clients::select('id','name','cnpj_cpf')
+            ->where('company_id',$idCompany)->get();
+        $clients = $clients->toArray();
+
+       
+
+        $simcards = Simcards::select('id','number_of_line','iccid')
+        ->where('company_id', $idCompany)
+        ->where('status','estoque')->get();
+
+        $simcards = $simcards->toArray();   
+
+
+        $equipment = Equipments::find($id)->toArray();
+
+        $created_at = Carbon::parse($equipment['created_at'], 'UTC');
+        $updated_at = Carbon::parse($equipment['updated_at'], 'UTC');
+
+        $equipment['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+        $equipment['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm'); 
+
+
+       // dd($equipment);
+        return view('equipment.equipment_edit',compact('id','equipment','simcards', 'clients','vehicles'));
+        
         // return redirect()                   
         // ->route('equipment.create')
         // ->withSuccess('Equipamento cadastrado com Sucesso');
@@ -108,16 +149,21 @@ class EquipmentController extends Controller
 
         $equipment = Equipments::find($id);
 
+        $lastName = auth()->user()->last_name;     
         $equipment->update([
             // 'company'=>$request->company,
-            // 'client'=>$request->company,
+            // 'client'=>$request->client,
             'status' => $request->status,
             'responsible_for_insert' => auth()->user()->name,    
-            'provider' => $request->provider,
-            'brand' => $request->brand,
-            'model' => $request->model,
-            'imei' => $request->imei,
+            // 'provider' => $request->provider,
+            // 'brand' => $request->brand,
+            // 'model' => $request->model,
+            // 'imei' => $request->imei,
+            'company_id' => $request->client,
+            'simcard_id' => $request->vehicle,
+            'vehicle_id' => $request->simcards,
             'simcard' => $request->simcards,  
+            'responsible_last_updated'=> auth()->user()->name . " $lastName",
             // 'vehicle' => $request->vehicle          
         ]);
 

@@ -15,12 +15,13 @@ class SimcardsFactory extends Factory
     {
         return [
             'company' => $this->faker->name,
-            'status'=> "ativo",
+            'status'=> "cancelado",
             'responsible_for_insert'=> $this->faker->name,
-            'provider' => 'provider',        
-            'brand' => 'brand',
-            'number_of_line' => 'number_of_line',
-            'iccid' => $this->faker->randomNumber(8),        
+            'provider' => 'all provider',        
+            'brand' => 'all brand',
+            'number_of_line' => '12353652',
+            'iccid' => $this->faker->randomNumber(8),  
+            'company_id' => 1   
         ];
     }
 }

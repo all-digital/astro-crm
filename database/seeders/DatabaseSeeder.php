@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+        //criação de simcards
+    //    \App\Models\Simcards::factory(2)->create();
+
         // \App\Models\Companies::factory(1)->create();
 
         //criando company + user  + address para user 
@@ -27,8 +30,7 @@ class DatabaseSeeder extends Seeder
 
 
         // aqui contem a maior parte das relacoes entres as tabelas para geração de registro
-        //simcards não esta criando, acredito que seja pela ordem que esta posta aqui nos factorys 
-        
+        //simcards não esta criando, acredito que seja pela ordem que esta posta aqui nos factorys         
         \App\Models\Companies::factory(1)
         ->has(\App\Models\User::factory(2)->has(\App\Models\Address::factory(1)))
         ->has(\App\Models\Address::factory(1))
@@ -36,9 +38,7 @@ class DatabaseSeeder extends Seeder
 
         ->create();
 
-
-        // \App\Models\Companies::factory(2)->has(\App\Models\User::factory(5))->create();
-        // \App\Models\User::factory(10)->create();
+       
 
         // $this->call([
         //     nameSeeders::class

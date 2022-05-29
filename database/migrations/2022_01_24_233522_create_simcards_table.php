@@ -23,6 +23,12 @@ class CreateSimcardsTable extends Migration
             $table->string('number_of_line')->nullable();
             $table->string('iccid')->nullable();
             $table->string('responsible_last_updated')->nullable();
+
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
+
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             
             $table->timestamps();
         });

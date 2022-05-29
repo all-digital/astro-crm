@@ -18,7 +18,8 @@
 @section('content')
 
                     <!-- end page title -->
-
+                    @inject('listCompany', 'App\Models\Companies')
+                    
                     <div class="row" x-data="app()">
 
                             {{-- coluna fantasma  --}}
@@ -58,14 +59,15 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_company" class="col-md-3 col-form-label">Empresa</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_company') is-invalid @enderror" value="{{ $user->company->social_Reason }}" type="text" value="empresa"
-                                                    id="update_user_company" name="update_user_company">
+                                                    <select id="update_user_company" name="update_user_company" class="form-select" aria-label="Default select example">
+                                                        @foreach ($listCompany->all()->toArray() as $item)
 
-                                                    @error('update_user_company')                                           
-                                                        <div class="invalid-feedback">
-                                                            {{$message}}                                          
-                                                        </div>
-                                                    @enderror
+                                                            <option value="{{$item['id']}}">{{$item['social_Reason']}}</option>
+                                                            
+                                                        @endforeach                                                        
+                                                        {{-- <option value="ativo" selected >Ativo</option> --}}
+                                                    </select>
+
                                                 </div>
                                             </div>                                            
                                         @else
@@ -84,12 +86,12 @@
                                             </div> 
                                         @endif
                                             
-                                            @if (in_array('Super Admin',$permission) || in_array('Admin',$permission))
+                                            {{-- @if (in_array('Super Admin',$permission) || in_array('Admin',$permission))
                                                 <div class="mb-3 row" readonly>
                                                     <label class="col-md-3 col-form-label">Status</label>
                                                     <div class="col-md-9">
                                                         <select name="update_user_status" class="form-select" aria-label="Default select example">
-                                                            {{-- <option selected>Selecione</option> --}}
+                                                            
                                                             <option value="ativo" selected >Ativo</option>
                                                             <option value="inativo">Inativo</option>
                                                         </select>
@@ -102,11 +104,20 @@
                                                         <input name="update_user_status" class="form-control" value="{{$user->status}}" readonly>                                                        
                                                     </div>
                                                 </div> 
-                                            @endif
+                                            @endif --}}
+
+                                            <div class="mb-3 row" readonly>
+                                                <label class="col-md-3 col-form-label">Status</label>
+                                                <div class="col-md-9">
+                                                    <select name="update_user_status" class="form-select" aria-label="Default select example">
+                                                        
+                                                        <option value="ativo" selected >Ativo</option>
+                                                        <option value="inativo">Inativo</option>
+                                                    </select>
+                                                </div>
+                                            </div>                     
                                             
-                                            {{-- criar um if por q só adm vai poder alterar nesse caso readonly só funciona em input --}}
-                                            {{-- <input class="form-control" type="search" value="Ativo"
-                                            id="add-status" readonly> --}}                                            
+                                                                                  
                                             
                                             <div class="mb-3 row">
                                                 <label for="update_user_loginEmail" class="col-md-3 col-form-label">Login</label>
@@ -151,16 +162,16 @@
                                                  </div>
                                              </div>    
                                         
-                                            <div class="mb-3 row">
+                                             {{-- Lista todos os Gerentes Comerciais e Admins --}}
+                                            {{-- <div class="mb-3 row">
                                                 <label class="col-md-3 col-form-label" for="update_user_upper">Superior</label>
                                                 <div class="col-md-9">
                                                     <select id="update_user_upper" name="update_user_upper" class="form-select" aria-label="Default select example" required>
                                                         <option selected> upper</option>
                                                                     
-                                                        {{-- Lista todos os Gerentes Comerciais e Admins --}}
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="mb-3 row">
                                                 <label for="update_user_name" class="col-md-3 col-form-label">Nome</label>
@@ -179,7 +190,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_lastname" class="col-md-3 col-form-label">Sobrenome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_lastname') is-invalid @enderror" value="{{ $user->lastName ?? "arrumar no banco" }}" type="text" value="Sobrenome"  
+                                                    <input class="form-control @error('update_user_lastname') is-invalid @enderror" value="{{ old('update_user_lastname') ?? $user->lastName  }}" type="text" value="Sobrenome"  
                                                         id="update_user_lastname" name="update_user_lastname">
 
                                                     @error('update_user_lastname')                                           
@@ -318,7 +329,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_lastAcess" class="col-md-3 col-form-label">Data de Última Alteração</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_lastAcess') is-invalid @enderror" value="{{ old('update_user_lastAcess') }}" type="text" value="admin" readonly
+                                                    <input class="form-control @error('update_user_lastAcess') is-invalid @enderror" value="{{ $user->updated_at }}" type="text" value="admin" readonly
                                                         id="update_user_lastAcess" name="update_user_lastAcess">
                                                 </div>
                                             </div>
@@ -326,7 +337,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_lastUserAcess" class="col-md-3 col-form-label">Usuário da Última Alteração</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_lastUserAcess') is-invalid @enderror" value="{{ old('update_user_lastUserAcess') }}" type="text" value="admin" readonly
+                                                    <input class="form-control @error('update_user_lastUserAcess') is-invalid @enderror" value="{{  $user->responsible_last_updated ?? ''}}" type="text" value="admin" readonly
                                                         id="update_user_lastUserAcess" name='update_user_lastUserAcess'>
                                                     @error('update_user_lastUserAcess')                                           
                                                         <div class="invalid-feedback">
@@ -341,7 +352,7 @@
                                             <div class="mb-3 row">
                                                 <label for="example-password-input" class="col-md-3 col-form-label">Data de inserção</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_date_insert') is-invalid @enderror" value="{{ old('update_user_date_insert') }}" type="text" value="02/02/2022" readonly
+                                                    <input class="form-control @error('update_user_date_insert') is-invalid @enderror" value="{{ $user->created_at }}" type="text"  readonly
                                                         id="update_user_date_insert" name="update_user_date_insert">
 
                                                     @error('update_user_date_insert')                                           
@@ -355,7 +366,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_user_insert" class="col-md-3 col-form-label">Usuario de Inserção</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_user_insert') is-invalid @enderror" value="{{ old('update_user_user_insert') }}" type="text" value="admin" readonly
+                                                    <input class="form-control @error('update_user_user_insert') is-invalid @enderror" value="{{ auth()->user()->name }}" type="text" readonly
                                                         id="update_user_user_insert" name="update_user_user_insert">
 
                                                     @error('update_user_user_insert')                                           

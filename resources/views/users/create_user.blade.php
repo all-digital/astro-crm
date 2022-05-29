@@ -243,7 +243,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="mb-3 row">
+                                            {{-- <div class="mb-3 row">
                                                 <label for="create_user_date_insert" class="col-md-3 col-form-label">Data de inserção</label>
                                                 <div class="col-md-9">
                                                     <input class="form-control @error('create_user_date_insert') is-invalid @enderror" value="{{ old('create_user_date_insert') }}" type="text"  readonly
@@ -256,12 +256,12 @@
                                                     @enderror    
 
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="mb-3 row">
                                                 <label for="create_user_user_insert" class="col-md-3 col-form-label">Usuario de Inserção</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('create_user_user_insert') is-invalid @enderror" value="{{ old('create_user_user_insert') }}" type="text" value="admin" readonly
+                                                    <input class="form-control @error('create_user_user_insert') is-invalid @enderror" value="{{ auth()->user()->name}}" type="text" value="admin" readonly
                                                         id="create_user_user_insert" name="create_user_user_insert">
 
                                                     @error('create_user_user_insert')                                           

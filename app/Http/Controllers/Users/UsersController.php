@@ -76,6 +76,7 @@ class UsersController extends Controller
         return view('users.create_user',compact('company','permission'));
     }//end show
 
+
     public function showEdit(Request $request, $id)
     {   
         $user = User::find($id);  
@@ -91,8 +92,10 @@ class UsersController extends Controller
             return $value['id'];    
         },$roles);
     
+        // dd($user);
         return view('users.edit_user',compact('id', 'user','roles','permission'));
     }//end showEdit
+
 
 
     public function store(UserCreateRequest  $request)
@@ -121,13 +124,13 @@ class UsersController extends Controller
 
         $user = User::create([
             'name'=> $request->user_create_name,
-            'last_name' => $request->user_create_name,
+            'last_name' => $request->user_create_lastname,
             'email' => $request->create_user_loginEmail,
             'password' => Hash::make($request->create_user_password),                         
             'login'=> $request->create_user_loginEmail,       
             'status'=> $request->create_user_status,
             'company_id'=>$companyUserAuth,
-            // 'avatar' => $PathImage 
+            
         ]);
         $user->save();
         
@@ -186,6 +189,7 @@ class UsersController extends Controller
     public function update(UserEditRequest $request, $id)
     {      
         debug($id);
+        // dd($request->all());
         $userUpdate = User::find($id);
                 
        if($request->update_user_password || $request->update_user_password_confirm) {
@@ -200,14 +204,23 @@ class UsersController extends Controller
                 return redirect("user-edit/$id")->with('errorPassword','Senha deve ter no minimo 9 caracteres');
             }
 
-            $userUpdate->name = $request->update_user_name;            
+            $LastName = auth()->user()->last_name;
+
+            $userUpdate->name = $request->update_user_name;
+            $userUpdate->last_name = $request->update_user_lastname;
+            $userUpdate->responsible_last_updated = auth()->user()->name . $LastName;
+
             $userUpdate->password = Hash::make($request->update_user_password);     
             $userUpdate->save();
 
        }//end valided password
        
-       $userUpdate->name = $request->update_user_name;
-       $userUpdate->save();
+        $LastName = auth()->user()->last_name;
+            
+        $userUpdate->name = $request->update_user_name;
+        $userUpdate->last_name = $request->update_user_lastname;
+        $userUpdate->responsible_last_updated = auth()->user()->name . " $LastName";
+        $userUpdate->save();
         
 
         if($request->has('update_user_perfil'))

@@ -20,6 +20,7 @@ class Equipments extends Model
         'client',
         'vehicle',
         'company',
+        'responsible_last_updated',
         'company_id',
         'simcard_id',
         'vehicle_id',

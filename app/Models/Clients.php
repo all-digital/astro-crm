@@ -59,5 +59,9 @@ class Clients extends Model
         return $this->hasMany(ServiceOrderSales::class,'client_id');
     }
 
+    public function simcards()
+    {
+        return $this->hasMany(Simcards::class,'client_id');
+    }
 
 }//end class 

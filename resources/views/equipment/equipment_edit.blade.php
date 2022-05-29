@@ -24,7 +24,7 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-2 btn btn-info" style="cursor: default;">Simcard 03</h4>
+                        <h4 class="card-title mb-2 btn btn-info" style="cursor: default;">IMEI - {{$equipment['imei']}}</h4>
                         <p class="card-title-desc">Todos os campos são obrigatorios </p>
 
                         @if(session('success'))
@@ -56,6 +56,7 @@
                                         <div class="mb-3 mb-4">
                                             <label class="form-label" for="status">Status</label>
                                             <select name="status" class="form-control">
+                                              <option value="{{$equipment['status']}}" selected>{{$equipment['status']}}</option>
                                               <option value="estoque">Estoque</option>
                                               <option value="vinculado">Vinculado</option>
                                               <option value="manutenção">Manutenção</option>
@@ -65,20 +66,22 @@
 
                                        <div class="mb-3 mb-4">
                                           <label for="user_insert" class="form-label">Usuário de Inserção</label>
-                                          <input type="text" name="user_insert" class="form-control" readonly value="Lih shaw">                                          
+                                          <input type="text" name="user_insert" class="form-control" readonly value="{{$equipment['responsible_for_insert']}}">                                          
                                         </div> 
                                         
                                         <div class="mb-3 mb-4">
                                           <label for="date_insert" class="form-label">Data de Inserção</label>
-                                          <input type="text" name="date_insert" class="form-control" readonly value="01/01/2023">                                          
+                                          <input type="text" name="date_insert" class="form-control" readonly value="{{$equipment['created_at']}}">                                          
                                         </div>  
                            
 
                                         <div class="mb-3 mb-4" >                                                                                     
                                         <label class="form-label" for="provider">Fornecedor</label>
+                                        <input type="text" name="brand" class="form-control" value="{{$equipment['provider']}}" readonly >
 
-                                          <div id="provider">
+                                          {{-- <div id="provider">
                                             <select name="provider" class="form-control" >
+                                              <option value="{{$equipment['provider']}}" selected>{{$equipment['provider']}}</option>
                                               <option value="Allcom">Allcom</option>
                                               <option value="Suntech">Suntech</option>
                                               <option value="PST">PST</option>
@@ -101,14 +104,16 @@
                                               <option value="Transmeet">Transmeet</option>                                            
                                               <option value="semResultado" class="text-danger">Nenhuma das opções</option>
                                             </select>              
-                                          </div>                                                                                     
+                                          </div>                                                                                      --}}
                                        
                                         </div>
                                         <div class="mb-3 mb-4">
                                           <label for="brand" class="form-label">Marca</label>
+                                          <input type="text" name="brand" class="form-control" value="{{$equipment['brand']}}" readonly >
 
-                                          <div id="brand">
+                                          {{-- <div id="brand">
                                             <select name="brand" class="form-control" >
+                                              <option value="{{$equipment['brand']}}" selected>{{$equipment['brand']}}</option>
                                               <option value="Allcom">Allcom</option>
                                               <option value="Global Position">Global Position</option>
                                               <option value="PST">PST</option>
@@ -128,13 +133,13 @@
                                               <option value="BWS">BWS</option>                                           
                                               <option value="semResultado" class="text-danger">Nenhuma das opções</option>
                                             </select>              
-                                          </div>
+                                          </div> --}}
 
                                         </div>
 
                                         <div class="mb-3 mb-4">
                                           <label for="model" class="form-label">Modelo</label>
-                                          <input type="text" name="model" class="form-control @error('model') is-invalid @enderror" value="{{ old('model') }}">  
+                                          <input type="text" name="model" class="form-control @error('model') is-invalid @enderror" value="{{ old('model') ??  $equipment['model'] }}" readonly>  
                                           
                                           @error('model')                                           
                                             <div class="invalid-feedback">
@@ -152,7 +157,7 @@
 
                                         <div class="mb-3 mb-4">
                                           <label for="year" class="form-label">IMEI</label>
-                                          <input type="text" name="imei" class="form-control @error('imei') is-invalid @enderror" value="{{ old('imei') }}">       
+                                          <input type="text" name="imei" class="form-control @error('imei') is-invalid @enderror" value="{{ old('imei') ??$equipment['imei'] }}" readonly>       
 
                                           @error('imei')                                           
                                             <div class="invalid-feedback">
@@ -164,47 +169,56 @@
 
                                         <div class="mb-3 mb-4">
                                           <label class="form-label" for="client">Cliente</label>
-                                          <input type="text" name="client" class="form-control  @error('client') is-invalid @enderror" value="{{ old('client') }}">                                             
+                                          {{-- <input type="text" name="client" class="form-control select-2-client  @error('client') is-invalid @enderror" value="{{ old('client') }}">                                              --}}
+                                          <select id="client" name="client" class="form-select select-2-client " aria-label="Default select example">
+                                            <option value="" selected ></option>
+                                            <option value=""  >Nome - Cpf / CNPJ </option>
+                                              @foreach ($clients as $item)
+    
+                                                  <option value="{{$item['id']}}">{{ $item['name'] }} - {{ $item['cnpj_cpf'] }}</option>
+                                                  
+                                              @endforeach                                                        
+                                          </select>
                                           
-                                          @error('client')                                           
-                                                <div class="invalid-feedback">
-                                                 {{$message}}                                          
-                                                </div>
-                                          @enderror
-
-                                      </div>
-
+                                      </div>                                      
                                         <div class="mb-3 mb-4">
                                           <label class="form-label" for="company">Veiculo</label>
-                                          <input type="text" name="vehicle" class="form-control  @error('vehicle') is-invalid @enderror" value="{{ old('vehicle') }}">                                             
-                                          
-                                          @error('vehicle')                                           
-                                                <div class="invalid-feedback">
-                                                 {{$message}}                                          
-                                                </div>
-                                          @enderror
-
+                                          {{-- <input type="text" name="vehicle" class="form-control  @error('vehicle') is-invalid @enderror" value="{{ old('vehicle') ?? $equipment['vehicle']  }}">                                              --}}
+                                          <select id="vehicle" name="vehicle" class="form-select select-2-vehicle " aria-label="Default select example">
+                                            <option value="" selected ></option>
+                                            <option value=""  >Placa  - Modelo</option>
+                                              @foreach ($vehicles as $item)
+    
+                                                  <option value="{{$item->id}}">{{ $item->license_plate }} - {{ $item->model }}</option>
+                                                  
+                                              @endforeach                                                        
+                                          </select>
+                                                                                  
                                       </div>
 
                                         <div class="mb-3 mb-4">
-                                          <label for="value" class="form-label">Simcards</label>
-                                          <input type="text" name="simcards" class="form-control @error('simcards') is-invalid @enderror" value="{{ old('simcards') }}">   
+                                          <label for="value" class="form-label">Simcards</label>                                           
                                           
-                                          @error('simcards')                                           
-                                            <div class="invalid-feedback">
-                                              {{$message}}                                          
-                                            </div>
-                                          @enderror
-                                        </div>
+                                          <select id="simcards" name="simcards" class="form-select select-2-simcards " aria-label="Default select example">
+                                            <option value="" selected ></option>
+                                            <option value=""  >Iccid - numero da linha</option>
+                                              @foreach ($simcards as $item)
+    
+                                                  <option value="{{$item['id']}}">{{ $item['number_of_line'] }} - {{ $item['iccid'] }}</option>
+                                                  
+                                              @endforeach                                                        
+                                          </select>
+                                        
+                                        </div> 
 
                                         <div class="mb-3 mb-4">
                                           <label for="user_last_edit" class="form-label">Usuário da Última edição</label>
-                                          <input type="text" name="user_last_edit" class="form-control" readonly value="Mustafar">                                          
+                                          <input type="text" name="user_last_edit" class="form-control" readonly value="{{$equipment['responsible_last_updated'] ?? ''}}">                                          
                                         </div> 
                                         
                                         <div class="mb-3 mb-4">
                                           <label for="date_last_edit" class="form-label">Data da Última edição</label>
-                                          <input type="text" name="date_last_edit" class="form-control" readonly value="01/01/2023">                                          
+                                          <input type="text" name="date_last_edit" class="form-control" readonly value="{{ $equipment['updated_at'] }}">                                          
                                         </div>  
                                                                 
                                     </div>
@@ -231,34 +245,14 @@
 @push('script-js')
   <script>
 
-    let provider = document.getElementById('provider')
+    $(document).ready(function() {
+        $( '.select-2-client').select2();
+        $('.select-2-simcards').select2();
+        $('.select-2-vehicle').select2();
+    });
+
+
     
-    provider.addEventListener('change', function(){
-
-        if(provider.children[0].value == "semResultado")
-        {  
-          provider.innerHTML = `<div>
-            <span class="text-danger">Insira o nome do fornecedor<span> 
-            <input type="text" name="provider" class="form-control @error('provider') is-invalid @enderror" value="{{ old('provider') }}" placeholder="Insira o nome do fornecedor">            
-          </div>`
-            
-        }    
-    })
-
-
-    let brand = document.getElementById('brand')
-    
-    brand.addEventListener('change', function(){
-
-        if(brand.children[0].value == "semResultado")
-        {  
-          brand.innerHTML = `<div>
-            <span class="text-danger">Insira o nome da Marca<span> 
-            <input type="text" name="brand" class="form-control @error('brand') is-invalid @enderror" value="{{ old('brand') }}" placeholder="Insira o nome do marca">            
-          </div>`
-            
-        }    
-    })
 
   </script>        
 @endpush

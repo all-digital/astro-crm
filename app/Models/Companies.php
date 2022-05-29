@@ -52,6 +52,11 @@ class Companies extends Model
     {
         return $this->hasMany(Equipments::class,'company_id');
     }
+
+    public function simcards()
+    {
+        return $this->hasMany(Simcards::class,'company_id');
+    }
    
 
 }//end class 

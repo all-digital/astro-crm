@@ -20,7 +20,7 @@ class UserFactory extends Factory
 
             'last_name'=> $this->faker->lastName(),               
             'login' => "login",
-            'avatar' => "avatar",
+            'avatar' => "users/user.png",
             // 'company' => $this->faker->unique()->safeEmail(),
             'status' => "ativo",
 

@@ -28,19 +28,20 @@ class UserSeeder extends Seeder
         ////
         
         $user = User::create([
-            // 'name'=> 'suport',
-            // 'email' => 'suport@suport',
-            'name'=> 'admin',
+            'name'=> 'suport',
+            'email' => 'suport@suport',
+            // 'name'=> 'admin',
+            // 'email' => 'admin@admin',
             'last_name' => $faker->lastName(),
-            'email' => 'admin@admin',
             'login' => 'login',
             'avatar' => null,
             'status'=> 'ativo',  
 
-            'email' => $faker->email(),
+            // 'email' => $faker->email(),
             'password' => Hash::make('123456789'),       
                   
-            'company_id' => 1
+            // 'company_id' => 1
+            'company_id' => 2
                         
         ]);
         

@@ -119,9 +119,9 @@
                             { data: 'brand'},                          
                             { data: 'model' },
                             { data: 'imei' },
-                            { data: 'veiculo' },
+                            { data: 'vehicle' },
                             { data: 'simcard' },
-                            { data: 'user_last_alter'},
+                            { data: 'responsible_last_updated'},
                             { data: 'updated_at' }
                                                                                                      
                         ]               

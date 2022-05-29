@@ -24,13 +24,13 @@ class EquipmentEditRequest extends FormRequest
     public function rules()
     {
         return [
-            "company" => 'required',
-            "status" => 'required',
-            "provider" => 'required',
-            "brand" => 'required',
-            "model" => 'required',
-            "imei" =>'required',
-            "simcards" => 'required',
+            // "company" => 'required',
+            // "status" => 'required',
+            // "provider" => 'required',
+            // "brand" => 'required',
+            // "model" => 'required',
+            // "imei" =>'required',
+            // "simcards" => 'required',
         ];
     }
 }

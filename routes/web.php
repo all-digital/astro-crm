@@ -196,7 +196,7 @@ Route::get('/equip-index', function(){
 
 
 Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
-Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'show']);
+Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'list']);
 Route::get('/equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit'])->name('equipment.edit.show');
 
 Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'store'])->name('equipment.store');

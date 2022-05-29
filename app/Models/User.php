@@ -28,7 +28,9 @@ class User extends Authenticatable
         'avatar',
         // 'company',
         'status',
-        'password',       
+        'password',
+        'responsible_last_updated',
+        'superiors_id',       
         'company_id'        
         
     ];

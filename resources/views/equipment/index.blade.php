@@ -165,7 +165,8 @@
                                           
                                         </div>
 
-                                        <div class="mb-3 mb-4">
+                                        {{-- 
+                                          <div class="mb-3 mb-4">
                                           <label for="value" class="form-label">Simcards</label>
                                           <input type="text" name="simcards" class="form-control @error('simcards') is-invalid @enderror" value="{{ old('simcards') }}">   
                                           
@@ -174,7 +175,23 @@
                                               {{$message}}                                          
                                             </div>
                                           @enderror
-                                        </div>                                       
+                                        </div> 
+                                           --}}
+                                          <div class="mb-3 mb-4">
+                                            <label for="value" class="form-label">Simcards</label>                                           
+                                            
+                                            <select id="simcards" name="simcards" class="form-select select-2-simcards " aria-label="Default select example">
+                                              <option value="" selected ></option>
+                                              <option value=""  >Iccid - numero da linha</option>
+                                                @foreach ($simcards as $item)
+      
+                                                    <option value="{{$item['id']}}">{{ $item['number_of_line'] }} - {{ $item['iccid'] }}</option>
+                                                    
+                                                @endforeach                                                        
+                                            </select>
+                                          
+                                          </div> 
+
                                     </div>
                                 </div>
                             </div>                                                                                 
@@ -198,6 +215,10 @@
 
 @push('script-js')
   <script>
+
+    $(document).ready(function() {
+        $('.select-2-simcards').select2();
+    });
 
     let provider = document.getElementById('provider')
     
