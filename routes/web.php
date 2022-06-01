@@ -214,15 +214,21 @@ Route::put('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController
 
                                                ////client
                                                
-Route::get('client', function(){
-    return view('clients.create_client');
-});
+// Route::get('cliente', function(){
+//     return view('clients.create_client');
+// });
 
-Route::get('client-list', function(){
-    return view('clients.index');
-});
+// Route::get('cliente-list', function(){
+//     return view('clients.index');
+// });
+
+Route::get('cliente', [App\Http\Controllers\Client\ClientController::class, 'show']);  
+Route::get('cliente-list', [App\Http\Controllers\Client\ClientController::class, 'index']); 
+
+Route::get('cliente-edit/{id}', [App\Http\Controllers\Client\ClientController::class, 'showEdit']);  
 
 
+Route::post('cliente', [App\Http\Controllers\Client\ClientController::class, 'store']); 
                                               ////ordenService
 
 Route::get('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'show']);                                              

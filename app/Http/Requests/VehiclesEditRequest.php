@@ -24,14 +24,33 @@ class VehiclesEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'company' => 'required|min:2|max:155',
-            'status' => 'required|max:20',
-            // 'vehicles' => 'required|min:2|max:155',
-            'brand' => 'required|min:2|max:155',
-            'model' => 'required|min:2|max:155',
-            'year' => 'required',
-            'vehicle_plate' => 'required',
-            'value' => 'required',
+            // 'company' => 'required|min:1|max:155',
+            // 'status' => 'required|max:20',            
+            // 'brand' => 'required|min:2|max:155',
+            // 'model' => 'required|min:2|max:155',
+            // 'year' => 'required',
+            // 'value' => 'required',
+            // 'vehicle_plate' => 'required',
+            // 'vehicle_plate' => 'required_if:vehicle_plate2,null',
+            // 'vehicle_plate2' => 'required_if:vehicle_plate,null',
+            
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'company.required' => "Campo Empresa é Obrigatorio",
+            'status.required' => 'Campo Status é Obrigatorio',
+            'brand.required' => 'Campo Marca é Obrigatorio',
+            'model.required' => 'Campo Modelo é Obrigatorio',
+            'year.required' => 'Campo Ano é Obrigatorio',
+            'value.required' => 'Campo valor é Obrigatorio',
+
+            'required_if' => 'Campo Placa do veiculo obrigatorio',
+            
+        ];
+    }
+
+
 }

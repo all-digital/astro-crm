@@ -81,7 +81,7 @@ class CompanyController extends Controller
             "last_name_responsible" =>  $request->input('responsible'),
             "email_responsible" =>      $request->input('email'),       
             "color" =>                  $request->input('color'),
-            "logo"  =>                  "logo",                       
+            "logo"  =>                  $request->input('logo'),                     
             "monthly_payment" =>        $request->input('monthPayment'),
             "activation" =>             $request->input('activation'),
             "price_per_plate" =>        $request->input('pricePerPlate'),

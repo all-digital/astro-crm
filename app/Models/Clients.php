@@ -28,6 +28,7 @@ class Clients extends Model
         'email',
         'email_finance',       
         'tracking_platform',
+        'responsible_last_updated',
         'company_id'
         
     ];

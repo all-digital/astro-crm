@@ -24,6 +24,17 @@
                 <h4 class="card-title">Adicionar Cliente</h4>
 
                 <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+
+                    <input type="hidden" name="userId" id="userId" value="{{Auth::user()->id}}"
+                    required> 
+
+                    <input type="hidden" name="CompanyId" id="CompanyId" value="{{Auth::user()->company->id}}"
+                    required> 
+
+                    <input type="hidden" name="nameUser" id="nameUser" value="{{Auth::user()->name}} {{ Auth::user()->last_name }}"
+                    required> 
+
+
                     <h3>Informações do Responsável</h3>
                     <fieldset>
                         <div class="row">
@@ -34,7 +45,7 @@
                                     </label>
 
                                     <div class="col-lg-9">
-                                        <input id="company" name="company" type="text" class="form-control" value="empresa DSS" readonly data-label="Empresa">  
+                                        <input id="company" name="company" type="text" class="form-control" value="{{Auth::user()->company->social_Reason}}" readonly data-label="Empresa">  
                                         <span id="companyValid" style="color:tomato" class="d-none">Campo
                                             Obrigatorio</span>                                    
                                     </div>
@@ -58,8 +69,8 @@
                                 <div class="mb-3 row">
                                     <label for="responsible" class="col-lg-3 col-form-label">Responsável</label>
                                     <div class="col-lg-9">
-                                        <input id="responsible" name="responsible" type="text" value="responsavel por inserir"
-                                            class="form-control" data-label="Responsável">
+                                        <input id="responsible" name="responsible" type="text" value="{{Auth::user()->name}} {{ Auth::user()->last_name }}"
+                                            class="form-control" data-label="Responsável" readonly>
                                         <span id="responsibleValid" style="color:tomato" class="d-none">Campo
                                             Obrigatorio</span>
                                     </div>
@@ -124,6 +135,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -143,7 +156,7 @@
                                                 class="col-lg-3 col-form-label">E-mail</label>
                                             <div class="col-lg-9">
                                                 <input id="email" name="email"
-                                                    type="email" value="" class="form-control" data-label="E-mail">
+                                                    type="email" value="" class="form-control" data-label="E-mail" >
                                                     <span id="email-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                             </div>
                                         </div>
@@ -157,12 +170,14 @@
                                             <label for="emailFinance"
                                                 class="col-lg-3 col-form-label">E-mail Financeiro</label>
                                             <div class="col-lg-9">
-                                                <input id="emailFinance" name="emailFinance"
+                                                <input id="emailFinance" name="emailFinance" 
                                                 type="email" class="form-control" data-label="E-mail Financeiro">
                                                 <span id="email-finance-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    
 
                                     <div class="col-md-6">
                                         <div class="mb-3 row">
@@ -176,8 +191,23 @@
                                         </div>
                                     </div>
 
+                                   
+
                                     
                                 </div>
+
+                                {{-- <div class="col-md-6">
+                                    <div class="mb-3 row">
+                                        <label for="phase"
+                                            class="col-lg-3 col-form-label">Fase</label>
+                                        <div class="col-lg-9">
+                                            <input id="phase" name="phase"
+                                                type="phase" class="form-control" data-label="phase">
+                                                <span id="name-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -251,6 +281,19 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                {{-- <div class="col-md-6">
+                                    <div class="mb-3 row">
+                                        <label for="phase"
+                                            class="col-lg-3 col-form-label">Fase</label>
+                                        <div class="col-lg-9">
+                                            <input id="phase" name="phase"
+                                                type="phase" class="form-control" data-label="phase">
+                                                <span id="name-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
                             </div>
                         </div>
                     </fieldset>
@@ -1472,7 +1515,7 @@
                         email : document.querySelector('#email').value,
                         emailFinance : document.querySelector('#emailFinance').value,
 
-                        //////cpf
+                        ////// cpf
                         cpf : document.querySelector('#cpf').value,
                         cpfName : document.querySelector('#cpfName').value,
                         cpfLastName : document.querySelector('#cpfLastName').value,
@@ -1492,11 +1535,18 @@
                         complement : document.querySelector('#complement').value,
                         trackingPlatform : document.querySelector('#trackingPlatform').value,
                         district : document.querySelector('#district').value,
+                        
+                        ///// informaçoes  user and company logados 
+                        userId: document.querySelector('#userId').value,
+                        CompanyId: document.querySelector('#CompanyId').value,
+                        nameUser: document.querySelector('#nameUser').value,
 
                         typeCnpj : typeCnpj
 
                     }
 
+                    // add phase 
+                    
                     console.log(result)
                         
                         

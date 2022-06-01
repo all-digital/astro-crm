@@ -21,6 +21,7 @@ class Vehicles extends Model
         'license_plate',
         'value',
         'equipment',
+        'responsible_last_updated',
         'client_id'               
         
     ];

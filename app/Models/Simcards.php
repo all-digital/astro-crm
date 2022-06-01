@@ -18,6 +18,7 @@ class Simcards extends Model
         'number_of_line',
         'iccid',
         'company_id',
+        'responsible_last_updated',
         'client_id'                           
     ];
 

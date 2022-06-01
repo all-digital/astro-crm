@@ -93,27 +93,7 @@
 
     <script>
 
-            companies = [{"activation": "100.00",
-                            "cnpj": "1769431944",
-                            "color": "verde",
-                            "created_at": "25/01/2022 16:37",
-                            "email_responsible": "auer.thaddeus@gmail.com",
-                            "fantasy_name": "Zemlak-Runolfsson",
-                            "id": 1,
-                            "last_name_responsible": "Cartwright",
-                            "logo": "logo teste",
-                            "modulos": "<a class='btn btn-outline-primary fas fa-edit ms-2' onClick='alert(`${teste}`)' href='https://www.w3schools.com' target='_blank'></a>",
-                            "monthly_payment": "100.00",
-                            "name_responsible": "Sonia Goyette",
-                            "price_per_extra_user": "1000,15",
-                            "price_per_plate": "100,20",
-                            "social_Reason": "Ortiz, Halvorson and Lind",
-                            "status": "Status OK",
-                            "updated_at": "25/01/2022 16:37",
-                            "user_id": 1,
-                            "user_limit": "5"}]
-
-              
+                         
             let vehicles = {{ Js::from($vehicles)}};
             console.log(vehicles)
 
@@ -133,17 +113,17 @@
                         columns: [
                             {data: 'button'},
                             {data: 'company'},
-                            {data: 'fantasy_name'},
+                            {data: 'status'},
                             {data: 'responsible_for_insert'}, 
-                            { data: 'created_at'},                          
-                            { data: 'responsible_for_insert'},
+                            { data: 'created_at'},                       
                             { data: 'brand'},
                             { data: 'model'},
                             { data: 'year'},
                             { data: 'license_plate'},
-                            { data: 'equipment'},
+                            { data: 'value'},
                             { data: 'equipment'},
                             { data: 'updated_at'},
+                            { data: 'responsible_last_updated'},                           
                                                                               
                         ]               
                 })

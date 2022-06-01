@@ -109,10 +109,10 @@
                                             <div class="mb-3 row" readonly>
                                                 <label class="col-md-3 col-form-label">Status</label>
                                                 <div class="col-md-9">
-                                                    <select name="update_user_status" class="form-select" aria-label="Default select example">
-                                                        
-                                                        <option value="ativo" selected >Ativo</option>
-                                                        <option value="inativo">Inativo</option>
+                                                    <select name="update_user_status" class="form-select" aria-label="Default select example">                                                       
+                                                        <option value="{{$user->status}}" selected> {{ucfirst($user->status)}} </option>
+                                                        <option value="ativo">Ativo</option>
+                                                        <option value="inativo">Inativo</option>                                                      
                                                     </select>
                                                 </div>
                                             </div>                     
@@ -190,7 +190,7 @@
                                             <div class="mb-3 row">
                                                 <label for="update_user_lastname" class="col-md-3 col-form-label">Sobrenome</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_lastname') is-invalid @enderror" value="{{ old('update_user_lastname') ?? $user->lastName  }}" type="text" value="Sobrenome"  
+                                                    <input class="form-control @error('update_user_lastname') is-invalid @enderror" value="{{ old('update_user_lastname') ?? $user->last_name  }}" type="text" value="Sobrenome"  
                                                         id="update_user_lastname" name="update_user_lastname">
 
                                                     @error('update_user_lastname')                                           

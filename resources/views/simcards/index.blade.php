@@ -18,6 +18,7 @@
 @endsection
 
 @section('content')
+    @inject('listCompany', 'App\Models\Companies')  
 
     <div class="row">
         <div class="col-12">
@@ -80,20 +81,48 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card-body">
+                              
+                              <input type="hidden" id="idCompany" name="idCompany" value="{{auth()->user()->company->id}}">
+                              
+                              @if (in_array('Super Admin',$permission))
+                                <div id="form-create-simcard" >                                 
+                                    <div class="mb-3 row">
+                                        <label for="company" class="col-md-3 col-form-label">Empresa</label>
+                                        <div class="col-md-9">
+                                          <select id="company" name="company" class="form-select" aria-label="Default select example">
+                                            @foreach ($listCompany->all()->toArray() as $item)
 
-                              <div id="form-create-simcard" >                                 
-                                   <div class="mb-3 row">
-                                       <label for="company" class="col-md-3 col-form-label">Empresa</label>
-                                       <div class="col-md-9">
-                                           <input  name="company" type="text" value="empresa"
-                                           id="create-simcard-company" class="form-control"  required>
-                                                                                     
-                                             <div id="create-simcard-company-error" class="d-none"> 
-                                                <span>campo obrigatorio, minimo de 3 caracteres </span>                                     
-                                             </div>                                         
+                                                <option value="{{$item['id']}}">{{$item['social_Reason']}}</option>
+                                                
+                                            @endforeach                                                        
+                                          </select>
+                                            {{-- <input  name="company" type="text" value="empresa"
+                                            id="create-simcard-company" class="form-control"  required>
+                                                                                      
+                                              <div id="create-simcard-company-error" class="d-none"> 
+                                                  <span>campo obrigatorio, minimo de 3 caracteres </span>                                     
+                                              </div>                                          --}}
 
-                                       </div>
-                                   </div>                                           
+                                        </div>
+                                    </div>                                           
+                                  
+                              @else
+                                  <div id="form-create-simcard" >                                 
+                                    <div class="mb-3 row">
+                                        <label for="company" class="col-md-3 col-form-label">Empresa</label>
+                                        <div class="col-md-9">                                      
+                                                                  
+                                          <input  name="company" type="text" value="{{auth()->user()->company->social_Reason}}"
+                                            id="create-simcard-company" class="form-control"  readonly>
+
+                                          <div id="create-simcard-company-error" class="d-none"> 
+                                            <span>campo obrigatorio, minimo de 3 caracteres </span>                                     
+                                          </div> 
+
+                                        </div>
+                                    </div>  
+                                  
+                              @endif
                                    
                                    
                                    
@@ -256,8 +285,8 @@
                             { data: 'brand'},
                             { data: 'iccid'},
                             { data: 'number_of_line' },                            
-                            { data: 'id' },
-                            { data: 'id' },
+                            { data: 'id' }, //Equipamento
+                            { data: 'responsible_last_updated' },
                             { data: 'updated_at' },
                                                                          
                         ]               
@@ -312,6 +341,7 @@
               let brand = document.getElementById('create-simcard-brand')
               let iccid = document.getElementById('create-simcard-iccid')
               let lineNumber = document.getElementById('create-simcard-numberLine')
+              let idCompany = document.getElementById('idCompany')
 
               console.log(company.value,status.value,provider.value,brand.value,iccid.value, lineNumber.value)
               console.log(company,status,provider,brand,iccid, lineNumber)
@@ -412,7 +442,8 @@
                         provider:    provider.value,
                         brand:       brand.value,
                         iccid:       iccid.value,
-                        numberLine:  lineNumber.value
+                        numberLine:  lineNumber.value,
+                        idCompany:   idCompany.value
 
                     }
                                         

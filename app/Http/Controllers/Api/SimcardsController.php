@@ -21,6 +21,7 @@ class SimcardsController extends Controller
             'brand' => 'required|min:1|max:155',
             'iccid' => 'required|min:1|max:155',
             'numberLine' => 'required|min:4|max:155',
+            
         ]);
 
         // debug($validated->fails());
@@ -38,7 +39,8 @@ class SimcardsController extends Controller
                 'provider' => $request->provider,        
                 'brand' => $request->brand,
                 'number_of_line' => $request->numberLine,
-                'iccid' =>   $request->iccid                 
+                'iccid' =>   $request->iccid,  
+                "company_id" => $request->idCompany               
             ]);
 
             $simcard->save();

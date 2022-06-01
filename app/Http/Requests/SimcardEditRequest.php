@@ -24,12 +24,12 @@ class SimcardEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'company' => 'required|min:2|max:155',
-            'status' => 'required|max:20',
-            'provider' => 'required|min:1|max:155',
-            'brand' => 'required|min:1|max:155',
-            'iccid' => 'required|min:1|max:155',
-            'numberLine' => 'required|min:4|max:155',
+            // 'company' => 'required|min:2|max:155',
+            // 'status' => 'required|max:20',
+            // 'provider' => 'required|min:1|max:155',
+            // 'brand' => 'required|min:1|max:155',
+            // 'iccid' => 'required|min:1|max:155',
+            // 'numberLine' => 'required|min:4|max:155',
         ];
     }
 }

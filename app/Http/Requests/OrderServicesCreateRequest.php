@@ -24,23 +24,23 @@ class OrderServicesCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'company' => 'required',            
-            'status' => 'required',
-            'vehicles' => 'required',
-            'equipment' => 'required',
-            'simcard' => 'required',
-            'services' => 'required',
-            'subType' => 'required',
-            'MonthlyPayment' => 'required',
-            'user_insert' => 'required',
-            'client' => 'required',
-            'addressClient' => 'required',
-            'zipCode' => 'required',
-            'cityClient' => 'required',
-            'countryClient' => 'required',
-            'AdhesionFee' => 'required',
-            'recurrence' => 'required',
-            'typeOS' => 'required'
+            // 'company' => 'required',            
+            // 'status' => 'required',
+            // 'vehicles' => 'required',
+            // 'equipment' => 'required',
+            // 'simcard' => 'required',
+            // 'services' => 'required',
+            // 'subType' => 'required',
+            // 'MonthlyPayment' => 'required',
+            // 'user_insert' => 'required',
+            // 'client' => 'required',
+            // 'addressClient' => 'required',
+            // 'zipCode' => 'required',
+            // 'cityClient' => 'required',
+            // 'countryClient' => 'required',
+            // 'AdhesionFee' => 'required',
+            // 'recurrence' => 'required',
+            // 'typeOS' => 'required'
         ];
     }
 

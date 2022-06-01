@@ -38,7 +38,7 @@
                                         <div class="col-lg-9">
                                             <input id="txtFirstNameBilling" name="cnpj" 
                                                 type="text" class="form-control" >
-                                                <span id="cnpj-valid" style="color:tomato" class="d-none">Campo Obrigatorio : minimo de 14 caracteres</span>
+                                                <span id="cnpj-valid" style="color:tomato" class="d-none valid-feedback">Campo Obrigatorio : minimo de 14 caracteres</span>
                                         </div>
 
                                     </div>

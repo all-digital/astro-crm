@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use App\Models\Services;
 use App\Models\Vehicles;
 use App\Models\Clients;
+use App\Models\Companies;
 use Illuminate\Support\Facades\DB;
+
+use Carbon\Carbon;
 
 use App\Http\Requests\VehiclesCreateRequest;
 use App\Http\Requests\VehiclesEditRequest;
@@ -16,9 +19,7 @@ use App\Http\Requests\VehiclesEditRequest;
 class VehiclesController extends Controller
 {
     public function index()
-    {
-
-        $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
+    {        
         $idCompany = auth()->user()->company->id;
 
         // $vehicles = Vehicles::where('company_id', $idCompany)->get();    
@@ -37,9 +38,6 @@ class VehiclesController extends Controller
 
         // $result = collect($result);
        
-
-        //dd($result);
-        /////////////////////////////
                            
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
@@ -70,11 +68,12 @@ class VehiclesController extends Controller
         // dd($vehicles);
         /////////////////////////
         return view('vehicles.vehicles_list',compact('vehicles'));
-    }
+
+    }//end index
     
     public function showCreate()
     {
-        
+        $idCompany = auth()->user()->company->id;
         // $services1 = Services::where('company_id',1);
         // $services = $services1->simplePaginate(6);
         
@@ -82,8 +81,11 @@ class VehiclesController extends Controller
         // dd($services1->count());
 
         // return view('vehicles.index',["services"=>$services]);
-
         // $client = Clients::find();
+
+      
+        $companies = Companies::with('equipments')->find($idCompany);        
+        $equipments = $companies->toArray()['equipments'];
         
         $client = auth()->user()->company->client->toArray();
 
@@ -93,8 +95,9 @@ class VehiclesController extends Controller
         },$rolesAuthUser);
 
         
-        return view('vehicles.index',["permission" => $permission,"client" => $client]);
-    }//end method
+        return view('vehicles.index',["permission" => $permission,"client" => $client,"equipments"=> $equipments]);
+
+    }//end method showCreate
 
 
     public function store(VehiclesCreateRequest $request)
@@ -102,10 +105,33 @@ class VehiclesController extends Controller
         //VehiclesCreateRequest
         // dd($request->all());
 
+        //validando tamanho das placas
+        if(!is_null($request->vehicle_plate)) 
+        {
+            $request->vehicle_plate = str_replace("_", "", $request->vehicle_plate);
+            if(strlen($request->vehicle_plate) < 7 ) return redirect("veiculos")->with('errorSize','Placa deverar ter no minino de 7 caracteres');             
+        }
+        //validando tamanho das placas
+        if(!is_null($request->vehicle_plate2)) 
+        {
+            $request->vehicle_plate2 = str_replace("_", "", $request->vehicle_plate2);
+            if(strlen($request->vehicle_plate2) < 7 ) return redirect("veiculos")->with('errorSize','Placa deverar ter no minino de 7 caracteres');
+        }
+
+        if($request->value == "R$ 0,00") 
+        {
+            return redirect("veiculos")->with('errorValue','Campo Valor obrigatorio');
+        }
+
+        
+                            
+
         //verificando se o user vai ter um cliente vinculado
         if($request->client == "null"){
             $request->client = null;
         }
+        
+        // dd($request->all()); 
 
         $vehicles = Vehicles::create([
             'company'=> $request->company,
@@ -117,7 +143,7 @@ class VehiclesController extends Controller
             'vehicle_plate' => $request->vehicle_plate,
             'value' => $request->value,
             'equipment' => $request->equipment, 
-            'license_plate' => $request->license_plate,
+            'license_plate' => $request->vehicle_plate ?? $request->vehicle_plate2,
             'responsible_for_insert' => auth()->user()->name,
             'date_of_insert' => now(),
 
@@ -130,19 +156,28 @@ class VehiclesController extends Controller
         return redirect('veiculos')                
                    ->withSuccess('Veiculo cadastrado com Sucesso');
 
-    }//end method
-
-
+    }//end method store
 
 
     public function editShow(Request $request, $id)
     {
+        $idCompany = auth()->user()->company->id;
+        $vehicle = Vehicles::find($id)->toArray();
 
-        $vehicle = Vehicles::find($id);
+        $created_at = Carbon::parse($vehicle['created_at'], 'UTC');
+        $updated_at = Carbon::parse($vehicle['updated_at'], 'UTC');
 
-        dd($vehicle);
+        $vehicle['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+        $vehicle['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm'); 
 
-        $client = auth()->user()->company->client->toArray();
+        // dd($vehicle);
+
+        $client = Clients::find($vehicle['client_id']);
+        
+        // $client = auth()->user()->company->client->toArray();
+
+        $companies = Companies::with('equipments')->find($idCompany);        
+        $equipments = $companies->toArray()['equipments'];
 
         // dd( $id);
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
@@ -150,8 +185,9 @@ class VehiclesController extends Controller
             return $value['name'];    
         },$rolesAuthUser);
 
-        return view('vehicles.vehicles_edit',compact('id','permission','client','vehicle'));
-    }
+        return view('vehicles.vehicles_edit',compact('id','permission','client','vehicle','equipments'));
+
+    }//end editShow
 
 
 
@@ -159,20 +195,34 @@ class VehiclesController extends Controller
     {
         // dd( $request->all());
 
+        //validando tamanho das placas
+      
+
+        if($request->value == "R$ 0,00") 
+        {
+            return redirect("veiculos-edit/$id")->with('errorValue','Campo Valor obrigatorio');
+        }
+
+        // dd($request->all());
         $vehicle = Vehicles::find($id);
 
+        $name = auth()->user()->name;
+        $lastName = auth()->user()->last_name;
+
+        $responsible_last_updated  = "$name $lastName";
+
         $vehicle->update([
-            'company'=> $request->company,
-            'status' => $request->status,
-            'type' => $request->type_vehicles,                                     
-            'brand'=> $request->brand,       
-            'model'=> $request->model,
-            'year'=>$request->year,
-            'vehicle_plate' => $request->vehicle_plate,
+            // 'company'=> $request->company,
+            // 'status' => $request->status,
+            // 'type' => $request->type_vehicles,                                     
+            // 'brand'=> $request->brand,       
+            // 'model'=> $request->model,
+            // 'year'=>$request->year,
+            // 'vehicle_plate' => $request->vehicle_plate,
             'value' => $request->value,
             'equipment' => $request->equipment, 
-            'license_plate' => $request->license_plate,
-            // 'responsible_for_insert' => auth()->user()->name,
+            // 'license_plate' => $request->vehicle_plate ?? $request->vehicle_plate2,
+            'responsible_last_updated' => $responsible_last_updated
             // 'date_of_insert' => now(),
         ]);
         $vehicle->save();
@@ -180,5 +230,6 @@ class VehiclesController extends Controller
        return redirect("veiculos-edit/$id")                 
                 ->withSuccess('Veiculo editado com Sucesso');
       
-    } //'vehicles.update'
+    } //end update
+    
 }//end class

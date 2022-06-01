@@ -34,6 +34,16 @@
                             </div>
                         @endif
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                              <ul>
+                                @foreach ($errors->all() as $error)
+                                  <li>{{$error}}</li>
+                                @endforeach
+                              </ul>
+                            </div>                            
+                        @endif
+
                         <form id="formVehicles" action="{{route('vehicles.update',$id)}}" method="POST">
                           @method('PUT')
                           @csrf                    
@@ -42,142 +52,146 @@
                                   <div class="col-lg-6">
                                       <div>
                                          
-                                          {{-- super admin  --}}
-                                          @if (in_array('Super Admin',$permission))
+                                         
+                                          
                                             <div class="mb-3 mb-4">
                                               <label for="company" class="form-label">Empresa</label>
                                                 
-                                                
-                                                  <select id="company" name="company" class="form-select" aria-label="Default select example">
-                                                      @foreach ($listCompany->all()->toArray() as $item)
-  
-                                                          <option value="{{$item['social_Reason']}}">{{$item['social_Reason']}}</option>
-                                                          
-                                                      @endforeach                                                        
-                                                      
-                                                  </select>
-                                                   
-                                                
+                                              <input class="form-control @error('company') is-invalid @enderror"  type="text" readonly
+                                              id="company" name="company" value="{{$vehicle['company']}}">
                                             </div>                                                
-                                          @else
-                                              <div class="mb-3 mb-4">
-                                                  <label for="company" class="form-label">Empresa</label>
-                                                 
-                                                      <input class="form-control @error('company') is-invalid @enderror"  type="text" readonly
-                                                      id="company" name="company" value="{{auth()->user()->company->social_Reason }}">
-  
-                                                      @error('company')                                           
-                                                          <div class="invalid-feedback">
-                                                              {{$message}}                                          
-                                                          </div>
-                                                      @enderror
-                                                  
-                                              </div>                                                 
-                                          @endif
+                                                                                                                                         
+                                                                                         
   
                                           <div class="mb-3 mb-4">
                                             <label class="form-label" for="client">Cliente</label>
-                                            <select name="client" class="form-control">
-  
-                                              <option value="null">Sem vínculo</option>
+                                            <input class="form-control @error('company') is-invalid @enderror"  type="text" readonly
+                                            id="client" name="client" value="{{$client['name']}}">
+                                           {{-- <select name="client" class="form-control select2-client">
+                                               <option value=""></option>
+                                              <option value="">Sem vínculo</option>
                                               @foreach ($client as $item)
                                                 <option value="{{$item['id']}}">{{$item['name']}}</option>                                                
                                               @endforeach
                                                                                       
-                                            </select>                                          
+                                            </select>                                           --}}
                                           </div>     
   
                                           <div class="mb-3 mb-4">
                                               <label class="form-label" for="status">Status</label>
                                               <select name="status" class="form-control">
-                                                <option value="Ativo">Ativo</option>
-                                                <option value="Inativo">Inativo</option>
+                                                @if ($vehicle['status']) <option value="{{$vehicle['status']}}">{{ucfirst($vehicle['status'])}}</option>  @endif
+                                                                                                  
+                                                <option value="ativo">Ativo</option>
+                                                <option value="inativo">Inativo</option>
+                                                <option value="estoque">Estoque</option>
+                                                <option value="vinculado">Vinculado</option>
+                                                <option value="manutenção">Manutenção</option>
+                                                <option value="cancelado">Cancelado</option>
                                               </select>                                          
                                           </div>
   
                                           <div class="mb-3 mb-4">
-                                            <label class="form-label" for="type_vehicles">Veículo</label>
-                                            <select name="type_vehicles" class="form-control">
-                                              <option value="Carro">Carro</option>
-                                              <option value="Moto">Moto</option>
-                                              <option value="Caminhão">Caminhão</option>
-                                              <option value="Onibus">Ônibus</option>
-                                              <option value="Microonibus">Microônibus</option>
-                                              <option value="Bicicleta">Bicicleta</option>
-                                              <option value="Pessoa">Pessoa</option>
-                                              <option value="Pet">Pet</option>
-                                            </select>                 
+                                            <label class="form-label" for="type_vehicles">Tipo</label>
+                                            <input class="form-control @error('type_vehicles') is-invalid @enderror"  type="text" readonly
+                                            id="type_vehicles" name="type_vehicles" value="{{$vehicle['type']}}">  
                                           </div>
   
   
                                           <div class="mb-3 mb-4">
-                                            <label class="form-label" for="brand">Marca</label>
-                                            <select name="brand" class="form-control">
-                                              <option value="CHEVROLET">CHEVROLET</option>
-                                              <option value="VOLKSWAGEN">VOLKSWAGEN</option>
-                                              <option value="FIAT">FIAT</option>
-                                              <option value="CITROEN">CITROEN</option>
-                                              <option value="HONDA">HONDA</option>
-                                            </select>                                          
-                                          </div>                                                                                                                 
-  
+                                            <label class="form-label" for="brand">Marca</label>                                              
+                                            <input class="form-control @error('brand') is-invalid @enderror"  type="text" readonly
+                                            id="brand" name="brand" value="{{$vehicle['brand']}}">                                                                                   
+                                          </div>                                                                                                                        
+                                          <div class="mb-3 mb-4">
+                                            <label class="form-label" for="model">Modelo</label>
+                                            <input class="form-control @error('model') is-invalid @enderror"  type="text" readonly
+                                            id="model" name="model" value="{{$vehicle['model']}}">                             
+                                          </div> 
+
+                                          
+                                          <div class="mb-3 mb-4">
+                                            <label class="form-label" for="year">Ano</label>
+                                            <input class="form-control @error('year') is-invalid @enderror"  type="text" readonly
+                                            id="year" name="year" value="{{$vehicle['year']}}">              
+                                          </div> 
+
                                       </div>
                                   </div>
   
                                   <div class="col-lg-6">
-                                      <div class="mt-4 mt-lg-0">  
-  
-                                          <div class="mb-3 mb-4">
-                                            <label class="form-label" for="model">Modelo</label>
-                                            <select name="model" class="form-control">
-                                              <option value="Marca">Marca</option>
-                                              <option value="Marca">Marca</option>
-                                              <option value="Marca">Marca</option>
-                                              <option value="Marca">Marca</option>
-                                              <option value="Marca">Marca</option>
-                                            </select>                                          
-                                          </div> 
+                                      <div class="mt-4 mt-lg-0">                                                                                  
                                         
-                                          <div class="mb-3 mb-4">
-                                            <label class="form-label" for="year">Ano</label>
-                                            <select name="year" class="form-control">
-                                              <option value="year">year</option>
-                                              <option value="year">year</option>
-                                              <option value="year">year</option>
-                                              <option value="year">year</option>
-                                              <option value="year">year</option>
-                                            </select>                                          
-                                          </div> 
                                          
   
                                           <div class="mb-3 mb-4">
                                             <label for="vehicle_plate" class="form-label">Placa</label>
-                                            <input type="text" name="vehicle_plate" class="form-control @error('vehicle_plate') is-invalid @enderror" value="{{ old('vehicle_plate') }}">
-  
-                                            @error('vehicle_plate')                                           
-                                              <div class="invalid-feedback">
-                                                {{$message}}                                          
-                                              </div>
-                                            @enderror
+
+                                            <input class="form-control"  type="text" readonly
+                                            id="vehicle_plate" name="vehicle_plate"
+                                             value="{{ $vehicle['license_plate'] }}" placeholder="{{$vehicle['license_plate']}}">                                           
                                           </div>
                                           
                                           <div class="mb-3 mb-4">
-                                            <label for="value" class="form-label">Value</label>
-                                            <input type="text" name="value" class="form-control @error('value') is-invalid @enderror" value="{{ old('value') }}">   
+                                            <label for="value" class="form-label">Valor</label>
+                                            <input type="text" name="value" id="value" class="form-control @error('value') is-invalid @enderror" value="{{ $vehicle['value'] }}">   
                                             
-                                            @error('value')                                           
-                                              <div class="invalid-feedback">
-                                                {{$message}}                                          
+                                            @if(session('errorValue'))
+                                              <div class="mt-2 alert alert-danger">
+                                                  {{session('errorValue')}}
                                               </div>
-                                            @enderror
+                                            @endif
+
+                                           
                                           </div>
                                           <div class="mb-3 mb-4">
                                             <label for="equipment" class="form-label">Equipamento</label>                                         
-                                            <select name="equipment" class="form-control" >                                                                                                                                 
-                                              <option value="equipamentos 1">equipamentos</option>
-                                              <option value="equipamentos 2">equipamentos 2</option>
+                                            <select name="equipment" class="form-control select2-equipment" >                                                                                                          @if (!is_null($vehicle['equipment']) ) <option value="{{$vehicle['equipment']}}">{{$vehicle['equipment']}}</option>  @endif      
+
+                                               <option value="">Sem vínculo</option>
+                                               @foreach ($equipments as $item)
+                                                <option value="{{$item['imei']}}">{{$item['imei']}}</option>                                                
+                                               @endforeach
                                             </select>  
                                           </div>
+
+
+
+                                          <div class="mb-3 mb-4">
+                                            <label for="update_responsible_last_updated" class="form-label">Usuário de Inserção</label>
+                                            
+                                                <input class="form-control"  value="{{  $vehicle['responsible_for_insert'] }}" type="text" readonly
+                                                    id="update_responsible_last_updated" name='responsible_for_insert'>                                               
+                                                         
+                                          </div> 
+
+                                          <div class="mb-3 mb-4">
+                                            <label for="update_responsible_last_updated" class="form-label">Data de Inserção</label>
+                                            
+                                                <input class="form-control"  value="{{  $vehicle['created_at'] }}" type="text" readonly
+                                                    id="update_responsible_last_updated" name='created_at'>                                               
+                                                         
+                                          </div> 
+
+                                          <div class="mb-3 mb-4">
+                                            <label for="update_responsible_last_updated" class="form-label">Usuário da Última Alteração</label>
+                                            
+                                                <input class="form-control"  value="{{  $vehicle['responsible_last_updated'] ?? ''}}" type="text" readonly
+                                                    id="update_responsible_last_updated" name='responsible_last_updated'>                                               
+                                                         
+                                          </div> 
+
+                                          <div class="mb-3 mb-4">
+                                            <label for="update_responsible_last_updated" class="form-label">Data da Última Alteração</label>
+                                            
+                                                <input class="form-control"  value="{{  $vehicle['updated_at'] }}" type="text" readonly
+                                                    id="update_responsible_last_updated" name='updated_at'>                                               
+                                                         
+                                          </div> 
+
+
+
+                                          {{-- //////////////// --}}
                                       </div>
                                   </div>
                               </div>                                                                                 
@@ -199,11 +213,55 @@
 @endsection
 
 @push('script-js')
-
+<script src="{{asset('assets\libs\inputmask\min\jquery.inputmask.bundle.min.js')}}"></script>
 @endpush
 
 
-
 @push('customized-js')
-   
+<script>
+  $(document).ready(function() {
+    $( '.select-2model').select2();
+    $('.select-2year').select2();
+    $('.select-2brand').select2();
+    $('.select2-client').select2();
+    $('.select2-equipment').select2();
+  });
+
+  window.onload = function() {
+
+  //// 
+  let addMaskValue = document.getElementById('value')
+
+  let im_addPrice = new Inputmask( 'currency',{"autoUnmask": false,
+      radixPoint:",",
+          groupSeparator: ".",
+          allowMinus: false,
+          prefix: ' R$ ',            
+          digits: 2,
+          digitsOptional: false,
+          rightAlign: false,
+          unmaskAsNumber: false                                
+  });
+  im_addPrice.mask(addMaskValue)
+
+  // let addMaskPlate = document.getElementById('vehicle_plate')
+  // let im_addPlate = new Inputmask( {mask: 'AAA-9999'},{mask: 'AAA9999'});
+  // im_addPlate.mask(addMaskPlate)
+
+
+  // let addMaskPlate2 = document.getElementById('vehicle_plate2')
+  // let im_addPlate2 = new Inputmask( {mask: 'AAA9999'});
+  // im_addPlate2.mask(addMaskPlate2)
+
+  // addMaskPlate.onclick = function(){
+  //   addMaskPlate2.value = ""
+  // }
+
+  // addMaskPlate2.onclick = function(){
+  //   addMaskPlate.value = ""
+  // }
+  
+
+  }//end function window.onload
+</script>
 @endpush

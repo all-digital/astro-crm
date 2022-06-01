@@ -57,8 +57,8 @@
                                                                 <option value="{{$item['id']}}">{{$item['social_Reason']}}</option>
                                                                 
                                                             @endforeach                                                        
-                                                            {{-- <option value="ativo" selected >Ativo</option> --}}
                                                         </select>
+                                                        {{-- <option value="ativo" selected >Ativo</option> --}}
 
 
                                                        

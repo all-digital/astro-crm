@@ -194,7 +194,7 @@
                                     <div class="mb-3 row">
                                         <label for="txtNameCard" class="col-lg-3 col-form-label">Mensalidade</label>
                                         <div class="col-lg-9">
-                                            <input id="txtNameCard" name="monthPayment" type="text"
+                                            <input id="monthPayment" name="monthPayment" type="text"
                                             class="form-control" value="{{$company['monthly_payment']}}">
                                             <span id="monthPayment-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
@@ -205,7 +205,7 @@
                                         <label for="ddlCreditCardType"
                                             class="col-lg-3 col-form-label">Ativação</label>
                                         <div class="col-lg-9">
-                                            <input id="txtCreditCardNumber" name="activation"
+                                            <input id="activation" name="activation"
                                             type="text" class="form-control" value="{{$company['activation']}}">
                                             <span id="activation-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
@@ -218,7 +218,7 @@
                                         <label for="txtCreditCardNumber"
                                             class="col-lg-3 col-form-label">Preço por Placa</label>
                                         <div class="col-lg-9">
-                                            <input id="txtCreditCardNumber" name="pricePerPlate"
+                                            <input id="pricePerPlate" name="pricePerPlate"
                                             type="text" class="form-control" value="{{$company['price_per_plate']}}">
                                             <span id="pricePerPlate-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
@@ -229,7 +229,7 @@
                                         <label for="txtCardVerificationNumber"
                                             class="col-lg-3 col-form-label">Limite de Usuários</label>
                                         <div class="col-lg-9">
-                                            <select name="userLimit" id="txtCardVerificationNumber" class="form-control">
+                                            <select name="userLimit" id="userLimit" class="form-control">
                                                 {{-- <option value="">vazio</option> --}}
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -342,7 +342,7 @@
                                         <label for="txtExpirationDate"
                                             class="col-lg-3 col-form-label">Preço por usuário extra</label>
                                         <div class="col-lg-9">
-                                            <input id="txtExpirationDate" name="pricePerExtraUser"
+                                            <input id="pricePerExtraUser" name="pricePerExtraUser"
                                             type="text" class="form-control" value="{{$company['price_per_extra_user']}}">
                                             <span id="pricePerExtraUser-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
@@ -377,14 +377,40 @@
 
     <!-- App js -->
     <script src="{{asset('assets/js/app.js')}}"></script>
-
-    <script src="{{'assets\libs\inputmask\min\jquery.inputmask.bundle.min.js'}}"></script>
+    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('assets\libs\inputmask\min\jquery.inputmask.bundle.min.js')}}"></script>
        
 @endpush
 
 
 
 @push('customized-js')
+
+<script>
+
+
+    let monthPayment = document.getElementById('monthPayment')
+    let activation = document.getElementById('activation')
+    let pricePerPlate = document.getElementById('pricePerPlate')
+    let pricePerExtraUser = document.getElementById('pricePerExtraUser')
+
+
+    let im_ = new Inputmask( 'currency',{"autoUnmask": false,
+        radixPoint:",",
+            groupSeparator: ".",
+            allowMinus: false,
+            prefix: ' R$ ',            
+            digits: 2,
+            digitsOptional: false,
+            rightAlign: false,
+            unmaskAsNumber: false                                
+    });
+    im_.mask(monthPayment)
+    im_.mask(activation)
+    im_.mask(pricePerPlate)
+    im_.mask(pricePerExtraUser)
+
+</script>
    
 @endpush

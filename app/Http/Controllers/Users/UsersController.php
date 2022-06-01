@@ -24,13 +24,23 @@ class UsersController extends Controller
         $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
         $idCompany = auth()->user()->company->id;
 
-        $users = User::where('company_id', $idCompany)->get();    
-        $users = $users->toArray();
-                           
+        
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
             return $value['name'];    
         },$rolesAuthUser);
+
+        
+        if(in_array('Super Admin',$permission))
+        {
+            $users = User::all()->toArray();
+
+        }else{
+
+            $users = User::where('company_id', $idCompany)->get();    
+            $users = $users->toArray();
+        }
+
 
         $urlProfile = url('/profile');
         $urlEditUser = url('/user-edit');

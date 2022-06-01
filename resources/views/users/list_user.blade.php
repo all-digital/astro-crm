@@ -97,6 +97,8 @@
                               
             $(document).ready(function(){
 
+                //por conta das imagens de usuario se add  'excel', 'csv',  em buttons do datatable, vai dar erro      
+                                        
                 $("#datatable").DataTable({
                     dom: 'Bfrtip',
                     buttons: [                         

@@ -51,7 +51,6 @@ class CompanyController extends Controller
                 $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlEditCompany\\$id' >Editar</a></div>" ;
             }
 
-
             return $value;
 
         },$companies);
