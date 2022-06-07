@@ -26,7 +26,7 @@
                             style="margin-top: 10px; font-size: 16px; font-weight: bold;">SERVIÇOS</h4>
                         <div class="new-service-div">
 
-                            <a href="{{ url('export-services') }}" class="btn btn-outline-success waves-effect waves-light">
+                            <a href="{{ route('export-services.exportServices') }}" class="btn btn-outline-success waves-effect waves-light">
                                 <i class="mdi mdi-google-spreadsheet"></i>
                             </a>
 

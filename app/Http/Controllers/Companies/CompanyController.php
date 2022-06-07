@@ -63,13 +63,13 @@ class CompanyController extends Controller
 
 
 
-    public function showCreateCompany()
+    public function create()
     {
         return view('companies.create_company');   
 
     }//end method
 
-    public function showEditCompany(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         $company = Companies::find($id)->toArray();
 

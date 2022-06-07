@@ -11,7 +11,7 @@ use App\Models\Companies;
 class CompanyController extends Controller
 {
 
-    public function createCompany(Request $request)
+    public function store(Request $request)
     {
         //getting the authenticated user of the action
         $authRequest = $request->input('authUser');
@@ -97,7 +97,7 @@ class CompanyController extends Controller
 
     }//end methods
 
-    public function editCompany(Request $request)
+    public function update(Request $request)
     {
         debug($request->all());
 

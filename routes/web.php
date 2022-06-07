@@ -131,25 +131,21 @@ Route::get('dd', function(){
 
 
                                             ////service
-Route::get('/services', [App\Http\Controllers\Services\ServicesController::class, 'servicesTable'])->name('services.table');
+Route::get('/services', [App\Http\Controllers\Services\ServicesController::class, 'servicesTable'])->name('services.servicesTable');
 
 //excell
-Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices']);
+Route::get('/export-services', [App\Http\Controllers\Services\ServicesController::class, 'exportServices'])->name('export-services.exportServices');
 
 
 
                                         //router related to company
 
 Route::get('/company', [App\Http\Controllers\Companies\CompanyController::class, 'index'])->name('company.index');
-Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'showCreateCompany'])->name('company.add');
-Route::get('/company-edit/{id}', [App\Http\Controllers\Companies\CompanyController::class, 'showEditCompany'])->name('company.edit');
+Route::get('/company-add', [App\Http\Controllers\Companies\CompanyController::class, 'create'])->name('company.create');
+Route::get('/company-edit/{id}', [App\Http\Controllers\Companies\CompanyController::class, 'edit'])->name('company.edit');
 
 Route::put('/company-edit/{id}',[App\Http\Controllers\Companies\CompanyController::class, 'update'])->name('company.update');
 
-
-Route::get('/empresas/testando', function () {
-    return view('companies');
-});
 
                                             ////user
 

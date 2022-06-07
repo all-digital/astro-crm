@@ -37,8 +37,8 @@ Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCN
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Route::post('/company-add',[App\Http\Controllers\Api\CompanyController::class, 'createCompany']);
-Route::put('company-edit',[App\Http\Controllers\Api\CompanyController::class, 'editCompany']);
+Route::post('/company-add',[App\Http\Controllers\Api\CompanyController::class, 'store']);
+Route::put('company-edit',[App\Http\Controllers\Api\CompanyController::class, 'update']);
 
 
 Route::post('/table-services-add',[App\Http\Controllers\Api\ServicesController::class, 'store']);
