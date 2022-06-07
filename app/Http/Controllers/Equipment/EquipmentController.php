@@ -17,35 +17,16 @@ use Carbon\Carbon;
 class EquipmentController extends Controller
 {
     
+    
     public function index(Request $request)
     {
-        $idCompany = auth()->user()->company->id;
-
-        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
-        $permission = array_map(function($value){
-            return $value['name'];    
-        },$rolesAuthUser);
-
-
-        $simcards = Simcards::select('id','number_of_line','iccid')
-                    ->where('company_id', $idCompany)
-                    ->where('status','estoque')->get();
-
-        $simcards = $simcards->toArray();
-       // return redirect()->route('equipment.index');
-        return view('equipment.index',compact('permission','simcards'));
-
-    }//end method
-
-    public function list(Request $request)
-    {
-
+        
         $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
         $idCompany = auth()->user()->company->id;
-
+        
         $equipments = Equipments::where('company_id', $idCompany)->get();    
         $equipments = $equipments->toArray();
-                           
+        
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
             return $value['name'];    
@@ -60,7 +41,7 @@ class EquipmentController extends Controller
 
             $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
             $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
-
+            
             $id = $value['id'];
             // $value['user_last_alter'] = 'user_last_alter';
             // $value['company'] = 'name company';
@@ -79,9 +60,29 @@ class EquipmentController extends Controller
         },$equipments);
         
         return view('equipment.equipment_list',compact('permission', 'equipments')); 
-            
+        
     }//end method
+    
+    public function create(Request $request)
+    {
+        $idCompany = auth()->user()->company->id;
 
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
+
+
+        $simcards = Simcards::select('id','number_of_line','iccid')
+                    ->where('company_id', $idCompany)
+                    ->where('status','estoque')->get();
+
+        $simcards = $simcards->toArray();
+       // return redirect()->route('equipment.index');
+        return view('equipment.index',compact('permission','simcards'));
+
+    }//end method
+    
     public function store(EquipmentStoreRequest $request)
     {
 

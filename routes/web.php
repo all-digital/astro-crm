@@ -179,18 +179,14 @@ Route::put('/veiculo-edit/{id}', [App\Http\Controllers\Vehicles\VehiclesControll
 
                                             ////equip
 
-Route::get('/equip-index', function(){
-    return view('teste');
-});
 
 
+Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equip-list.index');
+Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'create'])->name('equip.create');
+Route::get('/equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit'])->name('equip-edit.edit');
 
-Route::get('/equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'index'])->name('equipment.index');
-Route::get('/equip-list', [App\Http\Controllers\Equipment\EquipmentController::class, 'list']);
-Route::get('/equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'edit'])->name('equipment.edit.show');
-
-Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'store'])->name('equipment.store');
-Route::put('equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equipment.update');
+Route::post('equip', [App\Http\Controllers\Equipment\EquipmentController::class, 'store'])->name('equip.store');
+Route::put('equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentController::class, 'update'])->name('equip.update');
 
 
                                              ////simcards 
