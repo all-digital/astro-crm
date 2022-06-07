@@ -208,17 +208,15 @@ Route::put('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController
 //     return view('clients.index');
 // });
 
-Route::get('cliente', [App\Http\Controllers\Client\ClientController::class, 'show']);  
-Route::get('cliente-list', [App\Http\Controllers\Client\ClientController::class, 'index']); 
+Route::get('cliente', [App\Http\Controllers\Client\ClientController::class, 'show'])->name('cliente.show');  
+Route::get('cliente-list', [App\Http\Controllers\Client\ClientController::class, 'index'])->name('ciente-list.index'); 
 
-Route::get('cliente-edit/{id}', [App\Http\Controllers\Client\ClientController::class, 'showEdit']);  
+// Route::get('cliente-edit/{id}', [App\Http\Controllers\Client\ClientController::class, 'edit'])->name('cliente-edit.edit');  
 
-
-Route::post('cliente', [App\Http\Controllers\Client\ClientController::class, 'store']); 
                                               ////ordenService
 
-Route::get('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'show']);                                              
-Route::post('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'store'])->name('os.store');    
+Route::get('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'show'])->name('ordem-servico.show');                                              
+Route::post('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'store'])->name('ordem-servico.store');    
 
 
                                         ////////////routes teste
