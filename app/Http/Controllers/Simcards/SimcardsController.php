@@ -62,7 +62,7 @@ class SimcardsController extends Controller
     
     }//end edit
     
-    public function showEdit(Request $request, $id)
+    public function edit(Request $request, $id)
     {        
         $simcard = Simcards::find($id)->toArray(); 
 

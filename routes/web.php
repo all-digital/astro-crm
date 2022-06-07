@@ -192,10 +192,10 @@ Route::put('equip-edit/{id}', [App\Http\Controllers\Equipment\EquipmentControlle
                                              ////simcards 
 
 // Route::get('simcard',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit']);
-Route::get('simcard',[App\Http\Controllers\Simcards\SimcardsController::class, 'index']);
-Route::get('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController::class, 'showEdit'])->name('simcard.edit.show');
+Route::get('simcard',[App\Http\Controllers\Simcards\SimcardsController::class, 'index'])->name('simcard.index');
+Route::get('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController::class, 'edit'])->name('simcard.edit');
 
-Route::put('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController::class, 'update'])->name('simcard.edit');
+Route::put('simcard-edit/{id}',[App\Http\Controllers\Simcards\SimcardsController::class, 'update'])->name('simcard-edit.update');
 
 
                                                ////client
