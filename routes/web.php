@@ -147,11 +147,12 @@ Route::get('/company-edit/{id}', [App\Http\Controllers\Companies\CompanyControll
 Route::put('/company-edit/{id}',[App\Http\Controllers\Companies\CompanyController::class, 'update'])->name('company.update');
 
 
+
                                             ////user
 
-Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'show']);
-Route::get('/user-edit/{id}', [App\Http\Controllers\Users\UsersController::class, 'showEdit']);
-Route::get('/user-list', [App\Http\Controllers\Users\UsersController::class, 'index']);
+Route::get('/user-list', [App\Http\Controllers\Users\UsersController::class, 'index'])->name('user-list.index');
+Route::get('/user',[App\Http\Controllers\Users\UsersController::class, 'show'])->name('user.show');
+Route::get('/user-edit/{id}', [App\Http\Controllers\Users\UsersController::class, 'edit'])->name('user-edit.edit');
 
 Route::post('/user',[App\Http\Controllers\Users\UsersController::class, 'store'])->name('user.store');
 Route::put('/user-edit/{id}',[App\Http\Controllers\Users\UsersController::class, 'update'])->name('user.update');

@@ -87,7 +87,7 @@ class UsersController extends Controller
     }//end show
 
 
-    public function showEdit(Request $request, $id)
+    public function edit(Request $request, $id)
     {   
         $user = User::find($id);  
 
