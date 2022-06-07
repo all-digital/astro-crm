@@ -46,7 +46,7 @@
 
 
                      
-                        <form id="formVehicles" action="{{route('vehicles.create')}}" method="POST">
+                        <form id="formVehicles" action="{{route('veiculo.store')}}" method="POST">
                           @csrf
 
                             <div class="row">

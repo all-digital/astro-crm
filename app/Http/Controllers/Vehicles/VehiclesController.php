@@ -71,7 +71,7 @@ class VehiclesController extends Controller
 
     }//end index
     
-    public function showCreate()
+    public function create()
     {
         $idCompany = auth()->user()->company->id;
         // $services1 = Services::where('company_id',1);
@@ -97,7 +97,7 @@ class VehiclesController extends Controller
         
         return view('vehicles.index',["permission" => $permission,"client" => $client,"equipments"=> $equipments]);
 
-    }//end method showCreate
+    }//end method create
 
 
     public function store(VehiclesCreateRequest $request)
@@ -159,7 +159,7 @@ class VehiclesController extends Controller
     }//end method store
 
 
-    public function editShow(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         $idCompany = auth()->user()->company->id;
         $vehicle = Vehicles::find($id)->toArray();
@@ -187,7 +187,7 @@ class VehiclesController extends Controller
 
         return view('vehicles.vehicles_edit',compact('id','permission','client','vehicle','equipments'));
 
-    }//end editShow
+    }//end edit
 
 
 

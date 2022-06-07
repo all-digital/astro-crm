@@ -168,20 +168,13 @@ Route::get('/profile/{id}', function($id){
 
                                            ////veiculos
                                          
-Route::get('/veiculos-list', [App\Http\Controllers\Vehicles\VehiclesController::class, 'index'])->name('vehicles.list');
+Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'index'])->name('veiculos.index');
 
-Route::get('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'showCreate']);
-//Route::get('/veiculos-edit', [App\Http\Controllers\Vehicles\VehiclesController::class, 'veiculos']);
-Route::get('/veiculos-edit/{id}', [App\Http\Controllers\Vehicles\VehiclesController::class, 'editShow']);
+Route::get('/veiculo-add', [App\Http\Controllers\Vehicles\VehiclesController::class, 'create'])->name('veiculo-add.create');
+Route::post('/veiculo', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('veiculo.store');
+Route::get('/veiculo-edit/{id}', [App\Http\Controllers\Vehicles\VehiclesController::class, 'edit'])->name('veiculo-edit.edit');
 
-Route::put('/veiculos-edit/{id}', [App\Http\Controllers\Vehicles\VehiclesController::class, 'update'])->name('vehicles.update');
-
-Route::post('/veiculos', [App\Http\Controllers\Vehicles\VehiclesController::class, 'store'])->name('vehicles.create');
-
-
-// Route::get('/veiculos-list', function(){
-//     return view('vehicles.vehicles_list');
-// });
+Route::put('/veiculo-edit/{id}', [App\Http\Controllers\Vehicles\VehiclesController::class, 'update'])->name('veiculo-edit.update');
 
 
                                             ////equip
