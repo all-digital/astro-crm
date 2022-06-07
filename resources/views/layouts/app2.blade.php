@@ -106,12 +106,12 @@
                                                 </a>
     
                                                 <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                                    <a href="dashboard-geral.html"
-                                                        class="dropdown-item menu-item">Principal</a>
-                                                    <a href="#" class="dropdown-item menu-item">Financeiro</a>
+                                                    <a href="{{url('/dashboard')}}"
+                                                        class="dropdown-item menu-item">Dashboard Geral</a>
+                                                    {{-- <a href="#" class="dropdown-item menu-item">Financeiro</a>
                                                     <a href="#" class="dropdown-item menu-item">Vendas</a>
                                                     <a href="#" class="dropdown-item menu-item">Leads</a>
-                                                    <a href="#" class="dropdown-item menu-item">Estoque</a>
+                                                    <a href="#" class="dropdown-item menu-item">Estoque</a> --}}
                                                 </div>
     
                                             </li>
@@ -171,8 +171,8 @@
                                                             Veículos
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                            <a href="#" class="dropdown-item menu-item">Consultar</a>
+                                                            <a href="{{route('veiculo-add.create')}}" class="dropdown-item menu-item" target="_blank">Cadastrar</a>
+                                                            <a href="{{route('veiculos.index')}}" class="dropdown-item menu-item" target="_blank">Consultar</a>
                                                         </div>
                                                     </div>
     
@@ -181,18 +181,31 @@
                                                             href="#" id="topnav-email" role="button"
                                                             data-bs-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">
-                                                            Propostas
+                                                            Equipamentos
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                            <a href="#" class="dropdown-item menu-item">Consultar</a>
+                                                            <a href="{{route('equip.create')}}" class="dropdown-item menu-item" target="_blank">Cadastrar</a>
+                                                            <a href="{{route('equip-list.index')}}" class="dropdown-item menu-item" target="_blank">Consultar</a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item dropdown-toggle arrow-none menu-item"
+                                                            href="#" id="topnav-email" role="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Simcards
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="topnav-email">
+                                                            {{-- <a href="#" class="dropdown-item menu-item">Cadastrar</a> --}}
+                                                            <a href="{{route('simcard.index')}}" class="dropdown-item menu-item">Consultar/Cadastrar</a>
                                                         </div>
                                                     </div>
                                                 </div>
     
                                             </li>
     
-                                            <li class="nav-item dropdown">
+                                            {{-- <li class="nav-item dropdown">
     
                                                 <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
                                                     id="topnav-app-pages" role="button">
@@ -220,9 +233,9 @@
     
                                                 </div>
     
-                                            </li>
+                                            </li> --}}
     
-                                            <li class="nav-item dropdown">
+                                            {{-- <li class="nav-item dropdown">
     
                                                 <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
                                                     id="topnav-app-pages" role="button">
@@ -249,7 +262,7 @@
     
                                                 </div>
     
-                                            </li>
+                                            </li> --}}
     
                                             <!--  DROPDOWN 2 COLUMNS 
     
@@ -301,18 +314,57 @@
                                                 </a>
     
                                                 <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                                    <a href="#" class="dropdown-item menu-item">Categorias</a>
-                                                    <a href="#" class="dropdown-item menu-item">Serviços</a>
-                                                    <a href="#" class="dropdown-item menu-item">Metas</a>
-                                                    <a href="#" class="dropdown-item menu-item">Fornecedores</a>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item dropdown-toggle arrow-none menu-item"
+                                                            href="#" id="topnav-email" role="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Serviços
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="topnav-email">
+                                                            <a href="{{route('services.servicesTable')}}" class="dropdown-item menu-item">Consultar/Cadastrar</a>
+                                                           
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item dropdown-toggle arrow-none menu-item"
+                                                            href="#" id="topnav-email" role="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Categorias
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="topnav-email">
+                                                            <a href="#" class="dropdown-item menu-item">Cadastrar</a>
+                                                            <a href="#" class="dropdown-item menu-item">Consultar</a>
+                                                        </div>
+                                                    </div>
+                                                                                                     
+                                                  
                                                     <a href="#" class="dropdown-item menu-item">Plataformas</a>
+
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item dropdown-toggle arrow-none menu-item"
+                                                            href="#" id="topnav-email" role="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Usuários
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="topnav-email">
+                                                            <a href="{{route('user.show')}}" class="dropdown-item menu-item" target="_blank">Cadastrar</a>
+                                                            <a href="{{route('user-list.index')}}" class="dropdown-item menu-item" target="_blank">Consultar</a>
+                                                        </div>
+                                                    </div>
+                                                  
+                                                    {{-- <a href="#" class="dropdown-item menu-item">Fornecedores</a>
                                                     <a href="#" class="dropdown-item menu-item">Regras de Aprovação</a>
-                                                    <a href="#" class="dropdown-item menu-item">Certificado Digital</a>
+                                                    <a href="#" class="dropdown-item menu-item">Certificado Digital</a> --}}
                                                 </div>
     
                                             </li>
     
-                                            <li class="nav-item dropdown">
+                                            {{-- <li class="nav-item dropdown">
     
                                                 <a class="nav-link dropdown-toggle arrow-none menu-item" href="#"
                                                     id="topnav-dashboard" role="button">
@@ -327,7 +379,7 @@
                                                     <a href="#" class="dropdown-item menu-item">Serviços</a>
                                                 </div>
     
-                                            </li>   
+                                            </li>    --}}
                                            
     
     

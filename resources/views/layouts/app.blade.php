@@ -21,10 +21,10 @@
 
     <script src="{{asset('libs/alpinejs_3.7.1.min.js')}}" defer></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script>
        window.Sortablejs = Sortable;
-    </script>
+    </script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -36,13 +36,27 @@
     <link href="{{asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" />
 
 
+     <!-- DataTables -->
+     <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+
+     <!-- Responsive datatable examples -->
+     <link href="{{asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+     type="text/css')}}" />
+
+
+
+
+
 
       <!-- leads kanban-->
       <!-- dragula css -->
-      <link href="assets/libs/dragula/dragula.min.css" rel="stylesheet" type="text/css" />      
+      {{-- <link href="assets/libs/dragula/dragula.min.css" rel="stylesheet" type="text/css" />      
       <!-- Lightbox css -->
-      <link href="assets/libs/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+      <link href="assets/libs/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" /> --}}
     
+
+
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -52,16 +66,16 @@
      <!-- Icons Css -->
      <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
      <!-- App Css-->
+     <link href="{{asset('assets/css/app.css')}}"  rel="stylesheet" type="text/css" />          
      <link href="{{asset('assets/css/app.min.css')}}"  rel="stylesheet" type="text/css" />
       
-     <link href="{{asset('assets/css/app.css')}}"  rel="stylesheet" type="text/css" />          
      
      <link href="{{asset('custom/css/style.css')}}" rel="stylesheet">  
      
      <link  href="{{asset('custom/css/animation.css')}}" rel="stylesheet">
      
-     <!-- leads kanban-->
-     <link href="{{asset('custom/css/kanban.css')}}" rel="stylesheet">
+     {{-- <!-- leads kanban-->
+     <link href="{{asset('custom/css/kanban.css')}}" rel="stylesheet"> --}}
 
      @livewireStyles
 
