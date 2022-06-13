@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\UserCreateRequest; 
 use App\Http\Requests\UserEditRequest;
+use App\Http\Requests\UserProfile;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -56,20 +57,27 @@ class UsersController extends Controller
            $id = $value['id'];
            $value['company'] = 'teste';
 
-            if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
-            {
-                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a> <a class='btn btn-primary' target ='_blank' href='$urlEditUser\\$id' >Alterar</a> </div>";
-            }else{
-                $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a></div>" ;
-            }
-           
+            // if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
+            // {
+            //     $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a> <a class='btn btn-primary' target ='_blank' href='$urlEditUser\\$id' >Alterar</a> </div>";
+            // }else{
+            //     $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a></div>" ;
+            // }
+
+            $value['button'] = "<div class='d-flex justify-content-around' ><a class='btn btn-primary' target ='_blank' href='$urlEditUser\\$id' >Alterar</a> </div>";
+                       
             $avatar = $value['avatar'];
-            $value['avatar'] = "<div class='d-flex justify-content-center'><img class=avatar-lg header-profile-user' m-0 p-0 src='storage\\$avatar'  style='max-width: 40px; max-height: 40px;' >";  
+            $lastName =  $value['last_name'];
+            $name = $value['name'];
+            $value['profile'] = $name;
+            $value['superior'] = "teste";
+
+            $value['avatar'] = "<div class='d-flex justify-content-between align-items-center'><img class=avatar-lg header-profile-user' m-0 p-0 src='storage\\$avatar'  style='max-width: 40px; max-height: 40px;'> <span>$name</span> <span>$lastName</span> </div>";  
 
             return $value; 
         },$users);
 
-        // dd($users);
+        //dd($users);
         return view('users.list_user',compact('users','permission')); 
     }//end index
 
@@ -279,6 +287,81 @@ class UsersController extends Controller
 
     }//end update
 
+
+
+
+    public function showProfile(Request $request)
+    {        
+        $id = auth()->user()->id;
+        $user = User::find($id); 
+
+        return view('profiles.user_logged', compact('user'));
+
+    }//end showProfile
+
+
+    public function updateProfile(UserProfile $request)
+    {        
+        
+        $user = User::find(auth()->user()->id); 
+       
+                
+        if($request->update_user_password || $request->update_user_password_confirm) {
+         
+             if ($request->update_user_password != $request->update_user_password_confirm )
+             {                              
+                 return redirect()->route("profile.show-profile")->with('errorPassword','Senhas divergentes');
+             }
+ 
+             if (strlen($request->update_user_password) <= 8 )
+             {                              
+                 return redirect()->route("profile.show-profile")->with('errorPassword','Senha deve ter no minimo 9 caracteres');
+             }
+ 
+             $LastName = auth()->user()->last_name;
+ 
+             $user->name = $request->update_user_name;
+             $user->last_name = $request->update_user_lastname;
+             $user->responsible_last_updated = auth()->user()->name . $LastName;
+ 
+             $user->password = Hash::make($request->update_user_password);     
+             $user->save();
+ 
+        }else{
+
+            $LastName = auth()->user()->last_name;
+                
+            $user->name = $request->update_user_name;
+            $user->last_name = $request->update_user_lastname;
+            $user->responsible_last_updated = auth()->user()->name . " $LastName";
+            $user->save();
+        }
+        
+          
+         //save upload of image
+        
+         if($request->has('update_user_avatar'))
+         {
+             $imagem = $request->update_user_avatar;
+             $extension = $imagem->extension();
+             
+             $nameDirectory = "users/";
+             $nameImage = "$nameDirectory.$user->id.$extension";
+     
+             Storage::delete($nameImage);
+             $PathImage = $imagem->storeAs(null,$nameImage);        
+             
+             $user->update([                     
+                     'avatar' => $PathImage  
+             ]);
+         }//end if valid image  
+                                             
+         
+         return redirect()->route("profile.show-profile")                
+                    ->withSuccess(' Alterção concluida com Sucesso');       
+
+
+    }//end updateProfile
 
 
 }//end class

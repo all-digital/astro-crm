@@ -26,15 +26,15 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th><strong>Botão</strong></th>
+                                <th><strong>Ações</strong></th>
                                 <th><strong>Empresa</strong></th>
+                                <th><strong>Avatar</strong></th>                              
+                                <th><strong>Login</strong></th>
                                 <th><strong>Status</strong></th>
                                 <th><strong>Perfil</strong></th>
                                 <th><strong>Superior</strong></th>
-                                <th><strong>Login</strong></th>
-                                <th><strong>Nome</strong></th>
+                                
                                 {{-- <th><strong>Sobrenome</strong></th> --}}
-                                <th><strong>Avatar</strong></th>                              
                                 
                                 {{-- <th><strong>Data ultima Acesso</strong></th>
                                 <th><strong>Data de Ultima Alteração</strong></th>
@@ -110,12 +110,11 @@
                         columns: [
                             {data: 'button'},
                             {data: 'company'},
+                            { data: 'avatar' },
+                            { data: 'login' },                            
                             {data: 'status'},
-                            {data: 'last_name' }, 
-                            { data: 'status'},                          
-                            { data: 'login' },
-                            { data: 'email' },
-                            { data: 'avatar' }
+                            {data: 'profile' }, 
+                            { data: 'superior'}                          
                                                   
                         ]               
                 })

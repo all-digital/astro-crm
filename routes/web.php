@@ -157,6 +157,8 @@ Route::get('/user-edit/{id}', [App\Http\Controllers\Users\UsersController::class
 Route::post('/user',[App\Http\Controllers\Users\UsersController::class, 'store'])->name('user.store');
 Route::put('/user-edit/{id}',[App\Http\Controllers\Users\UsersController::class, 'update'])->name('user.update');
 
+Route::get('/profile', [App\Http\Controllers\Users\UsersController::class, 'showProfile'])->name('profile.show-profile');
+Route::post('/profile', [App\Http\Controllers\Users\UsersController::class, 'updateProfile'])->name('profile.update-profile');
 
                                             ////profile
 Route::get('/profile/{id}', function($id){

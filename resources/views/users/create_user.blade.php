@@ -229,11 +229,15 @@
                                             </div>
                                             
                                             <div class="mb-3 row">
-                                                <label for="create_user_avatar"
-                                                class="col-md-3 col-form-label d-flex flex-column">Avatar <span class="badge rounded-pill bg-light text-dark">obs:  + ou - 60px</span></label> 
-                                                <div class="col-md-9">
+
+                                                <div class="col-md-5">
+                                                    <label for="create_user_avatar"
+                                                    class="col-md-3 col-form-label d-flex flex-column">Avatar <span class="badge rounded-pill text-dark">obs:  Altura: 60px Largura: 80px</span></label> 
+                                                </div>
+
+                                                <div class="col-md-7">
                                                     <input type="file" id="create_user_avatar" name="create_user_avatar"
-                                                         class="form-control @error('create_user_avatar') is-invalid @enderror" title="imagem de mais ou menos 60px">
+                                                         class="form-control @error('create_user_avatar') is-invalid @enderror" title="Altura: 60px Largura: 80px">
 
                                                         @error('create_user_avatar')                                           
                                                             <div class="invalid-feedback">

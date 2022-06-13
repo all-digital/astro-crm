@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="page-title mb-0 font-size-18">EDIÇÃO DE USUÁRIOS</h4>
+                <h4 class="page-title mb-0 font-size-18">EDIÇÃO DE PERFIL</h4>
 
             </div>
         </div>
@@ -31,9 +31,8 @@
                                 <div class="card">
                                     <div class="card-body">        
                                         
-                                         <h4 class="card-title mb-2 btn btn-info" style="cursor: default;"> EDIÇÃO DE USUÁRIO</h4>
-                                        <p class="card-title-desc">Todos os campos são obrigatorios </p>
-
+                                         <h4 class="card-title mb-2 btn btn-info" style="cursor: default;"> EDIÇÃO DE PERFIL</h4>
+                                        
                                         @if(session('success'))
                                             <div class="alert alert-success">
                                                 {{session('success')}}
@@ -50,8 +49,8 @@
                                             <div class="text-danger" >{{ $errors->get('update_user_password')[0] }} </div>                                                  
                                         @endif
         
-                                        <form id="form-update_user" action="{{route('user.update',$id)}}" method="POST" enctype="multipart/form-data">
-                                        @method('PUT')  
+                                        <form id="form-update_user" action="{{route('profile.update-profile')}}" method="POST" enctype="multipart/form-data">
+                                        @method('POST')  
                                         @csrf 
                                                                              
                                         
@@ -70,16 +69,7 @@
                                         </div> 
                                         
 
-                                            <div class="mb-3 row" readonly>
-                                                <label class="col-md-3 col-form-label">Status</label>
-                                                <div class="col-md-9">
-                                                    <select name="update_user_status" class="form-select" aria-label="Default select example">                                                       
-                                                        <option value="{{$user->status}}" selected> {{ucfirst($user->status)}} </option>
-                                                        <option value="ativo">Ativo</option>
-                                                        <option value="inativo">Inativo</option>                                                      
-                                                    </select>
-                                                </div>
-                                            </div>                     
+                                                          
                                             
                                                                                   
                                             
@@ -96,47 +86,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-
-                                            <div class="mb-3 row">
-                                                <label class="col-md-3 col-form-label">Permissão de Usuario</label>
-                                                <div class="col-md-9">
-                                                     <select id="update_user_perfil" name="update_user_perfil[]" class="select2 form-control select2-multiple @error('update_user_perfil') is-invalid @enderror" multiple="multiple"
-                                                         data-placeholder="Adicione o nivel de permissionamento do usuario">
-                                                     
-                                                         <optgroup label="Nivel 1">                                                            
-                                                            <option value="2" @if(in_array(2,$roles)) selected @endif>Admin</option> 
-                                                            <option value="3" @if(in_array(3,$roles)) selected @endif>Gerente</option>
-                                                            <option value="4" @if(in_array(4,$roles)) selected @endif>Coordenador</option>                                                            
-                                                        </optgroup>
-                                                        <optgroup label="Nivel 2">                                                       
-                                                            <option value="5"@if(in_array(5,$roles)) selected @endif>Comercial</option>
-                                                            <option value="6"@if(in_array(6,$roles)) selected @endif>Vendedor</option>
-                                                            <option value="7"@if(in_array(7,$roles)) selected @endif>Financeiro</option>
-                                                            <option value="8"@if(in_array(8,$roles)) selected @endif>Suporte</option>
-                                                            <option value="9"@if(in_array(9,$roles)) selected @endif>Técnico</option> 
-                                                        </optgroup>                                             
-         
-                                                     </select> 
- 
-                                                     @error('update_user_perfil')                                           
-                                                     <div class="invalid-feedback">
-                                                         {{$message}}                                          
-                                                     </div>
-                                                  @enderror
-                                                 </div>
-                                             </div>    
-                                        
-                                             {{-- Lista todos os Gerentes Comerciais e Admins --}}
-                                            {{-- <div class="mb-3 row">
-                                                <label class="col-md-3 col-form-label" for="update_user_upper">Superior</label>
-                                                <div class="col-md-9">
-                                                    <select id="update_user_upper" name="update_user_upper" class="form-select" aria-label="Default select example" required>
-                                                        <option selected> upper</option>
-                                                                    
-                                                    </select>
-                                                </div>
-                                            </div> --}}
-
+                                            
                                             <div class="mb-3 row">
                                                 <label for="update_user_name" class="col-md-3 col-form-label">Nome</label>
                                                 <div class="col-md-9">
@@ -284,40 +234,13 @@
                                             </div>
 
                                             <div class="mb-3 row">
-                                                <label for="example-password-input" class="col-md-3 col-form-label">Data de Último Acesso</label>
-                                                <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_dateLast') is-invalid @enderror" value="{{ old('update_user_dateLast') }}" type="text" readonly
-                                                        id="update_user_dateLast" name="update_user_dateLast">
-
-                                                    @error('update_user_dateLast')                                           
-                                                        <div class="invalid-feedback">
-                                                            {{$message}}                                          
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mb-3 row">
-                                                <label for="update_user_lastAcess" class="col-md-3 col-form-label">Data de Última Alteração</label>
-                                                <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_lastAcess') is-invalid @enderror" value="{{ $user->updated_at }}" type="text" value="admin" readonly
-                                                        id="update_user_lastAcess" name="update_user_lastAcess">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mb-3 row">
-                                                <label for="update_user_lastUserAcess" class="col-md-3 col-form-label">Usuário da Última Alteração</label>
-                                                <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_lastUserAcess') is-invalid @enderror" value="{{  $user->responsible_last_updated ?? ''}}" type="text" value="admin" readonly
-                                                        id="update_user_lastUserAcess" name='update_user_lastUserAcess'>
-                                                    @error('update_user_lastUserAcess')                                           
-                                                        <div class="invalid-feedback">
-                                                            {{$message}}                                          
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            
+                                              <label for="update_user_lastAcess" class="col-md-3 col-form-label">Data de Última Alteração</label>
+                                              <div class="col-md-9">
+                                                  <input class="form-control @error('update_user_lastAcess') is-invalid @enderror" value="{{ $user->updated_at }}" type="text" value="admin" readonly
+                                                      id="update_user_lastAcess" name="update_user_lastAcess">
+                                              </div>
+                                          </div>
+                                                                                     
                                             
                                             
                                             <div class="mb-3 row">
