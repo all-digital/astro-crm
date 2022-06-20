@@ -562,7 +562,7 @@
                                     <a class="dropdown-item" href="{{route('profile.show-profile')}}"><i
                                             class="bx bx-user font-size-16 align-middle me-1"></i>
                                         Perfil</a>
-                                    <a class="dropdown-item" href="#"><i
+                                    {{-- <a class="dropdown-item" href="#"><i
                                             class="bx bx-wallet font-size-16 align-middle me-1"></i> Meu
                                         Dinheiro</a>
                                     <a class="dropdown-item d-block" href="#"><span
@@ -570,7 +570,7 @@
                                             class="bx bx-wrench font-size-16 align-middle me-1"></i> Configurações</a>
                                     <a class="dropdown-item" href="#"><i
                                             class="bx bx-pencil font-size-16 align-middle me-1"></i>
-                                        Layout</a>
+                                        Layout</a> --}}
 
                                     <div class="dropdown-divider"></div>
 

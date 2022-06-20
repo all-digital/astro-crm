@@ -117,6 +117,7 @@ Route::get('dd', function(){
         // dd(url('/services'));
 
         // dd(isSuperAdmin(['Admin','Gerente','Super Admin']));
+        
 
         $roles = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
