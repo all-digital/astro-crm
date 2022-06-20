@@ -89,7 +89,7 @@
 
                                             <td style="text-align: center;" id="user{{$service['id']}}" data-user  data-field="user"  >{{$service['responsible_for_insert']}}</td>
 
-                                            <td style="text-align: center;" id="date{{$service['id']}}" data-date data-field="date"  >{{$service['updated_at']}}</td>
+                                            <td style="text-align: center;" id="date{{$service['id']}}" data-date data-field="date"  >{{$service['created_at']}}</td>
 
                                             <td style="text-align: center;" id="category{{$service['id']}}" data-category  data-field="category"  >{{$service['category']}}</td>
 
@@ -327,23 +327,23 @@
         
                         //// add read only nos campos
                         let employer = document.querySelector('[data-employer ] > input')
-                        employer.setAttribute("style","background-color: #ade8f4;")
+                        employer.setAttribute("style","background-color: #F1F3F5;")
                         employer.readOnly = true;
 
                         let userLastchange = document.querySelector('[data-user-lastchange ] > input')
-                        userLastchange.setAttribute("style","background-color: #ade8f4;")
+                        userLastchange.setAttribute("style","background-color: #F1F3F5;")
                         userLastchange.readOnly = true;
                         
                         let  date = document.querySelector('[data-date] > input')
-                        date.setAttribute("style","background-color: #ade8f4;")
+                        date.setAttribute("style","background-color: #F1F3F5;")
                         date.readOnly = true;
                         
                         let  dateLastchange = document.querySelector('[data-date-lastchange] > input')
-                        dateLastchange.setAttribute("style","background-color: #ade8f4;")
+                        dateLastchange.setAttribute("style","background-color: #F1F3F5;")
                         dateLastchange.readOnly = true;
 
                         let user = document.querySelector('[data-user] > input')
-                        user.setAttribute("style","background-color: #ade8f4;")
+                        user.setAttribute("style","background-color: #F1F3F5;")
                         user.readOnly = true;
                        
                         ////formatando valores
@@ -371,38 +371,69 @@
                           
                         let id = this.getAttribute("data-id")   
                         console.log(values)                     
-                        
-                        fetch(`api/table-services-update/${id}`,{ 
-                        method:'put',
-                        body: JSON.stringify(values),    
-                        headers:{
-                                "Content-type":"application/json",
-                                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                                }   
+                      
+
+                        Swal.fire({                        
+                        text: "Tem certeza que deseja alterar os dados do serviço ?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        cancelButtonText: 'CANCELAR',
+                        confirmButtonColor: '#45CB85',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'SIM',
+
+                        }).then((result) => {
+
+                            if (result.isConfirmed) {
+                                                           
+                                fetch(`api/table-services-update/${id}`,{ 
+                                method:'put',
+                                body: JSON.stringify(values),    
+                                headers:{
+                                        "Content-type":"application/json",
+                                        'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                        }   
+                                })            
+                                .then(res=> res.json())
+                                .then(res => {   
+        
+                                    console.log(res)
+                                    // location.reload()
+                                    // Swal.fire(
+                                    // 'Concluido!',
+                                    // 'Alterado com succeso!',
+                                    // 'success'
+                                    // )
+                                
+                                })
+                                .catch((e)=> {
+                                    console.log("erro => ", e)
+                                    // let loading = document.getElementById("modal-loading")
+                                    // loading.classList.add('to-hide')
+                                    Swal.fire(
+                                    'Serviço não Alterado!',
+                                    'Ocorreu algum erro!',
+                                    'error'
+                                    )
+        
+                                } )
+                            
+                            }
+                            else{
+                                Swal.fire({
+                                    title:'Serviço não alterado',
+                                    confirmButtonText: 'SIM'
+                                },)
+
+                                location.reload()
+
+                            }
+
                         })            
-                        .then(res=> res.json())
-                        .then(res => {   
 
-                            console.log(res)
-                            // location.reload()
-                            // Swal.fire(
-                            // 'Concluido!',
-                            // 'Alterado com succeso!',
-                            // 'success'
-                            // )
-                        
-                        })
-                        .catch((e)=> {
-                            console.log("erro => ", e)
-                            // let loading = document.getElementById("modal-loading")
-                            // loading.classList.add('to-hide')
-                            Swal.fire(
-                            'Serviço não Alterado!',
-                            'Ocorreu algum erro!',
-                            'error'
-                            )
+                        ////////////////
 
-                        } )
+
                     
                     },//end save
                                                             
@@ -420,9 +451,10 @@
                 text: "Tem certeza que deseja excluir esse serviço ?",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'CANCELAR',
+                confirmButtonColor: '#45CB85',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
+                confirmButtonText: 'SIM',
                 }).then((result) => {
 
                     if (result.isConfirmed) {
