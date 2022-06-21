@@ -34,11 +34,12 @@ class UsersController extends Controller
         
         if(in_array('Super Admin',$permission))
         {
-            $users = User::all()->toArray();
+            $users = User::withTrashed()->get();
+            $users = $users->toArray();
 
         }else{
 
-            $users = User::where('company_id', $idCompany)->get();    
+            $users = User::where('company_id', $idCompany)->withTrashed()->first();    
             $users = $users->toArray();
         }
 
@@ -97,8 +98,11 @@ class UsersController extends Controller
 
     public function edit(Request $request, $id)
     {   
-        $user = User::find($id);  
-
+        
+       // soft deliting para trazer todos os dados
+        $user = User::where('id',$id)->withTrashed()->first();        
+        //$user = User::find($id);        
+      
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
             return $value['name'];    
@@ -206,9 +210,13 @@ class UsersController extends Controller
 
     public function update(UserEditRequest $request, $id)
     {      
-        debug($id);
-        // dd($request->all());
-        $userUpdate = User::find($id);
+       
+        //soft deleting withTrashed para trazer todos os dados
+        $userUpdate = User::where('id',$id)->withTrashed()->first(); 
+        // $userUpdate = User::find($id);
+
+        //pegando o valor de status, pois mais abaixo ele vai ser sobrepor pelo valor do request
+        $status = $userUpdate->status;
                 
        if($request->update_user_password || $request->update_user_password_confirm) {
         
@@ -278,8 +286,21 @@ class UsersController extends Controller
                 'login'=> $request->update_user_name,                               
                 'status'=> $request->update_user_status,            
         ]);
-        
-                                    
+
+
+        // dd($request->update_user_status, $status);
+
+        //soft deleting para não permitir o acesso de usuario inativo
+        if($request->update_user_status == "inativo" && $userUpdate->status == "ativo")
+        {            
+            $userUpdate->delete();
+
+        }else if($request->update_user_status == "ativo" && $status == "inativo")
+        {            
+            $userUpdate->restore();
+        }
+
+        $userUpdate->save();                           
         
         return redirect("user-edit/$id")                
                    ->withSuccess('Usuario Alterado com Sucesso');
