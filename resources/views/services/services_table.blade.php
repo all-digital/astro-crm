@@ -200,8 +200,17 @@
                                     <label for="example-email-input"
                                         class="col-md-3 col-form-label">Categoria</label>
                                     <div class="col-md-7">
-                                        <input class="form-control" type="text" id="add-category"
-                                            required >
+                                        {{-- <input class="form-control" type="text" id="add-category"
+                                            required > --}}
+
+                                        <select class="form-control" type="text" id="add-category"
+                                        required>
+                                        <option value="Selecionar">Selecionar</option>
+                                        @foreach ($categories as $item)
+                                            <option value="{{$item['name']}}">{{$item['name']}}</option>
+                                        @endforeach   
+                                                      
+                                        </select>
                                     </div>
 
                                 </div>
