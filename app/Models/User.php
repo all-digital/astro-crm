@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -30,7 +31,8 @@ class User extends Authenticatable
         'status',
         'password',
         'responsible_last_updated',
-        'superiors_id',       
+        'superiors_id',  
+        'last_acess',     
         'company_id'        
         
     ];
@@ -69,6 +71,43 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class);
     }
+
+
+     //Accessor
+    
+     public function getCreatedAtAttribute($value)
+     {
+        $created_at = Carbon::parse($value, 'UTC');
+        $value = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+ 
+        return $value;
+        
+     }
+ 
+     public function getUpdatedAtAttribute($value)
+     {
+        $updated_at = Carbon::parse($value, 'UTC');
+        $value = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
+        
+        return $value;
+        
+     }
+
+     //methods
+
+     //metodo para registrar sempre o ultimo acesso do usuario..
+     public function registerAccess()
+     {
+        // return $this->update([
+        //     'last_acess' => date('YmdHis'),
+        // ]);
+
+        $this->last_acess = date('YmdHis');
+        $this->timestamps = false;
+
+        return $this->save();
+
+     }//end methods
 
     
 }//end class
