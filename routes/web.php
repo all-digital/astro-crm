@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,7 @@ use App\Models\User;
 */
 
 Route::redirect('/', '/login');
-Route::redirect('/home', '/dashboard');
+//Route::redirect('/home', '/dashboard');
 
 ////auth
 Auth::routes();
@@ -129,6 +130,13 @@ Route::get('dd', function(){
 
 });
 
+Route::get('ddd/', function(){
+
+    auth()->user()->registerAccess();
+    
+    dd('teste');
+});
+
 
 
                                             ////service
@@ -220,6 +228,19 @@ Route::get('cliente-list', [App\Http\Controllers\Client\ClientController::class,
 
 Route::get('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'show'])->name('ordem-servico.show');                                              
 Route::post('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'store'])->name('ordem-servico.store');    
+
+Route::get('category-list', [App\Http\Controllers\Category\CategoryController::class, 'index'])->name('category.index');
+Route::get('category-edit/{id}', [App\Http\Controllers\Category\CategoryController::class, 'edit'])->name('category-edit.edit');
+Route::get('category', [App\Http\Controllers\Category\CategoryController::class, 'show'])->name('category.show');
+
+Route::post('category', [App\Http\Controllers\Category\CategoryController::class, 'store'])->name('category.store');
+Route::put('category-edit/{id}', [App\Http\Controllers\Category\CategoryController::class, 'update'])->name('category-edit.update');
+
+
+
+Route::get('categoria', function(){
+    return view('category');
+});
 
 
                                         ////////////routes teste

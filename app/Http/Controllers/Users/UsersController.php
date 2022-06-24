@@ -39,7 +39,7 @@ class UsersController extends Controller
 
         }else{
 
-            $users = User::where('company_id', $idCompany)->withTrashed()->first();    
+            $users = User::where('company_id', $idCompany)->withTrashed()->get();    
             $users = $users->toArray();
         }
 
@@ -56,7 +56,10 @@ class UsersController extends Controller
             // $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
            
            $id = $value['id'];
+
+           //revisar
            $value['company'] = 'teste';
+           $value['superior'] = "teste";
 
             // if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
             // {
@@ -71,7 +74,6 @@ class UsersController extends Controller
             $lastName =  $value['last_name'];
             $name = $value['name'];
             $value['profile'] = $name;
-            $value['superior'] = "teste";
 
             $value['avatar'] = "<div class='d-flex justify-content-between align-items-center'><img class=avatar-lg header-profile-user' m-0 p-0 src='storage\\$avatar'  style='max-width: 40px; max-height: 40px;'> <span>$name</span> <span>$lastName</span> </div>";  
 

@@ -57,6 +57,11 @@ class Companies extends Model
     {
         return $this->hasMany(Simcards::class,'company_id');
     }
+
+    public function category()
+    {
+        return $this->hasOne(Category::class,'company_id');
+    }
    
 
 }//end class 

@@ -169,8 +169,8 @@
                                                             Clientes
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                            <a href="#" class="dropdown-item menu-item">Consultar</a>
+                                                            <a href="{{route('cliente.show')}}" class="dropdown-item menu-item">Cadastrar</a>
+                                                            <a href="{{route('ciente-list.index')}}" class="dropdown-item menu-item">Consultar</a>
                                                         </div>
                                                     </div>
     
@@ -361,8 +361,8 @@
                                                             Categorias
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="#" class="dropdown-item menu-item">Cadastrar</a>
-                                                            <a href="#" class="dropdown-item menu-item">Consultar</a>
+                                                            <a href="{{route('category.show')}}" class="dropdown-item menu-item">Cadastrar</a>
+                                                            <a href="{{route('category.index')}}" class="dropdown-item menu-item">Consultar</a>
                                                         </div>
                                                     </div>
                                                                                                      

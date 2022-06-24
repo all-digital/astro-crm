@@ -30,7 +30,7 @@
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
-                                <th><strong>Botão</strong></th>
+                                <th><strong>Acão</strong></th>
                                 <th><strong>Empresa</strong></th>
                                 <th><strong>Status</strong></th>                                
                                 <th><strong>Usuario Inserção</strong></th>
