@@ -56,7 +56,7 @@
 
                                         <div class="mb-3 mb-4">
                                           <label for="name" class="form-label">Nome</label>
-                                          <input type="text" name="name" class="form-control class="form-control  @error('name') is-invalid @enderror" value="{{old('name') ?: $category['name']}}"> 
+                                          <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror" value="{{old('name') ?: $category['name']}}"> 
                                           @error('name')                                           
                                             <div class="invalid-feedback">
                                             {{$message}}                                          

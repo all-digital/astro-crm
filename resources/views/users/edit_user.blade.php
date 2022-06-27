@@ -286,7 +286,7 @@
                                             <div class="mb-3 row">
                                                 <label for="example-password-input" class="col-md-3 col-form-label">Data de Último Acesso</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control @error('update_user_dateLast') is-invalid @enderror" value="{{ old('update_user_dateLast') }}" type="text" readonly
+                                                    <input class="form-control " value="{{ $user->last_acess ?? ""}}" type="text" readonly
                                                         id="update_user_dateLast" name="update_user_dateLast">
 
                                                     @error('update_user_dateLast')                                           
