@@ -95,7 +95,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3 row">
                                         <label for="name_responsible"
-                                            class="col-lg-3 col-form-label">Responsável</label>
+                                            class="col-lg-3 col-form-label">Nome</label>
                                         <div class="col-lg-9">
                                             <input id="name_responsible" name="name_responsible"
                                             type="text" class="form-control" value="{{$company['name_responsible']}}">
@@ -109,7 +109,7 @@
                                             class="col-lg-3 col-form-label">E-mail</label>
                                         <div class="col-lg-9">
                                             <input id="email" name="email"
-                                            type="text" class="form-control" value="{{$company['email_responsible']}}">
+                                            type="email" class="form-control" value="{{$company['email_responsible']}}">
                                             <span id="email-valid" style="color:tomato" class="d-none">Campo Obrigatorio</span>
                                         </div>
                                     </div>

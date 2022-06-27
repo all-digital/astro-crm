@@ -1096,7 +1096,7 @@
                                 })            
                                 .then(res=> res.json())
                                 .then(res => {
-                                    // console.log(res)
+                                    console.log(res)
     
                                     if(res.status == "ERROR")
                                     {
@@ -1118,6 +1118,7 @@
                                         form.fantasyName.value = res.fantasia
                                         // form.status.value = res.status                                
                                         form.email.value = res.email
+                                        form.responsible.value = res.qsa[0].nome ? res.qsa[0].nome : "" 
     
                                     }
     

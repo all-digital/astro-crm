@@ -36,11 +36,11 @@ class CompanyController extends Controller
         $companies = array_map(function($value)use($urlEditCompany, $permission){
 
 
-            $created_at = Carbon::parse($value['created_at'], 'UTC');
-            $updated_at = Carbon::parse($value['updated_at'], 'UTC');
+            // $created_at = Carbon::parse($value['created_at'], 'UTC');
+            // $updated_at = Carbon::parse($value['updated_at'], 'UTC');
 
-            $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
-            $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
+            // $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+            // $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
 
             $id = $value['id'];
            
