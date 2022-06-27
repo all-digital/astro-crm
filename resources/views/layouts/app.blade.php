@@ -214,7 +214,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="dropdown">
+                                                    <a href="{{route('simcard.index')}}" class="dropdown-item menu-item">Simcards</a>
+
+                                                    {{-- <div class="dropdown">
                                                         <a class="dropdown-item dropdown-toggle arrow-none menu-item"
                                                             href="#" id="topnav-email" role="button"
                                                             data-bs-toggle="dropdown" aria-haspopup="true"
@@ -222,10 +224,9 @@
                                                             Simcards
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            {{-- <a href="#" class="dropdown-item menu-item">Cadastrar</a> --}}
                                                             <a href="{{route('simcard.index')}}" class="dropdown-item menu-item">Consultar/Cadastrar</a>
-                                                        </div>
-                                                    </div>
+                                                        </div>                                                            
+                                                    </div> --}}
                                                 </div>
     
                                             </li>
@@ -337,21 +338,14 @@
                                                     id="topnav-dashboard" role="button">
                                                     Administrativo <div class="arrow-down"></div>
                                                 </a>
+
+                                               
     
                                                 <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                                    <div class="dropdown">
-                                                        <a class="dropdown-item dropdown-toggle arrow-none menu-item"
-                                                            href="#" id="topnav-email" role="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            Serviços
-                                                        </a>
-                                                        <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="{{route('services.servicesTable')}}" class="dropdown-item menu-item">Consultar/Cadastrar</a>
-                                                           
-                                                        </div>
-                                                    </div>
 
+                                                  
+                                                    <a href="{{route('services.servicesTable')}}" class="dropdown-item menu-item">Serviços</a>
+                                                   
 
                                                     <div class="dropdown">
                                                         <a class="dropdown-item dropdown-toggle arrow-none menu-item"
