@@ -173,6 +173,18 @@
                                                             <a href="{{route('ciente-list.index')}}" class="dropdown-item menu-item">Consultar</a>
                                                         </div>
                                                     </div>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-item dropdown-toggle arrow-none menu-item"
+                                                            href="#" id="topnav-email" role="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Companias
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="topnav-email">
+                                                            <a href="{{route('company.create')}}" class="dropdown-item menu-item">Cadastrar</a>
+                                                            <a href="{{route('company.index')}}" class="dropdown-item menu-item">Consultar</a>
+                                                        </div>
+                                                    </div>
     
                                                     <a href="index-2.html" class="dropdown-item menu-item">Pipeline de
                                                         Vendas</a>
