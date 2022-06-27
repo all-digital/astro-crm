@@ -132,7 +132,9 @@ Route::get('dd', function(){
 
 Route::get('ddd/', function(){
 
-    auth()->user()->registerAccess();
+    //auth()->user()->registerAccess();
+
+    dd(auth()->user()->getFullNameAttribute());
     
     dd('teste');
 });
