@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\CompanyCreateRequest;
+use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\CategoryRequest;
 
 use App\Models\Category;
 use Carbon\Carbon;
@@ -62,19 +63,18 @@ class CategoryController extends Controller
     return view("category.edit_category", compact('category', 'id'));
   }//end 
 
-
-  public function update(Request $request, $id)
+  //CategoryEditRequest
+  public function update(CategoryRequest $request, $id)
   {
 
-       // dd($request->all());
-       $LastName = auth()->user()->last_name;
-
+        //dd($request->all());
+       
         $category = Category::find($id);
 
         $category->update([
             'name'=> $request->name,
             'description' => $request->description,
-            'responsible_last_updated'  => auth()->user()->name . $LastName,
+            'responsible_last_updated'  => auth()->user()->getFullNameAttribute(),
         ]);
 
         return redirect()                   
@@ -94,14 +94,14 @@ class CategoryController extends Controller
 
 
 
-  public function store(CompanyCreateRequest $request)
+  public function store(CategoryRequest $request)
   {
       
     $category = Category::create([
         'name' => $request->name,
         'company'=> $request->company,
         'description' => $request->description,
-        'responsible_for_insert' => auth()->user()->name,  
+        'responsible_for_insert' => auth()->user()->getFullNameAttribute(),  
         'company_id' => auth()->user()->company->id,
         
     ]);
