@@ -293,7 +293,7 @@ class UsersController extends Controller
         // dd($request->update_user_status, $status);
 
         //soft deleting para não permitir o acesso de usuario inativo
-        if($request->update_user_status == "inativo" && $userUpdate->status == "ativo")
+        if($request->update_user_status == "inativo" && $status == "ativo")
         {            
             $userUpdate->delete();
 
@@ -389,3 +389,4 @@ class UsersController extends Controller
 
 }//end class
 
+            

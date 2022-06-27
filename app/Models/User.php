@@ -73,29 +73,42 @@ class User extends Authenticatable
     }
 
 
-     //Accessor
+                   //Accessor
     
      public function getCreatedAtAttribute($value)
      {
         $created_at = Carbon::parse($value, 'UTC');
-        $value = $created_at->isoFormat('DD/MM/YYYY HH:mm');
- 
-        return $value;
-        
+        $value = $created_at->isoFormat('DD/MM/YYYY HH:mm'); 
+        return $value;        
      }
+     
  
      public function getUpdatedAtAttribute($value)
      {
         $updated_at = Carbon::parse($value, 'UTC');
-        $value = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
-        
-        return $value;
-        
+        $value = $updated_at->isoFormat('DD/MM/YYYY HH:mm');        
+        return $value;        
      }
 
-     //methods
 
-     //metodo para registrar sempre o ultimo acesso do usuario..
+     public function getLastAcessAttribute($value)
+     {
+        $last_acess = Carbon::parse($value, 'UTC');
+        $value = $last_acess->isoFormat('DD/MM/YYYY HH:mm');        
+        return $value;        
+     }
+
+
+     public function getFullNameAttribute()
+     {
+         return "{$this->name} {$this->last_name}";
+     }
+
+
+
+       //    methods
+     
+    //metodo para registrar sempre o ultimo acesso do usuario..
      public function registerAccess()
      {
         // return $this->update([
