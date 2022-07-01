@@ -17,7 +17,7 @@ use App\Http\Requests\VehiclesCreateRequest;
 use App\Http\Requests\VehiclesEditRequest;
 
 class VehiclesController extends Controller
-{
+{   
     public function index()
     {        
         $idCompany = auth()->user()->company->id;
@@ -46,7 +46,7 @@ class VehiclesController extends Controller
 
         //dd($vehicles);
         // $urlProfile = url('/profile');
-        $urlEditVehicle = url('/veiculos-edit');
+        $urlEditVehicle = url('/veiculo-edit');
 
         //
         $vehicles = array_map(function($value)use ($urlEditVehicle, $permission){                 
@@ -105,6 +105,8 @@ class VehiclesController extends Controller
         //VehiclesCreateRequest
         // dd($request->all());
 
+        debug($request->all());
+
         //validando tamanho das placas
         if(!is_null($request->vehicle_plate)) 
         {
@@ -153,7 +155,7 @@ class VehiclesController extends Controller
         $vehicles->save();
         
 
-        return redirect('veiculos')                
+        return redirect('veiculo-add')                
                    ->withSuccess('Veiculo cadastrado com Sucesso');
 
     }//end method store

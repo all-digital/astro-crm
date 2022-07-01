@@ -88,7 +88,7 @@
 
                                         <div class="mb-3 mb-4">
                                           <label class="form-label" for="client">Cliente</label>
-                                          <select name="client" class="form-control select2-client @error('client') is-invalid @enderror">
+                                          <select name="client" id="client" class="form-control select2-client @error('client') is-invalid @enderror" onchange="myFunction()">
                                             <option value=""></option>
                                             {{-- <option value="">Sem vínculo</option> --}}
                                             @foreach ($client as $item)
@@ -118,11 +118,11 @@
 
                                         <div class="mb-3 mb-4">
                                           <label class="form-label" for="type_vehicles">Tipo</label>
-                                          <select name="type_vehicles" class="form-control @error('type_vehicles') is-invalid @enderror">
+                                          <select name="type_vehicles" id="type_vehicles" class="form-control @error('type_vehicles') is-invalid @enderror">
                                             <option value="" class="is-invalid"></option>
                                             <option value="Carro">Carro</option>
                                             <option value="Moto">Moto</option>
-                                            <option value="Caminhão">Caminhão</option>
+                                            <option value="Caminhao">Caminhão</option>
                                             <option value="Onibus">Ônibus</option>
                                             <option value="Microonibus">Microônibus</option>
                                             <option value="Bicicleta">Bicicleta</option>
@@ -134,13 +134,12 @@
 
                                         <div class="mb-3 mb-4">
                                           <label class="form-label @error('brand') is-invalid @enderror" for="brand">Marca</label>
-                                          <select name="brand" class="form-control select-2brand @error('brand') is-invalid @enderror">
-                                            <option value=""></option>
-                                            <option value="CHEVROLET">CHEVROLET</option>
-                                            <option value="VOLKSWAGEN">VOLKSWAGEN</option>
-                                            <option value="FIAT">FIAT</option>
-                                            <option value="CITROEN">CITROEN</option>
-                                            <option value="HONDA">HONDA</option>
+                                          <select name="brand" id="brand" class="form-control select-2brand @error('brand') is-invalid @enderror" onchange="modelVehicle()">                                            
+                                                                                        
+                                            {{-- @foreach (cache('marcas') as $marca)
+                                              <option style="text-align: center;" value="{{$marca["codigo"]}}">{{$marca["nome"]}}</option>
+                                            @endforeach --}}
+                                     
                                           </select>                                          
                                         </div>                                                                                                                 
 
@@ -151,84 +150,20 @@
                                     <div class="mt-4 mt-lg-0">  
 
                                         <div class="mb-3 mb-4">
+
                                           <label class="form-label" for="model">Modelo</label>
-                                          <select name="model" class="form-control select-2model @error('model') is-invalid @enderror">
-                                            <option value=""> </option>
-                                            <option value="CHEVROLET">CHEVROLET</option>CHEVROLET                                          
-                                            <option value="VOLKSWAGEN">VOLKSWAGENca</option>
-                                            <option value="FIAT">FIAT</option>
-                                            <option value="MERCEDES-BENZ">MERCEDES-BENZ</option>
-                                            <option value="CITROEN">CITROEN</option>
-                                            <option value="CHANA">CHANA</option>
-                                            <option value="HONDA">HONDA</option>
-                                            <option value="SUBARU">SUBARU</option>
-                                            <option value="FERRARI">FERRARI</option>
-                                            <option value="BUGATTI">BUGATTI</option>
-                                            <option value="LAMBORGHINI">LAMBORGHINI</option>                                      
-                                            <option value="FORD">FORD</option>
-                                            <option value="HYUNDAI">HYUNDAI</option>
-                                            <option value="PEUGEOT">PEUGEOT</option>
-                                            <option value="JAC">JAC</option>
-                                            <option value="KIA">KIA</option>
-                                            <option value="GURGEL">GURGEL</option>
-                                            <option value="DODGE">DODGE</option>
-                                            <option value="CHRYSLER">CHRYSLER</option>
-                                            <option value="BENTLEY">BENTLEY</option>
-                                         </select>                                          
+                                          <select name="model" id="model" class="form-control select-2model @error('model') is-invalid @enderror" onchange="yearVehicle()" >
+                                                                                                                                                                         
+                                          </select>                                          
+
+
+                                         
+
                                         </div> 
                                       
                                         <div class="mb-3 mb-4">
                                           <label class="form-label" for="year">Ano</label>
-                                          <select name="year" class="form-control select-2year @error('year') is-invalid @enderror">
-                                            <option value=""> </option>
-                                            <option value="1975">1975</option>
-                                            <option value="1976">1976</option>
-                                            <option value="1977">1977</option>
-                                            <option value="1989">1976</option>
-                                            <option value="1979">1979</option>
-                                            <option value="1980">1980</option>
-                                            <option value="1981">1981</option>
-                                            <option value="1982">1982</option>
-                                            <option value="1983">1983</option>
-                                            <option value="1984">1984</option>
-                                            <option value="1985">1985</option>  
-                                            <option value="1986">1986</option>
-                                            <option value="1987">1987</option>
-                                            <option value="1988">1988</option>
-                                            <option value="1989">1976</option>
-                                            <option value="1990">1990</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1996">1996</option> 
-                                            <option value="1997">1997</option>
-                                            <option value="1998">1998</option>  
-                                            <option value="1999">1999</option>                                         
-                                            <option value="2000">2000</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2010">2010</option> 
-                                            <option value="2011">2011</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2022">2022</option>                                                
+                                          <select name="year" id ="year" class="form-control select-2year @error('year') is-invalid @enderror" onchange="valueVehicle()">                                                                                       
                                           </select>                                          
                                         </div> 
                                        
@@ -237,11 +172,11 @@
                                           <label for="vehicle_plate1" class="form-label">Placa</label>
 
                                           <div class="col-6">
-                                            <input type="text" name="vehicle_plate"  id="vehicle_plate" class="form-control @error('vehicle_plate') is-invalid @enderror" value="{{ old('vehicle_plate') }}">
+                                            <input type="text" name="vehicle_plate"  id="vehicle_plate" class="form-control @error('vehicle_plate') is-invalid @enderror" value="{{ old('vehicle_plate') }}" placeholder="Placa antiga">
                                           </div>
 
                                           <div class="col-6">
-                                            <input type="text" name="vehicle_plate2"  id="vehicle_plate2" class="form-control @error('vehicle_plate2') is-invalid @enderror" value="{{ old('vehicle_plate2') }}">
+                                            <input type="text" name="vehicle_plate2"  id="vehicle_plate2" class="form-control @error('vehicle_plate2') is-invalid @enderror" value="{{ old('vehicle_plate2') }}" placeholder="Placa nova">
                                           </div>
                                           @if(session('errorSize'))
                                             <div class="mt-2 alert alert-danger">
@@ -311,6 +246,7 @@
 
 @push('script-js')
 <script src="{{asset('assets\libs\inputmask\min\jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('custom\css\sweetalert2@11.css')}}"></script> 
 
 @endpush
 
@@ -319,48 +255,274 @@
 <script>
   $(document).ready(function() {
     $( '.select-2model').select2();
-    $('.select-2year').select2();
+    $('.select-2year').select2(
+      // {
+      //   placeholder: '.  . This is my placeholder', 
+      // }     
+    );
     $('.select-2brand').select2();
     $('.select2-client').select2();
     $('.select2-equipment').select2();
   });
 
+  $('b[role="presentation"]').hide();
+
   window.onload = function() {
 
   //// 
-  let addMaskValue = document.getElementById('value')
+    let addMaskValue = document.getElementById('value')
 
-  let im_addPrice = new Inputmask( 'currency',{"autoUnmask": false,
-      radixPoint:",",
-          groupSeparator: ".",
-          allowMinus: false,
-          prefix: ' R$ ',            
-          digits: 2,
-          digitsOptional: false,
-          rightAlign: false,
-          unmaskAsNumber: false                                
-  });
-  im_addPrice.mask(addMaskValue)
+    let im_addPrice = new Inputmask( 'currency',{"autoUnmask": false,
+        radixPoint:",",
+            groupSeparator: ".",
+            allowMinus: false,
+            prefix: ' R$ ',            
+            digits: 2,
+            digitsOptional: false,
+            rightAlign: false,
+            unmaskAsNumber: false                                
+    });
+    im_addPrice.mask(addMaskValue)
 
-  let addMaskPlate = document.getElementById('vehicle_plate')
-  let im_addPlate = new Inputmask( {mask: 'AAA-9999'},{mask: 'AAA9999'});
-  im_addPlate.mask(addMaskPlate)
+    let addMaskPlate = document.getElementById('vehicle_plate')
+    let im_addPlate = new Inputmask( {mask: 'AAA-9999'},{mask: 'AAA9999'});
+    im_addPlate.mask(addMaskPlate)
 
 
-  let addMaskPlate2 = document.getElementById('vehicle_plate2')
-  let im_addPlate2 = new Inputmask( {mask: 'AAA9999'});
-  im_addPlate2.mask(addMaskPlate2)
+    let addMaskPlate2 = document.getElementById('vehicle_plate2')
+    let im_addPlate2 = new Inputmask( {mask: 'AAA9A99'});
+    im_addPlate2.mask(addMaskPlate2)
 
-  addMaskPlate.onclick = function(){
-    addMaskPlate2.value = ""
-  }
+    addMaskPlate.onclick = function(){
+      addMaskPlate2.value = ""
+    }
 
-  addMaskPlate2.onclick = function(){
-    addMaskPlate.value = ""
-  }
+    addMaskPlate2.onclick = function(){
+      addMaskPlate.value = ""
+    }
+       
+  }//end function window.onload
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  let typeVehicles = document.getElementById('type_vehicles')
+
+  typeVehicles.addEventListener('change', function(){
+
+      console.log('testando o type', typeVehicles.value)
+      
+      if(typeVehicles.value == "Carro" || typeVehicles.value == "Moto" || typeVehicles.value == "Caminhao")
+      {
+
+        let brand = document.getElementById('brand')
+        let model = document.getElementById('model')
+        let year = document.getElementById('year')
+        let vehiclePlate = document.getElementById('vehicle_plate')
+        let vehiclePlate2 = document.getElementById('vehicle_plate2')
+                         /////////////////////
+        if(brand.hasAttribute("disabled"))brand.disabled = false
+        if(model.hasAttribute("disabled"))model.disabled = false
+        if(year.hasAttribute("disabled"))year.disabled = false
+        if(vehiclePlate.hasAttribute("disabled"))vehiclePlate.disabled = false
+        if(vehiclePlate2.hasAttribute("disabled"))vehiclePlate2.disabled = false
+                  
+        veiculo = typeVehicles.value
+
+        brand.innerHTML = `<option value="" selected>
+                              <div class="spinner-border " role="status">
+                                <span class="sr-only text-danger" >Carregando...</span>
+                              </div>
+                           </option>`
+
+        fetch(`api/tabela-fipe/marcas/${veiculo}`,{ 
+          method:'get',                                                     
+          headers:{"Content-type":"application/json"}    
+          }) 
+          .then(res=> res.json())
+          .then(res => {
+
+        
+               brand.innerHTML = ""
+               console.log(brand)
+
+               let option1 = document.createElement("option")
+               option1.setAttribute("selected", true);
+               brand.append(option1)
+              
+               res.forEach(function(element){
+
+                  let option = document.createElement("option")
+                    option.innerHTML = `. . ${element.nome}`
+                    option.setAttribute("value", element.codigo);
+
+                    option.setAttribute("data-codigo", element.codigo);
+
+                  brand.append(option)
+               })
+
+               console.log("dataset", brand);
+                                   
+          })
+          .catch(function(error){
+
+              console.log("erro api tabela fipe => ",error)
+              
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Api da tabela Fipe não esta funcionando no momento, tente outra vez em alguns minutos',              
+              })
+
+          })
+
+
+      }else if(typeVehicles.value == "Bicicleta" || typeVehicles.value == "Pessoa" ||typeVehicles.value == "Pet")
+      {
+
+        let brand = document.getElementById('brand')
+        brand.innerHTML =  ""
+        brand.disabled = true
+
+
+        let model = document.getElementById('model').disabled = true
+        let year = document.getElementById('year').disabled = true
+
+        let vehiclePlate = document.getElementById('vehicle_plate').disabled = true
+        let vehiclePlate2 = document.getElementById('vehicle_plate2').disabled = true
+        
+              console.log("entrou no sem api", brand)  
+      }
+
+  })//end typeVehicles chance
+
+
   
 
-  }//end function window.onload
+  //function inline in brand 
+  function modelVehicle()
+  {
+    let model = document.getElementById('model')
+    let brand = document.getElementById('brand')
+    let typeVehicles = document.getElementById('type_vehicles')
+
+    console.log(typeVehicles.value, brand.value, model)
+    let veiculo = typeVehicles.value
+    let codigo = brand.value
+
+
+     fetch(`api/tabela-fipe/modelos/${veiculo}/${codigo}`,{ 
+          method:'get',                                                     
+          headers:{"Content-type":"application/json"}    
+          }) 
+          .then(res=> res.json())
+          .then(res => {
+
+               model.innerHTML = ""
+               console.log(res)
+
+               let option1 = document.createElement("option")
+               option1.setAttribute("selected", true);
+               model.append(option1)
+              
+               res.modelos.forEach(function(element){
+
+                  let option = document.createElement("option")
+                
+                  option.innerHTML = `. . ${element.nome}`
+                  option.setAttribute("value", element.codigo);
+                    
+                  model.append(option)
+               })
+
+
+                                   
+          })
+          .catch((error)=> console.log("erro api tabela fipe => ",error))
+
+  }// end modelVehicle
+
+
+  //function inline in model
+  function yearVehicle()
+  {    
+    let year = document.getElementById('year')
+    let model = document.getElementById('model')
+    let brand = document.getElementById('brand')
+    let typeVehicles = document.getElementById('type_vehicles')
+
+    console.log(typeVehicles.value, brand.value, model)
+    let veiculo = typeVehicles.value
+    let codigoBrand = brand.value
+    let codigoYear = model.value
+
+
+     fetch(`api/tabela-fipe/anos/${veiculo}/${codigoBrand}/${codigoYear}`,{ 
+          method:'get',                                                     
+          headers:{"Content-type":"application/json"}    
+          }) 
+          .then(res=> res.json())
+          .then(res => {
+
+               year.innerHTML = ""
+               console.log(res)
+
+               let option1 = document.createElement("option")
+               option1.setAttribute("selected", true);
+               year.append(option1)
+              
+               res.forEach(function(element){
+
+                  let option = document.createElement("option")
+                    option.innerHTML = `. . ${element.nome}`
+                    option.setAttribute("value", element.codigo);
+
+                    year.append(option)
+               })
+                                   
+          })
+    .catch((error)=> console.log("erro api tabela fipe => ",error))
+
+
+  }//end yearVehicle
+
+
+    //function inline in year
+  function valueVehicle()
+  {
+    let value = document.getElementById('value')
+    let year = document.getElementById('year')
+    let model = document.getElementById('model')
+    let brand = document.getElementById('brand')
+    let typeVehicles = document.getElementById('type_vehicles')
+
+    console.log(typeVehicles.value, brand.value, model)
+    let veiculo = typeVehicles.value
+    let codigoBrand = brand.value
+    let codigoYear = model.value
+    let codigoValue = year.value
+
+
+    fetch(`api/tabela-fipe/valor/${veiculo}/${codigoBrand}/${codigoYear}/${codigoValue}`,{ 
+          method:'get',                                                     
+          headers:{"Content-type":"application/json"}    
+          }) 
+          .then(res=> res.json())
+          .then(res => {
+
+               console.log(value)
+               value.value = ""
+               console.log(res)
+               value.value = res.Valor
+
+               console.log(res.Valor)            
+                                   
+          })
+    .catch((error)=> console.log("erro api tabela fipe => ",error))
+
+
+
+  }// valueVehicle
+
+ 
 
 </script>
 @endpush

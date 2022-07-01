@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ServicesExport;
 
+use App\ExternalServices\TabelaFipe;
+
 class HomeController extends Controller
 {
     /**
@@ -26,6 +28,42 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     public function sessionTeste()
+     {
+        $s = new TabelaFipe();
+
+        $s->getMarcas();
+
+        $cookie = cookie('teste', cache('marcas'), 5);
+
+        return response('Hello World')->cookie($cookie);
+
+     }
+
+     public function cacheTeste(Request $request)
+     {
+        // $minutes = 1;
+         $value = [["nome"=>"valor","nome1"=>"valor","nome2"=>"valor","nome3"=>"valor"]];
+        // $value = json_encode($value);
+
+        // debug($value);
+       
+        // $cookie = cookie('teste', $value, $minutes);
+ 
+        // return response('Hello World')->cookie($cookie);
+
+
+        session(['key' => $value]);
+
+
+        return response('Hello World');
+     }//
+
+
+
+
+     ////////////////////
     public function index()
     {
 

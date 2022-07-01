@@ -130,15 +130,22 @@ Route::get('dd', function(){
 
 });
 
-Route::get('ddd/', function(){
+Route::get('ddd/', function(Request $request){
 
     //auth()->user()->registerAccess();
+    // dd(auth()->user()->getFullNameAttribute());
 
-    dd(auth()->user()->getFullNameAttribute());
+    dd(cache('marcas'));
+
+//     $value = $request->cookie('teste');
     
-    dd('teste');
+//    dd($value);
 });
 
+
+Route::get('/cache', [App\Http\Controllers\HomeController::class, 'cacheTeste']);
+
+Route::get('/sessionTeste', [App\Http\Controllers\HomeController::class, 'sessionTeste']);
 
 
                                             ////service

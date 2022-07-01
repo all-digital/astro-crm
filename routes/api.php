@@ -33,8 +33,13 @@ Route::post('/teste', function(){
 
 Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);
 
+Route::get('tabela-fipe/marcas/{veiculo}', [App\ExternalServices\TabelaFipe::class, 'getMarcas']);
+Route::get('tabela-fipe/modelos/{veiculo}/{codigo}', [App\ExternalServices\TabelaFipe::class, 'getModelos']);
+Route::get('tabela-fipe/anos/{veiculo}/{codigoModelo}/{codigoAno}', [App\ExternalServices\TabelaFipe::class, 'getAnos']);
+Route::get('tabela-fipe/valor/{veiculo}/{codigoModelo}/{codigoAno}/{codigoValor}', [App\ExternalServices\TabelaFipe::class, 'getValor']);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 Route::post('/company-add',[App\Http\Controllers\Api\CompanyController::class, 'store']);

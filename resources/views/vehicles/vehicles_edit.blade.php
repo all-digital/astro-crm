@@ -44,7 +44,7 @@
                             </div>                            
                         @endif
 
-                        <form id="formVehicles" action="{{route('vehicles.update',$id)}}" method="POST">
+                        <form id="formVehicles" action="{{route('veiculo-edit.update',$id)}}" method="POST">
                           @method('PUT')
                           @csrf                    
                            
