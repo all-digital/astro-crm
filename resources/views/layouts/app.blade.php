@@ -208,8 +208,8 @@
                                                             Veículos
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="{{route('veiculo-add.create')}}" class="dropdown-item menu-item" target="_blank">Cadastrar</a>
-                                                            <a href="{{route('veiculos.index')}}" class="dropdown-item menu-item" target="_blank">Consultar</a>
+                                                            <a href="{{route('veiculo-add.create')}}" class="dropdown-item menu-item" >Cadastrar</a>
+                                                            <a href="{{route('veiculos.index')}}" class="dropdown-item menu-item" >Consultar</a>
                                                         </div>
                                                     </div>
     
@@ -221,8 +221,8 @@
                                                             Equipamentos
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="{{route('equip.create')}}" class="dropdown-item menu-item" target="_blank">Cadastrar</a>
-                                                            <a href="{{route('equip-list.index')}}" class="dropdown-item menu-item" target="_blank">Consultar</a>
+                                                            <a href="{{route('equip.create')}}" class="dropdown-item menu-item" >Cadastrar</a>
+                                                            <a href="{{route('equip-list.index')}}" class="dropdown-item menu-item" >Consultar</a>
                                                         </div>
                                                     </div>
 
@@ -383,8 +383,8 @@
                                                             Usuários
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="topnav-email">
-                                                            <a href="{{route('user.show')}}" class="dropdown-item menu-item" target="_blank">Cadastrar</a>
-                                                            <a href="{{route('user-list.index')}}" class="dropdown-item menu-item" target="_blank">Consultar</a>
+                                                            <a href="{{route('user.show')}}" class="dropdown-item menu-item" >Cadastrar</a>
+                                                            <a href="{{route('user-list.index')}}" class="dropdown-item menu-item" >Consultar</a>
                                                         </div>
                                                     </div>
                                                   
