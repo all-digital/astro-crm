@@ -85,7 +85,17 @@ class EquipmentController extends Controller
     
     public function store(EquipmentStoreRequest $request)
     {
+        $rolesAuthUser = auth()->user()->roles()->get()->toArray();
+        $permission = array_map(function($value){
+            return $value['name'];    
+        },$rolesAuthUser);
 
+
+        $companyId = auth()->user()->company->id;
+
+        if(in_array('Super Admin',$permission)) $companyId = $request->company;
+
+        debug($request->all());
         $equipment = Equipments::create([
             'status' => $request->status,
             'responsible_for_insert' => auth()->user()->name,    
@@ -94,12 +104,12 @@ class EquipmentController extends Controller
             'model' => $request->model,
             'imei' => $request->imei,
             'simcard' => $request->simcards,
-            'company_id' => auth()->user()->company->id,
+            'company_id' => $companyId,
             'simcard_id' => $request->simcards
         ]);
 
         return redirect()                   
-        ->route('equipment.index')
+        ->route('equip.create')
         ->withSuccess('Equipamento cadastrado com Sucesso');
     }
 

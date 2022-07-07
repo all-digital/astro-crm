@@ -38,7 +38,7 @@ class Vehicles extends Model
         return $this->hasOne(Equipments::class,'vehicle_id');
     }
 
-
+    
      //Accessor
     
     //  public function getCreatedAtAttribute($value)

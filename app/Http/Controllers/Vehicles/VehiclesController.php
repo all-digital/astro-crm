@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Services;
 use App\Models\Vehicles;
 use App\Models\Clients;
+use App\Models\Equipments;
 use App\Models\Companies;
 use Illuminate\Support\Facades\DB;
 
@@ -74,14 +75,6 @@ class VehiclesController extends Controller
     public function create()
     {
         $idCompany = auth()->user()->company->id;
-        // $services1 = Services::where('company_id',1);
-        // $services = $services1->simplePaginate(6);
-        
-        // $services1->count();
-        // dd($services1->count());
-
-        // return view('vehicles.index',["services"=>$services]);
-        // $client = Clients::find();
 
       
         $companies = Companies::with('equipments')->find($idCompany);        
@@ -102,8 +95,6 @@ class VehiclesController extends Controller
 
     public function store(VehiclesCreateRequest $request)
     {
-        //VehiclesCreateRequest
-        // dd($request->all());
 
         debug($request->all());
 
@@ -111,30 +102,34 @@ class VehiclesController extends Controller
         if(!is_null($request->vehicle_plate)) 
         {
             $request->vehicle_plate = str_replace("_", "", $request->vehicle_plate);
-            if(strlen($request->vehicle_plate) < 7 ) return redirect("veiculos")->with('errorSize','Placa deverar ter no minino de 7 caracteres');             
+            if(strlen($request->vehicle_plate) < 7 ) return redirect("veiculo-add")->with('errorSize','Placa deverar ter no minino de 7 caracteres');             
         }
+
         //validando tamanho das placas
         if(!is_null($request->vehicle_plate2)) 
         {
             $request->vehicle_plate2 = str_replace("_", "", $request->vehicle_plate2);
-            if(strlen($request->vehicle_plate2) < 7 ) return redirect("veiculos")->with('errorSize','Placa deverar ter no minino de 7 caracteres');
+            if(strlen($request->vehicle_plate2) < 7 ) return redirect("veiculo-add")->with('errorSize','Placa deverar ter no minino de 7 caracteres');
         }
 
-        if($request->value == "R$ 0,00") 
-        {
-            return redirect("veiculos")->with('errorValue','Campo Valor obrigatorio');
-        }
+        //verificando se é algum tipo de veiculo (motor) para validar se o valor é obrigatorio
+        // if($request->type_vehicles != 'Bicicleta' && $request->type_vehicles != 'Pessoa' && $request->type_vehicles != 'Pet' )
+        // {            
+        //     if($request->value == "R$ 0,00") return redirect("veiculo-add")->with('errorValue','Campo Valor obrigatorio');                     
+        // }else{
+        //     $request->value = null;
+        // }
 
-        
-                            
+        if($request->value == "R$ 0,00") $request->value = null;
+                                   
 
         //verificando se o user vai ter um cliente vinculado
         if($request->client == "null"){
             $request->client = null;
         }
         
-        // dd($request->all()); 
-
+        debug(isset($request->idEquip));
+        
         $vehicles = Vehicles::create([
             'company'=> $request->company,
             'status' => $request->status,
@@ -144,7 +139,7 @@ class VehiclesController extends Controller
             'year'=>$request->year,
             'vehicle_plate' => $request->vehicle_plate,
             'value' => $request->value,
-            'equipment' => $request->equipment, 
+            // 'equipment' => $request->equipment,
             'license_plate' => $request->vehicle_plate ?? $request->vehicle_plate2,
             'responsible_for_insert' => auth()->user()->name,
             'date_of_insert' => now(),
@@ -152,9 +147,20 @@ class VehiclesController extends Controller
             'client_id' => $request->client
                         
         ]);
-        $vehicles->save();
-        
 
+        $vehicleSave = $vehicles->save();
+
+        debug($request->idEquip);
+        //save equipament
+        if($vehicleSave && isset($request->idEquip))
+        {
+            $equipment = Equipments::find($request->idEquip);
+
+            $equipment->vehicle_id = $vehicles->id;
+            $equipment->save();
+        }
+
+        
         return redirect('veiculo-add')                
                    ->withSuccess('Veiculo cadastrado com Sucesso');
 
@@ -194,42 +200,51 @@ class VehiclesController extends Controller
 
 
     public function update(VehiclesEditRequest $request, $id)
-    {
-        // dd( $request->all());
-
-        //validando tamanho das placas
-      
+    {        
+        debug($request->all());
 
         if($request->value == "R$ 0,00") 
         {
-            return redirect("veiculos-edit/$id")->with('errorValue','Campo Valor obrigatorio');
-        }
+             // return redirect()->route("veiculo-edit.update",['id'=>$id])->with('errorValue','Campo Valor obrigatorio');
+            $request->value = null;
+        }//
+        
+        //pegando o imei pois vem uma string com mais informaçoes
+        $imei = explode("-",$request->equipment);
+        $imei  = trim($imei[0]);
 
-        // dd($request->all());
+        debug($request->equipment);
+        debug($imei);
+        
         $vehicle = Vehicles::find($id);
 
-        $name = auth()->user()->name;
-        $lastName = auth()->user()->last_name;
-
-        $responsible_last_updated  = "$name $lastName";
-
-        $vehicle->update([
-            // 'company'=> $request->company,
-            // 'status' => $request->status,
-            // 'type' => $request->type_vehicles,                                     
-            // 'brand'=> $request->brand,       
-            // 'model'=> $request->model,
-            // 'year'=>$request->year,
-            // 'vehicle_plate' => $request->vehicle_plate,
+        $vehicle->update([          
+            'status' => $request->status,
             'value' => $request->value,
-            'equipment' => $request->equipment, 
-            // 'license_plate' => $request->vehicle_plate ?? $request->vehicle_plate2,
-            'responsible_last_updated' => $responsible_last_updated
-            // 'date_of_insert' => now(),
+            // 'equipment' => $request->equipment,
+            'responsible_last_updated' => auth()->user()->getFullNameAttribute(),
+           
+            // 'date_of_insert' => now(),            
         ]);
-        $vehicle->save();
 
-       return redirect("veiculos-edit/$id")                 
+         $vehicleSave = $vehicle->save();
+
+        //save equipament
+
+         debug($request->idEquip);
+         //save equipament
+         if($vehicleSave && isset($request->idEquip))
+        {
+             $equipment = Equipments::find($request->idEquip);
+ 
+             $equipment->vehicle_id = $vehicle->id;
+             $equipment->save();
+        }
+
+        //se for igual a null setar null e desvincular o aparelho
+        //sentar o id e o nome no input 
+
+       return redirect()->route("veiculo-edit.update",['id'=>$id])                 
                 ->withSuccess('Veiculo editado com Sucesso');
       
     } //end update

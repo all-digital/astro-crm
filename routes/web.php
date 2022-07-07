@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
+use App\ModelsVehicles;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -135,7 +136,9 @@ Route::get('ddd/', function(Request $request){
     //auth()->user()->registerAccess();
     // dd(auth()->user()->getFullNameAttribute());
 
-    dd(cache('marcas'));
+    // dd(cache('marcas'));
+
+    $vei = Vehicles::with('equipment')->find(48);
 
 //     $value = $request->cookie('teste');
     

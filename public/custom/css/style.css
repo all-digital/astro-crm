@@ -77,3 +77,25 @@
 
 }
 
+/* select com pesquisa e ajax para o input de equipamentos */
+
+#list-equip {
+    border: 1px solid #ced4da;
+    padding: 3px;
+    display: none;
+
+    /* overflow: scroll; */
+}
+
+  
+
+  .option-equip{
+    padding: 3px 10px;
+  }
+
+  .option-equip:hover{
+    background: #0A91BB;
+    color:white;
+    cursor: pointer;
+  }
+

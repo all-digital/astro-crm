@@ -31,6 +31,9 @@ Route::post('/teste', function(){
 });
 
 
+Route::get('search-equipment/{text}/{companyId}', [App\Http\Controllers\Api\SearchFilterAjax::class, 'searchEquipment']);
+
+
 Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);
 
 Route::get('tabela-fipe/marcas/{veiculo}', [App\ExternalServices\TabelaFipe::class, 'getMarcas']);
