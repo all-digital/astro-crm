@@ -33,7 +33,7 @@ class Vehicles extends Model
         return $this->belongsTo(Clients::class);
     }
 
-    public function equipment()
+    public function equipmentVehicle()
     {
         return $this->hasOne(Equipments::class,'vehicle_id');
     }

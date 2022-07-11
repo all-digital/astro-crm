@@ -32,14 +32,14 @@ class Equipments extends Model
         return $this->belongsTo(Companies::class);
     }
 
-    public function vehicle()
+    public function vehicleEquipment()
     {
         return $this->belongsTo(Vehicles::class);
     }
 
     public function simcard()
     {
-        return $this->belongsTo(Vehicles::class);
+        return $this->belongsTo(Simcards::class);
     }
 
 }

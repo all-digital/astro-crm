@@ -24,7 +24,7 @@ class Simcards extends Model
 
     public function equipment()
     {
-        return $this->hasOne(Vehicles::class);
+        return $this->hasOne(Equipments::class ,'simcard_id');
     }
 
     public function client()
