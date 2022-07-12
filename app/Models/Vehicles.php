@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// use Carbon\Carbon;
+use Carbon\Carbon;
 
 class Vehicles extends Model
 {
@@ -41,23 +41,23 @@ class Vehicles extends Model
     
      //Accessor
     
-    //  public function getCreatedAtAttribute($value)
-    //  {
-    //     $created_at = Carbon::parse($value, 'UTC');
-    //     $value = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+     public function getCreatedAtAttribute($value)
+     {
+        $created_at = Carbon::parse($value, 'UTC');
+        $value = $created_at->isoFormat('DD/MM/YYYY HH:mm');
  
-    //     return $value;
+        return $value;
         
-    //  }
+     }
  
-    //  public function getUpdatedAtAttribute($value)
-    //  {
-    //     $updated_at = Carbon::parse($value, 'UTC');
-    //     $value = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
+     public function getUpdatedAtAttribute($value)
+     {
+        $updated_at = Carbon::parse($value, 'UTC');
+        $value = $updated_at->isoFormat('DD/MM/YYYY HH:mm');
         
-    //     return $value;
+        return $value;
         
-    //  }
+     }
 
 
 

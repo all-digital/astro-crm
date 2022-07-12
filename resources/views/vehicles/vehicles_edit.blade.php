@@ -63,14 +63,14 @@
                                               <label for="company" class="form-label">Empresa</label>
                                                 
                                               <input class="form-control @error('company') is-invalid @enderror"  type="text" readonly
-                                              id="company" name="company" value="{{$vehicle['company']}}">
+                                              id="company" name="company" value="{{$vehicle->company}}">
                                             </div>                                                
                                                                                         
   
                                           <div class="mb-3 mb-4">
                                             <label class="form-label" for="client">Cliente</label>
                                             <input class="form-control @error('company') is-invalid @enderror"  type="text" readonly
-                                            id="client" name="client" value="{{$client['name']}}">
+                                            id="client" name="client" value="{{$client->name}}">
                                            {{-- <select name="client" class="form-control select2-client">
                                                <option value=""></option>
                                               <option value="">Sem vínculo</option>
@@ -83,18 +83,18 @@
                                           <div class="mb-3 mb-4">
                                             <label class="form-label" for="brand">Marca</label>                                              
                                             <input class="form-control @error('brand') is-invalid @enderror"  type="text" readonly
-                                            id="brand" name="brand" value="{{$vehicle['brand']}}">                                                                                   
+                                            id="brand" name="brand" value="{{$vehicle->brand}}">                                                                                   
                                           </div>
 
                                           <div class="mb-3 mb-4">
                                             <label class="form-label" for="year">Ano</label>
                                             <input class="form-control @error('year') is-invalid @enderror"  type="text" readonly
-                                            id="year" name="year" value="{{$vehicle['year']}}">              
+                                            id="year" name="year" value="{{$vehicle->year}}">              
                                           </div>
 
                                           <div class="mb-3 mb-4">
                                             <label for="value" class="form-label">Valor</label>
-                                            <input type="text" name="value" id="value" class="form-control @error('value') is-invalid @enderror" value="{{ $vehicle['value'] }}">   
+                                            <input type="text" name="value" id="value" class="form-control @error('value') is-invalid @enderror" value="{{ $vehicle->value }}">   
                                             
                                             @if(session('errorValue'))
                                               <div class="mt-2 alert alert-danger">
@@ -108,7 +108,7 @@
                                           <div class="mb-3 mb-4">
                                             <label for="update_responsible_last_updated" class="form-label">Usuário de Inserção</label>
                                             
-                                                <input class="form-control"  value="{{  $vehicle['responsible_for_insert'] }}" type="text" readonly
+                                                <input class="form-control"  value="{{  $vehicle->responsible_for_insert }}" type="text" readonly
                                                     id="update_responsible_last_updated" name='responsible_for_insert'>                                               
                                                          
                                           </div> 
@@ -116,7 +116,7 @@
                                           <div class="mb-3 mb-4">
                                             <label for="update_responsible_last_updated" class="form-label">Usuário da Última Alteração</label>
                                             
-                                                <input class="form-control"  value="{{  $vehicle['responsible_last_updated'] ?? ''}}" type="text" readonly
+                                                <input class="form-control"  value="{{  $vehicle->responsible_last_updated ?? ''}}" type="text" readonly
                                                     id="update_responsible_last_updated" name='responsible_last_updated'>                                               
                                                          
                                           </div> 
@@ -134,7 +134,7 @@
                                           <div class="mb-3 mb-4">
                                             <label class="form-label" for="status">Status</label>
                                             <select name="status" class="form-control">
-                                              @if ($vehicle['status']) <option value="{{$vehicle['status']}}">{{ucfirst($vehicle['status'])}}</option>  @endif
+                                              @if ($vehicle['status']) <option value="{{$vehicle->status}}">{{ucfirst($vehicle->status)}}</option>  @endif
                                                                                                 
                                               <option value="ativo">Ativo</option>
                                               <option value="inativo">Inativo</option>
@@ -149,13 +149,13 @@
                                           <div class="mb-3 mb-4">
                                             <label class="form-label" for="type_vehicles">Tipo</label>
                                             <input class="form-control @error('type_vehicles') is-invalid @enderror"  type="text" readonly
-                                            id="type_vehicles" name="type_vehicles" value="{{$vehicle['type']}}">  
+                                            id="type_vehicles" name="type_vehicles" value="{{$vehicle->type}}">  
                                           </div>
 
                                           <div class="mb-3 mb-4">
                                             <label class="form-label" for="model">Modelo</label>
                                             <input class="form-control @error('model') is-invalid @enderror"  type="text" readonly
-                                            id="model" name="model" value="{{$vehicle['model']}}">                             
+                                            id="model" name="model" value="{{$vehicle->model}}">                             
                                           </div> 
 
   
@@ -164,7 +164,7 @@
 
                                             <input class="form-control"  type="text" readonly
                                             id="vehicle_plate" name="vehicle_plate"
-                                             value="{{ $vehicle['license_plate'] }}" placeholder="{{$vehicle['license_plate']}}">                                           
+                                             value="{{ $vehicle->license_plate }}" placeholder="{{$vehicle->license_plate}}">                                           
                                           </div>                                          
                                                                                                                             
                                          
@@ -184,8 +184,20 @@
 
                                           <div class="mb-3 mb-4">
                                             <label for="equip"  >Equipamento</label>
-                                            <input   id="equip" class="form-control"  placeholder="Imei - Modelo - Marca" value="{{$vehicle['created_at']}}"> 
-                                            <input   name="idEquip" type="hidden" id="idEquip" > 
+                                            <input   id="equip" class="form-control"  placeholder="Imei - Modelo - Marca" 
+                                            @if (isset($vehicle->equipmentVehicle->imei ))
+                                            value="{{$vehicle->equipmentVehicle->imei}} - {{$vehicle->equipmentVehicle->imei}} - {{$vehicle->equipmentVehicle->model}}" > 
+                                            @else
+                                            value=""> 
+                                            @endif
+                                            
+                                            <input   name="idEquip" type="hidden" id="idEquip"
+                                            @if (isset($vehicle->equipmentVehicle->imei ))
+                                                value="{{$vehicle->equipmentVehicle->id}}"
+                                            @else
+                                                value=""
+                                            @endif
+                                            > 
                                             <div id="list-equip">
 
                                             </div>
@@ -196,7 +208,7 @@
                                           <div class="mb-3 mb-4">
                                             <label for="update_responsible_last_updated" class="form-label">Data de Inserção</label>
                                             
-                                                <input class="form-control"  value="{{  $vehicle['created_at'] }}" type="text" readonly
+                                                <input class="form-control"  value="{{  $vehicle->created_at }}" type="text" readonly
                                                     id="update_responsible_last_updated" name='created_at'>                                             
                                                          
                                           </div> 
@@ -205,7 +217,7 @@
                                           <div class="mb-3 mb-4">
                                             <label for="update_responsible_last_updated" class="form-label">Data da Última Alteração</label>
                                             
-                                                <input class="form-control"  value="{{  $vehicle['updated_at'] }}" type="text" readonly
+                                                <input class="form-control"  value="{{  $vehicle->updated_at }}" type="text" readonly
                                                     id="update_responsible_last_updated" name='updated_at'>                                               
                                                          
                                           </div> 

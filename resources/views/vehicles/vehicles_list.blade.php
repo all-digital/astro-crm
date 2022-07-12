@@ -130,37 +130,7 @@
                                                 
             });
 
-                               // {data: 'button'},
-            //                 {data: 'company'},
-            //                 {data: 'fantasy_name'},
-            //                 {data: 'responsible_for_insert' }, 
-            //                 { data: 'created_at'},                          
-            //                 { data: 'responsible_for_insert' },
-            //                 { data: 'brand' },
-            //                 { data: 'model' },
-            //                 { data: 'year' },
-            //                 { data: 'license_plate' },
-            //                 { data: 'equipment' },
-            //                 { data: 'license_plate' },
-            //                 { data: 'updated_at' },
-            //                 { data: 'id' }     
-
-
-            // {data: 'modulos'},
-            //                 {data: 'social_Reason'},
-            //                 {data: 'fantasy_name'},
-            //                 {data: 'cnpj' }, 
-            //                 { data: 'status'},                          
-            //                 { data: 'name_responsible' },
-            //                 { data: 'last_name_responsible' },
-            //                 { data: 'email_responsible' },
-            //                 { data: 'updated_at' },
-            //                 { data: 'monthly_payment' },
-            //                 { data: 'activation' },
-            //                 { data: 'price_per_plate' },
-            //                 { data: 'user_limit' },
-            //                 { data: 'price_per_extra_user' }       
-           
+        
     </script>    
 
 

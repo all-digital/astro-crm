@@ -2,6 +2,8 @@
 
 use App\Models\Services;
 use App\Models\Companies;
+use App\Models\Vehicles;
+use App\Models\Equipments;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,7 +11,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
-use App\ModelsVehicles;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -135,10 +136,37 @@ Route::get('ddd/', function(Request $request){
 
     //auth()->user()->registerAccess();
     // dd(auth()->user()->getFullNameAttribute());
+    
 
-    // dd(cache('marcas'));
+   // $vei = Vehicles::with('equipment')->find(48);
+    // $eq = Equipments::with('vehicle')->find(18);       
+    
+   // $vei = Vehicles::find(47);
+   // $vei = Vehicles::find(47)->with('equipment')->get()->toArray();
 
-    $vei = Vehicles::with('equipment')->find(48);
+    // $vei->equipment()->create([
+
+    //     "imei" => 888888,
+    //     "company_id" => 1,
+    // ]);
+
+    // $vei->refresh();
+
+    //$v = $vei;
+    // dd($v[47]['equipment']);
+
+    // $vei = Vehicles::find(47);
+    // dd($vei->equipment()->get()->toJson());
+
+
+    $vei = Vehicles::with('equipment')->find(47);
+
+    dd($vei->equipment);
+
+    
+   // dd($eq->vehicle);
+  // dd($vei);
+    //dd($vei->equipment);
 
 //     $value = $request->cookie('teste');
     

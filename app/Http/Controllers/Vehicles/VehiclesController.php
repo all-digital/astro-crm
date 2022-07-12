@@ -23,48 +23,87 @@ class VehiclesController extends Controller
     {        
         $idCompany = auth()->user()->company->id;
 
-        // $vehicles = Vehicles::where('company_id', $idCompany)->get();    
-        // $vehicles = $vehicles->toArray();
-
-        ////////////////
-        // $result = DB::table('vehicles')
-        // ->join('clients', function ($join) use ($idCompany) {
-        //     $join->where('clients.company_id', '=', $idCompany);                 
-        // })
-        // ->get();
-
 
         $vehicles = DB::select( DB::raw("select vehicles.*, clients.fantasy_name
         from vehicles inner join clients on clients.id = vehicles.client_id where clients.company_id = $idCompany;") );
 
-        // $result = collect($result);
+
+        // $vehiclesLinked = DB::select( DB::raw("select vehicles.*, clients.fantasy_name, equipments.imei, equipments.id as idEquip
+        // from vehicles
+        // inner join equipments on vehicles.id = vehicle_id
+        // inner join clients on clients.id = vehicles.client_id where clients.company_id = $idCompany;") );
+
+        $vehiclesLinked = DB::select( DB::raw("select vehicles.id as idVehicles, equipments.imei, vehicle_id, equipments.id as idEquip
+        from vehicles
+        inner join equipments on vehicles.id = vehicle_id where equipments.company_id = $idCompany;"));
        
+
+        // dd($vehiclesLinked);
+           
                            
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
             return $value['name'];    
         },$rolesAuthUser);
 
-        //dd($vehicles);
+        // dd($vehicles);
         // $urlProfile = url('/profile');
         $urlEditVehicle = url('/veiculo-edit');
 
         //
-        $vehicles = array_map(function($value)use ($urlEditVehicle, $permission){                 
+       // $vehicles = array_map(function($value)use ($urlEditVehicle, $permission){                 
            
-           $id = $value->id;           
+       
 
-            // if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
+
+        foreach($vehicles as $index => $value) {
+
+            $id = $value->id;
+
+            // debug($index);
+            // debug($value);
+
+            $created_at = Carbon::parse($value->created_at, 'UTC');
+            $updated_at = Carbon::parse($value->updated_at, 'UTC');
+            $value->created_at = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+            $value->updated_at = $updated_at->isoFormat('DD/MM/YYYY HH:mm');   
+
+
+            foreach($vehiclesLinked as $i => $v){
+               $imei = $v->imei;
+
+                    if($v->vehicle_id == $id){
+                        debug("deu certo");
+                        debug($v->vehicle_id);
+                        debug($id);
+                        debug($imei);
+
+                        $value->equipment = "<a class='' target ='_blank' href='$urlEditVehicle\\$id' >Equipamento  tirar id $id</a> </div>";
+                    }else{
+                        $value->equipment = "Sem equipamento";
+                    }
+            }
+
+
+            // if(isset($vehiclesLinked[$index]))
             // {
-            //     $value->button = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a> <a class='btn btn-primary' target ='_blank' href='$urlEditVehicle\\$id' >Alterar</a> </div>";
-            // }else{
-            //     $value->button = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlProfile\\$id' >Perfil</a></div>" ;
+            //     debug( $vehiclesLinked[$index]);
+            //     debug( $vehiclesLinked[$index]->vehicle_id);
+            //     debug( $vehiclesLinked);
+
             // }
 
-            $value->button = "<a class='btn btn-primary' target ='_blank' href='$urlEditVehicle\\$id' >Alterar</a> </div>";
-                    
-            return $value; 
-        },$vehicles);
+
+
+
+
+
+            $vehicles[$index]->button = "<a class='btn btn-primary' target ='_blank' href='$urlEditVehicle\\$id' >Alterar</a> </div>";
+
+
+        };
+        
+
 
         // dd($vehicles);
         /////////////////////////
@@ -170,20 +209,18 @@ class VehiclesController extends Controller
     public function edit(Request $request, $id)
     {
         $idCompany = auth()->user()->company->id;
-        $vehicle = Vehicles::find($id)->toArray();
+        $vehicle = Vehicles::with('equipmentVehicle')->find($id);
 
-        $created_at = Carbon::parse($vehicle['created_at'], 'UTC');
-        $updated_at = Carbon::parse($vehicle['updated_at'], 'UTC');
+        // $created_at = Carbon::parse($vehicle->created_at, 'UTC');
+        // $updated_at = Carbon::parse($vehicle->updated_at, 'UTC');
 
-        $vehicle['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
-        $vehicle['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm'); 
+        // $vehicle->created_at = $created_at->isoFormat('DD/MM/YYYY HH:mm');
+        // $vehicle->updated_at = $updated_at->isoFormat('DD/MM/YYYY HH:mm'); 
 
         // dd($vehicle);
 
-        $client = Clients::find($vehicle['client_id']);
-        
-        // $client = auth()->user()->company->client->toArray();
-
+        $client = Clients::find($vehicle->client_id);
+                
         $companies = Companies::with('equipments')->find($idCompany);        
         $equipments = $companies->toArray()['equipments'];
 
@@ -192,6 +229,9 @@ class VehiclesController extends Controller
         $permission = array_map(function($value){
             return $value['name'];    
         },$rolesAuthUser);
+
+        // dd($vehicle);
+        // dd($vehicle->equipmentVehicle->imei);
 
         return view('vehicles.vehicles_edit',compact('id','permission','client','vehicle','equipments'));
 
