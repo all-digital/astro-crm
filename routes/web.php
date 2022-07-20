@@ -159,9 +159,16 @@ Route::get('ddd/', function(Request $request){
     // dd($vei->equipment()->get()->toJson());
 
 
-    $vei = Vehicles::with('equipment')->find(47);
+    // $vei = Vehicles::with('equipment')->find(47);
 
-    dd($vei->equipment);
+    // dd($vei->equipment);
+
+    $equip = Equipments::with('simcardEquipment')->find(29);
+
+    dd($equip->simcardEquipment);
+
+    
+    // dd(auth()->user()->client);
 
     
    // dd($eq->vehicle);
@@ -268,6 +275,10 @@ Route::get('cliente-list', [App\Http\Controllers\Client\ClientController::class,
 
 Route::get('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'show'])->name('ordem-servico.show');                                              
 Route::post('ordem-servico', [App\Http\Controllers\OrderService\OrderServiceController::class, 'store'])->name('ordem-servico.store');    
+
+
+
+
 
 Route::get('category-list', [App\Http\Controllers\Category\CategoryController::class, 'index'])->name('category.index');
 Route::get('category-edit/{id}', [App\Http\Controllers\Category\CategoryController::class, 'edit'])->name('category-edit.edit');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Simcards;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\SimcardEditRequest;
 
@@ -18,8 +19,10 @@ class SimcardsController extends Controller
         $idCompany = auth()->user()->company->id;
 
         $simcards = Simcards::where('company_id',$idCompany)->get()->toArray();
-        // dd($simcards);
 
+        $equipments = DB::select( DB::raw("select id, simcard_id, imei
+        from equipments where company_id = $idCompany;"));
+        debug($equipments);
 
         $rolesAuthUser = auth()->user()->roles()->get()->toArray(); 
         $idCompany = auth()->user()->company->id;       
@@ -32,35 +35,48 @@ class SimcardsController extends Controller
 
 
         $urlEditSimcard = url('simcard-edit');
+        $urlEditEquipment = url('equip-edit');
         //
-        $simcards = array_map(function($value)use ($urlEditSimcard, $permission){
 
-            $created_at = Carbon::parse($value['created_at'], 'UTC');
-            $updated_at = Carbon::parse($value['updated_at'], 'UTC');
+        foreach($simcards as $index => $value) {
 
-            $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
-            $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
+            $id = $value['id'];              
+                      
+                                              
+                    foreach($equipments as $i => $v){                                  
+                        $imei = $v->imei;
+                        $idEquip = $v->id;
+                                                 
+                        if($value['id'] == $v->simcard_id){                      
+                            $value['equipment'] = "<a class='' target ='_blank' href='$urlEditEquipment\\$idEquip' >Imei $imei</a> </div>";                                     
+                        }                                                                       
+                                                       
+                       }//end foreach interno
 
-            $id = $value['id'];
+
+                    // //criar regra para excluir  
+                    ///// criar a regra para saber se o simcard esta vazio ou não e se pode ser excluido
+
+            if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
+            {
+                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlEditSimcard\\$id' >Editar</a> <a class='btn btn-primary' target ='_blank' href='$urlEditSimcard\\$id' >Excluir</a> </div>";
+            }else{
+                $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlEditSimcard\\$id' >Editar</a></div>" ;
+            }  
+
             
+            $simcards[$index] = $value;
 
-            // if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
-            // {
-            //     $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlEditSimcard\\$id' >Editar</a> <a class='btn btn-primary' target ='_blank' href='$urlEditSimcard\\$id' >Excluir</a> </div>";
-            // }else{
-            //     $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlEditSimcard\\$id' >Editar</a></div>" ;
-            // }  
-            //criar regra para excluir        
-            $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlEditSimcard\\$id' >Editar</a></div>" ;
+        }               
 
-            return $value; 
-        },$simcards);
 
-        // dd($simcards);
+        debug($simcards);
 
         return view('simcards.index', compact('permission','simcards'));
     
     }//end edit
+
+
     
     public function edit(Request $request, $id)
     {        

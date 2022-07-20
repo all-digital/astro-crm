@@ -26,6 +26,17 @@ class EquipmentController extends Controller
         
         $equipments = Equipments::where('company_id', $idCompany)->get();    
         $equipments = $equipments->toArray();
+
+        //add um id em vehicles e refatorar
+        $vehiclesLinked = DB::select( DB::raw("select vehicles.id as idVehicles, license_plate
+        from vehicles
+        inner join equipments on vehicles.id = vehicle_id where equipments.company_id = $idCompany;"));
+
+
+        $simcardLinked = DB::select( DB::raw("select id, number_of_line, iccid
+        from simcards where company_id = $idCompany;"));
+        
+        // debug($simcardLinked);
         
         $rolesAuthUser = auth()->user()->roles()->get()->toArray();
         $permission = array_map(function($value){
@@ -33,31 +44,57 @@ class EquipmentController extends Controller
         },$rolesAuthUser);
         
         $urlEditEquipment = url('equip-edit');
-        //
-        $equipments = array_map(function($value)use ($urlEditEquipment, $permission){
+        $urlEditVehicle = url('/veiculo-edit');
+        $urlEditSimcard = url('simcard-edit');
 
-            $created_at = Carbon::parse($value['created_at'], 'UTC');
-            $updated_at = Carbon::parse($value['updated_at'], 'UTC');
+                // usei o foreach ao inves do map pois o map não tinha o index, não consegui inteira outro array dentro dele por conta disso
+                foreach($equipments as $index => $value) {
 
-            $value['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
-            $value['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm');           
-            
-            $id = $value['id'];
-            // $value['user_last_alter'] = 'user_last_alter';
-            // $value['company'] = 'name company';
-            // $value['veiculo'] = 'veiculo';
+                    $id = $value['id'];
+                      
+                              ///// criar a regra para saber se o simcard esta vazio ou não e se pode ser excluido
+                                                      
+                              foreach($vehiclesLinked as $i => $v){                                  
+                                  $idVehicles = $v->idVehicles;
+                                  $licensePlate = $v->license_plate;
+                                  
+                                  if($value['vehicle_id'] == $v->idVehicles){                      
+                                      $value['vehicle'] = "<a class='' target ='_blank' href='$urlEditVehicle\\$idVehicles' >Placa $licensePlate</a> </div>";                                     
+                                    }                                                                       
+                                                               
+                               }//end foreach interno
 
+                               foreach($simcardLinked as $i => $v){                                  
+                                    $numberLine = $v->number_of_line;
+                                    $iccid = $v->iccid;
+                                    $idSimcard = $v->id;
+                                    
+                                    if($value['simcard_id'] == $v->id){                      
+                                        $value['simcard'] = "<a class='' target ='_blank' href='$urlEditSimcard\\$idSimcard' >Iccid $iccid - Numero da linha $numberLine </a> </div>";                                     
+                                    }                                                                       
+                                                             
+                               }//end foreach interno
+                                
+                                            ///// criar a regra para saber se o simcard esta vazio ou não e se pode ser excluido
+                            if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
+                            {
+                                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlEditEquipment\\$id' >Editar</a> <a class='btn btn-primary' target ='_blank' href='$urlEditEquipment\\$id' >Excluir</a> </div>";
+                            }else{
+                                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlEditEquipment\\$id' >Editar</a></div>" ;
+                            }          
+                                
+                                
+                    // $equipments[$index]->button = "<a class='btn btn-primary' target ='_blank' href='$urlEditVehicle\\$id' >Alterar</a> </div>";
+                        
+                    // debug($index);
+                    // debug($value);
 
-            ///// criar a regra para saber se o simcard esta vazio ou não e se pode ser excluido
-            if(in_array('Super Admin',$permission) || in_array('Admin',$permission))
-            {
-                $value['button'] = "<div class='d-flex justify-content-around' > <a class='btn btn-primary' target ='_blank' href='$urlEditEquipment\\$id' >Editar</a> <a class='btn btn-primary' target ='_blank' href='$urlEditEquipment\\$id' >Excluir</a> </div>";
-            }else{
-                $value['button'] = "<div class='d-flex justify-content-center' > <a class='btn btn-primary' target ='_blank' href='$urlEditEquipment\\$id' >Perfil</a></div>" ;
-            }          
+        
+                    $equipments[$index] = $value;
+                };
 
-            return $value; 
-        },$equipments);
+               debug( $equipments);
+
         
         return view('equipment.equipment_list',compact('permission', 'equipments')); 
         
@@ -103,9 +140,9 @@ class EquipmentController extends Controller
             'brand' => $request->brand,
             'model' => $request->model,
             'imei' => $request->imei,
-            'simcard' => $request->simcards,
+            'simcard' => $request->idSimcard,
             'company_id' => $companyId,
-            'simcard_id' => $request->simcards
+            'simcard_id' => $request->idSimcard
         ]);
 
         return redirect()                   
@@ -135,16 +172,9 @@ class EquipmentController extends Controller
         $simcards = $simcards->toArray();   
 
 
-        $equipment = Equipments::find($id)->toArray();
+        $equipment = Equipments::find($id);
 
-        $created_at = Carbon::parse($equipment['created_at'], 'UTC');
-        $updated_at = Carbon::parse($equipment['updated_at'], 'UTC');
-
-        $equipment['created_at'] = $created_at->isoFormat('DD/MM/YYYY HH:mm');
-        $equipment['updated_at'] = $updated_at->isoFormat('DD/MM/YYYY HH:mm'); 
-
-
-       // dd($equipment);
+       
         return view('equipment.equipment_edit',compact('id','equipment','simcards', 'clients','vehicles'));
         
         // return redirect()                   
@@ -159,8 +189,7 @@ class EquipmentController extends Controller
         // dd($request->all());
 
         $equipment = Equipments::find($id);
-
-        $lastName = auth()->user()->last_name;     
+          
         $equipment->update([
             // 'company'=>$request->company,
             // 'client'=>$request->client,
@@ -171,10 +200,10 @@ class EquipmentController extends Controller
             // 'model' => $request->model,
             // 'imei' => $request->imei,
             'company_id' => $request->client,
-            'simcard_id' => $request->vehicle,
-            'vehicle_id' => $request->simcards,
-            'simcard' => $request->simcards,  
-            'responsible_last_updated'=> auth()->user()->name . " $lastName",
+            'simcard_id' => $request->idSimcard,
+            'vehicle_id' => $request->idSimcard,
+            'simcard' => $request->idSimcard,  
+            'responsible_last_updated'=> auth()->user()->getFullNameAttribute(),
             // 'vehicle' => $request->vehicle          
         ]);
 
@@ -182,7 +211,7 @@ class EquipmentController extends Controller
 
         // return redirect("equip-edit/$id") 
         return redirect() 
-        ->route('equipment.edit.show',$id)                
+        ->route('equip-edit.edit',$id)                
         ->withSuccess('Equipamento Atualizado com Sucesso');
     }
 

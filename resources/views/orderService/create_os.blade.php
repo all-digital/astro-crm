@@ -48,7 +48,7 @@
                             </div>
                         @endif
                      
-                        <form id="formEquipment" action="{{route('os.store')}}" method="POST">
+                        <form id="formEquipment" action="{{route('ordem-servico.store')}}" method="POST">
                           @csrf
 
                             <div class="row">

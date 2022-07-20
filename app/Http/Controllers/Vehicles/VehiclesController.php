@@ -48,14 +48,13 @@ class VehiclesController extends Controller
 
         // dd($vehicles);
         // $urlProfile = url('/profile');
+
         $urlEditVehicle = url('/veiculo-edit');
-
         //
-       // $vehicles = array_map(function($value)use ($urlEditVehicle, $permission){                 
-           
-       
-
-
+        $urlEditEquipment = url('equip-edit');
+                   
+  
+        // usei o foreach ao inves do map pois o map não tinha o index, não consegui inteira outro array dentro dele por conta disso
         foreach($vehicles as $index => $value) {
 
             $id = $value->id;
@@ -71,18 +70,19 @@ class VehiclesController extends Controller
 
             foreach($vehiclesLinked as $i => $v){
                $imei = $v->imei;
+               $idEquip = $v->idEquip;
 
-                    if($v->vehicle_id == $id){
-                        debug("deu certo");
+                    if($v->vehicle_id == $id){                        
                         debug($v->vehicle_id);
                         debug($id);
                         debug($imei);
 
-                        $value->equipment = "<a class='' target ='_blank' href='$urlEditVehicle\\$id' >Equipamento  tirar id $id</a> </div>";
-                    }else{
-                        $value->equipment = "Sem equipamento";
+                        $value->equipment = "<a class='' target ='_blank' href='$urlEditEquipment\\$idEquip' >Imei $imei</a> </div>";
+                                                
                     }
-            }
+                   
+
+            }//end foreach intenro
 
 
             // if(isset($vehiclesLinked[$index]))

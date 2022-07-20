@@ -30,7 +30,7 @@ class EquipmentStoreRequest extends FormRequest
             "brand" => 'required',
             "model" => 'required',
             "imei" =>'required',
-            "simcards" => 'required',
+            // "simcards" => 'required',
         ];
     }
 }

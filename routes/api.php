@@ -32,6 +32,9 @@ Route::post('/teste', function(){
 
 
 Route::get('search-equipment/{text}/{companyId}', [App\Http\Controllers\Api\SearchFilterAjax::class, 'searchEquipment']);
+Route::get('search-simcard/{text}/{companyId}', [App\Http\Controllers\Api\SearchFilterAjax::class, 'searchSimcards']);
+
+Route::get('search-clientVehicle/{value}/{companyId}', [App\Http\Controllers\Api\SearchFilterAjax::class, 'clientVehicle']);
 
 
 Route::get('cnpj/{cnpj}', [App\ExternalServices\ReceitaService::class, 'searchCNPJ']);

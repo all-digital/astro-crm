@@ -99,3 +99,26 @@
     cursor: pointer;
   }
 
+
+  /* select com pesquisa e ajax para o input de simcard */
+
+  #list-simcard {
+    border: 1px solid #ced4da;
+    padding: 3px;
+    display: none;
+
+    /* overflow: scroll; */
+}
+
+  
+
+  .option-simcard{
+    padding: 3px 10px;
+  }
+
+  .option-simcard:hover{
+    background: #0A91BB;
+    color:white;
+    cursor: pointer;
+  }
+

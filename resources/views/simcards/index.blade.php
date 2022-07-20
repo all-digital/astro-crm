@@ -28,7 +28,7 @@
                   <div class="section-title-page">
                     <h4 class="card-title">Opcões de Relatório</h4> 
                     <button type="button" class="btn btn-outline-info waves-effect waves-light"
-                    data-bs-toggle="modal" data-bs-target="#myModal">NOVO SERVIÇO</button>  
+                    data-bs-toggle="modal" data-bs-target="#myModal">NOVO SIMCARDS</button>  
                   </div>
 
                     <table id="datatable" class="table table-bordered dt-responsive nowrap"
@@ -285,7 +285,7 @@
                             { data: 'brand'},
                             { data: 'iccid'},
                             { data: 'number_of_line' },                            
-                            { data: 'id' }, //Equipamento
+                            { data: 'equipment' }, 
                             { data: 'responsible_last_updated' },
                             { data: 'updated_at' },
                                                                          
